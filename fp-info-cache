@@ -1,4 +1,11 @@
-26762028855638109
+26809675863885415
+08056D104KAT2A
+CAPC2012X140N
+
+
+0
+2
+2
 Audio_Module
 Reverb_BTDR-1H
 Digital Reverberation Unit, http://www.belton.co.kr/inc/downfile.php?seq=17&file=pdf (footprint from http://www.uk-electronic.de/PDF/BTDR-1.pdf)
@@ -2810,6 +2817,41 @@ Buzzer_Beeper
 Speaker_CUI_CMR-1206S-67
 Speaker, 30mW, 300-7000Hz, IP67 face, 12x6x2,25mm, https://www.cuidevices.com/product/resource/cmr-12062s-67.pdf
 speaker CUI
+0
+2
+2
+C0603C105K4RACTU
+CAPC1608X90N
+
+
+0
+2
+2
+CC0603KRX7R7BB104
+CAPC1608X90
+<b>CAPACITOR</b>
+
+0
+2
+2
+CL10B104KC8NNNC
+CAPC1608X90N
+
+
+0
+2
+2
+CL21A226KOQNNNE
+CAPC2012X140N
+
+
+0
+2
+2
+CSNL2512FT3L00
+RESC6331X75N
+
+
 0
 2
 2
@@ -59352,6 +59394,20 @@ ceramic
 0
 3
 3
+DR73-220-R
+INDM7676X355N
+
+
+0
+2
+2
+DRV8323RSRGZR
+QFN50P700X700X100-49N
+
+
+0
+49
+49
 Diode_SMD
 D_0201_0603Metric
 Diode SMD 0201 (0603 Metric), square (rectangular) end terminal, IPC-7351 nominal, (Body size source: https://www.vishay.com/docs/20052/crcw0201e3.pdf), generated with kicad-footprint-generator
@@ -61375,6 +61431,13 @@ One digit LED 7 segment SA39-11 SC39-11 SA39-12 SC39-12
 0
 10
 10
+ECA2AM220B
+CAPPRD500W50D630H1120
+
+
+0
+2
+2
 Ferrite_THT
 LairdTech_28C0236-0JW-10
 Ferrite, vertical, LairdTech 28C0236-0JW-10, https://assets.lairdtech.com/home/brandworld/files/28C0236-0JW-10.pdf, JW Miller core https://www.bourns.com/products/magnetic-products/j.w.-miller-through-hole-ferrite-beads-emi-filters
@@ -62453,6 +62516,13 @@ GDT 3R-6
 0
 3
 3
+GRM188R60J476ME15D
+CAPC1608X100N
+
+
+0
+2
+2
 Heatsink
 Heatsink_35x26mm_1xFixation3mm_Fischer-SK486-35
 Heatsink, 35mm x 26mm, 1x Fixation 3mm, Fischer SK486-35
@@ -62776,6 +62846,13 @@ inductor handsolder
 2
 2
 Inductor_SMD
+L_0805_2012Metric_Pad1.15x1.40mm_HandSolder
+Inductor SMD 0805 (2012 Metric), square (rectangular) end terminal, IPC-7351 nominal with elongated pad for handsoldering. (Body size source: https://docs.google.com/spreadsheets/d/1BsfQQcO9C6DZCsRaXUlFlo91Tg2WpOkGARC1WS5S8t0/edit?usp=sharing), generated with kicad-footprint-generator
+inductor handsolder
+0
+2
+2
+Inductor_SMD
 L_01005_0402Metric
 Inductor SMD 01005 (0402 Metric), square (rectangular) end terminal, IPC-7351 nominal, (Body size source: http://www.vishay.com/docs/20056/crcw01005e3.pdf), generated with kicad-footprint-generator
 inductor
@@ -62813,6 +62890,13 @@ inductor
 Inductor_SMD
 L_1206_3216Metric_Pad1.22x1.90mm_HandSolder
 Inductor SMD 1206 (3216 Metric), square (rectangular) end terminal, IPC-7351 nominal with elongated pad for handsoldering. (Body size source: IPC-SM-782 page 80, https://www.pcb-3d.com/wordpress/wp-content/uploads/ipc-sm-782a_amendment_1_and_2.pdf), generated with kicad-footprint-generator
+inductor handsolder
+0
+2
+2
+Inductor_SMD
+L_1206_3216Metric_Pad1.42x1.75mm_HandSolder
+Inductor SMD 1206 (3216 Metric), square (rectangular) end terminal, IPC-7351 nominal with elongated pad for handsoldering. (Body size source: http://www.tortai-tech.com/upload/download/2011102023233369053.pdf), generated with kicad-footprint-generator
 inductor handsolder
 0
 2
@@ -67109,6 +67193,13 @@ wurth wuerth smd inductor
 2
 2
 Inductor_SMD
+L_Wuerth_WE-XHMI-8080
+Inductor, Wuerth, WE-XHMI 8080, 8.3mmx8.8mm, https://katalog.we-online.de/pbs/datasheet/74439358068.pdf, generated with kicad-footprint-generator StandardBox_generator.py
+Inductor Wuerth WE-XHMI 8080
+0
+2
+2
+Inductor_SMD
 L_Wuerth_XHMI-6060
 Inductor, Wuerth, XHMI-6060, 6.65x6.45x5.8mm, (https://www.we-online.com/components/products/datasheet/74439346068.pdf), generated with kicad-footprint-generator gen_inductor.py
 Würth -SMT
@@ -69320,6 +69411,13 @@ solder jumper open
 0
 3
 3
+KiCad
+C0805
+C0805
+Capacitor
+0
+2
+2
 LED_SMD
 LED-APA102-2020
 http://www.led-color.com/upload/201604/APA102-2020%20SMD%20LED.pdf
@@ -86169,6 +86267,20 @@ Texas TQFP QFP Texas_PAP-(S-PQFP-G64) Texas_PowerPAD-64-pin-HTQFP
 0
 112
 65
+Package_QFP
+VQFP-128_14x14mm_P0.4mm
+VQFP, 128 Pin (http://www.microsemi.com/index.php?option=com_docman&task=doc_download&gid=131095), generated with kicad-footprint-generator ipc_gullwing_generator.py
+VQFP QFP
+0
+128
+128
+Package_QFP
+VQFP-176_20x20mm_P0.4mm
+VQFP, 176 Pin (http://www.microsemi.com/index.php?option=com_docman&task=doc_download&gid=131095), generated with kicad-footprint-generator ipc_gullwing_generator.py
+VQFP QFP
+0
+176
+176
 Package_SIP
 PowerIntegrations_eSIP-7C
 eSIP-7C Vertical Flat Package with Heatsink Tab, https://ac-dc.power.com/sites/default/files/product-docs/topswitch-jx_family_datasheet.pdf
@@ -93659,6 +93771,27 @@ Potentiometer vertical vishay
 0
 3
 3
+RC0603FR-073K3L
+RESC1607X60N
+
+
+0
+2
+2
+RC0603FR-0710KL
+RESC1607X60N
+
+
+0
+2
+2
+RC0603FR-07100KL
+RESC1607X60N
+
+
+0
+2
+2
 RF
 Skyworks_SKY13575_639LF
 http://www.skyworksinc.com/uploads/documents/SKY13575_639LF_203270D.pdf
@@ -94954,6 +95087,20 @@ WiFi IEEE802.11 b/g/n
 0
 44
 44
+RMCF0603ZT0R00
+RESC1508X55N
+
+
+0
+2
+2
+RNCP0603FTD1K00
+RESC1508X50N
+
+
+0
+2
+2
 Relay_SMD
 Relay_2P2T_10x6mm_TE_IMxxG
 Signal Relay, 10x6mm, 2 Form C, Gull Wings, https://www.te.com/commerce/DocumentDelivery/DDEController?Action=showdoc&DocId=Data+Sheet%7F108-98001%7FZ.1%7Fpdf%7FEnglish%7FENG_DS_108-98001_Z.1.pdf
@@ -97278,6 +97425,20 @@ rotary encoder illuminated switch vertical
 0
 9
 8
+STB75NF75T4
+STB75NF75T4
+STB75NF75T4-2
+MOSFET (N-Channel)
+0
+3
+3
+STM32G431CBU6
+QFN50P700X700X60-49N
+
+
+0
+49
+49
 Sensor
 ASAIR_AM2302_P2.54mm_Lead2.75mm_TabDown
 Temperature and humidity module, http://akizukidenshi.com/download/ds/aosong/AM2302.pdf
@@ -106361,6 +106522,34 @@ Varistor
 Varistor_Panasonic_VF
 Panasonic VF series varistor, 6x8mm body, 3.2mm height, https://mediap.industry.panasonic.eu/assets/imported/industrial.panasonic.com/cdbs/www-data/pdf/AWA0000/AWA0000C4.pdf
 Varistor VF
+0
+2
+2
+WSLP27261L000FEA
+RES_WSLP2726L5000FEA
+
+
+0
+4
+4
+cl05b105
+CAPC1005X55N
+CL05 (0402)
+Capacitor
+0
+2
+2
+ss18 schottky diode
+SMA_ONS
+
+SS18 
+0
+2
+2
+ul_80ZLJ680MGC18X25
+CAP_YX_18X25_RUB
+
+80ZLJ680MGC18X25 
 0
 2
 2
