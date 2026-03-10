@@ -625,6 +625,10 @@
     [
       "223db1af-68f5-46b9-9722-256b09606f21",
       "MCU"
+    ],
+    [
+      "a2e9c01f-dc3c-42e3-9ad2-b4c7bc962bba",
+      "Mosfetv2"
     ]
   ],
   "text_variables": {}

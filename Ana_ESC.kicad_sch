@@ -622,16 +622,6 @@
 				(justify left)
 			)
 		)
-		(pin "Vdrain" input
-			(at 190.5 48.26 180)
-			(uuid "eab15ceb-aca7-46cc-98f6-0197cfb988c3")
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
 		(pin "SHA" output
 			(at 190.5 81.28 180)
 			(uuid "6391bd0b-1d85-47d7-a992-ad69a5ca6770")
@@ -722,6 +712,16 @@
 				(justify left)
 			)
 		)
+		(pin "Vdrain" output
+			(at 190.5 48.26 180)
+			(uuid "bd190883-fdac-4812-8ad0-9e73765e6578")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
 		(instances
 			(project "Ana_ESC"
 				(path "/57129761-6d47-486c-bd7a-90dbb6f75754"
@@ -776,6 +776,238 @@
 			(project "Ana_ESC"
 				(path "/57129761-6d47-486c-bd7a-90dbb6f75754"
 					(page "4")
+				)
+			)
+		)
+	)
+	(sheet
+		(at 137.16 128.27)
+		(size 31.75 49.53)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(stroke
+			(width 0.1524)
+			(type solid)
+		)
+		(fill
+			(color 0 0 0 0.0000)
+		)
+		(uuid "a2e9c01f-dc3c-42e3-9ad2-b4c7bc962bba")
+		(property "Sheetname" "Mosfetv2"
+			(at 137.16 127.5584 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "mosfetv2.kicad_sch"
+			(at 137.16 178.3846 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(pin "FAZ_A" output
+			(at 137.16 137.16 180)
+			(uuid "4f6c3351-0835-4ec6-be90-2ad517f2137b")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "FAZ_B" output
+			(at 137.16 139.7 180)
+			(uuid "1530980b-91bb-4641-a797-45e6d839b9b6")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "FAZ_C" output
+			(at 137.16 143.51 180)
+			(uuid "2de99c80-81d4-4593-a839-1f1cac18edee")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "GHA" input
+			(at 137.16 147.32 180)
+			(uuid "cae0903f-1f1e-4ef9-a0d8-9ac9930a3d31")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "GHB" input
+			(at 137.16 149.86 180)
+			(uuid "e22ad528-b16e-4304-8e35-2a19599c3756")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "GHC" input
+			(at 137.16 152.4 180)
+			(uuid "71c5d53c-eef2-4a3a-977d-a670400b968b")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "GLA" input
+			(at 137.16 157.48 180)
+			(uuid "d882200f-305d-45e4-a7a4-b605126e1704")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "GLB" input
+			(at 137.16 160.02 180)
+			(uuid "fb2e1c36-534b-40fe-afa3-2a44fad53e3e")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "GLC" input
+			(at 137.16 162.56 180)
+			(uuid "fc26edaa-aa1f-414e-9ab3-87b92f7f53de")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "SHA" output
+			(at 137.16 166.37 180)
+			(uuid "e1f84d76-180b-43b3-b1d3-e51935d55ba9")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "SHB" output
+			(at 137.16 168.91 180)
+			(uuid "a27bd443-5f38-47ce-bab9-2b688c92ec76")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "SHC" output
+			(at 137.16 171.45 180)
+			(uuid "932991a1-14de-439e-9f75-2316f02ad3cd")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "SNA" output
+			(at 168.91 170.18 0)
+			(uuid "1e112838-3483-4d4b-90e4-5d8ba8cb62a1")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "SNB" output
+			(at 168.91 168.91 0)
+			(uuid "b877cf82-549e-45e5-9ce3-1a1cf748f786")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "SNC" output
+			(at 168.91 166.37 0)
+			(uuid "b53115c8-af30-484f-9691-a4b00af4bdc1")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "SPA" output
+			(at 168.91 156.21 0)
+			(uuid "6acbb0c4-8106-4a90-a838-37a50a85c30d")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "SPB" output
+			(at 168.91 153.67 0)
+			(uuid "5f0c6b3a-8f5b-43df-83a1-0b474d46e3fb")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "SPC" output
+			(at 168.91 151.13 0)
+			(uuid "1cb2476b-0766-4b00-9238-cd86bb116bb5")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "Vdrain" output
+			(at 168.91 147.32 0)
+			(uuid "b9d295d4-f6bf-477d-b9b0-4f46cb6ad10d")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(instances
+			(project "Ana_ESC"
+				(path "/57129761-6d47-486c-bd7a-90dbb6f75754"
+					(page "5")
 				)
 			)
 		)

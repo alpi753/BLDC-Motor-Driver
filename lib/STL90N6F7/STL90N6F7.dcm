@@ -1,0 +1,9 @@
+EESchema-DOCLIB  Version 2.0
+#
+$CMP STL90N6F7
+D N-channel 60 V, 4.6 m typ., 90 A STripFET F7 Power MOSFET in a PowerFLAT 5x6 package
+K
+F https://www.st.com/resource/en/datasheet/stl90n6f7.pdf
+$ENDCMP
+#
+#End Doc Library
