@@ -1,0 +1,9 @@
+EESchema-DOCLIB  Version 2.0
+#
+$CMP STB75NF75T4
+D N-channel 75V - 0.0095 - 80A - TO-220 - TO-220FP - D2PAK STripFET II Power MOSFET
+K
+F https://www.st.com/resource/en/datasheet/stb75nf75.pdf
+$ENDCMP
+#
+#End Doc Library

@@ -1,0 +1,9 @@
+EESchema-DOCLIB  Version 2.0
+#
+$CMP CL05B105KQ5NQNC
+D Cap Ceramic 1uF 6.3V X7R 10% Pad SMD 0402 125C T/R
+K
+F https://media.digikey.com/pdf/Data%20Sheets/Samsung%20PDFs/CL10A225KO8NNNC_Spec.pdf
+$ENDCMP
+#
+#End Doc Library

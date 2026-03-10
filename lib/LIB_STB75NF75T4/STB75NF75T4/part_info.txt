@@ -1,0 +1,9 @@
+Manufacturer=STMicroelectronics
+PartNumber=STB75NF75T4
+PartCategory=MOSFET (N-Channel)
+PackageCategory=Other
+PinCount=3
+Version=3.5
+Released=2022-10-04 11:39:20
+Downloaded=2025-12-11 15:32:47
+3D=N
