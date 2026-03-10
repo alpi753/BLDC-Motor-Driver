@@ -1,4 +1,6 @@
-#*# Mosfet sürücü entegresinin akım sınırı yeterli mi analiz et.
+## Motor sürücü devresi hakkında genel notlar
+
+  Mosfet sürücü entegresinin akım sınırı yeterli mi analiz et.
 
 Vin kaynağı için voltaj regülatörü ayarlanacak. İstediğim 6-60V aralığı, şimdilik elimde olan lm294 6-26V regülatörü kullanacağım.
 
@@ -16,4 +18,16 @@ DRV8302- 360TL
 
 Mosfet Seçimi
 IAUCN08S7L013ATMA1	En iyisi, 1mohm RDSon 300A 80V
+
+$x=y$
+
+### Çalışma Koşulları
+$Vbat = 50,4V (12S pil)$
+
+$Inormal = 30A$
+
+$Watt = 1,5kW$
+
+Sistem bu veriler gözönünde bulundurularak tasarlanmıştır.
+
 
