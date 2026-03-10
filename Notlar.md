@@ -30,4 +30,6 @@ $Watt = 1,5kW$
 
 Sistem bu veriler gözönünde bulundurularak tasarlanmıştır.
 
+Her zaman önce **pull** sonra **push**!
+
 
