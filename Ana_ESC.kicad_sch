@@ -77,6 +77,16 @@
 	)
 	(wire
 		(pts
+			(xy 82.55 100.33) (xy 114.3 100.33)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "4d4eb10e-0aa2-470b-85ef-cad5e2641242")
+	)
+	(wire
+		(pts
 			(xy 166.37 106.68) (xy 190.5 106.68)
 		)
 		(stroke
@@ -197,6 +207,16 @@
 	)
 	(wire
 		(pts
+			(xy 82.55 102.87) (xy 114.3 102.87)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "7fd0fd9e-7d70-47c0-be36-4aca02f1ac20")
+	)
+	(wire
+		(pts
 			(xy 166.37 57.15) (xy 190.5 57.15)
 		)
 		(stroke
@@ -274,6 +294,16 @@
 			(type default)
 		)
 		(uuid "ae71b7db-e83a-449f-879d-cad472a4fc09")
+	)
+	(wire
+		(pts
+			(xy 82.55 105.41) (xy 114.3 105.41)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "b31a6138-aacd-4ee9-9cb2-58bd8ebbc231")
 	)
 	(wire
 		(pts
@@ -862,9 +892,9 @@
 				)
 			)
 		)
-		(pin "INHA" input
+		(pin "INHA" output
 			(at 82.55 57.15 0)
-			(uuid "138ad7ad-291b-4f87-adbe-498c9138973b")
+			(uuid "76db1ec7-cbb6-4ba0-a378-fd6f9b657c1b")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -872,9 +902,9 @@
 				(justify right)
 			)
 		)
-		(pin "INHB" input
+		(pin "INHB" output
 			(at 82.55 59.69 0)
-			(uuid "a303df06-546e-43d6-81a2-a02505a088a3")
+			(uuid "e024bda2-43c2-4d60-99a3-a3fc6450bec4")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -882,9 +912,9 @@
 				(justify right)
 			)
 		)
-		(pin "INHC" input
+		(pin "INHC" output
 			(at 82.55 62.23 0)
-			(uuid "ad5391fd-e32e-4c09-a240-5afd00eba8bc")
+			(uuid "b98f4dd9-f57a-4282-ba4e-51bd87b4f21d")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -892,9 +922,9 @@
 				(justify right)
 			)
 		)
-		(pin "INLA" input
+		(pin "INLA" output
 			(at 82.55 67.31 0)
-			(uuid "c042268f-51fc-4a03-b8d9-79614ec42786")
+			(uuid "acc11082-4508-4f7b-8653-97e8542f2228")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -902,9 +932,9 @@
 				(justify right)
 			)
 		)
-		(pin "INLB" input
+		(pin "INLB" output
 			(at 82.55 69.85 0)
-			(uuid "941e87ef-3395-4f22-88ac-d43ec015813e")
+			(uuid "42686467-6d20-4c16-a1d3-73b447a9812b")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -912,9 +942,9 @@
 				(justify right)
 			)
 		)
-		(pin "INLC" input
+		(pin "INLC" output
 			(at 82.55 72.39 0)
-			(uuid "d19048e9-b275-4a3c-94f1-ae9402447ae4")
+			(uuid "70be6952-a30b-40cf-b402-083ce15a3b73")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -922,9 +952,9 @@
 				(justify right)
 			)
 		)
-		(pin "SENS1" output
+		(pin "SENS1" input
 			(at 82.55 109.22 0)
-			(uuid "5f3bc827-88ab-42eb-b4ab-a8d6fafbdc66")
+			(uuid "2dc1c443-1b1b-47a9-9af5-795f8945b9e3")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -932,9 +962,9 @@
 				(justify right)
 			)
 		)
-		(pin "SENS2" output
+		(pin "SENS2" input
 			(at 82.55 111.76 0)
-			(uuid "1ed2db55-d019-4252-9355-6982bd654f7e")
+			(uuid "bead576e-ff8e-4e31-b181-c02e18c26163")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -942,9 +972,39 @@
 				(justify right)
 			)
 		)
-		(pin "SENS3" output
+		(pin "SENS3" input
 			(at 82.55 114.3 0)
-			(uuid "8f6770e3-50b7-4f6b-9851-e0e4e9dc0cf3")
+			(uuid "f6d5b7d2-7df0-4097-8fcd-5f3f33bdc5cc")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "SOA" input
+			(at 82.55 100.33 0)
+			(uuid "f47bf779-72a5-473b-98c2-f267df4ec6cd")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "SOB" input
+			(at 82.55 102.87 0)
+			(uuid "17dd7ae7-8662-4370-8789-c5c5a1004922")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "SOC" input
+			(at 82.55 105.41 0)
+			(uuid "adbea857-9574-4a69-bcd0-e828347d8056")
 			(effects
 				(font
 					(size 1.27 1.27)
