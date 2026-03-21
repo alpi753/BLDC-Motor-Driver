@@ -11510,6 +11510,17 @@
 		)
 		(uuid "1ed66109-a68f-4b07-bffe-f2635188e45d")
 	)
+	(hierarchical_label "SENS3"
+		(shape input)
+		(at 67.31 88.9 180)
+		(effects
+			(font
+				(size 1.524 1.524)
+			)
+			(justify right)
+		)
+		(uuid "339e8eef-2352-42c5-adae-4d3ab51ed8eb")
+	)
 	(hierarchical_label "INLC"
 		(shape output)
 		(at 107.95 113.03 180)
@@ -11521,38 +11532,27 @@
 		)
 		(uuid "4f6f70f0-a285-44c7-9a20-0ef646e6b0ef")
 	)
-	(hierarchical_label "SENS2"
+	(hierarchical_label "SOB"
 		(shape input)
 		(at 106.68 69.85 180)
 		(effects
 			(font
-				(size 1.524 1.524)
+				(size 1.27 1.27)
 			)
 			(justify right)
 		)
-		(uuid "5005d8d1-0517-46de-aefb-170eb8ba95d6")
+		(uuid "7963ccb8-b9b1-473c-9e6c-4adeb9689fe7")
 	)
 	(hierarchical_label "SENS1"
 		(shape input)
-		(at 106.68 67.31 180)
+		(at 67.31 83.82 180)
 		(effects
 			(font
 				(size 1.524 1.524)
 			)
 			(justify right)
 		)
-		(uuid "7834b186-07da-4266-a62c-b178a3265d9e")
-	)
-	(hierarchical_label "SOB"
-		(shape input)
-		(at 76.2 107.95 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left)
-		)
-		(uuid "7963ccb8-b9b1-473c-9e6c-4adeb9689fe7")
+		(uuid "8ef5e90f-b490-4430-91e6-c1f37a6c7ace")
 	)
 	(hierarchical_label "INHC"
 		(shape output)
@@ -11567,12 +11567,12 @@
 	)
 	(hierarchical_label "SOA"
 		(shape input)
-		(at 76.2 105.41 0)
+		(at 106.68 72.39 180)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify left)
+			(justify right)
 		)
 		(uuid "de759363-cef6-48dc-9290-40c8704663b3")
 	)
@@ -11589,25 +11589,25 @@
 	)
 	(hierarchical_label "SOC"
 		(shape input)
-		(at 76.2 110.49 0)
+		(at 106.68 67.31 180)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify left)
+			(justify right)
 		)
 		(uuid "e12774fa-6a9e-43cf-ad93-7ba595c87df0")
 	)
-	(hierarchical_label "SENS3"
+	(hierarchical_label "SENS2"
 		(shape input)
-		(at 106.68 72.39 180)
+		(at 67.31 86.36 180)
 		(effects
 			(font
 				(size 1.524 1.524)
 			)
 			(justify right)
 		)
-		(uuid "f26b2db4-ba17-4cdb-b5fa-71b9b9bddf4f")
+		(uuid "eef93343-b8b8-42e6-9f12-e3bd49ecfe82")
 	)
 	(symbol
 		(lib_id "Switch:SW_SPDT")
