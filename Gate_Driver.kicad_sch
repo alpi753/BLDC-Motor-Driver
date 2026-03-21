@@ -5326,6 +5326,16 @@
 		)
 		(uuid "62f7f99e-f19b-4c49-a239-c07bd40bc137")
 	)
+	(text "Tüm GND'ler sadece tek bir yerde birleştiriliyorlar!!"
+		(exclude_from_sim no)
+		(at 106.426 143.51 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+		(uuid "7b03b696-4816-4df5-8c1d-aa3c2dfb7e5d")
+	)
 	(text "12S Rejeneratife karşı\n60V zener diode konulmalı"
 		(exclude_from_sim no)
 		(at 124.46 24.892 0)
