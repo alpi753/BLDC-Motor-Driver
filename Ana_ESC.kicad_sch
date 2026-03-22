@@ -1175,7 +1175,7 @@
 			)
 		)
 		(pin "SNA" output
-			(at 137.16 180.34 180)
+			(at 137.16 171.45 180)
 			(uuid "1e112838-3483-4d4b-90e4-5d8ba8cb62a1")
 			(effects
 				(font
@@ -1185,7 +1185,7 @@
 			)
 		)
 		(pin "SNB" output
-			(at 137.16 182.88 180)
+			(at 137.16 173.99 180)
 			(uuid "b877cf82-549e-45e5-9ce3-1a1cf748f786")
 			(effects
 				(font
@@ -1195,7 +1195,7 @@
 			)
 		)
 		(pin "SNC" output
-			(at 137.16 185.42 180)
+			(at 137.16 176.53 180)
 			(uuid "b53115c8-af30-484f-9691-a4b00af4bdc1")
 			(effects
 				(font
@@ -1205,7 +1205,7 @@
 			)
 		)
 		(pin "SPA" output
-			(at 137.16 171.45 180)
+			(at 137.16 180.34 180)
 			(uuid "6acbb0c4-8106-4a90-a838-37a50a85c30d")
 			(effects
 				(font
@@ -1215,7 +1215,7 @@
 			)
 		)
 		(pin "SPB" output
-			(at 137.16 173.99 180)
+			(at 137.16 182.88 180)
 			(uuid "5f0c6b3a-8f5b-43df-83a1-0b474d46e3fb")
 			(effects
 				(font
@@ -1225,7 +1225,7 @@
 			)
 		)
 		(pin "SPC" output
-			(at 137.16 176.53 180)
+			(at 137.16 185.42 180)
 			(uuid "1cb2476b-0766-4b00-9238-cd86bb116bb5")
 			(effects
 				(font

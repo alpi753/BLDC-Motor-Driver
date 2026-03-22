@@ -32,4 +32,7 @@ Sistem bu veriler gözönünde bulundurularak tasarlanmıştır.
 
 Her zaman önce **pull** sonra **push**!
 
+### Termal analiz 
+https://jrainimo.com/build/2024/11/oss-thermal-simulation-of-pcbs/
+Açık kaynaklı programları kullanarak sıcaklık analizi yapılabilir.
 

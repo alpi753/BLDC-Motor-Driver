@@ -1,4 +1,4 @@
-26809675863885415
+26808077667720207
 08056D104KAT2A
 CAPC2012X140N
 
@@ -2843,6 +2843,13 @@ CAPC1608X90N
 2
 CL21A226KOQNNNE
 CAPC2012X140N
+
+
+0
+2
+2
+CRF2512-FZ-R002ELF
+RESC6432X80N
 
 
 0
@@ -61438,6 +61445,13 @@ CAPPRD500W50D630H1120
 0
 2
 2
+ECS-80-20-5PX-TR
+XTAL_ECS-80-20-5PX-TR
+
+
+0
+2
+2
 Ferrite_THT
 LairdTech_28C0236-0JW-10
 Ferrite, vertical, LairdTech 28C0236-0JW-10, https://assets.lairdtech.com/home/brandworld/files/28C0236-0JW-10.pdf, JW Miller core https://www.bourns.com/products/magnetic-products/j.w.-miller-through-hole-ferrite-beads-emi-filters
@@ -69411,13 +69425,6 @@ solder jumper open
 0
 3
 3
-KiCad
-C0805
-C0805
-Capacitor
-0
-2
-2
 LED_SMD
 LED-APA102-2020
 http://www.led-color.com/upload/201604/APA102-2020%20SMD%20LED.pdf
@@ -97426,12 +97433,19 @@ rotary encoder illuminated switch vertical
 9
 8
 STB75NF75T4
-STB75NF75T4
-STB75NF75T4-2
-MOSFET (N-Channel)
+VREG_L7812ABD2T
+
+
 0
 3
 3
+STL90N6F7
+STL90N6F7
+PowerFLAt5x6_23
+MOSFET (N-Channel)
+0
+9
+9
 STM32G431CBU6
 QFN50P700X700X60-49N
 
@@ -106532,24 +106546,3 @@ RES_WSLP2726L5000FEA
 0
 4
 4
-cl05b105
-CAPC1005X55N
-CL05 (0402)
-Capacitor
-0
-2
-2
-ss18 schottky diode
-SMA_ONS
-
-SS18 
-0
-2
-2
-ul_80ZLJ680MGC18X25
-CAP_YX_18X25_RUB
-
-80ZLJ680MGC18X25 
-0
-2
-2
