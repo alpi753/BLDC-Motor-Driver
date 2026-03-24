@@ -9814,7 +9814,7 @@
 				(justify right)
 			)
 		)
-		(property "Footprint" "ul_80ZLJ680MGC18X25:CAP_YX_18X25_RUB"
+		(property "Footprint" "ul_80ZLJ680MGC18X25:80ZLJ680MGC18X25"
 			(at 265.43 33.02 0)
 			(effects
 				(font
@@ -11945,7 +11945,7 @@
 				(justify right)
 			)
 		)
-		(property "Footprint" "ul_80ZLJ680MGC18X25:CAP_YX_18X25_RUB"
+		(property "Footprint" "ul_80ZLJ680MGC18X25:80ZLJ680MGC18X25"
 			(at 238.76 34.29 0)
 			(effects
 				(font

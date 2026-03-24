@@ -1,0 +1,9 @@
+EESchema-DOCLIB  Version 2.0
+#
+$CMP MMSZ4684-13P
+D Zener Diodes
+K
+F https://www.mccsemi.com/pdf/Products/MMSZ4678-MMSZ4716(SOD-123).pdf
+$ENDCMP
+#
+#End Doc Library

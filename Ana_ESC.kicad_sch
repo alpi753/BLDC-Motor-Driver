@@ -7,7 +7,7 @@
 	(lib_symbols)
 	(polyline
 		(pts
-			(xy 262.0114 60.8696) (xy 258.0435 60.8696)
+			(xy 251.0279 67.6478) (xy 247.06 67.6478)
 		)
 		(stroke
 			(width 0)
@@ -17,7 +17,7 @@
 	)
 	(wire
 		(pts
-			(xy 166.37 97.79) (xy 190.5 97.79)
+			(xy 166.37 97.79) (xy 189.23 97.79)
 		)
 		(stroke
 			(width 0)
@@ -37,7 +37,7 @@
 	)
 	(polyline
 		(pts
-			(xy 252.73 50.0316) (xy 252.73 57.15)
+			(xy 241.7465 56.8098) (xy 241.7465 63.9282)
 		)
 		(stroke
 			(width 0)
@@ -47,7 +47,7 @@
 	)
 	(polyline
 		(pts
-			(xy 258.0435 60.8696) (xy 258.0435 62.23)
+			(xy 247.06 67.6478) (xy 247.06 69.0082)
 		)
 		(stroke
 			(width 0)
@@ -67,7 +67,7 @@
 	)
 	(polyline
 		(pts
-			(xy 247.65 67.31) (xy 256.54 67.31)
+			(xy 236.6665 74.0882) (xy 245.5565 74.0882)
 		)
 		(stroke
 			(width 0)
@@ -87,7 +87,7 @@
 	)
 	(wire
 		(pts
-			(xy 166.37 106.68) (xy 190.5 106.68)
+			(xy 166.37 106.68) (xy 189.23 106.68)
 		)
 		(stroke
 			(width 0)
@@ -97,7 +97,7 @@
 	)
 	(wire
 		(pts
-			(xy 166.37 86.36) (xy 190.5 86.36)
+			(xy 166.37 86.36) (xy 189.23 86.36)
 		)
 		(stroke
 			(width 0)
@@ -107,7 +107,7 @@
 	)
 	(wire
 		(pts
-			(xy 166.37 92.71) (xy 190.5 92.71)
+			(xy 166.37 92.71) (xy 189.23 92.71)
 		)
 		(stroke
 			(width 0)
@@ -117,7 +117,7 @@
 	)
 	(polyline
 		(pts
-			(xy 270.0635 51.0526) (xy 252.73 51.0526)
+			(xy 259.08 57.8308) (xy 241.7465 57.8308)
 		)
 		(stroke
 			(width 0)
@@ -137,7 +137,7 @@
 	)
 	(wire
 		(pts
-			(xy 166.37 101.6) (xy 190.5 101.6)
+			(xy 166.37 101.6) (xy 189.23 101.6)
 		)
 		(stroke
 			(width 0)
@@ -147,7 +147,7 @@
 	)
 	(polyline
 		(pts
-			(xy 247.65 62.23) (xy 257.81 62.23)
+			(xy 236.6665 69.0082) (xy 246.8265 69.0082)
 		)
 		(stroke
 			(width 0)
@@ -157,7 +157,7 @@
 	)
 	(wire
 		(pts
-			(xy 166.37 83.82) (xy 190.5 83.82)
+			(xy 166.37 83.82) (xy 189.23 83.82)
 		)
 		(stroke
 			(width 0)
@@ -187,7 +187,7 @@
 	)
 	(wire
 		(pts
-			(xy 166.37 54.61) (xy 190.5 54.61)
+			(xy 166.37 54.61) (xy 189.23 54.61)
 		)
 		(stroke
 			(width 0)
@@ -217,7 +217,7 @@
 	)
 	(wire
 		(pts
-			(xy 166.37 57.15) (xy 190.5 57.15)
+			(xy 166.37 57.15) (xy 189.23 57.15)
 		)
 		(stroke
 			(width 0)
@@ -227,7 +227,7 @@
 	)
 	(polyline
 		(pts
-			(xy 247.65 57.15) (xy 252.73 57.15)
+			(xy 236.6665 63.9282) (xy 241.7465 63.9282)
 		)
 		(stroke
 			(width 0)
@@ -247,7 +247,7 @@
 	)
 	(wire
 		(pts
-			(xy 166.37 52.07) (xy 190.5 52.07)
+			(xy 166.37 52.07) (xy 189.23 52.07)
 		)
 		(stroke
 			(width 0)
@@ -257,7 +257,7 @@
 	)
 	(polyline
 		(pts
-			(xy 256.54 68.58) (xy 256.54 67.31)
+			(xy 245.5565 75.3582) (xy 245.5565 74.0882)
 		)
 		(stroke
 			(width 0)
@@ -267,7 +267,7 @@
 	)
 	(wire
 		(pts
-			(xy 166.37 60.96) (xy 190.5 60.96)
+			(xy 166.37 60.96) (xy 189.23 60.96)
 		)
 		(stroke
 			(width 0)
@@ -277,7 +277,7 @@
 	)
 	(wire
 		(pts
-			(xy 166.37 81.28) (xy 190.5 81.28)
+			(xy 166.37 81.28) (xy 189.23 81.28)
 		)
 		(stroke
 			(width 0)
@@ -287,7 +287,7 @@
 	)
 	(wire
 		(pts
-			(xy 166.37 66.04) (xy 190.5 66.04)
+			(xy 166.37 66.04) (xy 189.23 66.04)
 		)
 		(stroke
 			(width 0)
@@ -307,7 +307,7 @@
 	)
 	(wire
 		(pts
-			(xy 166.37 95.25) (xy 190.5 95.25)
+			(xy 166.37 95.25) (xy 189.23 95.25)
 		)
 		(stroke
 			(width 0)
@@ -317,7 +317,7 @@
 	)
 	(polyline
 		(pts
-			(xy 270.0635 55.0184) (xy 270.0635 51.0526)
+			(xy 259.08 61.7966) (xy 259.08 57.8308)
 		)
 		(stroke
 			(width 0)
@@ -327,7 +327,7 @@
 	)
 	(wire
 		(pts
-			(xy 166.37 63.5) (xy 190.5 63.5)
+			(xy 166.37 63.5) (xy 189.23 63.5)
 		)
 		(stroke
 			(width 0)
@@ -337,7 +337,7 @@
 	)
 	(wire
 		(pts
-			(xy 166.37 48.26) (xy 190.5 48.26)
+			(xy 166.37 48.26) (xy 189.23 48.26)
 		)
 		(stroke
 			(width 0)
@@ -347,7 +347,7 @@
 	)
 	(polyline
 		(pts
-			(xy 270.0098 68.7606) (xy 256.54 68.58)
+			(xy 259.0263 75.5388) (xy 245.5565 75.3582)
 		)
 		(stroke
 			(width 0)
@@ -357,7 +357,7 @@
 	)
 	(polyline
 		(pts
-			(xy 270.0635 66.8818) (xy 270.0098 68.7606)
+			(xy 259.08 73.66) (xy 259.0263 75.5388)
 		)
 		(stroke
 			(width 0)
@@ -387,7 +387,7 @@
 	)
 	(wire
 		(pts
-			(xy 166.37 104.14) (xy 190.5 104.14)
+			(xy 166.37 104.14) (xy 189.23 104.14)
 		)
 		(stroke
 			(width 0)
@@ -396,7 +396,7 @@
 		(uuid "f479aa16-9bc9-4468-b863-063acafba5cd")
 	)
 	(image
-		(at 267.97 60.96)
+		(at 256.9865 67.7382)
 		(uuid "18e5ec75-cf6a-4d97-a2de-de501fe6408a")
 		(data "iVBORw0KGgoAAAANSUhEUgAAAIwAAACNCAYAAABlnJKbAAAABHNCSVQICAgIfAhkiAAAIABJREFU"
 			"eJztnXlcVGX7/z9ndhgYYFhkFRRRFPelTDPFR9RSszLL3MpKyyxbfMqyr21aPWl9K5+0/KbPk1Z+"
@@ -619,238 +619,6 @@
 		)
 	)
 	(sheet
-		(at 190.5 44.45)
-		(size 54.61 72.39)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(stroke
-			(width 0.1524)
-			(type solid)
-		)
-		(fill
-			(color 0 0 0 0.0000)
-		)
-		(uuid "1c8fb2f9-fb57-4e0e-b310-c551267b7294")
-		(property "Sheetname" "Mosfets"
-			(at 190.5 43.7384 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left bottom)
-			)
-		)
-		(property "Sheetfile" "Mosfets.kicad_sch"
-			(at 190.5 117.4246 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left top)
-			)
-		)
-		(pin "FAZ_A" output
-			(at 245.11 57.15 0)
-			(uuid "72e30f09-06f1-4c04-bc57-b70f7c2e8087")
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
-		(pin "FAZ_B" output
-			(at 245.11 62.23 0)
-			(uuid "5f8df158-4845-4654-ac38-ac502dfa9438")
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
-		(pin "FAZ_C" output
-			(at 245.11 67.31 0)
-			(uuid "5cc87ea7-8624-4e13-9b85-f75e997ba79c")
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
-		(pin "GHA" input
-			(at 190.5 52.07 180)
-			(uuid "914b1e48-546a-4e99-bfb9-0ea85f7b5f2f")
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(pin "GHB" input
-			(at 190.5 54.61 180)
-			(uuid "62ae0f50-a65e-4d9a-af52-0f87ffcba2e2")
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(pin "GHC" input
-			(at 190.5 57.15 180)
-			(uuid "19b5dd0c-d13c-4f39-881b-7b2b37ef8ee3")
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(pin "GLA" input
-			(at 190.5 60.96 180)
-			(uuid "87974508-6d84-4c0c-b9f9-ddf0f8716ff4")
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(pin "GLB" input
-			(at 190.5 63.5 180)
-			(uuid "e29b615a-dd55-42c3-b069-5b9cf2cd4700")
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(pin "GLC" input
-			(at 190.5 66.04 180)
-			(uuid "a71dba6b-a797-4844-bfb4-7eac0b2dda60")
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(pin "SHA" output
-			(at 190.5 81.28 180)
-			(uuid "6391bd0b-1d85-47d7-a992-ad69a5ca6770")
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(pin "SHB" output
-			(at 190.5 83.82 180)
-			(uuid "d74ad677-b782-4627-8161-4ed1508cf294")
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(pin "SHC" output
-			(at 190.5 86.36 180)
-			(uuid "f8c57ed3-722d-46cf-ad17-0f89f8c5b3ea")
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(pin "SNA" output
-			(at 190.5 92.71 180)
-			(uuid "43958822-2958-43dd-b611-265f97847d64")
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(pin "SNB" output
-			(at 190.5 95.25 180)
-			(uuid "433daea5-b1e3-4588-b2e8-ac6bd221604c")
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(pin "SNC" output
-			(at 190.5 97.79 180)
-			(uuid "86ffe780-8582-4f0a-abeb-20666fd6c007")
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(pin "SPA" output
-			(at 190.5 101.6 180)
-			(uuid "fbcf061b-466d-4fce-8048-6583322d188b")
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(pin "SPB" output
-			(at 190.5 104.14 180)
-			(uuid "b0467d39-89f1-472b-bdba-bac492919c3d")
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(pin "SPC" output
-			(at 190.5 106.68 180)
-			(uuid "fab6c3ec-8359-49f6-ac87-97d24de4465e")
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(pin "Vdrain" output
-			(at 190.5 48.26 180)
-			(uuid "bd190883-fdac-4812-8ad0-9e73765e6578")
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(instances
-			(project "Ana_ESC"
-				(path "/57129761-6d47-486c-bd7a-90dbb6f75754"
-					(page "2")
-				)
-			)
-		)
-	)
-	(sheet
 		(at 30.48 44.45)
 		(size 52.07 72.39)
 		(exclude_from_sim no)
@@ -1013,7 +781,7 @@
 			)
 		)
 		(instances
-			(project "Ana_ESC"
+			(project "untitled"
 				(path "/57129761-6d47-486c-bd7a-90dbb6f75754"
 					(page "4")
 				)
@@ -1021,8 +789,240 @@
 		)
 	)
 	(sheet
-		(at 137.16 134.62)
-		(size 31.75 52.07)
+		(at 49.53 124.46)
+		(size 43.18 69.85)
+		(exclude_from_sim yes)
+		(in_bom no)
+		(on_board no)
+		(dnp yes)
+		(fields_autoplaced yes)
+		(stroke
+			(width 0.1524)
+			(type solid)
+		)
+		(fill
+			(color 0 0 0 0.0000)
+		)
+		(uuid "93a25273-1af9-476d-be50-92121d872328")
+		(property "Sheetname" "Mosfets"
+			(at 49.53 123.7484 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "Mosfets.kicad_sch"
+			(at 49.53 194.8946 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(pin "FAZ_A" output
+			(at 92.71 134.62 0)
+			(uuid "e793609a-3765-4b9e-881a-35dd398e631a")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "FAZ_B" output
+			(at 92.71 139.7 0)
+			(uuid "e3a6e0f3-24e1-4256-86d5-90aec4929c13")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "FAZ_C" output
+			(at 92.71 144.78 0)
+			(uuid "26b78ad1-ed5b-4866-9a01-e4cd50b02fe6")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "GHA" input
+			(at 49.53 129.54 180)
+			(uuid "2d99bc5c-dde0-4824-9d54-72e2e7995f7c")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "GHB" input
+			(at 49.53 132.08 180)
+			(uuid "a79b758a-51fa-4176-ad56-a4cd71d4eac2")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "GHC" input
+			(at 49.53 134.62 180)
+			(uuid "051b9815-0b8b-4ea6-81c0-5d39c8d99ca8")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "GLA" input
+			(at 49.53 138.43 180)
+			(uuid "29ac1a5d-fa97-432b-9793-a85d14861938")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "GLB" input
+			(at 49.53 140.97 180)
+			(uuid "be1dbb33-613f-4a0f-9c61-1074fb3a4079")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "GLC" input
+			(at 49.53 143.51 180)
+			(uuid "dd296680-7e41-426b-bf9e-a278821e80b0")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "SHA" output
+			(at 49.53 158.75 180)
+			(uuid "c0611b37-c4e2-49da-a7ac-3c9a30d0b90c")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "SHB" output
+			(at 49.53 161.29 180)
+			(uuid "bfba9c05-4870-4b09-b308-8f140a263374")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "SHC" output
+			(at 49.53 163.83 180)
+			(uuid "e00a21ff-3c7d-4641-91bc-91c08b29972c")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "SNA" output
+			(at 49.53 170.18 180)
+			(uuid "b7ad0cbb-2348-46bd-b038-7c25852da994")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "SNB" output
+			(at 49.53 172.72 180)
+			(uuid "f023e188-fa2f-44e3-be56-beca8d016c4e")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "SNC" output
+			(at 49.53 175.26 180)
+			(uuid "72e1c5c0-6d13-4637-8674-2a11f0d068fc")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "SPA" output
+			(at 49.53 179.07 180)
+			(uuid "db762568-9516-40a1-ad4d-f730ca8e07d8")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "SPB" output
+			(at 49.53 181.61 180)
+			(uuid "2993f3c6-f788-4457-bc54-d443c918ba99")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "SPC" output
+			(at 49.53 184.15 180)
+			(uuid "2cb5b8da-f541-42cc-8449-629db61859ee")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "Vdrain" output
+			(at 49.53 125.73 180)
+			(uuid "f95d7ca6-df53-4084-ac47-e7771e5bf3cb")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(instances
+			(project "untitled"
+				(path "/57129761-6d47-486c-bd7a-90dbb6f75754"
+					(page "2")
+				)
+			)
+		)
+	)
+	(sheet
+		(at 189.23 44.45)
+		(size 45.72 72.39)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
@@ -1037,7 +1037,7 @@
 		)
 		(uuid "a2e9c01f-dc3c-42e3-9ad2-b4c7bc962bba")
 		(property "Sheetname" "Mosfetv2"
-			(at 137.16 133.9084 0)
+			(at 189.23 43.7384 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1046,7 +1046,7 @@
 			)
 		)
 		(property "Sheetfile" "mosfetv2.kicad_sch"
-			(at 137.16 187.2746 0)
+			(at 189.23 117.4246 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1055,7 +1055,7 @@
 			)
 		)
 		(pin "FAZ_A" output
-			(at 168.91 157.48 0)
+			(at 234.95 67.31 0)
 			(uuid "4f6c3351-0835-4ec6-be90-2ad517f2137b")
 			(effects
 				(font
@@ -1065,7 +1065,7 @@
 			)
 		)
 		(pin "FAZ_B" output
-			(at 168.91 160.02 0)
+			(at 234.95 69.85 0)
 			(uuid "1530980b-91bb-4641-a797-45e6d839b9b6")
 			(effects
 				(font
@@ -1075,7 +1075,7 @@
 			)
 		)
 		(pin "FAZ_C" output
-			(at 168.91 162.56 0)
+			(at 234.95 72.39 0)
 			(uuid "2de99c80-81d4-4593-a839-1f1cac18edee")
 			(effects
 				(font
@@ -1085,7 +1085,7 @@
 			)
 		)
 		(pin "GHA" input
-			(at 137.16 142.24 180)
+			(at 189.23 52.07 180)
 			(uuid "cae0903f-1f1e-4ef9-a0d8-9ac9930a3d31")
 			(effects
 				(font
@@ -1095,7 +1095,7 @@
 			)
 		)
 		(pin "GHB" input
-			(at 137.16 144.78 180)
+			(at 189.23 54.61 180)
 			(uuid "e22ad528-b16e-4304-8e35-2a19599c3756")
 			(effects
 				(font
@@ -1105,7 +1105,7 @@
 			)
 		)
 		(pin "GHC" input
-			(at 137.16 147.32 180)
+			(at 189.23 57.15 180)
 			(uuid "71c5d53c-eef2-4a3a-977d-a670400b968b")
 			(effects
 				(font
@@ -1115,7 +1115,7 @@
 			)
 		)
 		(pin "GLA" input
-			(at 137.16 152.4 180)
+			(at 189.23 60.96 180)
 			(uuid "d882200f-305d-45e4-a7a4-b605126e1704")
 			(effects
 				(font
@@ -1125,7 +1125,7 @@
 			)
 		)
 		(pin "GLB" input
-			(at 137.16 154.94 180)
+			(at 189.23 63.5 180)
 			(uuid "fb2e1c36-534b-40fe-afa3-2a44fad53e3e")
 			(effects
 				(font
@@ -1135,7 +1135,7 @@
 			)
 		)
 		(pin "GLC" input
-			(at 137.16 157.48 180)
+			(at 189.23 66.04 180)
 			(uuid "fc26edaa-aa1f-414e-9ab3-87b92f7f53de")
 			(effects
 				(font
@@ -1145,7 +1145,7 @@
 			)
 		)
 		(pin "SHA" output
-			(at 137.16 162.56 180)
+			(at 189.23 81.28 180)
 			(uuid "e1f84d76-180b-43b3-b1d3-e51935d55ba9")
 			(effects
 				(font
@@ -1155,7 +1155,7 @@
 			)
 		)
 		(pin "SHB" output
-			(at 137.16 165.1 180)
+			(at 189.23 83.82 180)
 			(uuid "a27bd443-5f38-47ce-bab9-2b688c92ec76")
 			(effects
 				(font
@@ -1165,7 +1165,7 @@
 			)
 		)
 		(pin "SHC" output
-			(at 137.16 167.64 180)
+			(at 189.23 86.36 180)
 			(uuid "932991a1-14de-439e-9f75-2316f02ad3cd")
 			(effects
 				(font
@@ -1175,7 +1175,7 @@
 			)
 		)
 		(pin "SNA" output
-			(at 137.16 171.45 180)
+			(at 189.23 92.71 180)
 			(uuid "1e112838-3483-4d4b-90e4-5d8ba8cb62a1")
 			(effects
 				(font
@@ -1185,7 +1185,7 @@
 			)
 		)
 		(pin "SNB" output
-			(at 137.16 173.99 180)
+			(at 189.23 95.25 180)
 			(uuid "b877cf82-549e-45e5-9ce3-1a1cf748f786")
 			(effects
 				(font
@@ -1195,7 +1195,7 @@
 			)
 		)
 		(pin "SNC" output
-			(at 137.16 176.53 180)
+			(at 189.23 97.79 180)
 			(uuid "b53115c8-af30-484f-9691-a4b00af4bdc1")
 			(effects
 				(font
@@ -1205,7 +1205,7 @@
 			)
 		)
 		(pin "SPA" output
-			(at 137.16 180.34 180)
+			(at 189.23 101.6 180)
 			(uuid "6acbb0c4-8106-4a90-a838-37a50a85c30d")
 			(effects
 				(font
@@ -1215,7 +1215,7 @@
 			)
 		)
 		(pin "SPB" output
-			(at 137.16 182.88 180)
+			(at 189.23 104.14 180)
 			(uuid "5f0c6b3a-8f5b-43df-83a1-0b474d46e3fb")
 			(effects
 				(font
@@ -1225,7 +1225,7 @@
 			)
 		)
 		(pin "SPC" output
-			(at 137.16 185.42 180)
+			(at 189.23 106.68 180)
 			(uuid "1cb2476b-0766-4b00-9238-cd86bb116bb5")
 			(effects
 				(font
@@ -1235,7 +1235,7 @@
 			)
 		)
 		(pin "Vdrain" output
-			(at 137.16 137.16 180)
+			(at 189.23 48.26 180)
 			(uuid "b9d295d4-f6bf-477d-b9b0-4f46cb6ad10d")
 			(effects
 				(font
@@ -1245,7 +1245,7 @@
 			)
 		)
 		(instances
-			(project "Ana_ESC"
+			(project "untitled"
 				(path "/57129761-6d47-486c-bd7a-90dbb6f75754"
 					(page "5")
 				)
@@ -1645,7 +1645,7 @@
 			)
 		)
 		(instances
-			(project "Ana_ESC"
+			(project "untitled"
 				(path "/57129761-6d47-486c-bd7a-90dbb6f75754"
 					(page "3")
 				)

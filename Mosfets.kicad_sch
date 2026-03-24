@@ -1653,6 +1653,16 @@
 			(embedded_fonts no)
 		)
 	)
+	(text "3mohm =   0.00297 ohm - 0.00303 ohm"
+		(exclude_from_sim no)
+		(at 149.098 162.052 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+		(uuid "7a521216-f8bf-42aa-a25b-c7c303d7637f")
+	)
 	(text "dirençten kılıfı belirsiz kapasitör alınabilir 680uF 63V\nboyutu 21x13\n\n"
 		(exclude_from_sim no)
 		(at 236.474 22.606 0)
@@ -4720,7 +4730,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "0030fec8-eb6a-4610-9baa-25ec4e419db8")
-		(property "Reference" "RGC1"
+		(property "Reference" "RGC2"
 			(at 199.39 72.39 0)
 			(effects
 				(font
@@ -4855,15 +4865,15 @@
 			)
 		)
 		(pin "2"
-			(uuid "559b3eeb-d1d3-47bd-b05b-58edf5ce167f")
+			(uuid "1821505b-5723-42e4-9c84-6c59eb4de619")
 		)
 		(pin "1"
-			(uuid "2b5f7ec7-44c0-49be-8f2d-5c42f2e48c9e")
+			(uuid "bad4bc5d-07ae-4f83-a638-47f6f0f5ae69")
 		)
 		(instances
 			(project "Ana_ESC"
-				(path "/57129761-6d47-486c-bd7a-90dbb6f75754/1c8fb2f9-fb57-4e0e-b310-c551267b7294"
-					(reference "RGC1")
+				(path "/57129761-6d47-486c-bd7a-90dbb6f75754/93a25273-1af9-476d-be50-92121d872328"
+					(reference "RGC2")
 					(unit 1)
 				)
 			)
@@ -4925,14 +4935,14 @@
 			)
 		)
 		(pin "1"
-			(uuid "01ca8fab-cba2-43fd-97c5-316384cf4c46")
+			(uuid "bb4dad7a-fe20-48a1-b8a5-d5f84369b4b0")
 		)
 		(pin "2"
-			(uuid "6d26bf3d-3dda-4238-aba3-4c1bc6242d30")
+			(uuid "639a0c91-1173-4067-9ce2-0fa6e093f541")
 		)
 		(instances
 			(project "Ana_ESC"
-				(path "/57129761-6d47-486c-bd7a-90dbb6f75754/1c8fb2f9-fb57-4e0e-b310-c551267b7294"
+				(path "/57129761-6d47-486c-bd7a-90dbb6f75754/93a25273-1af9-476d-be50-92121d872328"
 					(reference "C11")
 					(unit 1)
 				)
@@ -4995,14 +5005,14 @@
 			)
 		)
 		(pin "1"
-			(uuid "d508c443-d8bc-4e22-9196-ace7f61b7201")
+			(uuid "bcf85cb9-1f64-4dab-a0df-7d46581a0f3c")
 		)
 		(pin "2"
-			(uuid "b57eaa24-9b06-4bc5-98f2-9b0ba3bb64e0")
+			(uuid "91269aa5-81e7-4c08-8b07-d48be4573b00")
 		)
 		(instances
 			(project "Ana_ESC"
-				(path "/57129761-6d47-486c-bd7a-90dbb6f75754/1c8fb2f9-fb57-4e0e-b310-c551267b7294"
+				(path "/57129761-6d47-486c-bd7a-90dbb6f75754/93a25273-1af9-476d-be50-92121d872328"
 					(reference "R14")
 					(unit 1)
 				)
@@ -5137,17 +5147,17 @@
 			)
 		)
 		(pin "3"
-			(uuid "1eb3339b-dc6b-44a4-9e5c-b42e308660de")
+			(uuid "956ba231-2505-4210-93f1-6ca6ddb8b5ef")
 		)
 		(pin "1"
-			(uuid "db043470-3828-46a4-b268-d7452f0d4f1d")
+			(uuid "15a6f6b6-bd74-403d-bb82-9ffca64ec80b")
 		)
 		(pin "2"
-			(uuid "ca5bddb1-fe47-4f24-bd1d-6fc4dd239352")
+			(uuid "81b99f7c-34b5-4d7a-bc24-6d3c6b022ce4")
 		)
 		(instances
 			(project "Ana_ESC"
-				(path "/57129761-6d47-486c-bd7a-90dbb6f75754/1c8fb2f9-fb57-4e0e-b310-c551267b7294"
+				(path "/57129761-6d47-486c-bd7a-90dbb6f75754/93a25273-1af9-476d-be50-92121d872328"
 					(reference "Q4")
 					(unit 1)
 				)
@@ -5282,17 +5292,17 @@
 			)
 		)
 		(pin "3"
-			(uuid "4ebd2c7a-e0e4-4255-87a1-d12cd164247f")
+			(uuid "4e8f5492-d7e1-4699-8fa5-285d6ed0f2ed")
 		)
 		(pin "1"
-			(uuid "7c0afc5c-1bac-4255-8c2e-8f51a9317d44")
+			(uuid "33a33465-d7d8-4cb1-a407-cab8795c3e9d")
 		)
 		(pin "2"
-			(uuid "301e5eef-76f9-4d83-9f1a-b8636c489479")
+			(uuid "4f079e71-713a-4603-9d56-538bbc931364")
 		)
 		(instances
-			(project ""
-				(path "/57129761-6d47-486c-bd7a-90dbb6f75754/1c8fb2f9-fb57-4e0e-b310-c551267b7294"
+			(project "Ana_ESC"
+				(path "/57129761-6d47-486c-bd7a-90dbb6f75754/93a25273-1af9-476d-be50-92121d872328"
 					(reference "Q2")
 					(unit 1)
 				)
@@ -5354,11 +5364,11 @@
 			)
 		)
 		(pin "1"
-			(uuid "2ae8c811-ba48-4f68-b149-a65ec00ba7b7")
+			(uuid "b7a0a0a2-e9f9-4c35-b145-73a19a2a0311")
 		)
 		(instances
 			(project "Ana_ESC"
-				(path "/57129761-6d47-486c-bd7a-90dbb6f75754/1c8fb2f9-fb57-4e0e-b310-c551267b7294"
+				(path "/57129761-6d47-486c-bd7a-90dbb6f75754/93a25273-1af9-476d-be50-92121d872328"
 					(reference "#PWR015")
 					(unit 1)
 				)
@@ -5423,14 +5433,14 @@
 			)
 		)
 		(pin "2"
-			(uuid "bda09af0-2ad9-470c-a18f-2fd90cc74741")
+			(uuid "5cbf94a6-82b4-49ab-9d8d-f836a1663810")
 		)
 		(pin "1"
-			(uuid "1950def7-c9f7-40e7-9c40-f7b8c78dd49c")
+			(uuid "fb38e607-653c-4a37-aed9-559e6e6559e1")
 		)
 		(instances
 			(project "Ana_ESC"
-				(path "/57129761-6d47-486c-bd7a-90dbb6f75754/1c8fb2f9-fb57-4e0e-b310-c551267b7294"
+				(path "/57129761-6d47-486c-bd7a-90dbb6f75754/93a25273-1af9-476d-be50-92121d872328"
 					(reference "C12")
 					(unit 1)
 				)
@@ -5573,14 +5583,14 @@
 			)
 		)
 		(pin "2"
-			(uuid "5b6374c1-f6e5-4b18-9e5c-0e07f7eec411")
+			(uuid "0cd92007-5fa6-443c-a764-48f95fb1d56a")
 		)
 		(pin "1"
-			(uuid "802b5781-961d-4362-934e-a37c36d1f00b")
+			(uuid "f11e8c55-06f1-4587-a546-fa4c047f76a1")
 		)
 		(instances
 			(project "Ana_ESC"
-				(path "/57129761-6d47-486c-bd7a-90dbb6f75754/1c8fb2f9-fb57-4e0e-b310-c551267b7294"
+				(path "/57129761-6d47-486c-bd7a-90dbb6f75754/93a25273-1af9-476d-be50-92121d872328"
 					(reference "Rsense_C3")
 					(unit 1)
 				)
@@ -5597,7 +5607,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "47af5414-01a7-4f78-9cde-639ba0fcd8b7")
-		(property "Reference" "#PWR013"
+		(property "Reference" "#PWR012"
 			(at 167.64 76.2 0)
 			(effects
 				(font
@@ -5642,12 +5652,12 @@
 			)
 		)
 		(pin "1"
-			(uuid "5f658dfc-571a-42ec-8871-2ee288bcddc8")
+			(uuid "9805d189-6d28-43a0-a929-808835b2afb0")
 		)
 		(instances
 			(project "Ana_ESC"
-				(path "/57129761-6d47-486c-bd7a-90dbb6f75754/1c8fb2f9-fb57-4e0e-b310-c551267b7294"
-					(reference "#PWR013")
+				(path "/57129761-6d47-486c-bd7a-90dbb6f75754/93a25273-1af9-476d-be50-92121d872328"
+					(reference "#PWR012")
 					(unit 1)
 				)
 			)
@@ -5663,7 +5673,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "5535cb72-4a9b-419b-8abd-7218ff40c516")
-		(property "Reference" "RGB1"
+		(property "Reference" "RGB2"
 			(at 140.97 72.39 0)
 			(effects
 				(font
@@ -5798,15 +5808,15 @@
 			)
 		)
 		(pin "2"
-			(uuid "ebabc7aa-ff57-42c6-9882-7a097b6ff09e")
+			(uuid "3f80e971-ee16-4533-b7b7-0a090754195f")
 		)
 		(pin "1"
-			(uuid "1d7307f9-1ca7-44f9-ae2e-065cd8b95251")
+			(uuid "73d2e63e-203a-4ff1-b2f8-753b2de70fc4")
 		)
 		(instances
 			(project "Ana_ESC"
-				(path "/57129761-6d47-486c-bd7a-90dbb6f75754/1c8fb2f9-fb57-4e0e-b310-c551267b7294"
-					(reference "RGB1")
+				(path "/57129761-6d47-486c-bd7a-90dbb6f75754/93a25273-1af9-476d-be50-92121d872328"
+					(reference "RGB2")
 					(unit 1)
 				)
 			)
@@ -5948,14 +5958,14 @@
 			)
 		)
 		(pin "2"
-			(uuid "a17964d9-631a-4218-8234-fd043e378e4f")
+			(uuid "c7b84615-6ae2-4e96-b0e5-5b13d11fa5fb")
 		)
 		(pin "1"
-			(uuid "d7efca1e-239e-42f8-ad1e-c39b3339cc95")
+			(uuid "f3da24b3-c077-4567-868c-f3a96571413b")
 		)
 		(instances
-			(project ""
-				(path "/57129761-6d47-486c-bd7a-90dbb6f75754/1c8fb2f9-fb57-4e0e-b310-c551267b7294"
+			(project "Ana_ESC"
+				(path "/57129761-6d47-486c-bd7a-90dbb6f75754/93a25273-1af9-476d-be50-92121d872328"
 					(reference "Rsense_A1")
 					(unit 1)
 				)
@@ -5972,7 +5982,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "62b35955-ce0b-4fe6-9edf-00454acfbfaa")
-		(property "Reference" "R15"
+		(property "Reference" "R13"
 			(at 96.52 99.0599 0)
 			(effects
 				(font
@@ -6018,15 +6028,15 @@
 			)
 		)
 		(pin "1"
-			(uuid "da09df2a-c6de-452f-819f-b8fc1b77f112")
+			(uuid "686123df-42ef-49b0-bb5f-2c818326e6f5")
 		)
 		(pin "2"
-			(uuid "8741cae3-cd5f-4853-9fcb-df8697a90e85")
+			(uuid "24c20c6d-08a1-4fb2-ae51-960707b4f65d")
 		)
 		(instances
 			(project "Ana_ESC"
-				(path "/57129761-6d47-486c-bd7a-90dbb6f75754/1c8fb2f9-fb57-4e0e-b310-c551267b7294"
-					(reference "R15")
+				(path "/57129761-6d47-486c-bd7a-90dbb6f75754/93a25273-1af9-476d-be50-92121d872328"
+					(reference "R13")
 					(unit 1)
 				)
 			)
@@ -6168,14 +6178,14 @@
 			)
 		)
 		(pin "2"
-			(uuid "1f06b954-64fe-4806-bffa-bdaec453540e")
+			(uuid "9a08f52e-08af-4e79-bfb6-40cb42040a09")
 		)
 		(pin "1"
-			(uuid "14bdc5b5-b121-4931-a170-45582bebb4a6")
+			(uuid "28e1db1e-a6e4-4dbf-9a9a-bcdf1c010733")
 		)
 		(instances
 			(project "Ana_ESC"
-				(path "/57129761-6d47-486c-bd7a-90dbb6f75754/1c8fb2f9-fb57-4e0e-b310-c551267b7294"
+				(path "/57129761-6d47-486c-bd7a-90dbb6f75754/93a25273-1af9-476d-be50-92121d872328"
 					(reference "Rsense_A3")
 					(unit 1)
 				)
@@ -6310,17 +6320,17 @@
 			)
 		)
 		(pin "3"
-			(uuid "2fd90c40-a799-4e4e-aa30-b562b0f7c547")
+			(uuid "043792c7-0f53-437d-afda-bfb30b3e40e5")
 		)
 		(pin "1"
-			(uuid "e4bd1399-ad5a-41fe-a608-a2b83b143ec4")
+			(uuid "61cc6c06-1e67-43d3-ab00-aaef5719881d")
 		)
 		(pin "2"
-			(uuid "706db685-f7e1-43b1-ad63-6275ffe098f8")
+			(uuid "cd968e07-00f8-49cb-97dc-65d829391d84")
 		)
 		(instances
 			(project "Ana_ESC"
-				(path "/57129761-6d47-486c-bd7a-90dbb6f75754/1c8fb2f9-fb57-4e0e-b310-c551267b7294"
+				(path "/57129761-6d47-486c-bd7a-90dbb6f75754/93a25273-1af9-476d-be50-92121d872328"
 					(reference "Q6")
 					(unit 1)
 				)
@@ -6337,7 +6347,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "6ecae191-15c8-47e6-ba78-2ed85eee3abb")
-		(property "Reference" "#PWR012"
+		(property "Reference" "#PWR02"
 			(at 110.49 76.2 0)
 			(effects
 				(font
@@ -6382,12 +6392,12 @@
 			)
 		)
 		(pin "1"
-			(uuid "13fa3cee-acaa-4880-808a-a10bec72b54e")
+			(uuid "a3fc555e-7976-482b-849c-782cf818d1be")
 		)
 		(instances
-			(project ""
-				(path "/57129761-6d47-486c-bd7a-90dbb6f75754/1c8fb2f9-fb57-4e0e-b310-c551267b7294"
-					(reference "#PWR012")
+			(project "Ana_ESC"
+				(path "/57129761-6d47-486c-bd7a-90dbb6f75754/93a25273-1af9-476d-be50-92121d872328"
+					(reference "#PWR02")
 					(unit 1)
 				)
 			)
@@ -6403,7 +6413,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "72ee3560-4974-4fac-934a-345434700d7e")
-		(property "Reference" "#PWR02"
+		(property "Reference" "#PWR03"
 			(at 158.75 148.59 0)
 			(effects
 				(font
@@ -6448,12 +6458,12 @@
 			)
 		)
 		(pin "1"
-			(uuid "5b4e8c24-eeaa-479f-8335-c4aedf761424")
+			(uuid "72abd9f4-feed-4398-b5d7-3beebec650b6")
 		)
 		(instances
 			(project "Ana_ESC"
-				(path "/57129761-6d47-486c-bd7a-90dbb6f75754/1c8fb2f9-fb57-4e0e-b310-c551267b7294"
-					(reference "#PWR02")
+				(path "/57129761-6d47-486c-bd7a-90dbb6f75754/93a25273-1af9-476d-be50-92121d872328"
+					(reference "#PWR03")
 					(unit 1)
 				)
 			)
@@ -6517,14 +6527,14 @@
 			)
 		)
 		(pin "2"
-			(uuid "1290b3b1-4859-4a6b-973d-7aad18930922")
+			(uuid "443b568b-8b48-40ea-847e-d65dd58734a6")
 		)
 		(pin "1"
-			(uuid "c4f8a8be-1301-49df-8cc4-87a7c8bfed71")
+			(uuid "7c4bcb52-c5cd-48ba-8b77-4a3d8e76ec90")
 		)
 		(instances
-			(project ""
-				(path "/57129761-6d47-486c-bd7a-90dbb6f75754/1c8fb2f9-fb57-4e0e-b310-c551267b7294"
+			(project "Ana_ESC"
+				(path "/57129761-6d47-486c-bd7a-90dbb6f75754/93a25273-1af9-476d-be50-92121d872328"
 					(reference "C13")
 					(unit 1)
 				)
@@ -6587,14 +6597,14 @@
 			)
 		)
 		(pin "1"
-			(uuid "991328d0-7a11-4dfa-ac96-45c92a9661f9")
+			(uuid "0f9b2baf-8eac-4454-a0ab-15246d0f7639")
 		)
 		(pin "2"
-			(uuid "6cdf561f-5e50-4c07-8c1f-f368ed1f8f30")
+			(uuid "09c58b56-6687-4318-bc77-b7366a7fcf55")
 		)
 		(instances
-			(project ""
-				(path "/57129761-6d47-486c-bd7a-90dbb6f75754/1c8fb2f9-fb57-4e0e-b310-c551267b7294"
+			(project "Ana_ESC"
+				(path "/57129761-6d47-486c-bd7a-90dbb6f75754/93a25273-1af9-476d-be50-92121d872328"
 					(reference "C9")
 					(unit 1)
 				)
@@ -6611,7 +6621,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "82500695-18f2-4bd2-870f-5ac3ac800407")
-		(property "Reference" "RGA2"
+		(property "Reference" "RGA1"
 			(at 82.55 88.9 0)
 			(effects
 				(font
@@ -6746,15 +6756,15 @@
 			)
 		)
 		(pin "2"
-			(uuid "c42c1fda-8bb7-4525-84bf-4eaf3a799235")
+			(uuid "d82e0d0f-dea3-43af-acbc-95b1d871497d")
 		)
 		(pin "1"
-			(uuid "20e1a255-7c3e-4dac-9928-f9c0d431154b")
+			(uuid "0fd11a54-2a83-48b0-ad64-fc0b58aacc41")
 		)
 		(instances
 			(project "Ana_ESC"
-				(path "/57129761-6d47-486c-bd7a-90dbb6f75754/1c8fb2f9-fb57-4e0e-b310-c551267b7294"
-					(reference "RGA2")
+				(path "/57129761-6d47-486c-bd7a-90dbb6f75754/93a25273-1af9-476d-be50-92121d872328"
+					(reference "RGA1")
 					(unit 1)
 				)
 			)
@@ -6888,17 +6898,17 @@
 			)
 		)
 		(pin "1"
-			(uuid "4c9ac1d3-52a6-47b6-abff-3a961ec6c4c5")
+			(uuid "c8981eed-eb5f-44aa-9e16-bd723420cd18")
 		)
 		(pin "2"
-			(uuid "fd9fa89a-7f61-483a-9f50-3ec7a9310255")
+			(uuid "589d1c89-6ce1-4245-b685-7e1d7a946304")
 		)
 		(pin "3"
-			(uuid "0cb39ed2-224c-4668-8d3f-6f6ad2ec347b")
+			(uuid "3cbace23-dddb-48ef-94eb-6cccaf0cc28e")
 		)
 		(instances
 			(project "Ana_ESC"
-				(path "/57129761-6d47-486c-bd7a-90dbb6f75754/1c8fb2f9-fb57-4e0e-b310-c551267b7294"
+				(path "/57129761-6d47-486c-bd7a-90dbb6f75754/93a25273-1af9-476d-be50-92121d872328"
 					(reference "Q3")
 					(unit 1)
 				)
@@ -6915,7 +6925,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "8a7fc5c3-e63a-4723-b47b-358411f1bd74")
-		(property "Reference" "RGC2"
+		(property "Reference" "RGC1"
 			(at 198.12 88.9 0)
 			(effects
 				(font
@@ -7050,15 +7060,15 @@
 			)
 		)
 		(pin "2"
-			(uuid "6df9a59a-984d-411f-8474-494c9bec7a33")
+			(uuid "4ef1af0c-833f-4265-94e4-b9587fd58430")
 		)
 		(pin "1"
-			(uuid "c4b71b79-92e3-4e57-a086-f5eb8898be7f")
+			(uuid "5c434ef6-8367-4335-a212-c1556d4707f3")
 		)
 		(instances
 			(project "Ana_ESC"
-				(path "/57129761-6d47-486c-bd7a-90dbb6f75754/1c8fb2f9-fb57-4e0e-b310-c551267b7294"
-					(reference "RGC2")
+				(path "/57129761-6d47-486c-bd7a-90dbb6f75754/93a25273-1af9-476d-be50-92121d872328"
+					(reference "RGC1")
 					(unit 1)
 				)
 			)
@@ -7120,14 +7130,14 @@
 			)
 		)
 		(pin "1"
-			(uuid "6d9b5822-7d5c-4959-b568-14c32d1d0b4d")
+			(uuid "a1ae8198-a579-4e65-af0b-77646dbae3e1")
 		)
 		(pin "2"
-			(uuid "4a353fd0-84e2-44f5-81a1-f9d843e4a334")
+			(uuid "0e599390-6b7b-489e-bf20-897a9807dacc")
 		)
 		(instances
 			(project "Ana_ESC"
-				(path "/57129761-6d47-486c-bd7a-90dbb6f75754/1c8fb2f9-fb57-4e0e-b310-c551267b7294"
+				(path "/57129761-6d47-486c-bd7a-90dbb6f75754/93a25273-1af9-476d-be50-92121d872328"
 					(reference "C10")
 					(unit 1)
 				)
@@ -7270,14 +7280,14 @@
 			)
 		)
 		(pin "2"
-			(uuid "1dd67b57-58db-459a-9951-21ad4349d80c")
+			(uuid "433d84e0-1274-4321-b02e-c5638f6d472e")
 		)
 		(pin "1"
-			(uuid "14f68bd8-7f50-4582-831d-1fd835e5cf34")
+			(uuid "11345fd8-aa8a-4503-9e28-ad0593073289")
 		)
 		(instances
 			(project "Ana_ESC"
-				(path "/57129761-6d47-486c-bd7a-90dbb6f75754/1c8fb2f9-fb57-4e0e-b310-c551267b7294"
+				(path "/57129761-6d47-486c-bd7a-90dbb6f75754/93a25273-1af9-476d-be50-92121d872328"
 					(reference "Rsense_C2")
 					(unit 1)
 				)
@@ -7412,17 +7422,17 @@
 			)
 		)
 		(pin "1"
-			(uuid "105ea2fb-35db-4c52-8943-391fe7c7f8ac")
+			(uuid "8cdd074a-8b27-4e63-b51f-1b268ba3e845")
 		)
 		(pin "2"
-			(uuid "8d78dbea-977a-4be4-ab6a-f46d52bf987f")
+			(uuid "18705b7b-64c0-44b6-b571-ba8afd929b52")
 		)
 		(pin "3"
-			(uuid "11d7e053-95a1-4307-b149-7f9b2cb7cdf1")
+			(uuid "99ec853a-74bb-471e-8d8b-5d6706b79658")
 		)
 		(instances
-			(project ""
-				(path "/57129761-6d47-486c-bd7a-90dbb6f75754/1c8fb2f9-fb57-4e0e-b310-c551267b7294"
+			(project "Ana_ESC"
+				(path "/57129761-6d47-486c-bd7a-90dbb6f75754/93a25273-1af9-476d-be50-92121d872328"
 					(reference "Q1")
 					(unit 1)
 				)
@@ -7557,17 +7567,17 @@
 			)
 		)
 		(pin "1"
-			(uuid "3df38741-315e-4cf6-803c-d40a398c2a84")
+			(uuid "608edc12-511b-44a6-9443-3762b0dcac15")
 		)
 		(pin "2"
-			(uuid "9d16031e-e19c-4281-b20f-b49cd1ef5af6")
+			(uuid "bf81b76c-d463-406c-a017-876592a2f60b")
 		)
 		(pin "3"
-			(uuid "11015481-553a-4774-9194-58301ec5162d")
+			(uuid "66f99511-0c59-49df-8357-2c57948ab688")
 		)
 		(instances
 			(project "Ana_ESC"
-				(path "/57129761-6d47-486c-bd7a-90dbb6f75754/1c8fb2f9-fb57-4e0e-b310-c551267b7294"
+				(path "/57129761-6d47-486c-bd7a-90dbb6f75754/93a25273-1af9-476d-be50-92121d872328"
 					(reference "Q5")
 					(unit 1)
 				)
@@ -7629,11 +7639,11 @@
 			)
 		)
 		(pin "1"
-			(uuid "11f7e860-7355-48af-add2-f9e604767052")
+			(uuid "375defb5-f9ed-4081-b152-d9035e90b939")
 		)
 		(instances
 			(project "Ana_ESC"
-				(path "/57129761-6d47-486c-bd7a-90dbb6f75754/1c8fb2f9-fb57-4e0e-b310-c551267b7294"
+				(path "/57129761-6d47-486c-bd7a-90dbb6f75754/93a25273-1af9-476d-be50-92121d872328"
 					(reference "#PWR014")
 					(unit 1)
 				)
@@ -7650,7 +7660,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "c9433fc3-acd7-4f17-aa90-adfb98e63f4a")
-		(property "Reference" "RGB2"
+		(property "Reference" "RGB1"
 			(at 139.7 88.9 0)
 			(effects
 				(font
@@ -7785,15 +7795,15 @@
 			)
 		)
 		(pin "2"
-			(uuid "0a5ce2dd-3554-4e03-9702-ed5edf844427")
+			(uuid "8ac7ac7e-d221-42e8-bd26-7101139900d7")
 		)
 		(pin "1"
-			(uuid "82833f65-6e40-450f-a2c6-d128ef61b5dd")
+			(uuid "62104453-7be7-40f5-8933-cb3cb9d53429")
 		)
 		(instances
 			(project "Ana_ESC"
-				(path "/57129761-6d47-486c-bd7a-90dbb6f75754/1c8fb2f9-fb57-4e0e-b310-c551267b7294"
-					(reference "RGB2")
+				(path "/57129761-6d47-486c-bd7a-90dbb6f75754/93a25273-1af9-476d-be50-92121d872328"
+					(reference "RGB1")
 					(unit 1)
 				)
 			)
@@ -7935,14 +7945,14 @@
 			)
 		)
 		(pin "2"
-			(uuid "84c6d8d4-3ee1-40ca-9498-12aad2bfa7f3")
+			(uuid "7b696ab4-52c1-4459-8313-9ba6e58dc671")
 		)
 		(pin "1"
-			(uuid "cb61fef5-b689-414b-84ba-b6fcc1179189")
+			(uuid "5d25eb93-02a8-4bcb-b4b9-e84ef9f937e0")
 		)
 		(instances
 			(project "Ana_ESC"
-				(path "/57129761-6d47-486c-bd7a-90dbb6f75754/1c8fb2f9-fb57-4e0e-b310-c551267b7294"
+				(path "/57129761-6d47-486c-bd7a-90dbb6f75754/93a25273-1af9-476d-be50-92121d872328"
 					(reference "Rsense_A2")
 					(unit 1)
 				)
@@ -8085,14 +8095,14 @@
 			)
 		)
 		(pin "2"
-			(uuid "fb7162e0-8ef1-4709-9d97-8eeb8025b288")
+			(uuid "f5e53a0d-f752-4473-b9a1-429d0bf91060")
 		)
 		(pin "1"
-			(uuid "f59af2be-cd0c-4f8a-978b-6e0cb8905305")
+			(uuid "0f3f9837-b3d7-4fc5-9961-d3628e74674d")
 		)
 		(instances
 			(project "Ana_ESC"
-				(path "/57129761-6d47-486c-bd7a-90dbb6f75754/1c8fb2f9-fb57-4e0e-b310-c551267b7294"
+				(path "/57129761-6d47-486c-bd7a-90dbb6f75754/93a25273-1af9-476d-be50-92121d872328"
 					(reference "Rsense_B1")
 					(unit 1)
 				)
@@ -8154,11 +8164,11 @@
 			)
 		)
 		(pin "1"
-			(uuid "3d08abc2-3c2d-4b12-9736-0e23c2d71d37")
+			(uuid "c1168298-594a-41da-b363-c33b00f80984")
 		)
 		(instances
 			(project "Ana_ESC"
-				(path "/57129761-6d47-486c-bd7a-90dbb6f75754/1c8fb2f9-fb57-4e0e-b310-c551267b7294"
+				(path "/57129761-6d47-486c-bd7a-90dbb6f75754/93a25273-1af9-476d-be50-92121d872328"
 					(reference "#PWR016")
 					(unit 1)
 				)
@@ -8175,7 +8185,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "d1bad36b-1728-4df1-aa5a-887e54fa198d")
-		(property "Reference" "R13"
+		(property "Reference" "R15"
 			(at 212.09 100.3299 0)
 			(effects
 				(font
@@ -8221,15 +8231,15 @@
 			)
 		)
 		(pin "1"
-			(uuid "0651fa56-5be1-4675-8765-dc01b51beb32")
+			(uuid "a90381e0-1a8e-47b5-b810-2b46df7c82ce")
 		)
 		(pin "2"
-			(uuid "3803202c-feb0-4a6f-9258-eb7b146bd5af")
+			(uuid "d42d3524-4b36-4616-b6f3-eda344ef0835")
 		)
 		(instances
-			(project ""
-				(path "/57129761-6d47-486c-bd7a-90dbb6f75754/1c8fb2f9-fb57-4e0e-b310-c551267b7294"
-					(reference "R13")
+			(project "Ana_ESC"
+				(path "/57129761-6d47-486c-bd7a-90dbb6f75754/93a25273-1af9-476d-be50-92121d872328"
+					(reference "R15")
 					(unit 1)
 				)
 			)
@@ -8371,14 +8381,14 @@
 			)
 		)
 		(pin "2"
-			(uuid "f92690c8-e248-42bd-a408-65dc60e5e0dd")
+			(uuid "e00356ab-a8d0-436f-a8d2-95ea62af8640")
 		)
 		(pin "1"
-			(uuid "dffc6193-76ac-4255-a8bc-3f12bae02e64")
+			(uuid "56d753b1-db4e-4569-b415-098433e8bd62")
 		)
 		(instances
 			(project "Ana_ESC"
-				(path "/57129761-6d47-486c-bd7a-90dbb6f75754/1c8fb2f9-fb57-4e0e-b310-c551267b7294"
+				(path "/57129761-6d47-486c-bd7a-90dbb6f75754/93a25273-1af9-476d-be50-92121d872328"
 					(reference "Rsense_B2")
 					(unit 1)
 				)
@@ -8521,14 +8531,14 @@
 			)
 		)
 		(pin "2"
-			(uuid "425c177a-980f-4787-aafe-4caf577d91c5")
+			(uuid "9a7d0e1f-35be-4cd6-b0a4-8cc1377b9693")
 		)
 		(pin "1"
-			(uuid "461d75bf-ffa9-4790-8dbd-ce33a1005bd7")
+			(uuid "22fdcf3f-8c91-44cc-9f28-bf687c437a06")
 		)
 		(instances
 			(project "Ana_ESC"
-				(path "/57129761-6d47-486c-bd7a-90dbb6f75754/1c8fb2f9-fb57-4e0e-b310-c551267b7294"
+				(path "/57129761-6d47-486c-bd7a-90dbb6f75754/93a25273-1af9-476d-be50-92121d872328"
 					(reference "Rsense_B3")
 					(unit 1)
 				)
@@ -8545,7 +8555,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "e6fd23b9-ff6b-48b6-87de-9986f9b75fa1")
-		(property "Reference" "RGA1"
+		(property "Reference" "RGA2"
 			(at 83.82 72.39 0)
 			(effects
 				(font
@@ -8680,15 +8690,15 @@
 			)
 		)
 		(pin "2"
-			(uuid "a164ce19-c6c1-491c-833e-182d1e23f44c")
+			(uuid "6e75fa5f-3ec4-40ee-8906-8fabadb876ca")
 		)
 		(pin "1"
-			(uuid "b980954a-3f97-41bd-a29c-942d4ae5014d")
+			(uuid "fe2d236f-19b4-48e8-9083-c6f27dac03c7")
 		)
 		(instances
-			(project ""
-				(path "/57129761-6d47-486c-bd7a-90dbb6f75754/1c8fb2f9-fb57-4e0e-b310-c551267b7294"
-					(reference "RGA1")
+			(project "Ana_ESC"
+				(path "/57129761-6d47-486c-bd7a-90dbb6f75754/93a25273-1af9-476d-be50-92121d872328"
+					(reference "RGA2")
 					(unit 1)
 				)
 			)
@@ -8749,11 +8759,11 @@
 			)
 		)
 		(pin "1"
-			(uuid "91477455-5061-4afd-8ab1-f5dff5b159b3")
+			(uuid "65792fda-2e4b-47c9-9fd1-ad7cd389fc93")
 		)
 		(instances
-			(project ""
-				(path "/57129761-6d47-486c-bd7a-90dbb6f75754/1c8fb2f9-fb57-4e0e-b310-c551267b7294"
+			(project "Ana_ESC"
+				(path "/57129761-6d47-486c-bd7a-90dbb6f75754/93a25273-1af9-476d-be50-92121d872328"
 					(reference "#PWR01")
 					(unit 1)
 				)
@@ -8770,7 +8780,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "fa1afc7e-9bac-4440-894e-d167673533f5")
-		(property "Reference" "#PWR03"
+		(property "Reference" "#PWR013"
 			(at 217.17 149.86 0)
 			(effects
 				(font
@@ -8815,12 +8825,12 @@
 			)
 		)
 		(pin "1"
-			(uuid "d9837fe3-d334-496e-a5d8-077f96de84b9")
+			(uuid "4853f5ce-8a8c-4bd4-bbca-0dd45d8a78cb")
 		)
 		(instances
 			(project "Ana_ESC"
-				(path "/57129761-6d47-486c-bd7a-90dbb6f75754/1c8fb2f9-fb57-4e0e-b310-c551267b7294"
-					(reference "#PWR03")
+				(path "/57129761-6d47-486c-bd7a-90dbb6f75754/93a25273-1af9-476d-be50-92121d872328"
+					(reference "#PWR013")
 					(unit 1)
 				)
 			)
@@ -8962,14 +8972,14 @@
 			)
 		)
 		(pin "2"
-			(uuid "8048004e-718b-40cf-b017-9275d1923d35")
+			(uuid "5706d25b-82fa-4f94-80b5-f862026d42bb")
 		)
 		(pin "1"
-			(uuid "1a3edc0c-e445-47d2-9a2b-51d57453337f")
+			(uuid "e7789f64-c186-476e-8fc6-3186b648da28")
 		)
 		(instances
 			(project "Ana_ESC"
-				(path "/57129761-6d47-486c-bd7a-90dbb6f75754/1c8fb2f9-fb57-4e0e-b310-c551267b7294"
+				(path "/57129761-6d47-486c-bd7a-90dbb6f75754/93a25273-1af9-476d-be50-92121d872328"
 					(reference "Rsense_C1")
 					(unit 1)
 				)
