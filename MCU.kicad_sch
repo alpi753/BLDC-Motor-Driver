@@ -5446,6 +5446,16 @@
 		)
 		(uuid "2eb1ed40-511c-42e0-b6f2-67ee91e6f967")
 	)
+	(text "(GND guard ring)\n"
+		(exclude_from_sim no)
+		(at 171.45 112.522 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+		(uuid "4f8d9978-184b-4ada-8c6f-74beda526d2f")
+	)
 	(text "Sensör Girişi\n(Manyetik Enkoder- as5600)"
 		(exclude_from_sim no)
 		(at 56.134 44.45 0)
@@ -6127,6 +6137,16 @@
 			(type default)
 		)
 		(uuid "2704c53c-6417-45f3-83b5-94d5943e5d25")
+	)
+	(wire
+		(pts
+			(xy 154.94 118.11) (xy 157.48 118.11)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "27c54e4a-9a7b-4af9-b4cf-41cf795c7ad8")
 	)
 	(wire
 		(pts
@@ -7090,13 +7110,13 @@
 	)
 	(wire
 		(pts
-			(xy 154.94 118.11) (xy 166.37 118.11)
+			(xy 162.56 118.11) (xy 166.37 118.11)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "b0f33bb3-bd3c-48ee-92f0-777d06daec0c")
+		(uuid "b0272672-fbfc-47e3-b23e-989b92ff6aaf")
 	)
 	(wire
 		(pts
@@ -13164,7 +13184,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "100n"
+		(property "Value" "100nF"
 			(at 204.47 154.94 0)
 			(effects
 				(font
@@ -13173,7 +13193,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Capacitor_SMD:C_0402_1005Metric"
+		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder"
 			(at 207.01 153.67 0)
 			(effects
 				(font
@@ -13182,7 +13202,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "~"
+		(property "Datasheet" "direnc.net"
 			(at 207.01 153.67 0)
 			(effects
 				(font
@@ -13381,7 +13401,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Capacitor_SMD:C_0402_1005Metric"
+		(property "Footprint" "Capacitor_SMD:C_0603_1608Metric_Pad1.08x0.95mm_HandSolder"
 			(at 104.14 34.29 0)
 			(effects
 				(font
@@ -13390,7 +13410,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "~"
+		(property "Datasheet" "https://www.direnc.net/1uf-50v-10-603-smd-kondansator"
 			(at 104.14 34.29 0)
 			(effects
 				(font
@@ -13666,7 +13686,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "100n"
+		(property "Value" "100nF"
 			(at 154.94 39.37 0)
 			(effects
 				(font
@@ -13675,7 +13695,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Capacitor_SMD:C_0402_1005Metric"
+		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder"
 			(at 152.4 38.1 0)
 			(effects
 				(font
@@ -13684,7 +13704,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "~"
+		(property "Datasheet" "direnc.net"
 			(at 152.4 38.1 0)
 			(effects
 				(font
@@ -14488,7 +14508,7 @@
 				(justify right)
 			)
 		)
-		(property "Footprint" "Capacitor_SMD:C_0402_1005Metric"
+		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder"
 			(at 196.85 38.1 0)
 			(effects
 				(font
@@ -14497,7 +14517,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "~"
+		(property "Datasheet" "https://www.direnc.net/100nf50v-805-kilif"
 			(at 196.85 38.1 0)
 			(effects
 				(font
@@ -14784,7 +14804,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Capacitor_SMD:C_0402_1005Metric"
+		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder"
 			(at 170.18 66.04 0)
 			(effects
 				(font
@@ -14793,7 +14813,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "~"
+		(property "Datasheet" "direnc.net"
 			(at 170.18 66.04 0)
 			(effects
 				(font
@@ -14811,6 +14831,15 @@
 			)
 		)
 		(property "LCSC Part #" "C1525"
+			(at 170.18 66.04 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Field6" ""
 			(at 170.18 66.04 0)
 			(effects
 				(font
@@ -15269,7 +15298,7 @@
 				(hide yes)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "TerminalBlock:TerminalBlock_MaiXu_MX126-5.0-02P_1x02_P5.00mm"
 			(at 250.19 153.67 0)
 			(effects
 				(font
@@ -15329,7 +15358,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "100n"
+		(property "Value" "100nF"
 			(at 145.415 39.37 0)
 			(effects
 				(font
@@ -15338,7 +15367,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Capacitor_SMD:C_0402_1005Metric"
+		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder"
 			(at 142.875 38.1 0)
 			(effects
 				(font
@@ -15347,7 +15376,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "~"
+		(property "Datasheet" "direnc.net"
 			(at 142.875 38.1 0)
 			(effects
 				(font
@@ -15774,7 +15803,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder"
 			(at 176.53 124.46 0)
 			(effects
 				(font
@@ -15942,158 +15971,6 @@
 			(project "Ana_ESC"
 				(path "/57129761-6d47-486c-bd7a-90dbb6f75754/223db1af-68f5-46b9-9722-256b09606f21"
 					(reference "#PWR039")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "BM04B-GHS-TBT_LF__SN__N_:BM04B-GHS-TBT_LF__SN__N_")
-		(at 22.86 67.31 0)
-		(mirror x)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "7834a8b6-8b41-4432-a6c0-735fc77a86c1")
-		(property "Reference" "J4"
-			(at 34.544 71.12 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "BM04B-GHS-TBT_LF__SN__N_"
-			(at 33.782 55.372 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" "BM04BGHSTBTLFSNN"
-			(at 41.91 -27.61 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left top)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "http://www.jst-mfg.com/product/pdf/eng/eGH.pdf"
-			(at 41.91 -127.61 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left top)
-				(hide yes)
-			)
-		)
-		(property "Description" "CONN HEADER SMD 4POS 1.25MM"
-			(at 22.86 67.31 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Height" "4.05"
-			(at 41.91 -327.61 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left top)
-				(hide yes)
-			)
-		)
-		(property "Manufacturer_Name" "JST (JAPAN SOLDERLESS TERMINALS)"
-			(at 41.91 -427.61 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left top)
-				(hide yes)
-			)
-		)
-		(property "Manufacturer_Part_Number" "BM04B-GHS-TBT(LF)(SN)(N)"
-			(at 41.91 -527.61 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left top)
-				(hide yes)
-			)
-		)
-		(property "Mouser Part Number" "N/A"
-			(at 41.91 -627.61 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left top)
-				(hide yes)
-			)
-		)
-		(property "Mouser Price/Stock" "https://www.mouser.co.uk/ProductDetail/JST-Commercial/BM04B-GHS-TBTLFSNN?qs=QpmGXVUTftGHKxacCgPJ1g%3D%3D"
-			(at 41.91 -727.61 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left top)
-				(hide yes)
-			)
-		)
-		(property "Arrow Part Number" "BM04B-GHS-TBT(LF)(SN)(N)"
-			(at 41.91 -827.61 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left top)
-				(hide yes)
-			)
-		)
-		(property "Arrow Price/Stock" "https://www.arrow.com/en/products/bm04b-ghs-tbt-lf-sn-n/jst-manufacturing?region=europe"
-			(at 41.91 -927.61 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left top)
-				(hide yes)
-			)
-		)
-		(pin "2"
-			(uuid "e1bf3f86-a004-4468-935d-786c50a0d7f3")
-		)
-		(pin "3"
-			(uuid "2c0b1243-f724-4730-ac7e-257f0195d1f9")
-		)
-		(pin "MP2"
-			(uuid "10133529-6aee-472f-aa55-d686049187f0")
-		)
-		(pin "MP1"
-			(uuid "bb5cebb2-53a6-451e-9744-ab8e72b4441a")
-		)
-		(pin "4"
-			(uuid "cb8a819d-dd67-474a-bde1-1ea3c93b6396")
-		)
-		(pin "1"
-			(uuid "8d36c800-783f-4646-bcf2-ea159d4cf01d")
-		)
-		(instances
-			(project ""
-				(path "/57129761-6d47-486c-bd7a-90dbb6f75754/223db1af-68f5-46b9-9722-256b09606f21"
-					(reference "J4")
 					(unit 1)
 				)
 			)
@@ -16515,7 +16392,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "10n"
+		(property "Value" "10nF"
 			(at 188.595 41.91 0)
 			(effects
 				(font
@@ -16524,7 +16401,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Capacitor_SMD:C_0402_1005Metric"
+		(property "Footprint" "Capacitor_SMD:C_0603_1608Metric_Pad1.08x0.95mm_HandSolder"
 			(at 186.055 40.64 0)
 			(effects
 				(font
@@ -16847,7 +16724,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "100n"
+		(property "Value" "100nF"
 			(at 135.89 39.37 0)
 			(effects
 				(font
@@ -16856,7 +16733,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Capacitor_SMD:C_0402_1005Metric"
+		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder"
 			(at 133.35 38.1 0)
 			(effects
 				(font
@@ -16865,7 +16742,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "~"
+		(property "Datasheet" "direnc.net"
 			(at 133.35 38.1 0)
 			(effects
 				(font
@@ -17088,7 +16965,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder"
 			(at 166.37 124.46 0)
 			(effects
 				(font
@@ -17125,6 +17002,158 @@
 			(project "Ana_ESC"
 				(path "/57129761-6d47-486c-bd7a-90dbb6f75754/223db1af-68f5-46b9-9722-256b09606f21"
 					(reference "C18")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "BM04B-GHS-TBT_LF__SN__N_:BM04B-GHS-TBT_LF__SN__N_")
+		(at 22.86 67.31 0)
+		(mirror x)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "ab337e91-edb1-4af7-a10e-d98285f1048a")
+		(property "Reference" "J4"
+			(at 34.036 55.118 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "BM04B-GHS-TBT_LF__SN__N_"
+			(at 34.29 72.39 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "ul_BM04B-GHS-TBT-LF-SN-N-:JST_BM04B-GHS-TBT_LF__SN__N_"
+			(at 41.91 -27.61 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "http://www.jst-mfg.com/product/pdf/eng/eGH.pdf"
+			(at 41.91 -127.61 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+				(hide yes)
+			)
+		)
+		(property "Description" "CONN HEADER SMD 4POS 1.25MM"
+			(at 22.86 67.31 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Height" "4.05"
+			(at 41.91 -327.61 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer_Name" "JST (JAPAN SOLDERLESS TERMINALS)"
+			(at 41.91 -427.61 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer_Part_Number" "BM04B-GHS-TBT(LF)(SN)(N)"
+			(at 41.91 -527.61 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+				(hide yes)
+			)
+		)
+		(property "Mouser Part Number" "N/A"
+			(at 41.91 -627.61 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+				(hide yes)
+			)
+		)
+		(property "Mouser Price/Stock" "https://www.mouser.co.uk/ProductDetail/JST-Commercial/BM04B-GHS-TBTLFSNN?qs=QpmGXVUTftGHKxacCgPJ1g%3D%3D"
+			(at 41.91 -727.61 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+				(hide yes)
+			)
+		)
+		(property "Arrow Part Number" "BM04B-GHS-TBT(LF)(SN)(N)"
+			(at 41.91 -827.61 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+				(hide yes)
+			)
+		)
+		(property "Arrow Price/Stock" "https://www.arrow.com/en/products/bm04b-ghs-tbt-lf-sn-n/jst-manufacturing?region=europe"
+			(at 41.91 -927.61 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "3a298d64-0a0a-47cf-a10b-054f8b6c0053")
+		)
+		(pin "2"
+			(uuid "3d4a0c77-a0e3-4aa9-bfe6-ea405c444c49")
+		)
+		(pin "MP2"
+			(uuid "a6cbe993-d614-49e7-8e86-3d95779b10e8")
+		)
+		(pin "MP1"
+			(uuid "44da4154-4f66-423b-b67d-6079a06d0413")
+		)
+		(pin "4"
+			(uuid "e73e6a61-cdb7-4258-be21-3c12c0321801")
+		)
+		(pin "3"
+			(uuid "14e6ab09-7e03-4e19-b05f-30d93d2ad889")
+		)
+		(instances
+			(project ""
+				(path "/57129761-6d47-486c-bd7a-90dbb6f75754/223db1af-68f5-46b9-9722-256b09606f21"
+					(reference "J4")
 					(unit 1)
 				)
 			)
@@ -17619,7 +17648,7 @@
 				)
 			)
 		)
-		(property "Footprint" "BM04BGHSTBTLFSNN"
+		(property "Footprint" "ul_BM04B-GHS-TBT-LF-SN-N-:JST_BM04B-GHS-TBT_LF__SN__N_"
 			(at 260.35 124.13 0)
 			(effects
 				(font
@@ -17898,7 +17927,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Resistor_SMD:R_0402_1005Metric"
+		(property "Footprint" "Resistor_SMD:R_0603_1608Metric_Pad0.98x0.95mm_HandSolder"
 			(at 242.57 41.91 0)
 			(effects
 				(font
@@ -18540,7 +18569,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Resistor_SMD:R_0402_1005Metric"
+		(property "Footprint" "Resistor_SMD:R_0603_1608Metric_Pad0.98x0.95mm_HandSolder"
 			(at 207.01 127 0)
 			(effects
 				(font
@@ -18676,7 +18705,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "1u"
+		(property "Value" "1uF"
 			(at 180.34 41.91 0)
 			(effects
 				(font
@@ -18685,7 +18714,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Capacitor_SMD:C_0402_1005Metric"
+		(property "Footprint" "Capacitor_SMD:C_0603_1608Metric_Pad1.08x0.95mm_HandSolder"
 			(at 177.8 40.64 0)
 			(effects
 				(font
@@ -18694,7 +18723,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "~"
+		(property "Datasheet" "direnc.net"
 			(at 177.8 40.64 0)
 			(effects
 				(font
@@ -18763,7 +18792,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Capacitor_SMD:C_0402_1005Metric"
+		(property "Footprint" "Capacitor_SMD:C_0603_1608Metric_Pad1.08x0.95mm_HandSolder"
 			(at 82.55 34.29 0)
 			(effects
 				(font
@@ -18772,7 +18801,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "~"
+		(property "Datasheet" "https://www.direnc.net/1uf-50v-10-603-smd-kondansator"
 			(at 82.55 34.29 0)
 			(effects
 				(font
@@ -18907,7 +18936,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Resistor_SMD:R_0402_1005Metric"
+		(property "Footprint" "Resistor_SMD:R_0603_1608Metric_Pad0.98x0.95mm_HandSolder"
 			(at 250.19 33.02 0)
 			(effects
 				(font
@@ -18944,6 +18973,81 @@
 			(project "Ana_ESC"
 				(path "/57129761-6d47-486c-bd7a-90dbb6f75754/223db1af-68f5-46b9-9722-256b09606f21"
 					(reference "R19")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:R_Small")
+		(at 160.02 118.11 270)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "fb68db53-829a-443b-aa4f-de7e4781a056")
+		(property "Reference" "R25"
+			(at 160.02 118.11 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "0 ohm"
+			(at 160.274 119.888 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "RMCF0603ZT0R00:RESC1508X55N"
+			(at 160.02 118.11 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 160.02 118.11 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" ""
+			(at 160.02 118.11 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC Part #" "C25744"
+			(at 160.02 118.11 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "0dc12e12-8eea-4270-a686-5716fe4a596b")
+		)
+		(pin "2"
+			(uuid "9db03237-fffc-4ed3-a73e-e6216a682fe8")
+		)
+		(instances
+			(project "Ana_ESC"
+				(path "/57129761-6d47-486c-bd7a-90dbb6f75754/223db1af-68f5-46b9-9722-256b09606f21"
+					(reference "R25")
 					(unit 1)
 				)
 			)

@@ -9201,7 +9201,7 @@
 				)
 			)
 		)
-		(property "Footprint" "STL90N6F7"
+		(property "Footprint" "STL90N6F7:STL90N6F7"
 			(at 166.37 186.36 0)
 			(effects
 				(font
@@ -10326,7 +10326,7 @@
 				)
 			)
 		)
-		(property "Footprint" "STL90N6F7"
+		(property "Footprint" "STL90N6F7:STL90N6F7"
 			(at 109.22 186.36 0)
 			(effects
 				(font
@@ -10867,7 +10867,7 @@
 				)
 			)
 		)
-		(property "Footprint" "STL90N6F7"
+		(property "Footprint" "STL90N6F7:STL90N6F7"
 			(at 224.79 186.36 0)
 			(effects
 				(font
@@ -11029,7 +11029,7 @@
 				)
 			)
 		)
-		(property "Footprint" "STL90N6F7"
+		(property "Footprint" "STL90N6F7:STL90N6F7"
 			(at 224.79 158.42 0)
 			(effects
 				(font
@@ -12747,7 +12747,7 @@
 				)
 			)
 		)
-		(property "Footprint" "STL90N6F7"
+		(property "Footprint" "STL90N6F7:STL90N6F7"
 			(at 166.37 158.42 0)
 			(effects
 				(font

@@ -1082,218 +1082,6 @@
 			)
 			(embedded_fonts no)
 		)
-		(symbol "CL05B105KQ5NQNC:CL05B105KQ5NQNC"
-			(pin_names
-				(hide yes)
-			)
-			(exclude_from_sim no)
-			(in_bom yes)
-			(on_board yes)
-			(property "Reference" "C"
-				(at 8.89 6.35 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify left top)
-				)
-			)
-			(property "Value" "CL05B105KQ5NQNC"
-				(at 8.89 3.81 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify left top)
-				)
-			)
-			(property "Footprint" "CAPC1005X55N"
-				(at 8.89 -96.19 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify left top)
-					(hide yes)
-				)
-			)
-			(property "Datasheet" "https://media.digikey.com/pdf/Data%20Sheets/Samsung%20PDFs/CL10A225KO8NNNC_Spec.pdf"
-				(at 8.89 -196.19 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify left top)
-					(hide yes)
-				)
-			)
-			(property "Description" "Cap Ceramic 1uF 6.3V X7R 10% Pad SMD 0402 125C T/R"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "Height" "0.55"
-				(at 8.89 -396.19 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify left top)
-					(hide yes)
-				)
-			)
-			(property "Manufacturer_Name" "SAMSUNG"
-				(at 8.89 -496.19 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify left top)
-					(hide yes)
-				)
-			)
-			(property "Manufacturer_Part_Number" "CL05B105KQ5NQNC"
-				(at 8.89 -596.19 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify left top)
-					(hide yes)
-				)
-			)
-			(property "Mouser Part Number" "187-CL05B105KQ5NQNC"
-				(at 8.89 -696.19 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify left top)
-					(hide yes)
-				)
-			)
-			(property "Mouser Price/Stock" "https://www.mouser.co.uk/ProductDetail/Samsung-Electro-Mechanics/CL05B105KQ5NQNC?qs=rzUXcgKXlodZ31DFWLtHjw%3D%3D"
-				(at 8.89 -796.19 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify left top)
-					(hide yes)
-				)
-			)
-			(property "Arrow Part Number" "CL05B105KQ5NQNC"
-				(at 8.89 -896.19 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify left top)
-					(hide yes)
-				)
-			)
-			(property "Arrow Price/Stock" "https://www.arrow.com/en/products/cl05b105kq5nqnc/samsung-electro-mechanics?region=nac"
-				(at 8.89 -996.19 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify left top)
-					(hide yes)
-				)
-			)
-			(symbol "CL05B105KQ5NQNC_1_1"
-				(polyline
-					(pts
-						(xy 5.08 0) (xy 5.588 0)
-					)
-					(stroke
-						(width 0.254)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 5.588 2.54) (xy 5.588 -2.54)
-					)
-					(stroke
-						(width 0.254)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 7.112 2.54) (xy 7.112 -2.54)
-					)
-					(stroke
-						(width 0.254)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 7.112 0) (xy 7.62 0)
-					)
-					(stroke
-						(width 0.254)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(pin passive line
-					(at 0 0 0)
-					(length 5.08)
-					(name "1"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "1"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin passive line
-					(at 12.7 0 180)
-					(length 5.08)
-					(name "2"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "2"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-			)
-			(embedded_fonts no)
-		)
 		(symbol "CL10B104KC8NNNC:CL10B104KC8NNNC"
 			(pin_names
 				(offset 1.016)
@@ -5315,6 +5103,16 @@
 		)
 		(uuid "0eff0299-c5db-4d62-9a6d-0b4e65236480")
 	)
+	(text "Hayır virtual GND 6-step yönteminde kullanılmalıdır."
+		(exclude_from_sim no)
+		(at 250.952 140.97 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+		(uuid "259ba49b-bc29-4c62-85d5-7f9cc46d22e9")
+	)
 	(text "MCU must sense the\nvoltage at each phase\nfor 6-step algorithm\n"
 		(exclude_from_sim no)
 		(at 228.6 133.604 0)
@@ -5920,7 +5718,7 @@
 	)
 	(wire
 		(pts
-			(xy 97.79 36.83) (xy 100.33 36.83)
+			(xy 97.79 36.83) (xy 102.87 36.83)
 		)
 		(stroke
 			(width 0)
@@ -6410,16 +6208,6 @@
 	)
 	(wire
 		(pts
-			(xy 113.03 36.83) (xy 115.57 36.83)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "9d981e09-a43e-4723-b20d-9b67645250b0")
-	)
-	(wire
-		(pts
 			(xy 257.81 91.44) (xy 264.16 91.44)
 		)
 		(stroke
@@ -6757,6 +6545,16 @@
 			(type default)
 		)
 		(uuid "d5a93c2c-5865-4030-9be3-7bff05ca847c")
+	)
+	(wire
+		(pts
+			(xy 110.49 36.83) (xy 115.57 36.83)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "da8ef54f-ec5a-46d0-972f-7d8d9bc2e624")
 	)
 	(wire
 		(pts
@@ -11099,17 +10897,17 @@
 		)
 	)
 	(symbol
-		(lib_id "CL05B105KQ5NQNC:CL05B105KQ5NQNC")
-		(at 113.03 36.83 180)
+		(lib_id "Device:C")
+		(at 106.68 36.83 90)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
 		(fields_autoplaced yes)
-		(uuid "0359f0be-57cc-4eb3-a76a-4584cc07c1be")
+		(uuid "0101b70f-523d-4f6c-8920-c8902a40dc15")
 		(property "Reference" "C2"
-			(at 106.68 29.21 0)
+			(at 106.68 29.21 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -11117,7 +10915,7 @@
 			)
 		)
 		(property "Value" "1uF 6.3V"
-			(at 106.68 31.75 0)
+			(at 106.68 31.75 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -11125,27 +10923,7 @@
 			)
 		)
 		(property "Footprint" "Capacitor_SMD:C_0603_1608Metric_Pad1.08x0.95mm_HandSolder"
-			(at 104.14 -59.36 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left top)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "https://media.digikey.com/pdf/Data%20Sheets/Samsung%20PDFs/CL10A225KO8NNNC_Spec.pdf"
-			(at 104.14 -159.36 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left top)
-				(hide yes)
-			)
-		)
-		(property "Description" "Cap Ceramic 1uF 6.3V X7R 10% Pad SMD 0402 125C T/R"
-			(at 113.03 36.83 0)
+			(at 110.49 35.8648 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -11153,81 +10931,29 @@
 				(hide yes)
 			)
 		)
-		(property "Height" "0.55"
-			(at 104.14 -359.36 0)
+		(property "Datasheet" "https://www.direnc.net/1uf-16v-10-x5r-603-smd-kondansator"
+			(at 106.68 36.83 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(justify left top)
 				(hide yes)
 			)
 		)
-		(property "Manufacturer_Name" "SAMSUNG"
-			(at 104.14 -459.36 0)
+		(property "Description" "Unpolarized capacitor ()"
+			(at 106.68 36.83 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(justify left top)
-				(hide yes)
-			)
-		)
-		(property "Manufacturer_Part_Number" "CL05B105KQ5NQNC"
-			(at 104.14 -559.36 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left top)
-				(hide yes)
-			)
-		)
-		(property "Mouser Part Number" "187-CL05B105KQ5NQNC"
-			(at 104.14 -659.36 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left top)
-				(hide yes)
-			)
-		)
-		(property "Mouser Price/Stock" "https://www.mouser.co.uk/ProductDetail/Samsung-Electro-Mechanics/CL05B105KQ5NQNC?qs=rzUXcgKXlodZ31DFWLtHjw%3D%3D"
-			(at 104.14 -759.36 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left top)
-				(hide yes)
-			)
-		)
-		(property "Arrow Part Number" "CL05B105KQ5NQNC"
-			(at 104.14 -859.36 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left top)
-				(hide yes)
-			)
-		)
-		(property "Arrow Price/Stock" "https://www.arrow.com/en/products/cl05b105kq5nqnc/samsung-electro-mechanics?region=nac"
-			(at 104.14 -959.36 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left top)
 				(hide yes)
 			)
 		)
 		(pin "1"
-			(uuid "53bab45c-0fbf-4157-b701-438d0c4f8b81")
+			(uuid "0e1b9404-b757-45bc-bd78-5bb56faafe68")
 		)
 		(pin "2"
-			(uuid "04ba2be7-8505-4fa7-b117-d01e298d3f6c")
+			(uuid "9ebe4c30-c9d7-4d20-8999-7898dd92a1d3")
 		)
 		(instances
 			(project ""
@@ -12724,7 +12450,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" ""
+		(property "Datasheet" "kicad-embed://drv8323.pdf"
 			(at 74.93 87.63 0)
 			(effects
 				(font
