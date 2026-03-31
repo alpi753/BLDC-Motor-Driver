@@ -4445,7 +4445,7 @@
 			"hBBCCCHEN0QmAEIIIYQQQnxD/j+PvlpqLk8i2gAAAABJRU5ErkJggg=="
 		)
 	)
-	(global_label "PVDD"
+	(global_label "VM"
 		(shape input)
 		(at 226.06 29.21 180)
 		(fields_autoplaced yes)
@@ -4467,7 +4467,7 @@
 			)
 		)
 	)
-	(global_label "PVDD"
+	(global_label "VM"
 		(shape input)
 		(at 99.06 48.26 180)
 		(fields_autoplaced yes)
@@ -4489,7 +4489,7 @@
 			)
 		)
 	)
-	(global_label "PVDD"
+	(global_label "VM"
 		(shape input)
 		(at 252.73 27.94 180)
 		(fields_autoplaced yes)

@@ -12187,7 +12187,7 @@
 			)
 		)
 	)
-	(global_label "PVDD"
+	(global_label "VM"
 		(shape input)
 		(at 234.95 119.38 0)
 		(fields_autoplaced yes)
