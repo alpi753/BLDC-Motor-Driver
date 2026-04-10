@@ -5831,6 +5831,10 @@
 		(uuid "ac4665e8-895a-4cad-bcbf-7a8d24db3632")
 	)
 	(no_connect
+		(at 266.7 95.25)
+		(uuid "bad15ddd-4977-437b-a957-dc6137a4a9c3")
+	)
+	(no_connect
 		(at 154.94 107.95)
 		(uuid "cd593ebc-e0da-4749-a1d9-0619cd7521ab")
 	)
@@ -13115,7 +13119,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Inductor_SMD:L_0402_1005Metric"
+		(property "Footprint" "Inductor_SMD:L_0603_1608Metric_Pad1.05x0.95mm_HandSolder"
 			(at 171.45 37.465 0)
 			(effects
 				(font
@@ -13695,7 +13699,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder"
+		(property "Footprint" "Capacitor_SMD:C_0603_1608Metric_Pad1.08x0.95mm_HandSolder"
 			(at 152.4 38.1 0)
 			(effects
 				(font
@@ -14508,7 +14512,7 @@
 				(justify right)
 			)
 		)
-		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder"
+		(property "Footprint" "Capacitor_SMD:C_0603_1608Metric_Pad1.08x0.95mm_HandSolder"
 			(at 196.85 38.1 0)
 			(effects
 				(font
@@ -14804,7 +14808,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder"
+		(property "Footprint" "Capacitor_SMD:C_0603_1608Metric_Pad1.08x0.95mm_HandSolder"
 			(at 170.18 66.04 0)
 			(effects
 				(font
@@ -15367,7 +15371,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder"
+		(property "Footprint" "Capacitor_SMD:C_0603_1608Metric_Pad1.08x0.95mm_HandSolder"
 			(at 142.875 38.1 0)
 			(effects
 				(font
@@ -16733,7 +16737,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder"
+		(property "Footprint" "Capacitor_SMD:C_0603_1608Metric_Pad1.08x0.95mm_HandSolder"
 			(at 133.35 38.1 0)
 			(effects
 				(font
@@ -16887,7 +16891,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Capacitor_SMD:C_0603_1608Metric"
+		(property "Footprint" "Capacitor_SMD:C_0603_1608Metric_Pad1.08x0.95mm_HandSolder"
 			(at 124.46 38.1 0)
 			(effects
 				(font
