@@ -33,4 +33,5 @@
   (lib (name "LIB_BM04B-GHS-TBT_LF__SN__N_")(type "KiCad")(uri "${KIPRJMOD}/lib/LIB_BM04B-GHS-TBT_LF__SN__N_")(options "")(descr ""))
   (lib (name "LIB_TS04-66-73-BK-260-SMT")(type "KiCad")(uri "${KIPRJMOD}/lib/LIB_TS04-66-73-BK-260-SMT")(options "")(descr ""))
   (lib (name "ul_BM04B-GHS-TBT-LF-SN-N-")(type "KiCad")(uri "${KIPRJMOD}/lib/ul_BM04B-GHS-TBT-LF-SN-N-")(options "")(descr ""))
+  (lib (name "CRF2512-FZ-R002ELF")(type "KiCad")(uri "${KIPRJMOD}/lib/CRF2512-FZ-R002ELF")(options "")(descr ""))
 )

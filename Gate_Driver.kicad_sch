@@ -10030,7 +10030,7 @@
 		)
 		(uuid "bc32e0d0-be04-4051-9556-c11ea367c63d")
 	)
-	(label "AGND"
+	(label "DGND"
 		(at 165.1 46.99 0)
 		(effects
 			(font

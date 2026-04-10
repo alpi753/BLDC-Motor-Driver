@@ -2072,6 +2072,16 @@
 	)
 	(wire
 		(pts
+			(xy 100.33 114.3) (xy 86.36 114.3)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "079ae213-0d42-4a2a-9a1c-2dccb6613ab1")
+	)
+	(wire
+		(pts
 			(xy 115.57 91.44) (xy 115.57 93.98)
 		)
 		(stroke
@@ -3109,16 +3119,6 @@
 			(type default)
 		)
 		(uuid "a7605d71-abcd-44eb-850e-b630147d0da7")
-	)
-	(wire
-		(pts
-			(xy 86.36 114.3) (xy 100.33 114.3)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "aa899940-0edb-427c-9c2a-ef9ffbf50f68")
 	)
 	(wire
 		(pts
@@ -8899,6 +8899,26 @@
 			"T2EgRkREREREREREe8r/A6FRKJLZhOQmAAAAAElFTkSuQmCC"
 		)
 	)
+	(label "A-"
+		(at 100.33 134.62 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "61a6f295-fc40-4f5e-b6b7-234abde50b46")
+	)
+	(label "A+"
+		(at 100.33 114.3 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "d4bcd98f-09db-478f-bda1-f936a964821c")
+	)
 	(global_label "VM"
 		(shape input)
 		(at 260.35 25.4 180)
@@ -10252,7 +10272,7 @@
 				(hide yes)
 			)
 		)
-		(property "Value" "GND1"
+		(property "Value" "GND"
 			(at 157.48 147.32 0)
 			(effects
 				(font
@@ -11578,7 +11598,7 @@
 				(justify right)
 			)
 		)
-		(property "Footprint" "CSNL2512FT3L00:RESC6331X75N"
+		(property "Footprint" "CRF2512-FZ-R002ELF:RESC6432X80N"
 			(at 114.3 124.46 0)
 			(effects
 				(font
@@ -11870,7 +11890,7 @@
 				(hide yes)
 			)
 		)
-		(property "Value" "GND1"
+		(property "Value" "GND"
 			(at 215.9 148.59 0)
 			(effects
 				(font
@@ -12078,7 +12098,7 @@
 				(hide yes)
 			)
 		)
-		(property "Value" "GND1"
+		(property "Value" "GND"
 			(at 100.33 147.32 0)
 			(effects
 				(font
