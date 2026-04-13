@@ -5904,6 +5904,16 @@
 	)
 	(wire
 		(pts
+			(xy 157.48 85.09) (xy 154.94 85.09)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "06cf7c57-0542-432b-975d-b7d6c9a1be62")
+	)
+	(wire
+		(pts
 			(xy 175.26 86.36) (xy 182.88 86.36)
 		)
 		(stroke
@@ -6051,6 +6061,16 @@
 			(type default)
 		)
 		(uuid "19d98c59-e802-4abb-8146-f4dc67a78712")
+	)
+	(wire
+		(pts
+			(xy 157.48 87.63) (xy 154.94 87.63)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "1b22017f-0e12-4709-8400-6439f9ccccc2")
 	)
 	(wire
 		(pts
@@ -6234,7 +6254,7 @@
 	)
 	(wire
 		(pts
-			(xy 154.94 82.55) (xy 167.64 82.55)
+			(xy 154.94 82.55) (xy 157.48 82.55)
 		)
 		(stroke
 			(width 0)
@@ -6844,6 +6864,16 @@
 	)
 	(wire
 		(pts
+			(xy 162.56 82.55) (xy 167.64 82.55)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "8b2cae9a-56b5-4de3-a64e-352f5797aa68")
+	)
+	(wire
+		(pts
 			(xy 234.95 119.38) (xy 232.41 119.38)
 		)
 		(stroke
@@ -7184,7 +7214,7 @@
 	)
 	(wire
 		(pts
-			(xy 165.1 87.63) (xy 154.94 87.63)
+			(xy 165.1 87.63) (xy 162.56 87.63)
 		)
 		(stroke
 			(width 0)
@@ -7364,7 +7394,7 @@
 	)
 	(wire
 		(pts
-			(xy 166.37 85.09) (xy 154.94 85.09)
+			(xy 166.37 85.09) (xy 162.56 85.09)
 		)
 		(stroke
 			(width 0)
@@ -14944,6 +14974,77 @@
 		)
 	)
 	(symbol
+		(lib_id "Device:R_Small")
+		(at 160.02 85.09 270)
+		(mirror x)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "5c88f5a5-1771-4e13-bcf7-f536fdd5c6c8")
+		(property "Reference" "R27"
+			(at 161.2901 82.55 0)
+			(effects
+				(font
+					(size 1.016 1.016)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "330R"
+			(at 158.7501 82.55 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "Resistor_SMD:R_0603_1608Metric_Pad0.98x0.95mm_HandSolder"
+			(at 160.02 85.09 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 160.02 85.09 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Resistor, small symbol"
+			(at 160.02 85.09 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "3c74693a-76fd-4d2a-ab01-840893088b04")
+		)
+		(pin "2"
+			(uuid "6db767ef-514d-4649-948a-bf43c10f463c")
+		)
+		(instances
+			(project "Ana_ESC"
+				(path "/57129761-6d47-486c-bd7a-90dbb6f75754/223db1af-68f5-46b9-9722-256b09606f21"
+					(reference "R27")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "power:GND")
 		(at 196.85 40.64 0)
 		(unit 1)
@@ -16645,6 +16746,77 @@
 		)
 	)
 	(symbol
+		(lib_id "Device:R_Small")
+		(at 160.02 82.55 270)
+		(mirror x)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "966b2099-7b4c-4c10-aec7-4966bd4f59c8")
+		(property "Reference" "R26"
+			(at 161.2901 80.01 0)
+			(effects
+				(font
+					(size 1.016 1.016)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "330R"
+			(at 158.7501 80.01 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "Resistor_SMD:R_0603_1608Metric_Pad0.98x0.95mm_HandSolder"
+			(at 160.02 82.55 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 160.02 82.55 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Resistor, small symbol"
+			(at 160.02 82.55 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "f278a246-1bb3-4bcf-8ace-1b64815d66d8")
+		)
+		(pin "2"
+			(uuid "dc23f130-8e91-48a5-87ef-3e20bb12b2e7")
+		)
+		(instances
+			(project "Ana_ESC"
+				(path "/57129761-6d47-486c-bd7a-90dbb6f75754/223db1af-68f5-46b9-9722-256b09606f21"
+					(reference "R26")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "power:GND")
 		(at 82.55 38.1 0)
 		(unit 1)
@@ -17158,6 +17330,77 @@
 			(project ""
 				(path "/57129761-6d47-486c-bd7a-90dbb6f75754/223db1af-68f5-46b9-9722-256b09606f21"
 					(reference "J4")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:R_Small")
+		(at 160.02 87.63 270)
+		(mirror x)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "ba27f94f-2e33-4540-a7e1-2eb776e1f468")
+		(property "Reference" "R28"
+			(at 161.2901 85.09 0)
+			(effects
+				(font
+					(size 1.016 1.016)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "330R"
+			(at 158.7501 85.09 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "Resistor_SMD:R_0603_1608Metric_Pad0.98x0.95mm_HandSolder"
+			(at 160.02 87.63 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 160.02 87.63 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Resistor, small symbol"
+			(at 160.02 87.63 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "bdf4b31d-c173-434f-b545-74c08097dc0d")
+		)
+		(pin "2"
+			(uuid "7d698c5d-4c03-4976-9898-2dcedf8d178f")
+		)
+		(instances
+			(project "Ana_ESC"
+				(path "/57129761-6d47-486c-bd7a-90dbb6f75754/223db1af-68f5-46b9-9722-256b09606f21"
+					(reference "R28")
 					(unit 1)
 				)
 			)
