@@ -5894,6 +5894,16 @@
 	)
 	(wire
 		(pts
+			(xy 163.83 37.465) (xy 163.83 36.83)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "0634dcc1-5f75-48f4-8817-c9cfe1956ca8")
+	)
+	(wire
+		(pts
 			(xy 166.37 86.36) (xy 166.37 85.09)
 		)
 		(stroke
@@ -6694,7 +6704,7 @@
 	)
 	(wire
 		(pts
-			(xy 165.1 37.465) (xy 168.91 37.465)
+			(xy 163.83 37.465) (xy 168.91 37.465)
 		)
 		(stroke
 			(width 0)
@@ -7621,16 +7631,6 @@
 			(type default)
 		)
 		(uuid "e5ba5416-70bd-40e6-83cd-af09393989fb")
-	)
-	(wire
-		(pts
-			(xy 165.1 36.83) (xy 165.1 37.465)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "e72ed98d-8e53-4215-85fa-40298963db28")
 	)
 	(wire
 		(pts
@@ -12057,6 +12057,16 @@
 		)
 		(uuid "85b0970d-43ff-4d12-af4e-6bdb8b4a9425")
 	)
+	(label "VDDA"
+		(at 163.83 59.69 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "860aefe6-8c6f-4e4f-b2ef-8aee076666fc")
+	)
 	(label "I2C1_SCL"
 		(at 109.22 105.41 180)
 		(effects
@@ -12067,6 +12077,16 @@
 		)
 		(uuid "863a8c72-fce8-40bf-9084-efcb770bee5f")
 	)
+	(label "VDDA"
+		(at 177.8 37.465 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "8c35ac55-ff90-4ebf-b518-8a0de1dc40cf")
+	)
 	(label "NTC_FET"
 		(at 262.89 157.48 0)
 		(effects
@@ -12076,6 +12096,16 @@
 			(justify left bottom)
 		)
 		(uuid "a98d9cda-51f8-4ae2-b6f1-0da6302b5d04")
+	)
+	(label "NTC_FET"
+		(at 109.22 82.55 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "b100d2bb-ee28-498a-8470-5ec3fdf490aa")
 	)
 	(label "UART_P"
 		(at 204.47 29.21 0)
@@ -12341,17 +12371,6 @@
 			(justify right)
 		)
 		(uuid "cb9bc098-0859-4d70-a5f0-c4bb7bb17eae")
-	)
-	(hierarchical_label "NTC_FET"
-		(shape input)
-		(at 109.22 82.55 180)
-		(effects
-			(font
-				(size 1.524 1.524)
-			)
-			(justify right)
-		)
-		(uuid "cc765d54-8dbc-4f93-bd8c-757f9372288b")
 	)
 	(hierarchical_label "SOA"
 		(shape input)
@@ -13781,7 +13800,7 @@
 	)
 	(symbol
 		(lib_id "power:+3.3V")
-		(at 165.1 36.83 0)
+		(at 163.83 36.83 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -13789,7 +13808,7 @@
 		(dnp no)
 		(uuid "240e8ab6-f56f-41ed-9008-45842bc6c984")
 		(property "Reference" "#PWR037"
-			(at 165.1 40.64 0)
+			(at 163.83 40.64 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -13798,7 +13817,7 @@
 			)
 		)
 		(property "Value" "+3.3V"
-			(at 165.1 33.02 0)
+			(at 163.83 33.02 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -13806,7 +13825,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 165.1 36.83 0)
+			(at 163.83 36.83 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -13815,7 +13834,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 165.1 36.83 0)
+			(at 163.83 36.83 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -13824,7 +13843,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 165.1 36.83 0)
+			(at 163.83 36.83 0)
 			(effects
 				(font
 					(size 1.27 1.27)
