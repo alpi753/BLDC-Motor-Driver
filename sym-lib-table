@@ -5,4 +5,6 @@
   (lib (name "BM06B-GHS-TBT")(type "KiCad")(uri "${KIPRJMOD}/lib/LIB_BM06B-GHS-TBT/BM06B-GHS-TBT.kicad_sym")(options "")(descr ""))
   (lib (name "BM04B-GHS-TBT_LF__SN__N_")(type "KiCad")(uri "${KIPRJMOD}/lib/LIB_BM04B-GHS-TBT_LF__SN__N_/BM04B-GHS-TBT_LF__SN__N_.kicad_sym")(options "")(descr ""))
   (lib (name "TS04-66-73-BK-260-SMT")(type "KiCad")(uri "${KIPRJMOD}/lib/LIB_TS04-66-73-BK-260-SMT/TS04-66-73-BK-260-SMT.kicad_sym")(options "")(descr ""))
+  (lib (name "USBLC6-2SC6Y")(type "KiCad")(uri "${KIPRJMOD}/lib/LIB_USBLC6-2SC6Y/USBLC6-2SC6Y.kicad_sym")(options "")(descr ""))
+  (lib (name "Power_Pad_smd")(type "KiCad")(uri "${KIPRJMOD}/lib/Pads/Power_Pad_smd.kicad_sym")(options "")(descr ""))
 )

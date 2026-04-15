@@ -705,6 +705,184 @@
 			)
 			(embedded_fonts no)
 		)
+		(symbol "Power_Pad_smd:power_pad_smd"
+			(pin_names
+				(offset 1.016)
+			)
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(property "Reference" "Pad"
+				(at -2.032 2.286 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left bottom)
+				)
+			)
+			(property "Value" "power_pad_smd"
+				(at -7.112 -4.318 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left bottom)
+				)
+			)
+			(property "Footprint" "RC0603FR-073K3L:RESC1607X60N"
+				(at 14.732 7.874 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify bottom)
+					(hide yes)
+				)
+			)
+			(property "Datasheet" ""
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Description" ""
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "MF" "Yageo"
+				(at -1.016 8.128 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify bottom)
+					(hide yes)
+				)
+			)
+			(property "Description_1" "3.3 kOhms ±1% 0.1W, 1/10W Chip Resistor 0603 (1608 Metric) Moisture Resistant Thick Film"
+				(at -0.254 7.874 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify bottom)
+					(hide yes)
+				)
+			)
+			(property "Package" "0603 Yageo"
+				(at -0.508 8.89 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify bottom)
+					(hide yes)
+				)
+			)
+			(property "Price" "None"
+				(at -1.27 8.128 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify bottom)
+					(hide yes)
+				)
+			)
+			(property "SnapEDA_Link" "https://www.snapeda.com/parts/RC0603FR-073K3L/Yageo/view-part/?ref=snap"
+				(at -0.254 7.874 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify bottom)
+					(hide yes)
+				)
+			)
+			(property "MP" "RC0603FR-073K3L"
+				(at -0.254 7.874 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify bottom)
+					(hide yes)
+				)
+			)
+			(property "Purchase-URL" "https://www.snapeda.com/api/url_track_click_mouser/?unipart_id=105926&manufacturer=Yageo&part_name=RC0603FR-073K3L&search_term=rc0603fr-073k3l"
+				(at -0.254 7.874 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify bottom)
+					(hide yes)
+				)
+			)
+			(property "Availability" "In Stock"
+				(at -0.762 8.89 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify bottom)
+					(hide yes)
+				)
+			)
+			(property "Check_prices" "https://www.snapeda.com/parts/RC0603FR-073K3L/Yageo/view-part/?ref=eda"
+				(at -0.254 7.874 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify bottom)
+					(hide yes)
+				)
+			)
+			(symbol "power_pad_smd_0_0"
+				(pin passive line
+					(at -7.62 0 0)
+					(length 5.08)
+					(name "~"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+				)
+			)
+			(symbol "power_pad_smd_0_1"
+				(rectangle
+					(start -2.54 1.905)
+					(end 2.54 -1.905)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+			)
+			(embedded_fonts no)
+		)
 		(symbol "RMCF0603ZT0R00:RMCF0603ZT0R00"
 			(pin_names
 				(offset 1.016)
@@ -2402,6 +2580,16 @@
 	)
 	(wire
 		(pts
+			(xy 45.72 34.29) (xy 45.72 33.02)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "353aea1d-ecb1-4175-a2de-a9621fb2b756")
+	)
+	(wire
+		(pts
 			(xy 241.3 45.72) (xy 231.14 45.72)
 		)
 		(stroke
@@ -2799,6 +2987,16 @@
 			(type default)
 		)
 		(uuid "74cc69e3-00f1-47b2-b97f-2f7a10b0a96c")
+	)
+	(wire
+		(pts
+			(xy 48.26 26.67) (xy 50.8 26.67)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "7681915e-eb46-491a-837c-3a27e104cd9f")
 	)
 	(wire
 		(pts
@@ -3669,6 +3867,16 @@
 			(type default)
 		)
 		(uuid "f6d7cd54-72c7-4072-a8b5-c4e73f084e54")
+	)
+	(wire
+		(pts
+			(xy 45.72 33.02) (xy 50.8 33.02)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "f7716497-5ee2-4e4d-8780-25b292d307f7")
 	)
 	(wire
 		(pts
@@ -8943,6 +9151,28 @@
 	)
 	(global_label "VM"
 		(shape input)
+		(at 48.26 26.67 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "88625341-1956-43f7-a4c2-89f418b5db88")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 40.3762 26.67 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+				(hide yes)
+			)
+		)
+	)
+	(global_label "VM"
+		(shape input)
 		(at 233.68 26.67 180)
 		(fields_autoplaced yes)
 		(effects
@@ -9221,7 +9451,7 @@
 				)
 			)
 		)
-		(property "Footprint" "STL90N6F7:STL90N6F7"
+		(property "Footprint" "STL90N6F7:STL90N6F7_Thermal_Vias"
 			(at 166.37 186.36 0)
 			(effects
 				(font
@@ -10346,7 +10576,7 @@
 				)
 			)
 		)
-		(property "Footprint" "STL90N6F7:STL90N6F7"
+		(property "Footprint" "STL90N6F7:STL90N6F7_Thermal_Vias"
 			(at 109.22 186.36 0)
 			(effects
 				(font
@@ -10887,7 +11117,7 @@
 				)
 			)
 		)
-		(property "Footprint" "STL90N6F7:STL90N6F7"
+		(property "Footprint" "STL90N6F7:STL90N6F7_Thermal_Vias"
 			(at 224.79 186.36 0)
 			(effects
 				(font
@@ -11049,7 +11279,7 @@
 				)
 			)
 		)
-		(property "Footprint" "STL90N6F7:STL90N6F7"
+		(property "Footprint" "STL90N6F7:STL90N6F7_Thermal_Vias"
 			(at 224.79 158.42 0)
 			(effects
 				(font
@@ -11277,7 +11507,7 @@
 				)
 			)
 		)
-		(property "Footprint" "STL90N6F7:STL90N6F7"
+		(property "Footprint" "STL90N6F7:STL90N6F7_Thermal_Vias"
 			(at 109.22 158.42 0)
 			(effects
 				(font
@@ -11722,6 +11952,72 @@
 		)
 	)
 	(symbol
+		(lib_id "power:GND1")
+		(at 45.72 34.29 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "99e6f245-5af3-4a88-9324-ba64eca08763")
+		(property "Reference" "#PWR09"
+			(at 45.72 40.64 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "GND"
+			(at 45.72 39.37 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 45.72 34.29 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 45.72 34.29 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"GND1\" , ground"
+			(at 45.72 34.29 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "b87253e5-d47f-4d52-9eb0-70f5e9109e6c")
+		)
+		(instances
+			(project "Ana_ESC"
+				(path "/57129761-6d47-486c-bd7a-90dbb6f75754/a2e9c01f-dc3c-42e3-9ad2-b4c7bc962bba"
+					(reference "#PWR09")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "CSNL2512FT3L00:CSNL2512FT3L00")
 		(at 143.51 124.46 90)
 		(unit 1)
@@ -11938,6 +12234,164 @@
 		)
 	)
 	(symbol
+		(lib_id "Power_Pad_smd:power_pad_smd")
+		(at 58.42 33.02 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "b39b3e41-347b-4cb5-9793-37e9d0087bde")
+		(property "Reference" "GND1"
+			(at 62.23 31.7499 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "power_pad_smd"
+			(at 62.23 34.2899 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "Pads:Power_pad_smd"
+			(at 73.152 25.146 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 58.42 33.02 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" ""
+			(at 58.42 33.02 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MF" "Yageo"
+			(at 57.404 24.892 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+				(hide yes)
+			)
+		)
+		(property "Description_1" "3.3 kOhms ±1% 0.1W, 1/10W Chip Resistor 0603 (1608 Metric) Moisture Resistant Thick Film"
+			(at 58.166 25.146 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+				(hide yes)
+			)
+		)
+		(property "Package" "0603 Yageo"
+			(at 57.912 24.13 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+				(hide yes)
+			)
+		)
+		(property "Price" "None"
+			(at 57.15 24.892 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+				(hide yes)
+			)
+		)
+		(property "SnapEDA_Link" "https://www.snapeda.com/parts/RC0603FR-073K3L/Yageo/view-part/?ref=snap"
+			(at 58.166 25.146 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+				(hide yes)
+			)
+		)
+		(property "MP" "RC0603FR-073K3L"
+			(at 58.166 25.146 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+				(hide yes)
+			)
+		)
+		(property "Purchase-URL" "https://www.snapeda.com/api/url_track_click_mouser/?unipart_id=105926&manufacturer=Yageo&part_name=RC0603FR-073K3L&search_term=rc0603fr-073k3l"
+			(at 58.166 25.146 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+				(hide yes)
+			)
+		)
+		(property "Availability" "In Stock"
+			(at 57.658 24.13 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+				(hide yes)
+			)
+		)
+		(property "Check_prices" "https://www.snapeda.com/parts/RC0603FR-073K3L/Yageo/view-part/?ref=eda"
+			(at 58.166 25.146 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "7b1f6f3b-7fb1-4197-a24d-fcc4f12be31b")
+		)
+		(instances
+			(project "Ana_ESC"
+				(path "/57129761-6d47-486c-bd7a-90dbb6f75754/a2e9c01f-dc3c-42e3-9ad2-b4c7bc962bba"
+					(reference "GND1")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "2025-12-23_14-02-59:80ZLJ680MGC18X25")
 		(at 238.76 34.29 90)
 		(unit 1)
@@ -12098,7 +12552,7 @@
 				(hide yes)
 			)
 		)
-		(property "Value" "GND"
+		(property "Value" "PGND"
 			(at 100.33 147.32 0)
 			(effects
 				(font
@@ -12455,6 +12909,164 @@
 		)
 	)
 	(symbol
+		(lib_id "Power_Pad_smd:power_pad_smd")
+		(at 58.42 26.67 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "f235e7cc-49e6-4cdb-84b1-0ae77aebb315")
+		(property "Reference" "Batt+1"
+			(at 62.23 25.3999 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "power_pad_smd"
+			(at 62.23 27.9399 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "Pads:Power_pad_smd"
+			(at 73.152 18.796 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 58.42 26.67 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" ""
+			(at 58.42 26.67 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MF" "Yageo"
+			(at 57.404 18.542 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+				(hide yes)
+			)
+		)
+		(property "Description_1" "3.3 kOhms ±1% 0.1W, 1/10W Chip Resistor 0603 (1608 Metric) Moisture Resistant Thick Film"
+			(at 58.166 18.796 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+				(hide yes)
+			)
+		)
+		(property "Package" "0603 Yageo"
+			(at 57.912 17.78 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+				(hide yes)
+			)
+		)
+		(property "Price" "None"
+			(at 57.15 18.542 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+				(hide yes)
+			)
+		)
+		(property "SnapEDA_Link" "https://www.snapeda.com/parts/RC0603FR-073K3L/Yageo/view-part/?ref=snap"
+			(at 58.166 18.796 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+				(hide yes)
+			)
+		)
+		(property "MP" "RC0603FR-073K3L"
+			(at 58.166 18.796 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+				(hide yes)
+			)
+		)
+		(property "Purchase-URL" "https://www.snapeda.com/api/url_track_click_mouser/?unipart_id=105926&manufacturer=Yageo&part_name=RC0603FR-073K3L&search_term=rc0603fr-073k3l"
+			(at 58.166 18.796 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+				(hide yes)
+			)
+		)
+		(property "Availability" "In Stock"
+			(at 57.658 17.78 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+				(hide yes)
+			)
+		)
+		(property "Check_prices" "https://www.snapeda.com/parts/RC0603FR-073K3L/Yageo/view-part/?ref=eda"
+			(at 58.166 18.796 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "63c442d7-cf7e-463c-ac1c-875f5f7a069d")
+		)
+		(instances
+			(project ""
+				(path "/57129761-6d47-486c-bd7a-90dbb6f75754/a2e9c01f-dc3c-42e3-9ad2-b4c7bc962bba"
+					(reference "Batt+1")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "CSNL2512FT3L00:CSNL2512FT3L00")
 		(at 229.87 125.73 90)
 		(unit 1)
@@ -12693,7 +13305,7 @@
 				(hide yes)
 			)
 		)
-		(property "Value" "GND"
+		(property "Value" "PGND"
 			(at 124.46 58.42 0)
 			(effects
 				(font
@@ -12767,7 +13379,7 @@
 				)
 			)
 		)
-		(property "Footprint" "STL90N6F7:STL90N6F7"
+		(property "Footprint" "STL90N6F7:STL90N6F7_Thermal_Vias"
 			(at 166.37 158.42 0)
 			(effects
 				(font
