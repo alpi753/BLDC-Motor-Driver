@@ -9779,16 +9779,6 @@
 		(uuid "9712dc95-e049-45dd-84fb-adaae3a9597d")
 	)
 	(label "PGND"
-		(at 203.2 67.31 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left bottom)
-		)
-		(uuid "a5671f48-e82c-4fd7-a2f2-7975100fc975")
-	)
-	(label "PGND"
 		(at 115.57 130.81 0)
 		(effects
 			(font
@@ -9817,6 +9807,28 @@
 			(justify left bottom)
 		)
 		(uuid "f31bd1dc-cb1c-4d9f-bc41-c0ceda390922")
+	)
+	(global_label "PGND_DRV"
+		(shape output)
+		(at 203.2 67.31 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "71683ce3-d498-4403-a29a-d91bd6b078f8")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 215.9219 67.31 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
 	)
 	(global_label "VM"
 		(shape input)

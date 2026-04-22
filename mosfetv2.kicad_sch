@@ -2540,6 +2540,16 @@
 	)
 	(wire
 		(pts
+			(xy 241.3 57.15) (xy 245.11 57.15)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "30d8bf40-c1fe-41dd-8a63-b384b2ac5791")
+	)
+	(wire
+		(pts
 			(xy 85.09 71.12) (xy 85.09 73.66)
 		)
 		(stroke
@@ -2710,7 +2720,7 @@
 	)
 	(wire
 		(pts
-			(xy 241.3 54.61) (xy 241.3 55.88)
+			(xy 241.3 54.61) (xy 241.3 57.15)
 		)
 		(stroke
 			(width 0)
@@ -9149,6 +9159,28 @@
 			)
 		)
 	)
+	(global_label "PGND_DRV"
+		(shape input)
+		(at 245.11 57.15 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "7d8d6deb-644a-4863-870a-6e9c1c350276")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 257.8319 57.15 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+	)
 	(global_label "VM"
 		(shape input)
 		(at 48.26 26.67 180)
@@ -9764,7 +9796,7 @@
 				(hide yes)
 			)
 		)
-		(property "Value" "GND"
+		(property "Value" "PGND_DRV"
 			(at 182.88 59.69 0)
 			(effects
 				(font
@@ -9989,12 +10021,13 @@
 				(hide yes)
 			)
 		)
-		(property "Value" "GND"
-			(at 238.76 39.37 0)
+		(property "Value" "PGND_DRV"
+			(at 241.3 35.5599 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
+				(justify left)
 			)
 		)
 		(property "Footprint" ""
@@ -10127,12 +10160,13 @@
 				(hide yes)
 			)
 		)
-		(property "Value" "GND"
-			(at 265.43 38.1 0)
+		(property "Value" "PGND_DRV"
+			(at 267.97 34.2899 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
+				(justify left)
 			)
 		)
 		(property "Footprint" ""
@@ -10184,7 +10218,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "39f81539-669f-4247-95d5-d5af9b6f10d5")
-		(property "Reference" "RGB6"
+		(property "Reference" "RGC4"
 			(at 193.04 86.36 0)
 			(effects
 				(font
@@ -10327,7 +10361,7 @@
 		(instances
 			(project "Ana_ESC"
 				(path "/57129761-6d47-486c-bd7a-90dbb6f75754/a2e9c01f-dc3c-42e3-9ad2-b4c7bc962bba"
-					(reference "RGB6")
+					(reference "RGC4")
 					(unit 1)
 				)
 			)
@@ -10502,7 +10536,7 @@
 				(hide yes)
 			)
 		)
-		(property "Value" "GND"
+		(property "Value" "PGND_DRV"
 			(at 157.48 147.32 0)
 			(effects
 				(font
@@ -10871,7 +10905,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "45ade522-6a59-4a11-ac3b-2c14f9b6a51a")
-		(property "Reference" "RGB5"
+		(property "Reference" "RGC3"
 			(at 193.04 58.42 0)
 			(effects
 				(font
@@ -11014,7 +11048,7 @@
 		(instances
 			(project "Ana_ESC"
 				(path "/57129761-6d47-486c-bd7a-90dbb6f75754/a2e9c01f-dc3c-42e3-9ad2-b4c7bc962bba"
-					(reference "RGB5")
+					(reference "RGC3")
 					(unit 1)
 				)
 			)
@@ -11409,72 +11443,6 @@
 			(project "Ana_ESC"
 				(path "/57129761-6d47-486c-bd7a-90dbb6f75754/a2e9c01f-dc3c-42e3-9ad2-b4c7bc962bba"
 					(reference "Q11")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "power:GND")
-		(at 241.3 55.88 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "775f8498-41f7-419c-b1f8-9914c9577eb8")
-		(property "Reference" "#PWR0102"
-			(at 241.3 62.23 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Value" "GND"
-			(at 241.3 60.96 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 241.3 55.88 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" ""
-			(at 241.3 55.88 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
-			(at 241.3 55.88 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "cabd24fd-e1db-4ed3-b440-d798e51162a5")
-		)
-		(instances
-			(project "Ana_ESC"
-				(path "/57129761-6d47-486c-bd7a-90dbb6f75754/a2e9c01f-dc3c-42e3-9ad2-b4c7bc962bba"
-					(reference "#PWR0102")
 					(unit 1)
 				)
 			)
@@ -11970,12 +11938,13 @@
 				(hide yes)
 			)
 		)
-		(property "Value" "GND"
-			(at 45.72 39.37 0)
+		(property "Value" "PGND_DRV"
+			(at 48.26 35.5599 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
+				(justify left)
 			)
 		)
 		(property "Footprint" ""
@@ -12186,12 +12155,13 @@
 				(hide yes)
 			)
 		)
-		(property "Value" "GND"
-			(at 215.9 148.59 0)
+		(property "Value" "PGND_DRV"
+			(at 218.44 144.7799 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
+				(justify left)
 			)
 		)
 		(property "Footprint" ""
@@ -12552,12 +12522,13 @@
 				(hide yes)
 			)
 		)
-		(property "Value" "PGND"
-			(at 100.33 147.32 0)
+		(property "Value" "PGND_DRV"
+			(at 102.87 143.5099 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
+				(justify left)
 			)
 		)
 		(property "Footprint" ""
@@ -13305,7 +13276,7 @@
 				(hide yes)
 			)
 		)
-		(property "Value" "PGND"
+		(property "Value" "PGND_DRV"
 			(at 124.46 58.42 0)
 			(effects
 				(font
