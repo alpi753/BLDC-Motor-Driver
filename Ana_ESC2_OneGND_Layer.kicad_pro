@@ -37,9 +37,9 @@
         "other_text_thickness": 0.15,
         "other_text_upright": false,
         "pads": {
-          "drill": 0.75,
-          "height": 1.1,
-          "width": 1.4
+          "drill": 0.0,
+          "height": 0.86,
+          "width": 0.26
         },
         "silk_line_width": 0.1,
         "silk_text_italic": false,
@@ -58,48 +58,7 @@
           "width": 0.0
         }
       ],
-      "drc_exclusions": [
-        [
-          "clearance|50000000|87425000|45484bd1-efbe-42c7-bd8e-fc379d0bbaa2|b9ac8145-bc5c-4e65-acf7-e30be189c148",
-          ""
-        ],
-        [
-          "clearance|50000000|88500000|b9ac8145-bc5c-4e65-acf7-e30be189c148|f41e7db9-4784-42a8-8524-5a24cc05acff",
-          ""
-        ],
-        [
-          "clearance|50000000|89500000|f41e7db9-4784-42a8-8524-5a24cc05acff|8c8ccc90-8629-4608-966e-58cc40dcaf53",
-          ""
-        ],
-        [
-          "clearance|64495000|107385000|fc76bd43-5801-487f-927f-d61c738443a0|4ce27445-c167-41c2-9845-93be6a3baba9",
-          ""
-        ],
-        [
-          "clearance|70385000|107505000|c41c08e1-34a1-46d4-9276-3a3743419330|1b25ca9c-0c3f-442b-bf4a-a95f2c9b6746",
-          ""
-        ],
-        [
-          "clearance|70505000|101615000|50a78404-b5cc-4697-b6f9-a41f1e4d9ca9|4b33b4b8-10cf-4159-b048-8452fe45c8c0",
-          ""
-        ],
-        [
-          "hole_clearance|67660000|134625000|fcf806d2-9121-4176-bbe6-24d2fe458722|5e2fe6c3-2601-497e-9da2-8dacc5dc045d",
-          ""
-        ],
-        [
-          "hole_clearance|67660000|134625000|fcf806d2-9121-4176-bbe6-24d2fe458722|e33d7bdd-985e-43ad-96a0-c7fee8f8bc83",
-          ""
-        ],
-        [
-          "hole_clearance|73760000|134625000|6cb46703-ed76-48f6-bf33-96f75c637f3b|1a00a406-72eb-4e47-bbb8-2c6ed4af3c60",
-          ""
-        ],
-        [
-          "hole_clearance|73760000|134625000|6cb46703-ed76-48f6-bf33-96f75c637f3b|531c9e11-f180-4622-b0a2-e967fba94300",
-          ""
-        ]
-      ],
+      "drc_exclusions": [],
       "meta": {
         "version": 2
       },
