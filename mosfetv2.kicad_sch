@@ -2540,16 +2540,6 @@
 	)
 	(wire
 		(pts
-			(xy 241.3 57.15) (xy 245.11 57.15)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "30d8bf40-c1fe-41dd-8a63-b384b2ac5791")
-	)
-	(wire
-		(pts
 			(xy 85.09 71.12) (xy 85.09 73.66)
 		)
 		(stroke
@@ -3310,16 +3300,6 @@
 	)
 	(wire
 		(pts
-			(xy 181.61 64.77) (xy 182.88 64.77)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "a52c36a5-2d5f-4a3c-be4c-b49f80181ab7")
-	)
-	(wire
-		(pts
 			(xy 100.33 134.62) (xy 114.3 134.62)
 		)
 		(stroke
@@ -3507,6 +3487,16 @@
 			(type default)
 		)
 		(uuid "bbe51c53-0342-4063-a3a2-5ab2c2cdb53f")
+	)
+	(wire
+		(pts
+			(xy 182.88 93.98) (xy 182.88 92.71)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "bd929290-8951-4695-8d11-4af0978980ca")
 	)
 	(wire
 		(pts
@@ -3707,6 +3697,16 @@
 			(type default)
 		)
 		(uuid "d6a774cc-a89c-4e24-b7b8-5b52a5ed0ae5")
+	)
+	(wire
+		(pts
+			(xy 182.88 64.77) (xy 181.61 64.77)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "d7026174-6358-4cb7-8cda-8a77eb970bdb")
 	)
 	(wire
 		(pts
@@ -9117,26 +9117,6 @@
 			"T2EgRkREREREREREe8r/A6FRKJLZhOQmAAAAAElFTkSuQmCC"
 		)
 	)
-	(label "A-"
-		(at 100.33 134.62 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left bottom)
-		)
-		(uuid "61a6f295-fc40-4f5e-b6b7-234abde50b46")
-	)
-	(label "A+"
-		(at 100.33 114.3 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left bottom)
-		)
-		(uuid "d4bcd98f-09db-478f-bda1-f936a964821c")
-	)
 	(global_label "VM"
 		(shape input)
 		(at 260.35 25.4 180)
@@ -9155,28 +9135,6 @@
 					(size 1.27 1.27)
 				)
 				(justify right)
-				(hide yes)
-			)
-		)
-	)
-	(global_label "PGND_DRV"
-		(shape input)
-		(at 245.11 57.15 0)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left)
-		)
-		(uuid "7d8d6deb-644a-4863-870a-6e9c1c350276")
-		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 257.8319 57.15 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
 				(hide yes)
 			)
 		)
@@ -9304,7 +9262,7 @@
 	)
 	(hierarchical_label "GLC"
 		(shape input)
-		(at 182.88 92.71 180)
+		(at 182.88 93.98 180)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -9787,7 +9745,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "15f4aed0-eb85-42ef-8631-af0135ee2343")
-		(property "Reference" "#PWR0103"
+		(property "Reference" "#PWR067"
 			(at 182.88 60.96 0)
 			(effects
 				(font
@@ -9796,7 +9754,7 @@
 				(hide yes)
 			)
 		)
-		(property "Value" "PGND_DRV"
+		(property "Value" "GND"
 			(at 182.88 59.69 0)
 			(effects
 				(font
@@ -9837,7 +9795,7 @@
 		(instances
 			(project "Ana_ESC"
 				(path "/57129761-6d47-486c-bd7a-90dbb6f75754/a2e9c01f-dc3c-42e3-9ad2-b4c7bc962bba"
-					(reference "#PWR0103")
+					(reference "#PWR067")
 					(unit 1)
 				)
 			)
@@ -10012,7 +9970,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "19044f2a-18f7-42dc-a059-26f90f43afa0")
-		(property "Reference" "#PWR0104"
+		(property "Reference" "#PWR069"
 			(at 238.76 40.64 0)
 			(effects
 				(font
@@ -10021,7 +9979,7 @@
 				(hide yes)
 			)
 		)
-		(property "Value" "PGND_DRV"
+		(property "Value" "GND"
 			(at 241.3 35.5599 0)
 			(effects
 				(font
@@ -10063,7 +10021,7 @@
 		(instances
 			(project "Ana_ESC"
 				(path "/57129761-6d47-486c-bd7a-90dbb6f75754/a2e9c01f-dc3c-42e3-9ad2-b4c7bc962bba"
-					(reference "#PWR0104")
+					(reference "#PWR069")
 					(unit 1)
 				)
 			)
@@ -10079,7 +10037,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "1a6c9275-543e-44b8-9dfa-9316391943f3")
-		(property "Reference" "C31"
+		(property "Reference" "C39"
 			(at 269.24 27.9399 90)
 			(effects
 				(font
@@ -10135,7 +10093,7 @@
 		(instances
 			(project "Ana_ESC"
 				(path "/57129761-6d47-486c-bd7a-90dbb6f75754/a2e9c01f-dc3c-42e3-9ad2-b4c7bc962bba"
-					(reference "C31")
+					(reference "C39")
 					(unit 1)
 				)
 			)
@@ -10151,7 +10109,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "1dc6c436-a462-467f-a2a1-7bbd11f2e293")
-		(property "Reference" "#PWR0101"
+		(property "Reference" "#PWR071"
 			(at 265.43 39.37 0)
 			(effects
 				(font
@@ -10160,7 +10118,7 @@
 				(hide yes)
 			)
 		)
-		(property "Value" "PGND_DRV"
+		(property "Value" "GND"
 			(at 267.97 34.2899 0)
 			(effects
 				(font
@@ -10202,7 +10160,7 @@
 		(instances
 			(project "Ana_ESC"
 				(path "/57129761-6d47-486c-bd7a-90dbb6f75754/a2e9c01f-dc3c-42e3-9ad2-b4c7bc962bba"
-					(reference "#PWR0101")
+					(reference "#PWR071")
 					(unit 1)
 				)
 			)
@@ -10527,7 +10485,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "409f8110-f4b7-4ed7-ace2-1fcdc2cf624b")
-		(property "Reference" "#PWR0107"
+		(property "Reference" "#PWR066"
 			(at 157.48 148.59 0)
 			(effects
 				(font
@@ -10536,7 +10494,7 @@
 				(hide yes)
 			)
 		)
-		(property "Value" "PGND_DRV"
+		(property "Value" "GND"
 			(at 157.48 147.32 0)
 			(effects
 				(font
@@ -10577,7 +10535,7 @@
 		(instances
 			(project "Ana_ESC"
 				(path "/57129761-6d47-486c-bd7a-90dbb6f75754/a2e9c01f-dc3c-42e3-9ad2-b4c7bc962bba"
-					(reference "#PWR0107")
+					(reference "#PWR066")
 					(unit 1)
 				)
 			)
@@ -11064,7 +11022,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "5ac12ad1-1a6d-4215-8578-28a91368f710")
-		(property "Reference" "C27"
+		(property "Reference" "C35"
 			(at 128.27 46.9899 0)
 			(effects
 				(font
@@ -11118,7 +11076,7 @@
 		(instances
 			(project "Ana_ESC"
 				(path "/57129761-6d47-486c-bd7a-90dbb6f75754/a2e9c01f-dc3c-42e3-9ad2-b4c7bc962bba"
-					(reference "C27")
+					(reference "C35")
 					(unit 1)
 				)
 			)
@@ -11281,6 +11239,72 @@
 			(project "Ana_ESC"
 				(path "/57129761-6d47-486c-bd7a-90dbb6f75754/a2e9c01f-dc3c-42e3-9ad2-b4c7bc962bba"
 					(reference "Q12")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:GND")
+		(at 241.3 57.15 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "72086c9c-1b26-4f91-9056-8fb92d1e0025")
+		(property "Reference" "#PWR070"
+			(at 241.3 63.5 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "GND"
+			(at 241.3 62.23 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 241.3 57.15 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 241.3 57.15 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
+			(at 241.3 57.15 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "feb0ab84-0a16-4fcf-a682-de6199e0954d")
+		)
+		(instances
+			(project "Ana_ESC2_OneGND_Layer"
+				(path "/57129761-6d47-486c-bd7a-90dbb6f75754/a2e9c01f-dc3c-42e3-9ad2-b4c7bc962bba"
+					(reference "#PWR070")
 					(unit 1)
 				)
 			)
@@ -11929,7 +11953,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "99e6f245-5af3-4a88-9324-ba64eca08763")
-		(property "Reference" "#PWR09"
+		(property "Reference" "#GND0101"
 			(at 45.72 40.64 0)
 			(effects
 				(font
@@ -11938,13 +11962,12 @@
 				(hide yes)
 			)
 		)
-		(property "Value" "PGND_DRV"
-			(at 48.26 35.5599 0)
+		(property "Value" "GND"
+			(at 45.72 39.37 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(justify left)
 			)
 		)
 		(property "Footprint" ""
@@ -11980,7 +12003,7 @@
 		(instances
 			(project "Ana_ESC"
 				(path "/57129761-6d47-486c-bd7a-90dbb6f75754/a2e9c01f-dc3c-42e3-9ad2-b4c7bc962bba"
-					(reference "#PWR09")
+					(reference "#GND0101")
 					(unit 1)
 				)
 			)
@@ -12146,7 +12169,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "b26e0509-2e8b-43e8-9d8a-e4d586b224b8")
-		(property "Reference" "#PWR0106"
+		(property "Reference" "#PWR068"
 			(at 215.9 149.86 0)
 			(effects
 				(font
@@ -12155,7 +12178,7 @@
 				(hide yes)
 			)
 		)
-		(property "Value" "PGND_DRV"
+		(property "Value" "GND"
 			(at 218.44 144.7799 0)
 			(effects
 				(font
@@ -12197,7 +12220,149 @@
 		(instances
 			(project "Ana_ESC"
 				(path "/57129761-6d47-486c-bd7a-90dbb6f75754/a2e9c01f-dc3c-42e3-9ad2-b4c7bc962bba"
-					(reference "#PWR0106")
+					(reference "#PWR068")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "2025-12-23_14-02-59:80ZLJ680MGC18X25")
+		(at 238.76 34.29 90)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "bcd5b289-2a21-42ac-a2cb-9a44c4da04c2")
+		(property "Reference" "C37"
+			(at 242.57 28.7527 90)
+			(effects
+				(font
+					(size 1.524 1.524)
+				)
+				(justify right)
+			)
+		)
+		(property "Value" "680uF 80V"
+			(at 242.57 31.2927 90)
+			(effects
+				(font
+					(size 1.524 1.524)
+				)
+				(justify right)
+			)
+		)
+		(property "Footprint" "ul_80ZLJ680MGC18X25:80ZLJ680MGC18X25"
+			(at 238.76 34.29 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+					(italic yes)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "80ZLJ680MGC18X25"
+			(at 238.76 34.29 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+					(italic yes)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" ""
+			(at 238.76 34.29 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "2"
+			(uuid "7ab5044e-0512-414a-8bde-a85e70d9514b")
+		)
+		(pin "1"
+			(uuid "42131e83-7095-48d3-b1af-4808fa8c59c4")
+		)
+		(instances
+			(project "Ana_ESC"
+				(path "/57129761-6d47-486c-bd7a-90dbb6f75754/a2e9c01f-dc3c-42e3-9ad2-b4c7bc962bba"
+					(reference "C37")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:C")
+		(at 182.88 49.53 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "bf04821e-0ef3-438e-a946-58e841d4f2f5")
+		(property "Reference" "C36"
+			(at 186.69 48.2599 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "2.2uF"
+			(at 186.69 50.7999 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "Capacitor_SMD:C_1206_3216Metric_Pad1.33x1.80mm_HandSolder"
+			(at 183.8452 53.34 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 182.88 49.53 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Unpolarized capacitor"
+			(at 182.88 49.53 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "3b9b5ac2-bc8c-472b-b7ef-18a15e4efdf0")
+		)
+		(pin "2"
+			(uuid "6f0cea8e-8831-4d6a-83c7-65ea3b0b88b7")
+		)
+		(instances
+			(project "Ana_ESC"
+				(path "/57129761-6d47-486c-bd7a-90dbb6f75754/a2e9c01f-dc3c-42e3-9ad2-b4c7bc962bba"
+					(reference "C36")
 					(unit 1)
 				)
 			)
@@ -12212,8 +12377,8 @@
 		(on_board yes)
 		(dnp no)
 		(fields_autoplaced yes)
-		(uuid "b39b3e41-347b-4cb5-9793-37e9d0087bde")
-		(property "Reference" "GND1"
+		(uuid "d65d091c-3dca-437f-be7e-e1133110fc3c")
+		(property "Reference" "Power_Pad_SMD1"
 			(at 62.23 31.7499 0)
 			(effects
 				(font
@@ -12350,154 +12515,12 @@
 			)
 		)
 		(pin "1"
-			(uuid "7b1f6f3b-7fb1-4197-a24d-fcc4f12be31b")
+			(uuid "89ab6171-db39-495a-b5aa-f0d8000b9ed5")
 		)
 		(instances
-			(project "Ana_ESC"
+			(project ""
 				(path "/57129761-6d47-486c-bd7a-90dbb6f75754/a2e9c01f-dc3c-42e3-9ad2-b4c7bc962bba"
-					(reference "GND1")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "2025-12-23_14-02-59:80ZLJ680MGC18X25")
-		(at 238.76 34.29 90)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "bcd5b289-2a21-42ac-a2cb-9a44c4da04c2")
-		(property "Reference" "C29"
-			(at 242.57 28.7527 90)
-			(effects
-				(font
-					(size 1.524 1.524)
-				)
-				(justify right)
-			)
-		)
-		(property "Value" "680uF 80V"
-			(at 242.57 31.2927 90)
-			(effects
-				(font
-					(size 1.524 1.524)
-				)
-				(justify right)
-			)
-		)
-		(property "Footprint" "ul_80ZLJ680MGC18X25:80ZLJ680MGC18X25"
-			(at 238.76 34.29 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-					(italic yes)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "80ZLJ680MGC18X25"
-			(at 238.76 34.29 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-					(italic yes)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" ""
-			(at 238.76 34.29 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "2"
-			(uuid "7ab5044e-0512-414a-8bde-a85e70d9514b")
-		)
-		(pin "1"
-			(uuid "42131e83-7095-48d3-b1af-4808fa8c59c4")
-		)
-		(instances
-			(project "Ana_ESC"
-				(path "/57129761-6d47-486c-bd7a-90dbb6f75754/a2e9c01f-dc3c-42e3-9ad2-b4c7bc962bba"
-					(reference "C29")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Device:C")
-		(at 182.88 49.53 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "bf04821e-0ef3-438e-a946-58e841d4f2f5")
-		(property "Reference" "C28"
-			(at 186.69 48.2599 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "2.2uF"
-			(at 186.69 50.7999 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" "Capacitor_SMD:C_1206_3216Metric_Pad1.33x1.80mm_HandSolder"
-			(at 183.8452 53.34 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 182.88 49.53 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Unpolarized capacitor"
-			(at 182.88 49.53 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "3b9b5ac2-bc8c-472b-b7ef-18a15e4efdf0")
-		)
-		(pin "2"
-			(uuid "6f0cea8e-8831-4d6a-83c7-65ea3b0b88b7")
-		)
-		(instances
-			(project "Ana_ESC"
-				(path "/57129761-6d47-486c-bd7a-90dbb6f75754/a2e9c01f-dc3c-42e3-9ad2-b4c7bc962bba"
-					(reference "C28")
+					(reference "Power_Pad_SMD1")
 					(unit 1)
 				)
 			)
@@ -12513,7 +12536,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "d8a41ab3-0f88-43d8-9a20-bf125b905364")
-		(property "Reference" "#PWR0108"
+		(property "Reference" "#PWR064"
 			(at 100.33 148.59 0)
 			(effects
 				(font
@@ -12522,7 +12545,7 @@
 				(hide yes)
 			)
 		)
-		(property "Value" "PGND_DRV"
+		(property "Value" "GND"
 			(at 102.87 143.5099 0)
 			(effects
 				(font
@@ -12564,7 +12587,7 @@
 		(instances
 			(project "Ana_ESC"
 				(path "/57129761-6d47-486c-bd7a-90dbb6f75754/a2e9c01f-dc3c-42e3-9ad2-b4c7bc962bba"
-					(reference "#PWR0108")
+					(reference "#PWR064")
 					(unit 1)
 				)
 			)
@@ -13197,7 +13220,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "f607db8e-323c-4f81-a2b7-42127adc87ba")
-		(property "Reference" "C30"
+		(property "Reference" "C38"
 			(at 245.11 49.5299 0)
 			(effects
 				(font
@@ -13251,7 +13274,7 @@
 		(instances
 			(project "Ana_ESC"
 				(path "/57129761-6d47-486c-bd7a-90dbb6f75754/a2e9c01f-dc3c-42e3-9ad2-b4c7bc962bba"
-					(reference "C30")
+					(reference "C38")
 					(unit 1)
 				)
 			)
@@ -13267,7 +13290,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "f81e6b14-bb68-419c-b987-ccbe083c873f")
-		(property "Reference" "#PWR0105"
+		(property "Reference" "#PWR065"
 			(at 124.46 59.69 0)
 			(effects
 				(font
@@ -13276,7 +13299,7 @@
 				(hide yes)
 			)
 		)
-		(property "Value" "PGND_DRV"
+		(property "Value" "GND"
 			(at 124.46 58.42 0)
 			(effects
 				(font
@@ -13317,7 +13340,7 @@
 		(instances
 			(project "Ana_ESC"
 				(path "/57129761-6d47-486c-bd7a-90dbb6f75754/a2e9c01f-dc3c-42e3-9ad2-b4c7bc962bba"
-					(reference "#PWR0105")
+					(reference "#PWR065")
 					(unit 1)
 				)
 			)

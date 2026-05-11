@@ -36,3 +36,27 @@ Her zaman önce **pull** sonra **push**!
 https://jrainimo.com/build/2024/11/oss-thermal-simulation-of-pcbs/
 Açık kaynaklı programları kullanarak sıcaklık analizi yapılabilir.
 
+### Board Tasarımında Dikkat Edilecek Hususlar
+(https://www.youtube.com/watch?v=XKBNmYKVMiE)
+
+Ringing ölçümü için alan bıraktığından emin ol. Osiloskop bağlayıp sinyali gözlemlemen gerekebilir.
+
+Gronud Bounce??
+
+Cross Talk: Birbiri üstünde gerilim indükleyerek yollardaki sinyalde bozulmaya yol açılmasıdır. Anahtarlama yolları sinyal yollarına yakın olmamalıdır.
+
+HV ve LV bölgeleri birbirinden ayır. GND hatlarını da gnd plane üstünde birleştir.
+
+Gate drive yol uzunluğunu azalt, indüktans azalsın. 
+Yol genişliğini arttır, empedans azalsın. En iyisi, düşük empedans.
+Via kullanmaktan kaçın mosfet Gate pininde.
+Simetrik (Dif.) GH ve GL yolları çiz. Sinyaller aynı anda mosfetlere varsın. 
+Gate drive yolları altına gnd plane atın.
+GH GL dirençlerini mosfetlere yakın yerleştir ki mosfet sürücüyü ısıtmasın.
+
+Birden fazla katmanda GND plane kullan ve vialarla geçişler yap ki gnd empedansı azalsın.
+
+Yol uzunlukları ve via sayısını minimize et.
+
+CURRENT SENSE: 
+  Şönt direnç yollarını ground kalkanlama ve via ile çerçeveleme ile EMI'dan koru.
