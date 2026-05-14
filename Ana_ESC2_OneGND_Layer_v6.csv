@@ -1,54 +1,54 @@
-Reference,Qty,Value,DNP,Exclude from BOM,Exclude from Board,Footprint,Datasheet,
+Reference,Qty,Value,DNP,Exclude from BOM,Exclude from Board,Footprint,Datasheet,LCSC part
 "Batt+1,Power_Pad_SMD1",2,power_pad_smd,,,,Pads:Power_pad_smd,,
-"C6,C9",2,47nF 100V,,,,Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder,https://content.kemet.com/datasheets/KEM_C1090_X7R_ESD.pdf,
-C7,1,0.1uF 16V,,,,Capacitor_SMD:C_0603_1608Metric_Pad1.08x0.95mm_HandSolder,,
-C8,1,1uF 6.3V,,,,Capacitor_SMD:C_0603_1608Metric_Pad1.08x0.95mm_HandSolder,https://www.direnc.net/1uf-16v-10-x5r-603-smd-kondansator,
-C10,1,22uF 16V,,,,Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder,,
-C11,1,0.1uF 6.3V,,,,08056D104KAT2A:CAPC2012X140N,,
-C12,1,1uF 16V,,,,C0603C105K4RACTU:CAPC1608X90N,,
-C13,1,0.1 uF 100V,,,,CL10B104KC8NNNC:CAPC1608X90N,,
-C14,1,22uF 100V,,,,ECA2AM220B:CAPPRD500W50D630H1120,,
-"C15,C16,C17,C29",4,10nF,,,,Capacitor_SMD:C_0603_1608Metric_Pad1.08x0.95mm_HandSolder,~,
-"C18,C19,C20,C28,C32",5,1uF,,,,Capacitor_SMD:C_0603_1608Metric_Pad1.08x0.95mm_HandSolder,"direnc.net,https://www.direnc.net/1uf-50v-10-603-smd-kondansator,~",
-C21,1,4u7,,,,Capacitor_SMD:C_0603_1608Metric_Pad1.08x0.95mm_HandSolder,~,
-"C22,C23,C24,C26,C30,C31",6,100nF,,,,Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder,"direnc.net,https://www.direnc.net/100nf50v-805-kilif",
-"C25,C27",2,33pF,,,,Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder,~,
-"C33,C34,C35,C36,C38",5,2.2uF,,,,Capacitor_SMD:C_0603_1608Metric_Pad1.08x0.95mm_HandSolder,~,
-"C37,C39",2,680uF 80V,,,,ul_80ZLJ680MGC18X25:80ZLJ680MGC18X25,80ZLJ680MGC18X25,
-D1,1,80V 1A,,,,Diode_SMD:D_SMA,https://www.smc-diodes.com/propdf/SS12-SS110%20N0229%20REV.C.pdf,
-D2,1,LEDA,,,,LED_SMD:LED_0603_1608Metric_Pad1.05x0.95mm_HandSolder,~,https://www.direnc.net/603-kilif-smd-kirmizi-led-90mcd-honglitronic
-D3,1,LEDB,,,,LED_SMD:LED_0603_1608Metric_Pad1.05x0.95mm_HandSolder,~,https://www.direnc.net/603-kilif-smd-yesil-led-500mcd-honglitronic
-D4,1,LEDC,,,,LED_SMD:LED_0603_1608Metric_Pad1.05x0.95mm_HandSolder,~,https://www.direnc.net/603-kilif-smd-mavi-led-100mcd-honglitronic
-D5,1,USBLC6-2SC6Y,,,,SOT95P280X145-6N,https://www.st.com/resource/en/datasheet/usblc6-2sc6y.pdf,
-D6,1,D_Zener,,,,LIB_MMSZ4684-13P:SOD3716X135N,~,
-IC1,1,TCAN330DCNT,,,,LIB_TCAN330DCNT:SOT65P280X145-8N,https://www.ti.com/lit/gpn/TCAN330,
+"C6,C9",2,47nF 100V,,,,Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder,https://content.kemet.com/datasheets/KEM_C1090_X7R_ESD.pdf,C599763
+C7,1,0.1uF 16V,,,,Capacitor_SMD:C_0603_1608Metric_Pad1.08x0.95mm_HandSolder,,C20539422
+C8,1,1uF 6.3V,,,,Capacitor_SMD:C_0603_1608Metric_Pad1.08x0.95mm_HandSolder,https://www.direnc.net/1uf-16v-10-x5r-603-smd-kondansator,C105524
+C10,1,22uF 16V,,,,Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder,,C2762594
+C11,1,0.1uF 6.3V,,,,08056D104KAT2A:CAPC2012X140N,,C5445386
+C12,1,1uF 16V,,,,C0603C105K4RACTU:CAPC1608X90N,,C696901
+C13,1,0.1 uF 100V,,,,CL10B104KC8NNNC:CAPC1608X90N,,C20069879
+C14,1,22uF 100V,,,,ECA2AM220B:CAPPRD500W50D630H1120,,C437651
+"C15,C16,C17,C29",4,10nF,,,,Capacitor_SMD:C_0603_1608Metric_Pad1.08x0.95mm_HandSolder,~,C163179
+"C18,C19,C20,C28,C32",5,1uF,,,,Capacitor_SMD:C_0603_1608Metric_Pad1.08x0.95mm_HandSolder,"direnc.net,https://www.direnc.net/1uf-50v-10-603-smd-kondansator,~",C696901
+C21,1,4u7,,,,Capacitor_SMD:C_0603_1608Metric_Pad1.08x0.95mm_HandSolder,~,C8032
+"C22,C23,C24,C26,C30,C31",6,100nF,,,,Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder,"direnc.net,https://www.direnc.net/100nf50v-805-kilif",C53084461
+"C25,C27",2,33pF,,,,Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder,~,C18220913
+"C33,C34,C35,C36,C38",5,2.2uF,,,,Capacitor_SMD:C_0603_1608Metric_Pad1.08x0.95mm_HandSolder,~,C20539433
+"C37,C39",2,680uF 80V,,,,ul_80ZLJ680MGC18X25:80ZLJ680MGC18X25,80ZLJ680MGC18X25,C407989
+D1,1,80V 1A,,,,Diode_SMD:D_SMA,https://www.smc-diodes.com/propdf/SS12-SS110%20N0229%20REV.C.pdf,C2898405
+D2,1,LEDA,,,,LED_SMD:LED_0603_1608Metric_Pad1.05x0.95mm_HandSolder,~,C51933292
+D3,1,LEDB,,,,LED_SMD:LED_0603_1608Metric_Pad1.05x0.95mm_HandSolder,~,C7496818
+D4,1,LEDC,,,,LED_SMD:LED_0603_1608Metric_Pad1.05x0.95mm_HandSolder,~,C51933294
+D5,1,USBLC6-2SC6Y,,,,SOT95P280X145-6N,https://www.st.com/resource/en/datasheet/usblc6-2sc6y.pdf,C2969755
+D6,1,D_Zener,,,,LIB_MMSZ4684-13P:SOD3716X135N,~,C7529058
+IC1,1,TCAN330DCNT,,,,LIB_TCAN330DCNT:SOT65P280X145-8N,https://www.ti.com/lit/gpn/TCAN330,C2671056
 "J1,J5",2,BM04B-GHS-TBT_LF__SN__N_,,,,ul_BM04B-GHS-TBT-LF-SN-N-:JST_BM04B-GHS-TBT_LF__SN__N_,http://www.jst-mfg.com/product/pdf/eng/eGH.pdf,
-J2,1,USB_C_Receptacle_USB2.0_16P,,,,Connector_USB:USB_C_Receptacle_GCT_USB4105-xx-A_16P_TopMnt_Horizontal,https://www.usb.org/sites/default/files/documents/usb_type-c.zip,
+J2,1,USB_C_Receptacle_USB2.0_16P,,,,Connector_USB:USB_C_Receptacle_GCT_USB4105-xx-A_16P_TopMnt_Horizontal,https://www.usb.org/sites/default/files/documents/usb_type-c.zip,C3025063
 J3,1,Conn_01x02_Socket,,,,TerminalBlock:TerminalBlock_MaiXu_MX126-5.0-02P_1x02_P5.00mm,~,
 J4,1,Conn_01x04_Pin,,,,Connector_PinHeader_1.00mm:PinHeader_1x04_P1.00mm_Vertical,~,
-L1,1,22uH 1.6A,,,,DR73-220-R:INDM7676X355N,,
-L2,1,100MHz / 1kR,,,,Inductor_SMD:L_0603_1608Metric_Pad1.05x0.95mm_HandSolder,~,
-"Q7,Q8,Q9,Q10,Q11,Q12",6,STL90N6F7,,,,STL90N6F7:STL90N6F7_Thermal_Vias,https://www.st.com/resource/en/datasheet/stl90n6f7.pdf,
-"R5,R8,R9,R16,R17,R22,R26",7,10k,,,,Resistor_SMD:R_0603_1608Metric_Pad0.98x0.95mm_HandSolder,,
-R6,1,5k6,,,,RC0603FR-073K3L:RESC1607X60N,,
-"R7,R25,R28",3,1k,,,,Resistor_SMD:R_0603_1608Metric_Pad0.98x0.95mm_HandSolder,,
-"R10,R12,R14",3,91k,,,,Resistor_SMD:R_0603_1608Metric_Pad0.98x0.95mm_HandSolder,,
-"R11,R13,R15",3,4k7,,,,Resistor_SMD:R_0603_1608Metric_Pad0.98x0.95mm_HandSolder,,
-"R18,R19,R20",3,330R,,,,Resistor_SMD:R_0603_1608Metric_Pad0.98x0.95mm_HandSolder,~,
-R21,1,0 ohm,,,,RMCF0603ZT0R00:RESC1508X55N,~,
-R23,1,3.3k,,,,Resistor_SMD:R_0603_1608Metric_Pad0.98x0.95mm_HandSolder,~,
-"R24,R29",2,100k,,,,Resistor_SMD:R_0603_1608Metric_Pad0.98x0.95mm_HandSolder,,
-R27,1,120R,,,,Resistor_SMD:R_0603_1608Metric_Pad0.98x0.95mm_HandSolder,~,
-R,0,2R2,,,,Gate resistor,,10 adet sipariþ edilecek
-R,0,4R7,,,,Gate resistor,,10 adet sipariþ edilecek
-"RGA3,RGA4,RGB3,RGB4,RGC3,RGC4",6,0ohm,,,,RMCF0603ZT0R00:RESC1508X55N,,
-"Rsense_A4,Rsense_A5,Rsense_B4,Rsense_B5,Rsense_C4,Rsense_C5",6,2mohm,,,,CRF2512-FZ-R002ELF:RESC6432X80N,,
-"SW1,SW2",2,SW_SPDT,,,,Button_Switch_SMD:SW_SPDT_PCM12,~,
-TH1,1,ERT-J1VG103FA,,,,Resistor_SMD:R_0603_1608Metric,~,
-U1,1,DRV8323RSRGZR,,,,DRV8323RSRGZR:QFN50P700X700X100-49N,kicad-embed://drv8323.pdf,
-U2,1,ME6211C33M5,,,,Package_TO_SOT_SMD:SOT-23-5,https://www.lcsc.com/datasheet/lcsc_datasheet_2304140030_MICRONE-Nanjing-Micro-One-Elec-ME6211C33R5G_C235316.pdf,
-U3,1,STM32G431CBU6,,,,STM32G431CBU6:QFN50P700X700X60-49N,,
-Y1,1,ECS-80-20-5PX-TR,,,,ECS-80-20-5PX-TR:XTAL_ECS-80-20-5PX-TR,,
+L1,1,22uH 1.6A,,,,DR73-220-R:INDM7676X355N,,C167971
+L2,1,100MHz / 1kR,,,,Inductor_SMD:L_0603_1608Metric_Pad1.05x0.95mm_HandSolder,~,C76814
+"Q7,Q8,Q9,Q10,Q11,Q12",6,STL90N6F7,,,,STL90N6F7:STL90N6F7_Thermal_Vias,https://www.st.com/resource/en/datasheet/stl90n6f7.pdf,C221506
+"R5,R8,R9,R16,R17,R22,R26",7,10k,,,,Resistor_SMD:R_0603_1608Metric_Pad0.98x0.95mm_HandSolder,,C95204
+R6,1,5k6,,,,RC0603FR-073K3L:RESC1607X60N,,C2907046
+"R7,R25,R28",3,1k,,,,Resistor_SMD:R_0603_1608Metric_Pad0.98x0.95mm_HandSolder,,C3016283
+"R10,R12,R14",3,91k,,,,Resistor_SMD:R_0603_1608Metric_Pad0.98x0.95mm_HandSolder,,C2907077
+"R11,R13,R15",3,4k7,,,,Resistor_SMD:R_0603_1608Metric_Pad0.98x0.95mm_HandSolder,,C3016318
+"R18,R19,R20",3,330R,,,,Resistor_SMD:R_0603_1608Metric_Pad0.98x0.95mm_HandSolder,~,C2907152
+R21,1,0 ohm,,,,RMCF0603ZT0R00:RESC1508X55N,~,C1512169
+R23,1,3.3k,,,,Resistor_SMD:R_0603_1608Metric_Pad0.98x0.95mm_HandSolder,~,C2907140
+"R24,R29",2,100k,,,,Resistor_SMD:R_0603_1608Metric_Pad0.98x0.95mm_HandSolder,,C2907088
+R27,1,120R,,,,Resistor_SMD:R_0603_1608Metric_Pad0.98x0.95mm_HandSolder,~,C114640
+R,0,2R2,,,,Gate resistor,,C2930032
+R,0,4R7,,,,Gate resistor,,C137705
+"RGA3,RGA4,RGB3,RGB4,RGC3,RGC4",6,0ohm,,,,RMCF0603ZT0R00:RESC1508X55N,,C1512169
+"Rsense_A4,Rsense_A5,Rsense_B4,Rsense_B5,Rsense_C4,Rsense_C5",6,2mohm,,,,CRF2512-FZ-R002ELF:RESC6432X80N,,C4198046
+"SW1,SW2",2,SW_SPDT,,,,Button_Switch_SMD:SW_SPDT_PCM12,~,C221841
+TH1,1,ERT-J1VG103FA,,,,Resistor_SMD:R_0603_1608Metric,~,C153011
+U1,1,DRV8323RSRGZR,,,,DRV8323RSRGZR:QFN50P700X700X100-49N,kicad-embed://drv8323.pdf,C2653553
+U2,1,ME6211C33M5,,,,Package_TO_SOT_SMD:SOT-23-5,https://www.lcsc.com/datasheet/lcsc_datasheet_2304140030_MICRONE-Nanjing-Micro-One-Elec-ME6211C33R5G_C235316.pdf,C82942
+U3,1,STM32G431CBU6,,,,STM32G431CBU6:QFN50P700X700X60-49N,,C529356
+Y1,1,ECS-80-20-5PX-TR,,,,ECS-80-20-5PX-TR:XTAL_ECS-80-20-5PX-TR,,C2441302
 ,,,,,,,,
 mavi ,direnç.net,,,,,,,
 yeþil ,ekom,,,,,,,
