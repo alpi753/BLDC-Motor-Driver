@@ -3314,6 +3314,255 @@
 			)
 			(embedded_fonts no)
 		)
+		(symbol "Device:R"
+			(pin_numbers
+				(hide yes)
+			)
+			(pin_names
+				(offset 0)
+			)
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(property "Reference" "R"
+				(at 2.032 0 90)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Value" "R"
+				(at 0 0 90)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Footprint" ""
+				(at -1.778 0 90)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Datasheet" "~"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Description" "Resistor"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "ki_keywords" "R res resistor"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "ki_fp_filters" "R_*"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(symbol "R_0_1"
+				(rectangle
+					(start -1.016 -2.54)
+					(end 1.016 2.54)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+			)
+			(symbol "R_1_1"
+				(pin passive line
+					(at 0 3.81 270)
+					(length 1.27)
+					(name "~"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 0 -3.81 90)
+					(length 1.27)
+					(name "~"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+			(embedded_fonts no)
+		)
+		(symbol "Device:R_Small"
+			(pin_numbers
+				(hide yes)
+			)
+			(pin_names
+				(offset 0.254)
+				(hide yes)
+			)
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(property "Reference" "R"
+				(at 0 0 90)
+				(effects
+					(font
+						(size 1.016 1.016)
+					)
+				)
+			)
+			(property "Value" "R_Small"
+				(at 1.778 0 90)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Footprint" ""
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Datasheet" "~"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Description" "Resistor, small symbol"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "ki_keywords" "R resistor"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "ki_fp_filters" "R_*"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(symbol "R_Small_0_1"
+				(rectangle
+					(start -0.762 1.778)
+					(end 0.762 -1.778)
+					(stroke
+						(width 0.2032)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+			)
+			(symbol "R_Small_1_1"
+				(pin passive line
+					(at 0 2.54 270)
+					(length 0.762)
+					(name "~"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 0 -2.54 90)
+					(length 0.762)
+					(name "~"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+			(embedded_fonts no)
+		)
 		(symbol "Diode:SS18"
 			(pin_numbers
 				(hide yes)
@@ -3760,578 +4009,6 @@
 						)
 					)
 					(number "N"
-						(effects
-							(font
-								(size 1.016 1.016)
-							)
-						)
-					)
-				)
-			)
-			(embedded_fonts no)
-		)
-		(symbol "RC0603FR-07100KL:RC0603FR-07100KL"
-			(pin_names
-				(offset 1.016)
-			)
-			(exclude_from_sim no)
-			(in_bom yes)
-			(on_board yes)
-			(property "Reference" "R"
-				(at -3.81 1.4986 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify left bottom)
-				)
-			)
-			(property "Value" "RC0603FR-07100KL"
-				(at -3.81 -3.302 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify left bottom)
-				)
-			)
-			(property "Footprint" "RC0603FR-07100KL:RESC1607X60N"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify bottom)
-					(hide yes)
-				)
-			)
-			(property "Datasheet" ""
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "Description" ""
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "MF" "Yageo"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify bottom)
-					(hide yes)
-				)
-			)
-			(property "Description_1" "100 kOhms ±1% 0.1W, 1/10W Chip Resistor 0603 (1608 Metric) Moisture Resistant Thick Film"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify bottom)
-					(hide yes)
-				)
-			)
-			(property "Package" "0603 Yageo"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify bottom)
-					(hide yes)
-				)
-			)
-			(property "Price" "None"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify bottom)
-					(hide yes)
-				)
-			)
-			(property "SnapEDA_Link" "https://www.snapeda.com/parts/RC0603FR-07100KL/Yageo/view-part/?ref=snap"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify bottom)
-					(hide yes)
-				)
-			)
-			(property "MP" "RC0603FR-07100KL"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify bottom)
-					(hide yes)
-				)
-			)
-			(property "Availability" "In Stock"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify bottom)
-					(hide yes)
-				)
-			)
-			(property "Check_prices" "https://www.snapeda.com/parts/RC0603FR-07100KL/Yageo/view-part/?ref=eda"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify bottom)
-					(hide yes)
-				)
-			)
-			(symbol "RC0603FR-07100KL_0_0"
-				(polyline
-					(pts
-						(xy -2.54 0) (xy -2.159 1.016)
-					)
-					(stroke
-						(width 0.2032)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy -2.159 1.016) (xy -1.524 -1.016)
-					)
-					(stroke
-						(width 0.2032)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy -1.524 -1.016) (xy -0.889 1.016)
-					)
-					(stroke
-						(width 0.2032)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy -0.889 1.016) (xy -0.254 -1.016)
-					)
-					(stroke
-						(width 0.2032)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy -0.254 -1.016) (xy 0.381 1.016)
-					)
-					(stroke
-						(width 0.2032)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 0.381 1.016) (xy 1.016 -1.016)
-					)
-					(stroke
-						(width 0.2032)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 1.016 -1.016) (xy 1.651 1.016)
-					)
-					(stroke
-						(width 0.2032)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 1.651 1.016) (xy 2.286 -1.016)
-					)
-					(stroke
-						(width 0.2032)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 2.286 -1.016) (xy 2.54 0)
-					)
-					(stroke
-						(width 0.2032)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(pin passive line
-					(at -7.62 0 0)
-					(length 5.08)
-					(name "~"
-						(effects
-							(font
-								(size 1.016 1.016)
-							)
-						)
-					)
-					(number "1"
-						(effects
-							(font
-								(size 1.016 1.016)
-							)
-						)
-					)
-				)
-				(pin passive line
-					(at 7.62 0 180)
-					(length 5.08)
-					(name "~"
-						(effects
-							(font
-								(size 1.016 1.016)
-							)
-						)
-					)
-					(number "2"
-						(effects
-							(font
-								(size 1.016 1.016)
-							)
-						)
-					)
-				)
-			)
-			(embedded_fonts no)
-		)
-		(symbol "RC0603FR-0710KL:RC0603FR-0710KL"
-			(pin_names
-				(offset 1.016)
-			)
-			(exclude_from_sim no)
-			(in_bom yes)
-			(on_board yes)
-			(property "Reference" "R"
-				(at -3.81 1.4986 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify left bottom)
-				)
-			)
-			(property "Value" "RC0603FR-0710KL"
-				(at -3.81 -3.302 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify left bottom)
-				)
-			)
-			(property "Footprint" "RC0603FR-0710KL:RESC1607X60N"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify bottom)
-					(hide yes)
-				)
-			)
-			(property "Datasheet" ""
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "Description" ""
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "MF" "Yageo"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify bottom)
-					(hide yes)
-				)
-			)
-			(property "Description_1" "10 kOhms ±1% 0.1W, 1/10W Chip Resistor 0603 (1608 Metric) Moisture Resistant Thick Film"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify bottom)
-					(hide yes)
-				)
-			)
-			(property "Package" "0603 Yageo"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify bottom)
-					(hide yes)
-				)
-			)
-			(property "Price" "None"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify bottom)
-					(hide yes)
-				)
-			)
-			(property "SnapEDA_Link" "https://www.snapeda.com/parts/RC0603FR-0710KL/Yageo/view-part/?ref=snap"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify bottom)
-					(hide yes)
-				)
-			)
-			(property "MP" "RC0603FR-0710KL"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify bottom)
-					(hide yes)
-				)
-			)
-			(property "Purchase-URL" "https://www.snapeda.com/api/url_track_click_mouser/?unipart_id=105933&manufacturer=Yageo&part_name=RC0603FR-0710KL&search_term=rc0603fr-0710kl"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify bottom)
-					(hide yes)
-				)
-			)
-			(property "Availability" "In Stock"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify bottom)
-					(hide yes)
-				)
-			)
-			(property "Check_prices" "https://www.snapeda.com/parts/RC0603FR-0710KL/Yageo/view-part/?ref=eda"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify bottom)
-					(hide yes)
-				)
-			)
-			(symbol "RC0603FR-0710KL_0_0"
-				(polyline
-					(pts
-						(xy -2.54 0) (xy -2.159 1.016)
-					)
-					(stroke
-						(width 0.2032)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy -2.159 1.016) (xy -1.524 -1.016)
-					)
-					(stroke
-						(width 0.2032)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy -1.524 -1.016) (xy -0.889 1.016)
-					)
-					(stroke
-						(width 0.2032)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy -0.889 1.016) (xy -0.254 -1.016)
-					)
-					(stroke
-						(width 0.2032)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy -0.254 -1.016) (xy 0.381 1.016)
-					)
-					(stroke
-						(width 0.2032)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 0.381 1.016) (xy 1.016 -1.016)
-					)
-					(stroke
-						(width 0.2032)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 1.016 -1.016) (xy 1.651 1.016)
-					)
-					(stroke
-						(width 0.2032)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 1.651 1.016) (xy 2.286 -1.016)
-					)
-					(stroke
-						(width 0.2032)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 2.286 -1.016) (xy 2.54 0)
-					)
-					(stroke
-						(width 0.2032)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(pin passive line
-					(at -7.62 0 0)
-					(length 5.08)
-					(name "~"
-						(effects
-							(font
-								(size 1.016 1.016)
-							)
-						)
-					)
-					(number "1"
-						(effects
-							(font
-								(size 1.016 1.016)
-							)
-						)
-					)
-				)
-				(pin passive line
-					(at 7.62 0 180)
-					(length 5.08)
-					(name "~"
-						(effects
-							(font
-								(size 1.016 1.016)
-							)
-						)
-					)
-					(number "2"
 						(effects
 							(font
 								(size 1.016 1.016)
@@ -5286,12 +4963,6 @@
 		(uuid "770399d9-234d-48a5-9969-b3f91395339c")
 	)
 	(junction
-		(at 168.91 124.46)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "7f5f1403-2d15-44b9-b641-a490f72e944e")
-	)
-	(junction
 		(at 241.3 104.14)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -5310,10 +4981,10 @@
 		(uuid "b2b3acea-1b96-4471-b629-1be523f946c1")
 	)
 	(junction
-		(at 118.11 97.79)
+		(at 168.91 124.46)
 		(diameter 0)
 		(color 0 0 0 0)
-		(uuid "b5edd339-08e8-494c-b412-09a8090f58ea")
+		(uuid "c1e01078-278c-4f45-afd7-c001c96d9b19")
 	)
 	(junction
 		(at 132.08 71.12)
@@ -5326,6 +4997,12 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "de3eb514-22b4-4ca4-a305-bc75e95cba58")
+	)
+	(junction
+		(at 118.11 97.79)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "ee098814-4c72-4ba7-9828-575fd98f49f4")
 	)
 	(junction
 		(at 113.03 59.69)
@@ -5704,6 +5381,16 @@
 	)
 	(wire
 		(pts
+			(xy 118.11 92.71) (xy 118.11 97.79)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "4706e15c-5139-4b98-a8f4-83c31441fd3e")
+	)
+	(wire
+		(pts
 			(xy 132.08 71.12) (xy 132.08 72.39)
 		)
 		(stroke
@@ -5814,7 +5501,7 @@
 	)
 	(wire
 		(pts
-			(xy 20.32 59.69) (xy 21.59 59.69)
+			(xy 20.32 59.69) (xy 25.4 59.69)
 		)
 		(stroke
 			(width 0)
@@ -5864,16 +5551,6 @@
 	)
 	(wire
 		(pts
-			(xy 134.62 124.46) (xy 168.91 124.46)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "5d9e3ccb-8233-4209-a030-787a7202b57d")
-	)
-	(wire
-		(pts
 			(xy 162.56 59.69) (xy 162.56 52.07)
 		)
 		(stroke
@@ -5914,16 +5591,6 @@
 	)
 	(wire
 		(pts
-			(xy 118.11 97.79) (xy 125.73 97.79)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "6748fe33-1070-48ae-90fc-a6fc22b76f3b")
-	)
-	(wire
-		(pts
 			(xy 97.79 135.89) (xy 115.57 135.89)
 		)
 		(stroke
@@ -5931,6 +5598,16 @@
 			(type default)
 		)
 		(uuid "6872ed58-1d5d-42b3-bbca-55e93a188aa9")
+	)
+	(wire
+		(pts
+			(xy 118.11 97.79) (xy 125.73 97.79)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "6a77137f-b6d2-4f9a-833b-99dd68eb5efe")
 	)
 	(wire
 		(pts
@@ -5951,6 +5628,16 @@
 			(type default)
 		)
 		(uuid "6e6c4238-a43d-451d-8425-99e1bd75e3a3")
+	)
+	(wire
+		(pts
+			(xy 142.24 87.63) (xy 142.24 92.71)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "708cbaf4-82c8-4d79-8ce7-0a6a878312e4")
 	)
 	(wire
 		(pts
@@ -6124,17 +5811,7 @@
 	)
 	(wire
 		(pts
-			(xy 36.83 59.69) (xy 52.07 59.69)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "95ceb0fe-d4a3-433c-8620-0df8e76bf46e")
-	)
-	(wire
-		(pts
-			(xy 168.91 124.46) (xy 181.61 124.46)
+			(xy 134.62 124.46) (xy 168.91 124.46)
 		)
 		(stroke
 			(width 0)
@@ -6164,17 +5841,17 @@
 	)
 	(wire
 		(pts
-			(xy 118.11 80.01) (xy 118.11 82.55)
+			(xy 33.02 59.69) (xy 52.07 59.69)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "9bcd068d-32db-4f09-a029-b663a5593ccf")
+		(uuid "9d8c1d62-beec-40ad-b735-094486fd7165")
 	)
 	(wire
 		(pts
-			(xy 168.91 107.95) (xy 168.91 109.22)
+			(xy 168.91 107.95) (xy 168.91 114.3)
 		)
 		(stroke
 			(width 0)
@@ -6354,6 +6031,16 @@
 	)
 	(wire
 		(pts
+			(xy 142.24 97.79) (xy 142.24 102.87)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "bcb959bf-ed19-4d60-ba3d-bda34ad60e72")
+	)
+	(wire
+		(pts
 			(xy 210.82 59.69) (xy 210.82 62.23)
 		)
 		(stroke
@@ -6421,6 +6108,16 @@
 			(type dash)
 		)
 		(uuid "c9ad91d7-c7cc-4974-a444-bfe3c8e40ec2")
+	)
+	(wire
+		(pts
+			(xy 168.91 124.46) (xy 181.61 124.46)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "ca2448a6-c009-4441-a179-c09d52797ba7")
 	)
 	(wire
 		(pts
@@ -6561,6 +6258,26 @@
 			(type default)
 		)
 		(uuid "ea1761a0-6411-4e8f-bf3c-fbc315644c3e")
+	)
+	(wire
+		(pts
+			(xy 168.91 119.38) (xy 168.91 124.46)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "ebd055da-a3e4-42fc-aec2-4404d78d4607")
+	)
+	(wire
+		(pts
+			(xy 118.11 80.01) (xy 118.11 87.63)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "ecfb77e9-c4c4-4220-8b18-ebbfc25fbc97")
 	)
 	(wire
 		(pts
@@ -12520,155 +12237,6 @@
 		)
 	)
 	(symbol
-		(lib_id "RC0603FR-07100KL:RC0603FR-07100KL")
-		(at 29.21 59.69 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "1926b23a-b8ba-4d5e-a3e5-43ad74b97968")
-		(property "Reference" "R4"
-			(at 29.21 53.34 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "100K"
-			(at 29.21 55.88 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" "RC0603FR-07100KL:RESC1607X60N"
-			(at 29.21 59.69 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify bottom)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" ""
-			(at 29.21 59.69 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" ""
-			(at 29.21 59.69 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "MF" "Yageo"
-			(at 29.21 59.69 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify bottom)
-				(hide yes)
-			)
-		)
-		(property "Description_1" "100 kOhms ±1% 0.1W, 1/10W Chip Resistor 0603 (1608 Metric) Moisture Resistant Thick Film"
-			(at 29.21 59.69 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify bottom)
-				(hide yes)
-			)
-		)
-		(property "Package" "0603 Yageo"
-			(at 29.21 59.69 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify bottom)
-				(hide yes)
-			)
-		)
-		(property "Price" "None"
-			(at 29.21 59.69 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify bottom)
-				(hide yes)
-			)
-		)
-		(property "SnapEDA_Link" "https://www.snapeda.com/parts/RC0603FR-07100KL/Yageo/view-part/?ref=snap"
-			(at 29.21 59.69 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify bottom)
-				(hide yes)
-			)
-		)
-		(property "MP" "RC0603FR-07100KL"
-			(at 29.21 59.69 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify bottom)
-				(hide yes)
-			)
-		)
-		(property "Availability" "In Stock"
-			(at 29.21 59.69 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify bottom)
-				(hide yes)
-			)
-		)
-		(property "Check_prices" "https://www.snapeda.com/parts/RC0603FR-07100KL/Yageo/view-part/?ref=eda"
-			(at 29.21 59.69 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify bottom)
-				(hide yes)
-			)
-		)
-		(pin "2"
-			(uuid "171ec910-6eb5-4b28-937f-dc9a77769c48")
-		)
-		(pin "1"
-			(uuid "c0852663-c1f4-46a0-9dab-66d4512f992e")
-		)
-		(instances
-			(project ""
-				(path "/57129761-6d47-486c-bd7a-90dbb6f75754/beeab9ba-c868-48bf-b621-5886b9552033"
-					(reference "R4")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "C0805C473K1RECAUTO:C0805C473K1RECAUTO")
 		(at 41.91 130.81 90)
 		(unit 1)
@@ -12804,6 +12372,73 @@
 			(project ""
 				(path "/57129761-6d47-486c-bd7a-90dbb6f75754/beeab9ba-c868-48bf-b621-5886b9552033"
 					(reference "C6")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:R_Small")
+		(at 118.11 90.17 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "284814e1-9d38-4eff-9fb8-8690e9136555")
+		(property "Reference" "R5"
+			(at 123.19 90.17 90)
+			(effects
+				(font
+					(size 1.016 1.016)
+				)
+			)
+		)
+		(property "Value" "10k"
+			(at 120.65 90.17 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Resistor_SMD:R_0603_1608Metric_Pad0.98x0.95mm_HandSolder"
+			(at 118.11 90.17 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 118.11 90.17 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Resistor, small symbol"
+			(at 118.11 90.17 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "2"
+			(uuid "2be95ede-c149-46b1-8eae-14983d982a59")
+		)
+		(pin "1"
+			(uuid "d90a8c8d-52dc-40bb-9cc6-655c95d98067")
+		)
+		(instances
+			(project "Ana_ESC2_OneGND_Layer"
+				(path "/57129761-6d47-486c-bd7a-90dbb6f75754/beeab9ba-c868-48bf-b621-5886b9552033"
+					(reference "R5")
 					(unit 1)
 				)
 			)
@@ -13014,167 +12649,6 @@
 			(project "Ana_ESC"
 				(path "/57129761-6d47-486c-bd7a-90dbb6f75754/beeab9ba-c868-48bf-b621-5886b9552033"
 					(reference "C9")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "RC0603FR-0710KL:RC0603FR-0710KL")
-		(at 168.91 116.84 90)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "31e72933-5a78-4912-bec3-c15b83f0a95e")
-		(property "Reference" "R9"
-			(at 171.45 115.5699 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
-		(property "Value" "10K"
-			(at 171.45 118.1099 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
-		(property "Footprint" "RC0603FR-0710KL:RESC1607X60N"
-			(at 168.91 116.84 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify bottom)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" ""
-			(at 168.91 116.84 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" ""
-			(at 168.91 116.84 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "MF" "Yageo"
-			(at 168.91 116.84 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify bottom)
-				(hide yes)
-			)
-		)
-		(property "Description_1" "10 kOhms ±1% 0.1W, 1/10W Chip Resistor 0603 (1608 Metric) Moisture Resistant Thick Film"
-			(at 168.91 116.84 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify bottom)
-				(hide yes)
-			)
-		)
-		(property "Package" "0603 Yageo"
-			(at 168.91 116.84 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify bottom)
-				(hide yes)
-			)
-		)
-		(property "Price" "None"
-			(at 168.91 116.84 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify bottom)
-				(hide yes)
-			)
-		)
-		(property "SnapEDA_Link" "https://www.snapeda.com/parts/RC0603FR-0710KL/Yageo/view-part/?ref=snap"
-			(at 168.91 116.84 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify bottom)
-				(hide yes)
-			)
-		)
-		(property "MP" "RC0603FR-0710KL"
-			(at 168.91 116.84 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify bottom)
-				(hide yes)
-			)
-		)
-		(property "Purchase-URL" "https://www.snapeda.com/api/url_track_click_mouser/?unipart_id=105933&manufacturer=Yageo&part_name=RC0603FR-0710KL&search_term=rc0603fr-0710kl"
-			(at 168.91 116.84 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify bottom)
-				(hide yes)
-			)
-		)
-		(property "Availability" "In Stock"
-			(at 168.91 116.84 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify bottom)
-				(hide yes)
-			)
-		)
-		(property "Check_prices" "https://www.snapeda.com/parts/RC0603FR-0710KL/Yageo/view-part/?ref=eda"
-			(at 168.91 116.84 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify bottom)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "0ba0c5d6-9aac-475f-b9e0-fb285d722db7")
-		)
-		(pin "2"
-			(uuid "400c2ecc-0877-4a37-9593-79909df30e71")
-		)
-		(instances
-			(project "Ana_ESC"
-				(path "/57129761-6d47-486c-bd7a-90dbb6f75754/beeab9ba-c868-48bf-b621-5886b9552033"
-					(reference "R9")
 					(unit 1)
 				)
 			)
@@ -13544,44 +13018,41 @@
 		)
 	)
 	(symbol
-		(lib_id "RC0603FR-0710KL:RC0603FR-0710KL")
-		(at 118.11 90.17 90)
+		(lib_id "Device:R_Small")
+		(at 168.91 116.84 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "6b6593f5-5a60-46db-b696-7812b89449eb")
-		(property "Reference" "R5"
-			(at 120.65 89.916 90)
+		(uuid "72440533-4835-41f0-9d5f-ce28054a80f6")
+		(property "Reference" "R9"
+			(at 173.99 116.84 90)
 			(effects
 				(font
-					(size 1.27 1.27)
+					(size 1.016 1.016)
 				)
-				(justify right)
 			)
 		)
-		(property "Value" "10K"
-			(at 120.65 92.964 90)
+		(property "Value" "10k"
+			(at 171.45 116.84 90)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(justify right)
 			)
 		)
-		(property "Footprint" "RC0603FR-0710KL:RESC1607X60N"
-			(at 118.11 90.17 0)
+		(property "Footprint" "Resistor_SMD:R_0603_1608Metric_Pad0.98x0.95mm_HandSolder"
+			(at 168.91 116.84 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(justify bottom)
 				(hide yes)
 			)
 		)
 		(property "Datasheet" ""
-			(at 118.11 90.17 0)
+			(at 168.91 116.84 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -13589,115 +13060,25 @@
 				(hide yes)
 			)
 		)
-		(property "Description" ""
-			(at 118.11 90.17 0)
+		(property "Description" "Resistor, small symbol"
+			(at 168.91 116.84 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(hide yes)
 			)
-		)
-		(property "MF" "Yageo"
-			(at 118.11 90.17 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify bottom)
-				(hide yes)
-			)
-		)
-		(property "Description_1" "10 kOhms ±1% 0.1W, 1/10W Chip Resistor 0603 (1608 Metric) Moisture Resistant Thick Film"
-			(at 118.11 90.17 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify bottom)
-				(hide yes)
-			)
-		)
-		(property "Package" "0603 Yageo"
-			(at 118.11 90.17 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify bottom)
-				(hide yes)
-			)
-		)
-		(property "Price" "None"
-			(at 118.11 90.17 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify bottom)
-				(hide yes)
-			)
-		)
-		(property "SnapEDA_Link" "https://www.snapeda.com/parts/RC0603FR-0710KL/Yageo/view-part/?ref=snap"
-			(at 118.11 90.17 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify bottom)
-				(hide yes)
-			)
-		)
-		(property "MP" "RC0603FR-0710KL"
-			(at 118.11 90.17 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify bottom)
-				(hide yes)
-			)
-		)
-		(property "Purchase-URL" "https://www.snapeda.com/api/url_track_click_mouser/?unipart_id=105933&manufacturer=Yageo&part_name=RC0603FR-0710KL&search_term=rc0603fr-0710kl"
-			(at 118.11 90.17 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify bottom)
-				(hide yes)
-			)
-		)
-		(property "Availability" "In Stock"
-			(at 118.11 90.17 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify bottom)
-				(hide yes)
-			)
-		)
-		(property "Check_prices" "https://www.snapeda.com/parts/RC0603FR-0710KL/Yageo/view-part/?ref=eda"
-			(at 118.11 90.17 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify bottom)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "41b29a25-a991-462d-8a60-2b09d1548fa2")
 		)
 		(pin "2"
-			(uuid "801c0927-70d4-48da-99db-f8e54c97ea88")
+			(uuid "5b8278e8-2111-4367-be51-fa65b1cb445a")
+		)
+		(pin "1"
+			(uuid "122ac3c4-9f47-4295-b2b3-e65fd9af668f")
 		)
 		(instances
-			(project ""
+			(project "Ana_ESC2_OneGND_Layer"
 				(path "/57129761-6d47-486c-bd7a-90dbb6f75754/beeab9ba-c868-48bf-b621-5886b9552033"
-					(reference "R5")
+					(reference "R9")
 					(unit 1)
 				)
 			)
@@ -14093,6 +13474,74 @@
 			(project ""
 				(path "/57129761-6d47-486c-bd7a-90dbb6f75754/beeab9ba-c868-48bf-b621-5886b9552033"
 					(reference "U1")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:R")
+		(at 29.21 59.69 90)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "8eed4a6d-0379-43b6-89cb-09f68e031511")
+		(property "Reference" "R4"
+			(at 29.21 53.34 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "100k"
+			(at 29.21 55.88 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Resistor_SMD:R_0603_1608Metric_Pad0.98x0.95mm_HandSolder"
+			(at 29.21 61.468 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 29.21 59.69 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Resistor"
+			(at 29.21 59.69 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "a8bce79b-1e64-44d2-9f6a-334a624d733a")
+		)
+		(pin "2"
+			(uuid "756932b1-b626-4b2a-aff8-06156a7a13f8")
+		)
+		(instances
+			(project "Ana_ESC2_OneGND_Layer"
+				(path "/57129761-6d47-486c-bd7a-90dbb6f75754/beeab9ba-c868-48bf-b621-5886b9552033"
+					(reference "R4")
 					(unit 1)
 				)
 			)
@@ -14925,167 +14374,6 @@
 			(project ""
 				(path "/57129761-6d47-486c-bd7a-90dbb6f75754/beeab9ba-c868-48bf-b621-5886b9552033"
 					(reference "C13")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "RC0603FR-0710KL:RC0603FR-0710KL")
-		(at 142.24 95.25 90)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "d26075b4-c340-4363-86b4-b8b390e637be")
-		(property "Reference" "R8"
-			(at 144.78 93.9799 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
-		(property "Value" "10K"
-			(at 144.78 96.5199 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
-		(property "Footprint" "RC0603FR-0710KL:RESC1607X60N"
-			(at 142.24 95.25 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify bottom)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" ""
-			(at 142.24 95.25 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" ""
-			(at 142.24 95.25 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "MF" "Yageo"
-			(at 142.24 95.25 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify bottom)
-				(hide yes)
-			)
-		)
-		(property "Description_1" "10 kOhms ±1% 0.1W, 1/10W Chip Resistor 0603 (1608 Metric) Moisture Resistant Thick Film"
-			(at 142.24 95.25 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify bottom)
-				(hide yes)
-			)
-		)
-		(property "Package" "0603 Yageo"
-			(at 142.24 95.25 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify bottom)
-				(hide yes)
-			)
-		)
-		(property "Price" "None"
-			(at 142.24 95.25 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify bottom)
-				(hide yes)
-			)
-		)
-		(property "SnapEDA_Link" "https://www.snapeda.com/parts/RC0603FR-0710KL/Yageo/view-part/?ref=snap"
-			(at 142.24 95.25 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify bottom)
-				(hide yes)
-			)
-		)
-		(property "MP" "RC0603FR-0710KL"
-			(at 142.24 95.25 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify bottom)
-				(hide yes)
-			)
-		)
-		(property "Purchase-URL" "https://www.snapeda.com/api/url_track_click_mouser/?unipart_id=105933&manufacturer=Yageo&part_name=RC0603FR-0710KL&search_term=rc0603fr-0710kl"
-			(at 142.24 95.25 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify bottom)
-				(hide yes)
-			)
-		)
-		(property "Availability" "In Stock"
-			(at 142.24 95.25 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify bottom)
-				(hide yes)
-			)
-		)
-		(property "Check_prices" "https://www.snapeda.com/parts/RC0603FR-0710KL/Yageo/view-part/?ref=eda"
-			(at 142.24 95.25 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify bottom)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "edbc896f-7539-4a0b-a2fb-ba9185f2263a")
-		)
-		(pin "2"
-			(uuid "881b03b6-1370-4a6b-a656-0223325fd2a4")
-		)
-		(instances
-			(project "Ana_ESC"
-				(path "/57129761-6d47-486c-bd7a-90dbb6f75754/beeab9ba-c868-48bf-b621-5886b9552033"
-					(reference "R8")
 					(unit 1)
 				)
 			)
@@ -16005,7 +15293,7 @@
 				)
 			)
 		)
-		(property "Footprint" "RNCP0603FTD1K00:RESC1508X50N"
+		(property "Footprint" "Resistor_SMD:R_0603_1608Metric_Pad0.98x0.95mm_HandSolder"
 			(at 150.622 67.564 0)
 			(effects
 				(font
@@ -16340,6 +15628,73 @@
 			(project "Ana_ESC"
 				(path "/57129761-6d47-486c-bd7a-90dbb6f75754/beeab9ba-c868-48bf-b621-5886b9552033"
 					(reference "#PWR011")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:R_Small")
+		(at 142.24 95.25 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "f8e8ddb2-109a-4abf-a033-fc96989873f0")
+		(property "Reference" "R8"
+			(at 147.32 95.25 90)
+			(effects
+				(font
+					(size 1.016 1.016)
+				)
+			)
+		)
+		(property "Value" "10k"
+			(at 144.78 95.25 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Resistor_SMD:R_0603_1608Metric_Pad0.98x0.95mm_HandSolder"
+			(at 142.24 95.25 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 142.24 95.25 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Resistor, small symbol"
+			(at 142.24 95.25 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "2"
+			(uuid "b9d6a773-c706-43cf-80a0-6da7bc3143df")
+		)
+		(pin "1"
+			(uuid "dae5c9c5-6f96-4ce5-b052-fe038d2ccf7f")
+		)
+		(instances
+			(project "Ana_ESC2_OneGND_Layer"
+				(path "/57129761-6d47-486c-bd7a-90dbb6f75754/beeab9ba-c868-48bf-b621-5886b9552033"
+					(reference "R8")
 					(unit 1)
 				)
 			)

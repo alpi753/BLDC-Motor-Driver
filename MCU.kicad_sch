@@ -3192,6 +3192,566 @@
 			)
 			(embedded_fonts no)
 		)
+		(symbol "RMCF0603ZT0R00:RMCF0603ZT0R00"
+			(pin_names
+				(offset 1.016)
+			)
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(property "Reference" "R21"
+				(at 0 6.35 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Value" "0ohm"
+				(at 0 3.81 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Footprint" "RMCF0603ZT0R00:RESC1508X55N"
+				(at 0.254 -5.588 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify bottom)
+					(hide yes)
+				)
+			)
+			(property "Datasheet" ""
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Description" ""
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "MF" "Stackpole Electronics Inc"
+				(at 0.508 -6.096 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify bottom)
+					(hide yes)
+				)
+			)
+			(property "Description_1" "0 Ohms Jumper 0.1W, 1/10W Chip Resistor 0603 (1608 Metric) Automotive AEC-Q200 Thick Film"
+				(at 0.254 -5.588 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify bottom)
+					(hide yes)
+				)
+			)
+			(property "Package" "1508 Stackpole"
+				(at 0.254 -3.81 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify bottom)
+					(hide yes)
+				)
+			)
+			(property "Price" "None"
+				(at 0 -5.842 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify bottom)
+					(hide yes)
+				)
+			)
+			(property "SnapEDA_Link" "https://www.snapeda.com/parts/RMCF0603ZT0R00/Stackpole+Electronics/view-part/?ref=snap"
+				(at 0.254 -5.588 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify bottom)
+					(hide yes)
+				)
+			)
+			(property "MP" "RMCF0603ZT0R00"
+				(at 0 -4.826 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify bottom)
+					(hide yes)
+				)
+			)
+			(property "Purchase-URL" "https://www.snapeda.com/api/url_track_click_mouser/?unipart_id=3968849&manufacturer=Stackpole Electronics Inc&part_name=RMCF0603ZT0R00&search_term=rmcf0603zt0r00"
+				(at 0.254 -5.588 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify bottom)
+					(hide yes)
+				)
+			)
+			(property "Availability" "In Stock"
+				(at 0.254 -6.858 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify bottom)
+					(hide yes)
+				)
+			)
+			(property "Check_prices" "https://www.snapeda.com/parts/RMCF0603ZT0R00/Stackpole+Electronics/view-part/?ref=eda"
+				(at 0.254 -5.588 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify bottom)
+					(hide yes)
+				)
+			)
+			(symbol "RMCF0603ZT0R00_0_0"
+				(polyline
+					(pts
+						(xy -5.08 0) (xy -4.445 1.905)
+					)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy -4.445 1.905) (xy -3.175 -1.905)
+					)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy -3.175 -1.905) (xy -1.905 1.905)
+					)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy -1.905 1.905) (xy -0.635 -1.905)
+					)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy -0.635 -1.905) (xy 0.635 1.905)
+					)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 0.635 1.905) (xy 1.905 -1.905)
+					)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 1.905 -1.905) (xy 3.175 1.905)
+					)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 3.175 1.905) (xy 4.445 -1.905)
+					)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 4.445 -1.905) (xy 5.08 0)
+					)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+			)
+			(symbol "RMCF0603ZT0R00_1_0"
+				(pin passive line
+					(at -6.35 0 0)
+					(length 1.27)
+					(name "~"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 6.35 0 180)
+					(length 1.27)
+					(name "~"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+					(number "2"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+				)
+			)
+			(embedded_fonts no)
+		)
+		(symbol "RNCP0603FTD1K00:RNCP0603FTD1K00"
+			(pin_names
+				(offset 1.016)
+			)
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(property "Reference" "R5"
+				(at -1.016 1.016 90)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Value" "1k"
+				(at 1.524 0.508 90)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Footprint" "RNCP0603FTD1K00:RESC1508X50N"
+				(at -8.636 16.002 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify bottom)
+					(hide yes)
+				)
+			)
+			(property "Datasheet" ""
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Description" ""
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "DigiKey_Part_Number" "RNCP0603FTD1K00CT-ND"
+				(at -1.778 13.97 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify bottom)
+					(hide yes)
+				)
+			)
+			(property "SnapEDA_Link" ""
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify bottom)
+					(hide yes)
+				)
+			)
+			(property "Description_1" "1 kOhms ±1% 0.125W, 1/8W Chip Resistor 0603 (1608 Metric) Anti-Sulfur, Moisture Resistant Thin Film"
+				(at -8.636 16.002 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify bottom)
+					(hide yes)
+				)
+			)
+			(property "MF" "Stackpole Electronics Inc"
+				(at -1.778 13.97 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify bottom)
+					(hide yes)
+				)
+			)
+			(property "Package" "1508 Stackpole"
+				(at -1.778 13.97 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify bottom)
+					(hide yes)
+				)
+			)
+			(property "Check_prices" ""
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify bottom)
+					(hide yes)
+				)
+			)
+			(property "MP" "RNCP0603FTD1K00"
+				(at -1.778 13.97 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify bottom)
+					(hide yes)
+				)
+			)
+			(symbol "RNCP0603FTD1K00_0_0"
+				(polyline
+					(pts
+						(xy -2.54 -2.54) (xy -2.159 -1.524)
+					)
+					(stroke
+						(width 0.2032)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy -2.159 -1.524) (xy -1.524 -3.556)
+					)
+					(stroke
+						(width 0.2032)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy -1.524 -3.556) (xy -0.889 -1.524)
+					)
+					(stroke
+						(width 0.2032)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy -0.889 -1.524) (xy -0.254 -3.556)
+					)
+					(stroke
+						(width 0.2032)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy -0.254 -3.556) (xy 0.381 -1.524)
+					)
+					(stroke
+						(width 0.2032)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 0.381 -1.524) (xy 1.016 -3.556)
+					)
+					(stroke
+						(width 0.2032)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 1.016 -3.556) (xy 1.651 -1.524)
+					)
+					(stroke
+						(width 0.2032)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 1.651 -1.524) (xy 2.286 -3.556)
+					)
+					(stroke
+						(width 0.2032)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 2.286 -3.556) (xy 2.54 -2.54)
+					)
+					(stroke
+						(width 0.2032)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(pin passive line
+					(at -3.81 -2.54 0)
+					(length 1.27)
+					(name "~"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 3.81 -2.54 180)
+					(length 1.27)
+					(name "~"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+					(number "2"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+				)
+			)
+			(embedded_fonts no)
+		)
 		(symbol "Regulator_Linear:ME6211C33M5"
 			(exclude_from_sim no)
 			(in_bom yes)
@@ -5616,7 +6176,7 @@
 	)
 	(text "(GND2 guard ring)\n"
 		(exclude_from_sim no)
-		(at 171.45 112.522 0)
+		(at 182.88 112.522 0)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -5717,7 +6277,7 @@
 		(uuid "0093fb3e-1e71-4db3-bdac-464d37775e84")
 	)
 	(junction
-		(at 176.53 120.65)
+		(at 187.96 120.65)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "02d8478f-079c-40cc-b303-05b9f5214191")
@@ -5739,12 +6299,6 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "1e0a78e1-bfad-4662-bcb3-d6aef59f5bd5")
-	)
-	(junction
-		(at 234.95 160.02)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "249a540d-d463-446d-a8cf-32bd36c0fdca")
 	)
 	(junction
 		(at 53.34 50.8)
@@ -5769,12 +6323,6 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "442d780d-5fdb-4f23-8be1-8ae5c1014a2e")
-	)
-	(junction
-		(at 242.57 156.21)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "51b4cfa8-198c-4a65-9e3f-26639788aa52")
 	)
 	(junction
 		(at 142.875 41.275)
@@ -5831,6 +6379,12 @@
 		(uuid "90db8cfa-9c53-48c0-9c51-9ba249e674eb")
 	)
 	(junction
+		(at 242.57 157.48)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "91b8e98c-f7fe-4869-84b9-00298114f7b8")
+	)
+	(junction
 		(at 177.8 43.815)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -5849,16 +6403,16 @@
 		(uuid "9bf58f94-0c8d-46ec-960f-826800434ff5")
 	)
 	(junction
-		(at 254 161.29)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "9bfd5e1b-0f41-4be3-8c45-b8c3b42f0178")
-	)
-	(junction
 		(at 226.06 80.01)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "9dfc1d0d-bfea-4c30-810f-e6a94bb2ffcd")
+	)
+	(junction
+		(at 233.68 160.02)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "a3595446-400e-40f2-be00-845de6fe204e")
 	)
 	(junction
 		(at 82.55 29.21)
@@ -5891,7 +6445,19 @@
 		(uuid "d3846f78-e556-4457-88d6-651b7c907f59")
 	)
 	(junction
-		(at 166.37 120.65)
+		(at 242.57 156.21)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "d6c949b0-11d5-4777-af7a-b0feb916a884")
+	)
+	(junction
+		(at 251.46 161.29)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "daf20d54-a490-4f89-8a44-59e09040044b")
+	)
+	(junction
+		(at 177.8 120.65)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "e94dc887-9bb5-4f2f-a5a1-bd003cf63f5a")
@@ -6036,13 +6602,13 @@
 	)
 	(wire
 		(pts
-			(xy 234.95 156.21) (xy 236.22 156.21)
+			(xy 261.62 147.32) (xy 261.62 148.59)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "0509e1b7-55ca-4bfb-b720-ce60cc22c023")
+		(uuid "0319de91-3218-4bc0-b9eb-fcc9419ee221")
 	)
 	(wire
 		(pts
@@ -6053,6 +6619,16 @@
 			(type default)
 		)
 		(uuid "0634dcc1-5f75-48f4-8817-c9cfe1956ca8")
+	)
+	(wire
+		(pts
+			(xy 172.72 118.11) (xy 177.8 118.11)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "06515d26-f305-4b28-8da8-030de5963be6")
 	)
 	(wire
 		(pts
@@ -6226,7 +6802,7 @@
 	)
 	(wire
 		(pts
-			(xy 176.53 120.65) (xy 176.53 121.92)
+			(xy 187.96 120.65) (xy 187.96 121.92)
 		)
 		(stroke
 			(width 0)
@@ -6246,7 +6822,7 @@
 	)
 	(wire
 		(pts
-			(xy 166.37 118.11) (xy 166.37 120.65)
+			(xy 177.8 118.11) (xy 177.8 120.65)
 		)
 		(stroke
 			(width 0)
@@ -6306,7 +6882,7 @@
 	)
 	(wire
 		(pts
-			(xy 154.94 118.11) (xy 157.48 118.11)
+			(xy 154.94 118.11) (xy 160.02 118.11)
 		)
 		(stroke
 			(width 0)
@@ -6333,16 +6909,6 @@
 			(type default)
 		)
 		(uuid "2ad04e89-f676-48b6-81f0-951fc81e5a2c")
-	)
-	(wire
-		(pts
-			(xy 234.95 160.02) (xy 234.95 156.21)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "2b58cf5f-d878-408b-a0d1-384b67c04614")
 	)
 	(wire
 		(pts
@@ -6536,16 +7102,6 @@
 	)
 	(wire
 		(pts
-			(xy 254 157.48) (xy 255.27 157.48)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "4287e255-94d1-4ece-8764-ed0c28925974")
-	)
-	(wire
-		(pts
 			(xy 154.94 62.23) (xy 170.18 62.23)
 		)
 		(stroke
@@ -6646,6 +7202,16 @@
 	)
 	(wire
 		(pts
+			(xy 154.94 115.57) (xy 187.96 115.57)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "5a4565f8-031d-43ef-9447-a76a37158de9")
+	)
+	(wire
+		(pts
 			(xy 196.85 147.32) (xy 196.85 146.05)
 		)
 		(stroke
@@ -6693,16 +7259,6 @@
 			(type default)
 		)
 		(uuid "6709a278-3ce4-4a90-91bd-b2aa854c9bb6")
-	)
-	(wire
-		(pts
-			(xy 242.57 160.02) (xy 242.57 156.21)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "6a1f086c-d5c3-459c-b0a0-792a5a000775")
 	)
 	(wire
 		(pts
@@ -7146,23 +7702,13 @@
 	)
 	(wire
 		(pts
-			(xy 241.3 156.21) (xy 242.57 156.21)
+			(xy 251.46 157.48) (xy 251.46 161.29)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "aeb45806-7f62-4038-a00c-64c557094d7c")
-	)
-	(wire
-		(pts
-			(xy 162.56 118.11) (xy 166.37 118.11)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "b0272672-fbfc-47e3-b23e-989b92ff6aaf")
+		(uuid "af479c9e-f0b8-489a-94ce-6ad7a4026090")
 	)
 	(wire
 		(pts
@@ -7176,7 +7722,7 @@
 	)
 	(wire
 		(pts
-			(xy 166.37 120.65) (xy 166.37 121.92)
+			(xy 177.8 120.65) (xy 177.8 121.92)
 		)
 		(stroke
 			(width 0)
@@ -7213,6 +7759,16 @@
 			(type default)
 		)
 		(uuid "b7727267-bcd3-4a10-b198-21accff3de7e")
+	)
+	(wire
+		(pts
+			(xy 243.84 157.48) (xy 242.57 157.48)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "b9e8e296-e870-4edd-ad8a-5e608dfe1eec")
 	)
 	(wire
 		(pts
@@ -7266,13 +7822,13 @@
 	)
 	(wire
 		(pts
-			(xy 260.35 157.48) (xy 261.62 157.48)
+			(xy 242.57 157.48) (xy 242.57 160.02)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "bc1be25a-ef4c-4a96-b839-ce727fad6235")
+		(uuid "bc65cdac-9271-46fb-88c7-02da1c46052d")
 	)
 	(wire
 		(pts
@@ -7283,6 +7839,16 @@
 			(type default)
 		)
 		(uuid "bd5fab98-41a2-4a33-bf63-7fb0d852a8c6")
+	)
+	(wire
+		(pts
+			(xy 242.57 157.48) (xy 242.57 156.21)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "c05b1d23-dd93-4c1d-8fb0-4fb92b48ad53")
 	)
 	(wire
 		(pts
@@ -7323,6 +7889,16 @@
 			(type default)
 		)
 		(uuid "c2a80724-d0f7-46dc-9119-f32d8e7f9d85")
+	)
+	(wire
+		(pts
+			(xy 241.3 156.21) (xy 242.57 156.21)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "c2d0ea12-63be-47f9-9655-b6e396eb20f7")
 	)
 	(wire
 		(pts
@@ -7406,7 +7982,7 @@
 	)
 	(wire
 		(pts
-			(xy 234.95 160.02) (xy 236.22 160.02)
+			(xy 233.68 160.02) (xy 236.22 160.02)
 		)
 		(stroke
 			(width 0)
@@ -7416,7 +7992,7 @@
 	)
 	(wire
 		(pts
-			(xy 176.53 115.57) (xy 176.53 120.65)
+			(xy 187.96 115.57) (xy 187.96 120.65)
 		)
 		(stroke
 			(width 0)
@@ -7486,7 +8062,7 @@
 	)
 	(wire
 		(pts
-			(xy 254 161.29) (xy 255.27 161.29)
+			(xy 251.46 161.29) (xy 255.27 161.29)
 		)
 		(stroke
 			(width 0)
@@ -7516,6 +8092,16 @@
 	)
 	(wire
 		(pts
+			(xy 233.68 156.21) (xy 233.68 160.02)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "de74ea75-f2c5-4a4c-82b1-2b4511f9b320")
+	)
+	(wire
+		(pts
 			(xy 71.12 60.96) (xy 71.12 62.23)
 		)
 		(stroke
@@ -7526,13 +8112,13 @@
 	)
 	(wire
 		(pts
-			(xy 254 161.29) (xy 254 157.48)
+			(xy 259.08 157.48) (xy 261.62 157.48)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "e1ef90b4-fba6-452f-bb8f-3d0bee95fdb1")
+		(uuid "e11fbc03-34e9-460e-8e92-ecbf85de9a35")
 	)
 	(wire
 		(pts
@@ -7726,13 +8312,13 @@
 	)
 	(wire
 		(pts
-			(xy 154.94 115.57) (xy 176.53 115.57)
+			(xy 261.62 154.94) (xy 261.62 157.48)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "fed38bf4-487c-4965-a81d-6599b220063f")
+		(uuid "ff1aa253-1722-4580-8c6b-96106aeb6090")
 	)
 	(image
 		(at 320.04 54.61)
@@ -12110,10 +12696,10 @@
 		(uuid "b6263b35-45b6-4721-a47d-6276addc9b9d")
 	)
 	(label "NTC_MTR"
-		(at 242.57 156.21 0)
+		(at 243.84 157.48 0)
 		(effects
 			(font
-				(size 1.27 1.27)
+				(size 0.762 0.762)
 			)
 			(justify left bottom)
 		)
@@ -12619,7 +13205,7 @@
 	)
 	(symbol
 		(lib_id "Device:Thermistor_NTC")
-		(at 261.62 153.67 0)
+		(at 261.62 151.13 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -12628,7 +13214,7 @@
 		(fields_autoplaced yes)
 		(uuid "008be4b6-7dfe-4fc6-aa1c-2c4048bbac38")
 		(property "Reference" "TH1"
-			(at 264.16 152.7174 0)
+			(at 264.16 150.1774 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -12637,7 +13223,7 @@
 			)
 		)
 		(property "Value" "ERT-J1VG103FA"
-			(at 264.16 155.2574 0)
+			(at 264.16 152.7174 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -12647,7 +13233,7 @@
 			)
 		)
 		(property "Footprint" "Resistor_SMD:R_0603_1608Metric"
-			(at 261.62 152.4 0)
+			(at 261.62 149.86 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -12656,7 +13242,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 261.62 152.4 0)
+			(at 261.62 149.86 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -12665,7 +13251,7 @@
 			)
 		)
 		(property "Description" "Temperature dependent resistor, negative temperature coefficient"
-			(at 261.62 153.67 0)
+			(at 261.62 151.13 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -12683,77 +13269,6 @@
 			(project "Ana_ESC"
 				(path "/57129761-6d47-486c-bd7a-90dbb6f75754/223db1af-68f5-46b9-9722-256b09606f21"
 					(reference "TH1")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Device:R_Small")
-		(at 257.81 157.48 270)
-		(mirror x)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "00f87ba0-314e-4121-b783-8a7d9eec3180")
-		(property "Reference" "R28"
-			(at 259.0801 154.94 0)
-			(effects
-				(font
-					(size 1.016 1.016)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "R_Small"
-			(at 256.5401 154.94 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" "Resistor_SMD:R_0603_1608Metric_Pad0.98x0.95mm_HandSolder"
-			(at 257.81 157.48 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 257.81 157.48 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Resistor, small symbol"
-			(at 257.81 157.48 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "8798ceb7-cf72-4184-a871-09105fd54c03")
-		)
-		(pin "2"
-			(uuid "6910aac2-3b8a-4c63-8360-469a720a2bd3")
-		)
-		(instances
-			(project "Ana_ESC"
-				(path "/57129761-6d47-486c-bd7a-90dbb6f75754/223db1af-68f5-46b9-9722-256b09606f21"
-					(reference "R28")
 					(unit 1)
 				)
 			)
@@ -13303,7 +13818,7 @@
 	)
 	(symbol
 		(lib_id "power:GND")
-		(at 234.95 160.02 0)
+		(at 233.68 160.02 0)
 		(mirror y)
 		(unit 1)
 		(exclude_from_sim no)
@@ -13312,7 +13827,7 @@
 		(dnp no)
 		(uuid "1502582c-5565-4c09-b1a9-898ebe59e784")
 		(property "Reference" "#PWR054"
-			(at 234.95 166.37 0)
+			(at 233.68 166.37 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -13321,7 +13836,7 @@
 			)
 		)
 		(property "Value" "GND2"
-			(at 233.172 163.322 0)
+			(at 231.902 163.322 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -13330,7 +13845,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 234.95 160.02 0)
+			(at 233.68 160.02 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -13339,7 +13854,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 234.95 160.02 0)
+			(at 233.68 160.02 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -13348,7 +13863,7 @@
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
-			(at 234.95 160.02 0)
+			(at 233.68 160.02 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -13450,7 +13965,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "1u"
+		(property "Value" "1uF"
 			(at 106.68 35.56 0)
 			(effects
 				(font
@@ -13546,7 +14061,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "~"
+		(property "Datasheet" ""
 			(at 232.41 132.08 0)
 			(effects
 				(font
@@ -13608,7 +14123,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Capacitor_SMD:C_0603_1608Metric"
+		(property "Footprint" "Capacitor_SMD:C_0603_1608Metric_Pad1.08x0.95mm_HandSolder"
 			(at 237.1852 74.93 0)
 			(effects
 				(font
@@ -13753,7 +14268,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Capacitor_SMD:C_0603_1608Metric_Pad1.08x0.95mm_HandSolder"
+		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder"
 			(at 152.4 38.1 0)
 			(effects
 				(font
@@ -13868,77 +14383,6 @@
 		)
 	)
 	(symbol
-		(lib_id "Device:R_Small")
-		(at 238.76 156.21 270)
-		(mirror x)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "26473859-3902-4e55-a615-d91c6fcc22fc")
-		(property "Reference" "R25"
-			(at 240.0301 153.67 0)
-			(effects
-				(font
-					(size 1.016 1.016)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "R_Small"
-			(at 237.4901 153.67 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" "Resistor_SMD:R_0603_1608Metric_Pad0.98x0.95mm_HandSolder"
-			(at 238.76 156.21 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 238.76 156.21 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Resistor, small symbol"
-			(at 238.76 156.21 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "515f067c-6549-4848-8fff-4586f66ec75e")
-		)
-		(pin "2"
-			(uuid "68341fe5-af03-4726-afc0-cadb5cec0ff2")
-		)
-		(instances
-			(project "Ana_ESC"
-				(path "/57129761-6d47-486c-bd7a-90dbb6f75754/223db1af-68f5-46b9-9722-256b09606f21"
-					(reference "R25")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "power:GND")
 		(at 236.22 74.93 0)
 		(unit 1)
@@ -14037,7 +14481,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "~"
+		(property "Datasheet" ""
 			(at 71.12 58.42 0)
 			(effects
 				(font
@@ -14427,7 +14871,7 @@
 	)
 	(symbol
 		(lib_id "power:GND")
-		(at 166.37 127 0)
+		(at 177.8 127 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -14436,7 +14880,7 @@
 		(fields_autoplaced yes)
 		(uuid "3fa76982-1a93-463e-af88-a1446e3bca9e")
 		(property "Reference" "#PWR037"
-			(at 166.37 133.35 0)
+			(at 177.8 133.35 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -14445,7 +14889,7 @@
 			)
 		)
 		(property "Value" "GND2"
-			(at 166.37 132.08 0)
+			(at 177.8 132.08 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -14453,7 +14897,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 166.37 127 0)
+			(at 177.8 127 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -14462,7 +14906,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 166.37 127 0)
+			(at 177.8 127 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -14471,7 +14915,7 @@
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
-			(at 166.37 127 0)
+			(at 177.8 127 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -14720,7 +15164,7 @@
 				(justify right)
 			)
 		)
-		(property "Footprint" "Capacitor_SMD:C_0603_1608Metric_Pad1.08x0.95mm_HandSolder"
+		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder"
 			(at 196.85 38.1 0)
 			(effects
 				(font
@@ -14915,42 +15359,43 @@
 		)
 	)
 	(symbol
-		(lib_id "power:+3.3V")
-		(at 261.62 149.86 0)
+		(lib_id "RMCF0603ZT0R00:RMCF0603ZT0R00")
+		(at 166.37 118.11 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "5603ff8b-777d-4844-b257-4d1f35d6c3e7")
-		(property "Reference" "#PWR062"
-			(at 261.62 153.67 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Value" "+3.3V"
-			(at 261.62 146.05 0)
+		(fields_autoplaced yes)
+		(uuid "55cc965a-3626-46cb-b5ab-e435e0dba18d")
+		(property "Reference" "R21"
+			(at 166.37 111.76 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 			)
 		)
-		(property "Footprint" ""
-			(at 261.62 149.86 0)
+		(property "Value" "0ohm"
+			(at 166.37 114.3 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
+			)
+		)
+		(property "Footprint" "RMCF0603ZT0R00:RESC1508X55N"
+			(at 166.624 123.698 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
 				(hide yes)
 			)
 		)
 		(property "Datasheet" ""
-			(at 261.62 149.86 0)
+			(at 166.37 118.11 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -14959,7 +15404,165 @@
 			)
 		)
 		(property "Description" ""
-			(at 261.62 149.86 0)
+			(at 166.37 118.11 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MF" "Stackpole Electronics Inc"
+			(at 166.878 124.206 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+				(hide yes)
+			)
+		)
+		(property "Description_1" "0 Ohms Jumper 0.1W, 1/10W Chip Resistor 0603 (1608 Metric) Automotive AEC-Q200 Thick Film"
+			(at 166.624 123.698 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+				(hide yes)
+			)
+		)
+		(property "Package" "1508 Stackpole"
+			(at 166.624 121.92 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+				(hide yes)
+			)
+		)
+		(property "Price" "None"
+			(at 166.37 123.952 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+				(hide yes)
+			)
+		)
+		(property "SnapEDA_Link" "https://www.snapeda.com/parts/RMCF0603ZT0R00/Stackpole+Electronics/view-part/?ref=snap"
+			(at 166.624 123.698 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+				(hide yes)
+			)
+		)
+		(property "MP" "RMCF0603ZT0R00"
+			(at 166.37 122.936 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+				(hide yes)
+			)
+		)
+		(property "Purchase-URL" "https://www.snapeda.com/api/url_track_click_mouser/?unipart_id=3968849&manufacturer=Stackpole Electronics Inc&part_name=RMCF0603ZT0R00&search_term=rmcf0603zt0r00"
+			(at 166.624 123.698 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+				(hide yes)
+			)
+		)
+		(property "Availability" "In Stock"
+			(at 166.624 124.968 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+				(hide yes)
+			)
+		)
+		(property "Check_prices" "https://www.snapeda.com/parts/RMCF0603ZT0R00/Stackpole+Electronics/view-part/?ref=eda"
+			(at 166.624 123.698 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+				(hide yes)
+			)
+		)
+		(pin "2"
+			(uuid "1eda4238-74a0-44b6-9229-89cba786e41b")
+		)
+		(pin "1"
+			(uuid "20d26867-cf84-41d0-b71d-a29a5593f4eb")
+		)
+		(instances
+			(project "Ana_ESC2_OneGND_Layer"
+				(path "/57129761-6d47-486c-bd7a-90dbb6f75754/223db1af-68f5-46b9-9722-256b09606f21"
+					(reference "R21")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:+3.3V")
+		(at 261.62 148.59 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "5603ff8b-777d-4844-b257-4d1f35d6c3e7")
+		(property "Reference" "#PWR062"
+			(at 261.62 152.4 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "+3.3V"
+			(at 261.62 144.78 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 261.62 148.59 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 261.62 148.59 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" ""
+			(at 261.62 148.59 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -14996,7 +15599,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "100n"
+		(property "Value" "100nF"
 			(at 172.72 67.31 0)
 			(effects
 				(font
@@ -15005,7 +15608,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Capacitor_SMD:C_0603_1608Metric_Pad1.08x0.95mm_HandSolder"
+		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder"
 			(at 170.18 66.04 0)
 			(effects
 				(font
@@ -15305,7 +15908,7 @@
 				(justify right)
 			)
 		)
-		(property "Footprint" "Capacitor_SMD:C_0603_1608Metric"
+		(property "Footprint" "Capacitor_SMD:C_0603_1608Metric_Pad1.08x0.95mm_HandSolder"
 			(at 257.81 161.29 0)
 			(effects
 				(font
@@ -15478,7 +16081,7 @@
 	)
 	(symbol
 		(lib_id "power:GND")
-		(at 176.53 127 0)
+		(at 187.96 127 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -15487,7 +16090,7 @@
 		(fields_autoplaced yes)
 		(uuid "66670b98-61d3-4d45-9f39-38e54d0db468")
 		(property "Reference" "#PWR040"
-			(at 176.53 133.35 0)
+			(at 187.96 133.35 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -15496,7 +16099,7 @@
 			)
 		)
 		(property "Value" "GND2"
-			(at 176.53 132.08 0)
+			(at 187.96 132.08 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -15504,7 +16107,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 176.53 127 0)
+			(at 187.96 127 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -15513,7 +16116,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 176.53 127 0)
+			(at 187.96 127 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -15522,7 +16125,7 @@
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
-			(at 176.53 127 0)
+			(at 187.96 127 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -15639,7 +16242,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Capacitor_SMD:C_0603_1608Metric_Pad1.08x0.95mm_HandSolder"
+		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder"
 			(at 142.875 38.1 0)
 			(effects
 				(font
@@ -16049,7 +16652,7 @@
 	)
 	(symbol
 		(lib_id "Device:C_Small")
-		(at 176.53 124.46 0)
+		(at 187.96 124.46 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -16058,7 +16661,7 @@
 		(fields_autoplaced yes)
 		(uuid "73cfcf19-e745-4600-87ba-30a068b19989")
 		(property "Reference" "C27"
-			(at 179.07 123.1962 0)
+			(at 190.5 123.1962 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -16067,7 +16670,7 @@
 			)
 		)
 		(property "Value" "33pF"
-			(at 179.07 125.7362 0)
+			(at 190.5 125.7362 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -16076,7 +16679,7 @@
 			)
 		)
 		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder"
-			(at 176.53 124.46 0)
+			(at 187.96 124.46 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -16085,7 +16688,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 176.53 124.46 0)
+			(at 187.96 124.46 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -16094,7 +16697,7 @@
 			)
 		)
 		(property "Description" "Unpolarized capacitor, small symbol"
-			(at 176.53 124.46 0)
+			(at 187.96 124.46 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -16726,7 +17329,7 @@
 	)
 	(symbol
 		(lib_id "ECS-80-20-5PX-TR:ECS-80-20-5PX-TR")
-		(at 171.45 120.65 0)
+		(at 182.88 120.65 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -16735,7 +17338,7 @@
 		(fields_autoplaced yes)
 		(uuid "95be2779-c97f-4b2e-9c1c-cb729ac3d4b1")
 		(property "Reference" "Y1"
-			(at 171.45 114.3 0)
+			(at 182.88 114.3 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -16743,7 +17346,7 @@
 			)
 		)
 		(property "Value" "ECS-80-20-5PX-TR"
-			(at 171.45 116.84 0)
+			(at 182.88 116.84 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -16751,7 +17354,7 @@
 			)
 		)
 		(property "Footprint" "ECS-80-20-5PX-TR:XTAL_ECS-80-20-5PX-TR"
-			(at 171.45 120.65 0)
+			(at 182.88 120.65 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -16761,7 +17364,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 171.45 120.65 0)
+			(at 182.88 120.65 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -16770,7 +17373,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 171.45 120.65 0)
+			(at 182.88 120.65 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -16779,7 +17382,7 @@
 			)
 		)
 		(property "MF" "ECS Inc."
-			(at 171.45 120.65 0)
+			(at 182.88 120.65 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -16789,7 +17392,7 @@
 			)
 		)
 		(property "Description_1" "8 MHz ±30ppm Crystal 20pF 60 Ohms HC-49/US"
-			(at 171.45 120.65 0)
+			(at 182.88 120.65 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -16799,7 +17402,7 @@
 			)
 		)
 		(property "Package" "CSM-7X-3L-5G3X-2 ECS"
-			(at 171.45 120.65 0)
+			(at 182.88 120.65 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -16809,7 +17412,7 @@
 			)
 		)
 		(property "Price" "None"
-			(at 171.45 120.65 0)
+			(at 182.88 120.65 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -16819,7 +17422,7 @@
 			)
 		)
 		(property "Check_prices" "https://www.snapeda.com/parts/ECS-80-20-5PX-TR/ECS/view-part/?ref=eda"
-			(at 171.45 120.65 0)
+			(at 182.88 120.65 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -16829,7 +17432,7 @@
 			)
 		)
 		(property "STANDARD" "Manufacturer recommendations"
-			(at 171.45 120.65 0)
+			(at 182.88 120.65 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -16839,7 +17442,7 @@
 			)
 		)
 		(property "PARTREV" "2017"
-			(at 171.45 120.65 0)
+			(at 182.88 120.65 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -16849,7 +17452,7 @@
 			)
 		)
 		(property "SnapEDA_Link" "https://www.snapeda.com/parts/ECS-80-20-5PX-TR/ECS/view-part/?ref=snap"
-			(at 171.45 120.65 0)
+			(at 182.88 120.65 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -16859,7 +17462,7 @@
 			)
 		)
 		(property "MP" "ECS-80-20-5PX-TR"
-			(at 171.45 120.65 0)
+			(at 182.88 120.65 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -16869,7 +17472,7 @@
 			)
 		)
 		(property "Purchase-URL" "https://www.snapeda.com/api/url_track_click_mouser/?unipart_id=2460571&manufacturer=ECS Inc.&part_name=ECS-80-20-5PX-TR&search_term=ecs-80-20-5px-tr"
-			(at 171.45 120.65 0)
+			(at 182.88 120.65 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -16879,7 +17482,7 @@
 			)
 		)
 		(property "Availability" "In Stock"
-			(at 171.45 120.65 0)
+			(at 182.88 120.65 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -16889,7 +17492,7 @@
 			)
 		)
 		(property "MANUFACTURER" "ECS INC."
-			(at 171.45 120.65 0)
+			(at 182.88 120.65 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -17077,7 +17680,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Capacitor_SMD:C_0603_1608Metric_Pad1.08x0.95mm_HandSolder"
+		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder"
 			(at 133.35 38.1 0)
 			(effects
 				(font
@@ -17283,7 +17886,7 @@
 	)
 	(symbol
 		(lib_id "Device:C_Small")
-		(at 166.37 124.46 0)
+		(at 177.8 124.46 0)
 		(mirror y)
 		(unit 1)
 		(exclude_from_sim no)
@@ -17292,7 +17895,7 @@
 		(dnp no)
 		(uuid "a9e04ef0-274a-4741-8285-98ace2938670")
 		(property "Reference" "C25"
-			(at 163.83 123.1962 0)
+			(at 182.88 123.444 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -17301,7 +17904,7 @@
 			)
 		)
 		(property "Value" "33pF"
-			(at 163.83 125.7362 0)
+			(at 183.896 126.238 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -17310,7 +17913,7 @@
 			)
 		)
 		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder"
-			(at 166.37 124.46 0)
+			(at 177.8 124.46 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -17319,7 +17922,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 166.37 124.46 0)
+			(at 177.8 124.46 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -17328,7 +17931,7 @@
 			)
 		)
 		(property "Description" "Unpolarized capacitor, small symbol"
-			(at 166.37 124.46 0)
+			(at 177.8 124.46 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -18037,6 +18640,144 @@
 		)
 	)
 	(symbol
+		(lib_id "RNCP0603FTD1K00:RNCP0603FTD1K00")
+		(at 255.27 154.94 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "ca9165ca-5b29-476f-a552-3eddf6cb7ce4")
+		(property "Reference" "R28"
+			(at 254.254 153.924 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "1k"
+			(at 256.794 154.432 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Resistor_SMD:R_0603_1608Metric_Pad0.98x0.95mm_HandSolder"
+			(at 246.634 138.938 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 255.27 154.94 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" ""
+			(at 255.27 154.94 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "DigiKey_Part_Number" "RNCP0603FTD1K00CT-ND"
+			(at 253.492 140.97 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+				(hide yes)
+			)
+		)
+		(property "SnapEDA_Link" ""
+			(at 255.27 154.94 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+				(hide yes)
+			)
+		)
+		(property "Description_1" "1 kOhms ±1% 0.125W, 1/8W Chip Resistor 0603 (1608 Metric) Anti-Sulfur, Moisture Resistant Thin Film"
+			(at 246.634 138.938 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+				(hide yes)
+			)
+		)
+		(property "MF" "Stackpole Electronics Inc"
+			(at 253.492 140.97 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+				(hide yes)
+			)
+		)
+		(property "Package" "1508 Stackpole"
+			(at 253.492 140.97 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+				(hide yes)
+			)
+		)
+		(property "Check_prices" ""
+			(at 255.27 154.94 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+				(hide yes)
+			)
+		)
+		(property "MP" "RNCP0603FTD1K00"
+			(at 253.492 140.97 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "b4d5982d-c73f-499e-a5d6-0e000db5a6fb")
+		)
+		(pin "2"
+			(uuid "cd708cca-cf65-4b78-8a2e-8bfb1688ed40")
+		)
+		(instances
+			(project "Ana_ESC2_OneGND_Layer"
+				(path "/57129761-6d47-486c-bd7a-90dbb6f75754/223db1af-68f5-46b9-9722-256b09606f21"
+					(reference "R28")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "power:+3.3VA")
 		(at 163.83 52.07 0)
 		(unit 1)
@@ -18198,7 +18939,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "~"
+		(property "Datasheet" ""
 			(at 242.57 41.91 0)
 			(effects
 				(font
@@ -18259,7 +19000,7 @@
 				(justify right)
 			)
 		)
-		(property "Footprint" "Capacitor_SMD:C_0603_1608Metric"
+		(property "Footprint" "Capacitor_SMD:C_0603_1608Metric_Pad1.08x0.95mm_HandSolder"
 			(at 238.76 160.02 0)
 			(effects
 				(font
@@ -18329,7 +19070,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Capacitor_SMD:C_0603_1608Metric"
+		(property "Footprint" "Capacitor_SMD:C_0603_1608Metric_Pad1.08x0.95mm_HandSolder"
 			(at 58.1152 58.42 0)
 			(effects
 				(font
@@ -18775,7 +19516,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "~"
+		(property "Datasheet" ""
 			(at 207.01 127 0)
 			(effects
 				(font
@@ -18851,7 +19592,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "~"
+		(property "Datasheet" ""
 			(at 68.58 58.42 0)
 			(effects
 				(font
@@ -18980,7 +19721,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "1u"
+		(property "Value" "1uF"
 			(at 80.01 35.56 0)
 			(effects
 				(font
@@ -19041,7 +19782,7 @@
 	)
 	(symbol
 		(lib_id "power:GND")
-		(at 254 161.29 0)
+		(at 251.46 161.29 0)
 		(mirror y)
 		(unit 1)
 		(exclude_from_sim no)
@@ -19050,7 +19791,7 @@
 		(dnp no)
 		(uuid "f0e18ed4-8c21-4a26-9f4a-84edb9169754")
 		(property "Reference" "#PWR059"
-			(at 254 167.64 0)
+			(at 251.46 167.64 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -19059,7 +19800,7 @@
 			)
 		)
 		(property "Value" "GND2"
-			(at 252.222 164.592 0)
+			(at 249.682 164.592 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -19068,7 +19809,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 254 161.29 0)
+			(at 251.46 161.29 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -19077,7 +19818,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 254 161.29 0)
+			(at 251.46 161.29 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -19086,7 +19827,7 @@
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
-			(at 254 161.29 0)
+			(at 251.46 161.29 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -19176,41 +19917,42 @@
 		)
 	)
 	(symbol
-		(lib_id "Device:R_Small")
-		(at 160.02 118.11 270)
+		(lib_id "RNCP0603FTD1K00:RNCP0603FTD1K00")
+		(at 237.49 153.67 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "fb68db53-829a-443b-aa4f-de7e4781a056")
-		(property "Reference" "R21"
-			(at 160.02 118.11 90)
+		(uuid "f5e1a4a0-0e95-467f-8c13-53aaf6478cbc")
+		(property "Reference" "R25"
+			(at 236.474 152.654 90)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 			)
 		)
-		(property "Value" "0 ohm"
-			(at 160.274 119.888 90)
+		(property "Value" "1k"
+			(at 239.014 153.162 90)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 			)
 		)
-		(property "Footprint" "RMCF0603ZT0R00:RESC1508X55N"
-			(at 160.02 118.11 0)
+		(property "Footprint" "Resistor_SMD:R_0603_1608Metric_Pad0.98x0.95mm_HandSolder"
+			(at 228.854 137.668 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
+				(justify bottom)
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "~"
-			(at 160.02 118.11 0)
+		(property "Datasheet" ""
+			(at 237.49 153.67 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -19219,15 +19961,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 160.02 118.11 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "LCSC Part #" "C25744"
-			(at 160.02 118.11 0)
+			(at 237.49 153.67 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -19235,16 +19969,86 @@
 				(hide yes)
 			)
 		)
+		(property "DigiKey_Part_Number" "RNCP0603FTD1K00CT-ND"
+			(at 235.712 139.7 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+				(hide yes)
+			)
+		)
+		(property "SnapEDA_Link" ""
+			(at 237.49 153.67 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+				(hide yes)
+			)
+		)
+		(property "Description_1" "1 kOhms ±1% 0.125W, 1/8W Chip Resistor 0603 (1608 Metric) Anti-Sulfur, Moisture Resistant Thin Film"
+			(at 228.854 137.668 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+				(hide yes)
+			)
+		)
+		(property "MF" "Stackpole Electronics Inc"
+			(at 235.712 139.7 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+				(hide yes)
+			)
+		)
+		(property "Package" "1508 Stackpole"
+			(at 235.712 139.7 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+				(hide yes)
+			)
+		)
+		(property "Check_prices" ""
+			(at 237.49 153.67 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+				(hide yes)
+			)
+		)
+		(property "MP" "RNCP0603FTD1K00"
+			(at 235.712 139.7 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+				(hide yes)
+			)
+		)
 		(pin "1"
-			(uuid "0dc12e12-8eea-4270-a686-5716fe4a596b")
+			(uuid "f01552ec-217e-4b3f-8e86-bf40e0029ecd")
 		)
 		(pin "2"
-			(uuid "9db03237-fffc-4ed3-a73e-e6216a682fe8")
+			(uuid "408fdcf2-f654-44ae-b252-4e3a8ae4a008")
 		)
 		(instances
-			(project "Ana_ESC"
+			(project "Ana_ESC2_OneGND_Layer"
 				(path "/57129761-6d47-486c-bd7a-90dbb6f75754/223db1af-68f5-46b9-9722-256b09606f21"
-					(reference "R21")
+					(reference "R25")
 					(unit 1)
 				)
 			)
