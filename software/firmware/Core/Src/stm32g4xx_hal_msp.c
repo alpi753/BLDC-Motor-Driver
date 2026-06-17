@@ -236,6 +236,51 @@ void HAL_ADC_MspDeInit(ADC_HandleTypeDef* hadc)
 }
 
 /**
+  * @brief CORDIC MSP Initialization
+  * This function configures the hardware resources used in this example
+  * @param hcordic: CORDIC handle pointer
+  * @retval None
+  */
+void HAL_CORDIC_MspInit(CORDIC_HandleTypeDef* hcordic)
+{
+  if(hcordic->Instance==CORDIC)
+  {
+    /* USER CODE BEGIN CORDIC_MspInit 0 */
+
+    /* USER CODE END CORDIC_MspInit 0 */
+    /* Peripheral clock enable */
+    __HAL_RCC_CORDIC_CLK_ENABLE();
+    /* USER CODE BEGIN CORDIC_MspInit 1 */
+
+    /* USER CODE END CORDIC_MspInit 1 */
+
+  }
+
+}
+
+/**
+  * @brief CORDIC MSP De-Initialization
+  * This function freeze the hardware resources used in this example
+  * @param hcordic: CORDIC handle pointer
+  * @retval None
+  */
+void HAL_CORDIC_MspDeInit(CORDIC_HandleTypeDef* hcordic)
+{
+  if(hcordic->Instance==CORDIC)
+  {
+    /* USER CODE BEGIN CORDIC_MspDeInit 0 */
+
+    /* USER CODE END CORDIC_MspDeInit 0 */
+    /* Peripheral clock disable */
+    __HAL_RCC_CORDIC_CLK_DISABLE();
+    /* USER CODE BEGIN CORDIC_MspDeInit 1 */
+
+    /* USER CODE END CORDIC_MspDeInit 1 */
+  }
+
+}
+
+/**
   * @brief FDCAN MSP Initialization
   * This function configures the hardware resources used in this example
   * @param hfdcan: FDCAN handle pointer
@@ -308,6 +353,51 @@ void HAL_FDCAN_MspDeInit(FDCAN_HandleTypeDef* hfdcan)
     /* USER CODE BEGIN FDCAN1_MspDeInit 1 */
 
     /* USER CODE END FDCAN1_MspDeInit 1 */
+  }
+
+}
+
+/**
+  * @brief FMAC MSP Initialization
+  * This function configures the hardware resources used in this example
+  * @param hfmac: FMAC handle pointer
+  * @retval None
+  */
+void HAL_FMAC_MspInit(FMAC_HandleTypeDef* hfmac)
+{
+  if(hfmac->Instance==FMAC)
+  {
+    /* USER CODE BEGIN FMAC_MspInit 0 */
+
+    /* USER CODE END FMAC_MspInit 0 */
+    /* Peripheral clock enable */
+    __HAL_RCC_FMAC_CLK_ENABLE();
+    /* USER CODE BEGIN FMAC_MspInit 1 */
+
+    /* USER CODE END FMAC_MspInit 1 */
+
+  }
+
+}
+
+/**
+  * @brief FMAC MSP De-Initialization
+  * This function freeze the hardware resources used in this example
+  * @param hfmac: FMAC handle pointer
+  * @retval None
+  */
+void HAL_FMAC_MspDeInit(FMAC_HandleTypeDef* hfmac)
+{
+  if(hfmac->Instance==FMAC)
+  {
+    /* USER CODE BEGIN FMAC_MspDeInit 0 */
+
+    /* USER CODE END FMAC_MspDeInit 0 */
+    /* Peripheral clock disable */
+    __HAL_RCC_FMAC_CLK_DISABLE();
+    /* USER CODE BEGIN FMAC_MspDeInit 1 */
+
+    /* USER CODE END FMAC_MspDeInit 1 */
   }
 
 }
@@ -394,6 +484,62 @@ void HAL_I2C_MspDeInit(I2C_HandleTypeDef* hi2c)
     /* USER CODE BEGIN I2C1_MspDeInit 1 */
 
     /* USER CODE END I2C1_MspDeInit 1 */
+  }
+
+}
+
+/**
+  * @brief RNG MSP Initialization
+  * This function configures the hardware resources used in this example
+  * @param hrng: RNG handle pointer
+  * @retval None
+  */
+void HAL_RNG_MspInit(RNG_HandleTypeDef* hrng)
+{
+  RCC_PeriphCLKInitTypeDef PeriphClkInit = {0};
+  if(hrng->Instance==RNG)
+  {
+    /* USER CODE BEGIN RNG_MspInit 0 */
+
+    /* USER CODE END RNG_MspInit 0 */
+
+  /** Initializes the peripherals clocks
+  */
+    PeriphClkInit.PeriphClockSelection = RCC_PERIPHCLK_RNG;
+    PeriphClkInit.RngClockSelection = RCC_RNGCLKSOURCE_HSI48;
+    if (HAL_RCCEx_PeriphCLKConfig(&PeriphClkInit) != HAL_OK)
+    {
+      Error_Handler();
+    }
+
+    /* Peripheral clock enable */
+    __HAL_RCC_RNG_CLK_ENABLE();
+    /* USER CODE BEGIN RNG_MspInit 1 */
+
+    /* USER CODE END RNG_MspInit 1 */
+
+  }
+
+}
+
+/**
+  * @brief RNG MSP De-Initialization
+  * This function freeze the hardware resources used in this example
+  * @param hrng: RNG handle pointer
+  * @retval None
+  */
+void HAL_RNG_MspDeInit(RNG_HandleTypeDef* hrng)
+{
+  if(hrng->Instance==RNG)
+  {
+    /* USER CODE BEGIN RNG_MspDeInit 0 */
+
+    /* USER CODE END RNG_MspDeInit 0 */
+    /* Peripheral clock disable */
+    __HAL_RCC_RNG_CLK_DISABLE();
+    /* USER CODE BEGIN RNG_MspDeInit 1 */
+
+    /* USER CODE END RNG_MspDeInit 1 */
   }
 
 }

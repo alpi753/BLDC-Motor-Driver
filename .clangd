@@ -1,0 +1,36 @@
+CompileFlags:
+  QueryDriver:
+    - /usr/bin/arm-none-eabi-gcc
+    - /usr/bin/arm-none-eabi-g++
+
+---
+If:
+  PathMatch: software/firmware/.*
+CompileFlags:
+  CompilationDatabase: software/firmware/build/Debug
+
+---
+If:
+  PathMatch: software/demo_firmware/.*
+CompileFlags:
+  CompilationDatabase: software/demo_firmware/build/Debug
+
+# Shared BSP: route board-specific trees to the matching firmware project DB
+---
+If:
+  PathMatch: software/shared/bsp/boards/stm32g431/.*
+CompileFlags:
+  CompilationDatabase: software/firmware/build/Debug
+
+---
+If:
+  PathMatch: software/shared/bsp/boards/stm32f411/.*
+CompileFlags:
+  CompilationDatabase: software/demo_firmware/build/Debug
+
+# Generic shared BSP sources (bsp.c, bsp.h) — default to G431 firmware context
+---
+If:
+  PathMatch: software/shared/.*
+CompileFlags:
+  CompilationDatabase: software/firmware/build/Debug

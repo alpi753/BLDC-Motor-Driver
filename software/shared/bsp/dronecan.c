@@ -1,4 +1,5 @@
 #include "main.h"
+#include "bldc.h"
 #include <string.h>
 #include <stdio.h>
 

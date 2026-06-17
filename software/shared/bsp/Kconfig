@@ -1,0 +1,58 @@
+# BLDC Board Support Package — Kconfig menu
+# Select a board via CMake:  cmake -DBLDC_BOARD=<name> ..
+# Or use a preset in CMakePresets.json (cacheVariables.BLDC_BOARD).
+#
+# board.conf files under boards/<name>/ are the defconfig source of truth.
+# This file documents the same options for menuconfig-style tooling.
+
+mainmenu "BLDC BSP Configuration"
+
+choice BLDC_BOARD
+    prompt "Target board"
+    default BLDC_BOARD_STM32G431_ESC
+
+config BLDC_BOARD_STM32G431_ESC
+    bool "stm32g431_esc (G431 production ESC)"
+    help
+      STM32G431CBUx, TIM1 complementary PWM to DRV8323 INHx/INLx,
+      dual ADC phase sensing. No SPI gate-driver on this revision.
+
+config BLDC_BOARD_STM32F411_DEMO
+    bool "stm32f411_demo (F411 demo / dev board)"
+    help
+      STM32F411, TIM3 single-ended PWM, SPI DRV8323, USB + DroneCAN stack.
+
+endchoice
+
+config BLDC_COMPLEMENTARY_DRIVE
+    bool "Complementary TIM CH/CHN half-bridge drive"
+    default y if BLDC_BOARD_STM32G431_ESC
+    default n if BLDC_BOARD_STM32F411_DEMO
+
+config BLDC_PWM_FIXUP_CH3
+    bool "Runtime TIM1 CH3 PWM fixup (CubeMX OC-timing quirk)"
+    depends on BLDC_BOARD_STM32G431_ESC
+    default y
+
+config BLDC_HAS_DRV8323
+    bool "DRV8323R SPI gate driver"
+    default n if BLDC_BOARD_STM32G431_ESC
+    default y if BLDC_BOARD_STM32F411_DEMO
+
+config BLDC_HAS_DRONECAN
+    bool "DroneCAN / libcanard"
+    default n if BLDC_BOARD_STM32G431_ESC
+    default y if BLDC_BOARD_STM32F411_DEMO
+
+config BLDC_HAS_USB_TELEM
+    bool "USB CDC telemetry transport"
+    default y
+
+config BLDC_TELEM_USE_DEMO
+    bool "Synthetic telemetry (no hardware)"
+    default n
+
+config BLDC_ADC_DMA_CHANNELS
+    int "ADC DMA channel count"
+    range 1 16
+    default 5

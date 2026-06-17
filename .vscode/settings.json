@@ -1,15 +1,23 @@
 {
-    "C_Cpp.default.compileCommands": "${workspaceFolder}/firmware/build/Debug/compile_commands.json",
     "C_Cpp.intelliSenseEngine": "disabled",
-    "cmake.sourceDirectory": "${workspaceFolder}/firmware",
+    "cmake.sourceDirectory": "${workspaceFolder}/software/firmware",
     "cmake.ignoreCMakeLists": [
         "**/Middlewares/**",
         "**/cmake/stm32cubemx/**"
     ],
     "clangd.arguments": [
-        "--compile-commands-dir=${workspaceFolder}/firmware/build/Debug",
         "--query-driver=/usr/bin/arm-none-eabi-gcc",
         "--header-insertion=never",
         "--background-index"
-    ]
+    ],
+    "files.associations": {
+        "*.h": "c"
+    },
+    "clangd.fallbackFlags": [
+        "-std=gnu11"
+    ],
+    "files.watcherExclude": {
+        "**/software/firmware/build/**": true,
+        "**/software/demo_firmware/build/**": true
+    }
 }

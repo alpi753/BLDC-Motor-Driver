@@ -23,7 +23,7 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-
+#include "bldc.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -45,9 +45,15 @@
 ADC_HandleTypeDef hadc1;
 ADC_HandleTypeDef hadc2;
 
+CORDIC_HandleTypeDef hcordic;
+
 FDCAN_HandleTypeDef hfdcan1;
 
+FMAC_HandleTypeDef hfmac;
+
 I2C_HandleTypeDef hi2c1;
+
+RNG_HandleTypeDef hrng;
 
 TIM_HandleTypeDef htim1;
 
@@ -59,6 +65,25 @@ const osThreadAttr_t defaultTask_attributes = {
   .name = "defaultTask",
   .priority = (osPriority_t) osPriorityNormal,
   .stack_size = 128 * 4
+};
+/* Definitions for usbTask */
+osThreadId_t usbTaskHandle;
+const osThreadAttr_t usbTask_attributes = {
+  .name = "usbTask",
+  .priority = (osPriority_t) osPriorityLow,
+  .stack_size = 128 * 4
+};
+/* Definitions for telemTask */
+osThreadId_t telemTaskHandle;
+const osThreadAttr_t telemTask_attributes = {
+  .name = "telemTask",
+  .priority = (osPriority_t) osPriorityLow,
+  .stack_size = 128 * 4
+};
+/* Definitions for usbQueue */
+osMessageQueueId_t usbQueueHandle;
+const osMessageQueueAttr_t usbQueue_attributes = {
+  .name = "usbQueue"
 };
 /* USER CODE BEGIN PV */
 
@@ -73,7 +98,12 @@ static void MX_TIM1_Init(void);
 static void MX_FDCAN1_Init(void);
 static void MX_I2C1_Init(void);
 static void MX_UART4_Init(void);
-void StartDefaultTask(void *argument);
+static void MX_CORDIC_Init(void);
+static void MX_FMAC_Init(void);
+static void MX_RNG_Init(void);
+void MainTask(void *argument);
+void UsbThread(void *argument);
+void TelemThread(void *argument);
 
 /* USER CODE BEGIN PFP */
 
@@ -119,8 +149,19 @@ int main(void)
   MX_FDCAN1_Init();
   MX_I2C1_Init();
   MX_UART4_Init();
+  MX_CORDIC_Init();
+  MX_FMAC_Init();
+  MX_RNG_Init();
   /* USER CODE BEGIN 2 */
-
+  bsp_init();
+  bldc_comm_init(bsp_get_motor_handle());
+  bldc_telem_init();
+#if CONFIG_BLDC_HAS_DRONECAN
+  bldc_dronecan_init();
+#endif
+#if CONFIG_BLDC_HAS_DRV8323
+  bldc_drv8323r_init();
+#endif
   /* USER CODE END 2 */
 
   /* Init scheduler */
@@ -138,13 +179,23 @@ int main(void)
   /* start timers, add new ones, ... */
   /* USER CODE END RTOS_TIMERS */
 
+  /* Create the queue(s) */
+  /* creation of usbQueue */
+  usbQueueHandle = osMessageQueueNew (16, sizeof(uint16_t), &usbQueue_attributes);
+
   /* USER CODE BEGIN RTOS_QUEUES */
   /* add queues, ... */
   /* USER CODE END RTOS_QUEUES */
 
   /* Create the thread(s) */
   /* creation of defaultTask */
-  defaultTaskHandle = osThreadNew(StartDefaultTask, NULL, &defaultTask_attributes);
+  defaultTaskHandle = osThreadNew(MainTask, NULL, &defaultTask_attributes);
+
+  /* creation of usbTask */
+  usbTaskHandle = osThreadNew(UsbThread, NULL, &usbTask_attributes);
+
+  /* creation of telemTask */
+  telemTaskHandle = osThreadNew(TelemThread, NULL, &telemTask_attributes);
 
   /* USER CODE BEGIN RTOS_THREADS */
   /* add threads, ... */
@@ -424,6 +475,32 @@ static void MX_ADC2_Init(void)
 }
 
 /**
+  * @brief CORDIC Initialization Function
+  * @param None
+  * @retval None
+  */
+static void MX_CORDIC_Init(void)
+{
+
+  /* USER CODE BEGIN CORDIC_Init 0 */
+
+  /* USER CODE END CORDIC_Init 0 */
+
+  /* USER CODE BEGIN CORDIC_Init 1 */
+
+  /* USER CODE END CORDIC_Init 1 */
+  hcordic.Instance = CORDIC;
+  if (HAL_CORDIC_Init(&hcordic) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  /* USER CODE BEGIN CORDIC_Init 2 */
+
+  /* USER CODE END CORDIC_Init 2 */
+
+}
+
+/**
   * @brief FDCAN1 Initialization Function
   * @param None
   * @retval None
@@ -463,6 +540,32 @@ static void MX_FDCAN1_Init(void)
   /* USER CODE BEGIN FDCAN1_Init 2 */
 
   /* USER CODE END FDCAN1_Init 2 */
+
+}
+
+/**
+  * @brief FMAC Initialization Function
+  * @param None
+  * @retval None
+  */
+static void MX_FMAC_Init(void)
+{
+
+  /* USER CODE BEGIN FMAC_Init 0 */
+
+  /* USER CODE END FMAC_Init 0 */
+
+  /* USER CODE BEGIN FMAC_Init 1 */
+
+  /* USER CODE END FMAC_Init 1 */
+  hfmac.Instance = FMAC;
+  if (HAL_FMAC_Init(&hfmac) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  /* USER CODE BEGIN FMAC_Init 2 */
+
+  /* USER CODE END FMAC_Init 2 */
 
 }
 
@@ -511,6 +614,33 @@ static void MX_I2C1_Init(void)
   /* USER CODE BEGIN I2C1_Init 2 */
 
   /* USER CODE END I2C1_Init 2 */
+
+}
+
+/**
+  * @brief RNG Initialization Function
+  * @param None
+  * @retval None
+  */
+static void MX_RNG_Init(void)
+{
+
+  /* USER CODE BEGIN RNG_Init 0 */
+
+  /* USER CODE END RNG_Init 0 */
+
+  /* USER CODE BEGIN RNG_Init 1 */
+
+  /* USER CODE END RNG_Init 1 */
+  hrng.Instance = RNG;
+  hrng.Init.ClockErrorDetection = RNG_CED_ENABLE;
+  if (HAL_RNG_Init(&hrng) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  /* USER CODE BEGIN RNG_Init 2 */
+
+  /* USER CODE END RNG_Init 2 */
 
 }
 
@@ -690,24 +820,81 @@ static void MX_GPIO_Init(void)
 
 /* USER CODE END 4 */
 
-/* USER CODE BEGIN Header_StartDefaultTask */
+/* USER CODE BEGIN Header_MainTask */
 /**
   * @brief  Function implementing the defaultTask thread.
   * @param  argument: Not used
   * @retval None
   */
-/* USER CODE END Header_StartDefaultTask */
-void StartDefaultTask(void *argument)
+/* USER CODE END Header_MainTask */
+void MainTask(void *argument)
 {
   /* init code for USB_Device */
   MX_USB_Device_Init();
   /* USER CODE BEGIN 5 */
+  for (;;)
+  {
+    osDelay(10);
+  }
+  /* USER CODE END 5 */
+}
+
+/* USER CODE BEGIN Header_UsbThread */
+/**
+* @brief Function implementing the usbTask thread.
+* @param argument: Not used
+* @retval None
+*/
+/* USER CODE END Header_UsbThread */
+void UsbThread(void *argument)
+{
+  /* USER CODE BEGIN UsbThread */
   /* Infinite loop */
   for(;;)
   {
     osDelay(1);
   }
-  /* USER CODE END 5 */
+  /* USER CODE END UsbThread */
+}
+
+/* USER CODE BEGIN Header_TelemThread */
+/**
+* @brief Function implementing the telemTask thread.
+* @param argument: Not used
+* @retval None
+*/
+/* USER CODE END Header_TelemThread */
+void TelemThread(void *argument)
+{
+  /* USER CODE BEGIN TelemThread */
+  /* Infinite loop */
+  for(;;)
+  {
+    osDelay(1);
+  }
+  /* USER CODE END TelemThread */
+}
+
+/**
+  * @brief  Period elapsed callback in non blocking mode
+  * @note   This function is called  when TIM2 interrupt took place, inside
+  * HAL_TIM_IRQHandler(). It makes a direct call to HAL_IncTick() to increment
+  * a global variable "uwTick" used as application time base.
+  * @param  htim : TIM handle
+  * @retval None
+  */
+void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
+{
+  /* USER CODE BEGIN Callback 0 */
+
+  /* USER CODE END Callback 0 */
+  if (htim->Instance == TIM2)
+  {
+    HAL_IncTick();
+  }
+  /* USER CODE BEGIN Callback 1 */
+
+  /* USER CODE END Callback 1 */
 }
 
 /**

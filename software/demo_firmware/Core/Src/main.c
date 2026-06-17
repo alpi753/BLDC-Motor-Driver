@@ -82,12 +82,7 @@ const osMessageQueueAttr_t usbQueue_attributes = {
 };
 /* USER CODE BEGIN PV */
 
-BLDC_Handle_t motor = {
-	.htim = &htim3,
-	.chA = PHASE_1_CH,
-	.chB = PHASE_2_CH,
-	.chC = PHASE_3_CH
-};
+
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -146,7 +141,8 @@ int main(void)
   MX_SPI1_Init();
   MX_CRC_Init();
   /* USER CODE BEGIN 2 */
-	bldc_comm_init(&motor);
+	bsp_init();
+	bldc_comm_init(bsp_get_motor_handle());
   bldc_telem_init();
   bldc_dronecan_init();
   bldc_drv8323r_init();

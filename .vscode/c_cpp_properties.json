@@ -1,19 +1,39 @@
 {
     "configurations": [
         {
-            "name": "STM32",
+            "name": "Firmware (STM32G431)",
             "includePath": [
-                "${workspaceFolder}/firmware/**"
-                // "${workspaceFolder}/firmware/Core/Inc",
-                // "${workspaceFolder}/firmware/Drivers/STM32F4xx_HAL_Driver/Inc",
-                // "${workspaceFolder}/firmware/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy",
-                // "${workspaceFolder}/firmware/Drivers/CMSIS/Device/ST/STM32F4xx/Include",
-                // "${workspaceFolder}/firmware/Drivers/CMSIS/Include",
-                // "${workspaceFolder}/firmware/Middlewares/Third_Party/NanoCBOR/include",
-                // "${workspaceFolder}/firmware/Middlewares/Third_Party/libcanard",
-                // "${workspaceFolder}/firmware/Middlewares/Third_Party/dsdl_generated/include"
+                "${workspaceFolder}/software/firmware/**",
+                "${workspaceFolder}/software/shared/**",
+                "${workspaceFolder}/software/firmware/build/Debug/generated"
             ],
             "defines": [
+                "DEBUG",
+                "STM32G431xx",
+                "USE_HAL_DRIVER"
+            ],
+            "compilerPath": "/usr/bin/arm-none-eabi-gcc",
+            "cStandard": "c11",
+            "cppStandard": "c++17",
+            "intelliSenseMode": "linux-gcc-arm",
+            "compileCommands": "${workspaceFolder}/software/firmware/build/Debug/compile_commands.json",
+            "browse": {
+                "path": [
+                    "${workspaceFolder}/software/firmware",
+                    "${workspaceFolder}/software/shared"
+                ],
+                "limitSymbolsToIncludedHeaders": true
+            }
+        },
+        {
+            "name": "Demo Firmware (STM32F411)",
+            "includePath": [
+                "${workspaceFolder}/software/demo_firmware/**",
+                "${workspaceFolder}/software/shared/**",
+                "${workspaceFolder}/software/demo_firmware/build/Debug/generated"
+            ],
+            "defines": [
+                "DEBUG",
                 "STM32F411xE",
                 "USE_HAL_DRIVER"
             ],
@@ -21,14 +41,59 @@
             "cStandard": "c11",
             "cppStandard": "c++17",
             "intelliSenseMode": "linux-gcc-arm",
-            "configurationProvider": "ms-vscode.cmake-tools",
-            "compileCommands": [
-								"${workspaceFolder}/firmware/build/Debug/compile_commands.json", // demo firmware
-								"${workspaceFolder}/BLDC-Motor-Driver/ESC/build/Debug/compile_commands.json", // demo firmware
-						]
+            "compileCommands": "${workspaceFolder}/software/demo_firmware/build/Debug/compile_commands.json",
             "browse": {
                 "path": [
-                    "${workspaceFolder}/firmware"
+                    "${workspaceFolder}/software/demo_firmware",
+                    "${workspaceFolder}/software/shared"
+                ],
+                "limitSymbolsToIncludedHeaders": true
+            }
+        },
+        {
+            "name": "Shared BSP (stm32g431 board)",
+            "includePath": [
+                "${workspaceFolder}/software/shared/**",
+                "${workspaceFolder}/software/firmware/**",
+                "${workspaceFolder}/software/firmware/build/Debug/generated"
+            ],
+            "defines": [
+                "DEBUG",
+                "STM32G431xx",
+                "USE_HAL_DRIVER"
+            ],
+            "compilerPath": "/usr/bin/arm-none-eabi-gcc",
+            "cStandard": "c11",
+            "intelliSenseMode": "linux-gcc-arm",
+            "compileCommands": "${workspaceFolder}/software/firmware/build/Debug/compile_commands.json",
+            "browse": {
+                "path": [
+                    "${workspaceFolder}/software/shared",
+                    "${workspaceFolder}/software/firmware"
+                ],
+                "limitSymbolsToIncludedHeaders": true
+            }
+        },
+        {
+            "name": "Shared BSP (stm32f411 board)",
+            "includePath": [
+                "${workspaceFolder}/software/shared/**",
+                "${workspaceFolder}/software/demo_firmware/**",
+                "${workspaceFolder}/software/demo_firmware/build/Debug/generated"
+            ],
+            "defines": [
+                "DEBUG",
+                "STM32F411xE",
+                "USE_HAL_DRIVER"
+            ],
+            "compilerPath": "/usr/bin/arm-none-eabi-gcc",
+            "cStandard": "c11",
+            "intelliSenseMode": "linux-gcc-arm",
+            "compileCommands": "${workspaceFolder}/software/demo_firmware/build/Debug/compile_commands.json",
+            "browse": {
+                "path": [
+                    "${workspaceFolder}/software/shared",
+                    "${workspaceFolder}/software/demo_firmware"
                 ],
                 "limitSymbolsToIncludedHeaders": true
             }

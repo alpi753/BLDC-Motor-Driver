@@ -37,14 +37,14 @@ add_executable(${CMAKE_PROJECT_NAME})
 # Add STM32CubeMX generated sources
 add_subdirectory(cmake/stm32cubemx)
 
+# BLDC board support package (shared across STM32 targets)
+set(BLDC_BSP_DIR ${CMAKE_CURRENT_SOURCE_DIR}/../shared/bsp)
+include(${BLDC_BSP_DIR}/cmake/bldc_bsp.cmake)
+bldc_bsp_configure(TARGET ${CMAKE_PROJECT_NAME})
+
 # Link directories setup
 target_link_directories(${CMAKE_PROJECT_NAME} PRIVATE
     # Add user defined library search paths
-)
-
-# Add sources to executable
-target_sources(${CMAKE_PROJECT_NAME} PRIVATE
-    # Add user sources here
 )
 
 # Add include paths

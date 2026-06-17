@@ -2,52 +2,54 @@
 #include <string.h>
 #include "cmsis_os2.h"
 #include "bldc.h"
-#include "usb_device.h"
 #include "main.h"
+#if CONFIG_BLDC_HAS_USB_TELEM
+#include "usb_device.h"
+#endif
 #include <math.h>
 
+#if CONFIG_BLDC_HAS_USB_TELEM
 extern osMessageQueueId_t usbQueueHandle;
+#endif
 extern BLDC_Handle_t bldc_h;
 static bldc_telemetry_t telem_data;
 
 static bldc_settings_t settings_data;
 
 
-#define ADC_DMA_CHANNELS 5
-
-static uint16_t adc_dma_buf[ADC_DMA_CHANNELS];
+static uint16_t adc_dma_buf[ADC_CHANNEL_COUNT];
 static volatile uint8_t adc_dma_ready = 0;
 int bldc_adc_dma_start(void)
 {
 		adc_dma_ready = 0;
     // Start ADC in DMA mode 
-    return HAL_ADC_Start_DMA(&bldc_h.hadc,
+    return HAL_ADC_Start_DMA(bldc_h.hadc,
                           (uint32_t*)adc_dma_buf,
-                          ADC_DMA_CHANNELS);
+                          ADC_CHANNEL_COUNT);
 }
 
 void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef *hadc)
 {
-    if (hadc == &bldc_h.hadc)
+    if (hadc == bldc_h.hadc)
     {
         adc_dma_ready = 1;
     }
 }
 
-#ifndef BLDC_TELEM_USE_DEMO
+#if !BLDC_TELEM_USE_DEMO
 static int bldc_telem_adc_dma_read(uint16_t *out_buf)
 {
 		if (!adc_dma_ready)
 				return 0;
 
-		memcpy(out_buf, adc_dma_buf, sizeof(uint16_t) * ADC_DMA_CHANNELS);
+		memcpy(out_buf, adc_dma_buf, sizeof(uint16_t) * ADC_CHANNEL_COUNT);
 		adc_dma_ready = 0;
 		return 1;
 }
 
 static void bldc_telem_update(void)
 {
-    uint16_t adc[ADC_DMA_CHANNELS];
+    uint16_t adc[ADC_CHANNEL_COUNT];
 
     /* bldc_telem_adc_dma_read returns 1 on success, 0 on failure */
     if (!bldc_telem_adc_dma_read(adc)) return;
@@ -134,15 +136,16 @@ static void bldc_telem_update(void)
 
 
 void bldc_telem_init(void) {
-    // Initialize transport used by telemetry publisher
-  MX_USB_DEVICE_Init();
+#if CONFIG_BLDC_HAS_USB_TELEM
+  bsp_usb_init();
+#endif
 	bldc_adc_dma_start();
 	telem_data.temp_c = 0.0f; 
 }
 
 static usb_msg_t msg;
 void bldc_telem_pub(void) {
-#ifndef BLDC_TELEM_USE_DEMO
+#if !BLDC_TELEM_USE_DEMO
     bldc_telem_update();
 #else
     gen_demo_telemetry(&telem_data);
@@ -150,9 +153,10 @@ void bldc_telem_pub(void) {
 		msg.type = USB_MSG_TELEMETRY;
 		memcpy(&msg.data.telemetry, &telem_data, sizeof(bldc_telemetry_t));
 
-		// Send to USB queue
-		if (usbQueueHandle != NULL) 
+#if CONFIG_BLDC_HAS_USB_TELEM
+		if (usbQueueHandle != NULL)
 				osMessageQueuePut(usbQueueHandle, &msg, 0, 10);
+#endif
 }
 
 // Global exposed getter for the settings structure for updates
@@ -163,9 +167,13 @@ bldc_settings_t* bldc_get_settings(void) {
 void TelemThread(void *argument) {
 		for (;;) {
 				bldc_telem_pub();
-        osDelay(10); // 10ms before CAN publish
+#if CONFIG_BLDC_HAS_DRONECAN
+        osDelay(10);
 				bldc_dronecan_pub();
-				osDelay(90); // 100ms delay for 10Hz update rate
+				osDelay(90);
+#else
+        osDelay(100);
+#endif
 		}
 
 }

@@ -37,72 +37,19 @@ add_executable(${CMAKE_PROJECT_NAME})
 # Add STM32CubeMX generated sources
 add_subdirectory(cmake/stm32cubemx)
 
+# BLDC board support package (shared across STM32 targets)
+set(BLDC_BSP_DIR ${CMAKE_CURRENT_SOURCE_DIR}/../shared/bsp)
+include(${BLDC_BSP_DIR}/cmake/bldc_bsp.cmake)
+bldc_bsp_configure(TARGET ${CMAKE_PROJECT_NAME})
+
 # Link directories setup
 target_link_directories(${CMAKE_PROJECT_NAME} PRIVATE
     # Add user defined library search paths
 )
 
-file(GLOB BLDC_SOURCES CONFIGURE_DEPENDS
-    Core/Src/bldc/*.c
-)
-
-file(GLOB CORE_SOURCES CONFIGURE_DEPENDS
-    Core/Src/*.c
-    Core/Src/bldc/*.c
-)
-
-set(core_compile_options
-    -O3
-    -Wall
-    -Wextra
-    # -Wpedantic
-    -Wformat=2
-    -Wno-unused-parameter
-    -Wshadow
-    -Wwrite-strings
-    -Wold-style-definition
-    -Wmissing-include-dirs
-    # -Wstrict-prototypes
-    # -Wredundant-decls
-    # -Wnested-externs
-)
-
-set_source_files_properties(${CORE_SOURCES} PROPERTIES
-    COMPILE_OPTIONS "${core_compile_options}"
-)
-
-# Add sources to executable
-file(GLOB DSDL_SOURCES CONFIGURE_DEPENDS
-    Middlewares/Third_Party/dsdl_generated/src/*.c
-)
-
-set(NON_CORE_SOURCES
-    ${DSDL_SOURCES}
-		Core/Src/syscalls.c
-    Middlewares/Third_Party/NanoCBOR/src/decoder.c
-    Middlewares/Third_Party/NanoCBOR/src/encoder.c
-    Middlewares/Third_Party/libcanard/canard.c
-)
-
-set_source_files_properties(${NON_CORE_SOURCES} PROPERTIES
-    COMPILE_OPTIONS -w
-)
-
-target_sources(${CMAKE_PROJECT_NAME} PRIVATE
-    # Add user sources here
-   ${BLDC_SOURCES}
-   ${DSDL_SOURCES}
-    Middlewares/Third_Party/NanoCBOR/src/decoder.c
-    Middlewares/Third_Party/NanoCBOR/src/encoder.c
-    Middlewares/Third_Party/libcanard/canard.c
-)
-
 # Add include paths
 target_include_directories(${CMAKE_PROJECT_NAME} PRIVATE
     # Add user defined include paths
-    Middlewares/Third_Party/NanoCBOR/include
-    Middlewares/Third_Party/libcanard
-    Middlewares/Third_Party/dsdl_generated/include
 )
 
 # Add project symbols (macros)

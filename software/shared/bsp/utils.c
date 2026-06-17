@@ -97,7 +97,7 @@ uint32_t rand32(void)
     return xorshift32();
 }
 
-#ifdef BLDC_TELEM_USE_DEMO
+#if BLDC_TELEM_USE_DEMO
 void gen_demo_telemetry(bldc_telemetry_t* telem_data)
 {
     static float t = 0.0f;

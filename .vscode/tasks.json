@@ -4,7 +4,7 @@
 		{
 			"label": "Start Electron + React App",
 			"type": "shell",
-			"command": "npm run dev",
+			"command": "cd software/console && npm run dev",
 			"isBackground": true,
 			"problemMatcher": [
 				"$tsc"
