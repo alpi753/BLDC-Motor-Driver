@@ -59,6 +59,30 @@ void Error_Handler(void);
 /* USER CODE END EFP */
 
 /* Private defines -----------------------------------------------------------*/
+#define INLA_Pin GPIO_PIN_13
+#define INLA_GPIO_Port GPIOC
+#define Curr_Sense_A_Pin GPIO_PIN_0
+#define Curr_Sense_A_GPIO_Port GPIOA
+#define Curr_Sense_B_Pin GPIO_PIN_1
+#define Curr_Sense_B_GPIO_Port GPIOA
+#define Curr_Sense_C_Pin GPIO_PIN_2
+#define Curr_Sense_C_GPIO_Port GPIOA
+#define NTC_Mosfet_Pin GPIO_PIN_6
+#define NTC_Mosfet_GPIO_Port GPIOA
+#define NTC_Motor_Pin GPIO_PIN_7
+#define NTC_Motor_GPIO_Port GPIOA
+#define INLB_Pin GPIO_PIN_0
+#define INLB_GPIO_Port GPIOB
+#define INLC_Pin GPIO_PIN_1
+#define INLC_GPIO_Port GPIOB
+#define V_Bus_Sense_Pin GPIO_PIN_2
+#define V_Bus_Sense_GPIO_Port GPIOB
+#define INHA_Pin GPIO_PIN_8
+#define INHA_GPIO_Port GPIOA
+#define INHB_Pin GPIO_PIN_9
+#define INHB_GPIO_Port GPIOA
+#define INHC_Pin GPIO_PIN_10
+#define INHC_GPIO_Port GPIOA
 
 /* USER CODE BEGIN Private defines */
 
