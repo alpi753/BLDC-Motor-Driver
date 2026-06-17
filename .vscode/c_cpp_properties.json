@@ -1,0 +1,38 @@
+{
+    "configurations": [
+        {
+            "name": "STM32",
+            "includePath": [
+                "${workspaceFolder}/firmware/**"
+                // "${workspaceFolder}/firmware/Core/Inc",
+                // "${workspaceFolder}/firmware/Drivers/STM32F4xx_HAL_Driver/Inc",
+                // "${workspaceFolder}/firmware/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy",
+                // "${workspaceFolder}/firmware/Drivers/CMSIS/Device/ST/STM32F4xx/Include",
+                // "${workspaceFolder}/firmware/Drivers/CMSIS/Include",
+                // "${workspaceFolder}/firmware/Middlewares/Third_Party/NanoCBOR/include",
+                // "${workspaceFolder}/firmware/Middlewares/Third_Party/libcanard",
+                // "${workspaceFolder}/firmware/Middlewares/Third_Party/dsdl_generated/include"
+            ],
+            "defines": [
+                "STM32F411xE",
+                "USE_HAL_DRIVER"
+            ],
+            "compilerPath": "/usr/bin/arm-none-eabi-gcc",
+            "cStandard": "c11",
+            "cppStandard": "c++17",
+            "intelliSenseMode": "linux-gcc-arm",
+            "configurationProvider": "ms-vscode.cmake-tools",
+            "compileCommands": [
+								"${workspaceFolder}/firmware/build/Debug/compile_commands.json", // demo firmware
+								"${workspaceFolder}/BLDC-Motor-Driver/ESC/build/Debug/compile_commands.json", // demo firmware
+						]
+            "browse": {
+                "path": [
+                    "${workspaceFolder}/firmware"
+                ],
+                "limitSymbolsToIncludedHeaders": true
+            }
+        }
+    ],
+    "version": 4
+}
