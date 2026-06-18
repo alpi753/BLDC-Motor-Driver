@@ -18,8 +18,3 @@ BLDC_Handle_t *bsp_get_motor_handle(void)
 {
     return bsp_board_get_motor_handle();
 }
-
-void bsp_pwm_fixup(TIM_HandleTypeDef *htim)
-{
-    bsp_board_pwm_fixup(htim);
-}

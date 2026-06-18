@@ -118,6 +118,7 @@ void bldc_comm_set_duty(uint16_t duty);
 void bldc_comm_commutate(uint8_t step);
 void bldc_comm_enable(void);
 void bldc_comm_disable(void);
+void CommThread(void *argument);
 
 void bldc_dronecan_init(void);
 void bldc_dronecan_update(void);

@@ -655,21 +655,21 @@ void HAL_TIM_MspPostInit(TIM_HandleTypeDef* htim)
     PA9     ------> TIM1_CH2
     PA10     ------> TIM1_CH3
     */
-    GPIO_InitStruct.Pin = INLA_Pin;
+    GPIO_InitStruct.Pin = INL1_Pin;
     GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
     GPIO_InitStruct.Pull = GPIO_NOPULL;
     GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
     GPIO_InitStruct.Alternate = GPIO_AF4_TIM1;
-    HAL_GPIO_Init(INLA_GPIO_Port, &GPIO_InitStruct);
+    HAL_GPIO_Init(INL1_GPIO_Port, &GPIO_InitStruct);
 
-    GPIO_InitStruct.Pin = INLB_Pin|INLC_Pin;
+    GPIO_InitStruct.Pin = INL2_Pin|INL3_Pin;
     GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
     GPIO_InitStruct.Pull = GPIO_NOPULL;
     GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
     GPIO_InitStruct.Alternate = GPIO_AF6_TIM1;
     HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
 
-    GPIO_InitStruct.Pin = INHA_Pin|INHB_Pin|INHC_Pin;
+    GPIO_InitStruct.Pin = INH1_Pin|INH2_Pin|INH3_Pin;
     GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
     GPIO_InitStruct.Pull = GPIO_NOPULL;
     GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;

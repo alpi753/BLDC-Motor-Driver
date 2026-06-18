@@ -18,12 +18,17 @@
 extern "C" {
 #endif
 
-/* Portable motor handle — timer/ADC bindings come from the active board.c */
+/* Portable motor handle — timer bindings come from board.conf + board.c */
 typedef struct {
-    TIM_HandleTypeDef *htim;
+    TIM_HandleTypeDef *htim_high;
+    TIM_HandleTypeDef *htim_low;
+    TIM_HandleTypeDef *htim_aux;
     uint32_t chA;
     uint32_t chB;
     uint32_t chC;
+    uint32_t aux_chA;
+    uint32_t aux_chB;
+    uint32_t aux_chC;
     ADC_HandleTypeDef *hadc;
 } BLDC_Handle_t;
 
@@ -31,12 +36,10 @@ void bsp_init(void);
 void bsp_usb_init(void);
 const char *bsp_board_name(void);
 BLDC_Handle_t *bsp_get_motor_handle(void);
-void bsp_pwm_fixup(TIM_HandleTypeDef *htim);
 
 /* Implemented in boards/<name>/board.c */
 void bsp_board_init(void);
 BLDC_Handle_t *bsp_board_get_motor_handle(void);
-void bsp_board_pwm_fixup(TIM_HandleTypeDef *htim);
 
 #ifdef __cplusplus
 }

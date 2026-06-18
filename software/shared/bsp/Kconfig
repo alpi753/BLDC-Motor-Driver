@@ -20,19 +20,36 @@ config BLDC_BOARD_STM32G431_ESC
 config BLDC_BOARD_STM32F411_DEMO
     bool "stm32f411_demo (F411 demo / dev board)"
     help
-      STM32F411, TIM3 single-ended PWM, SPI DRV8323, USB + DroneCAN stack.
+      STM32F411, TIM1 complementary INHx/INLx plus TIM3 INNx aux,
+      SPI DRV8323, USB + DroneCAN stack.
 
 endchoice
 
-config BLDC_COMPLEMENTARY_DRIVE
-    bool "Complementary TIM CH/CHN half-bridge drive"
-    default y if BLDC_BOARD_STM32G431_ESC
-    default n if BLDC_BOARD_STM32F411_DEMO
+config BLDC_PWM_LAYOUT
+    string "Motor PWM timer layout"
+    default "COMPLEMENTARY" if BLDC_BOARD_STM32G431_ESC
+    default "COMPLEMENTARY" if BLDC_BOARD_STM32F411_DEMO
+    help
+      COMPLEMENTARY — one advanced timer (CH + CHN per phase).
+      DUAL          — high timer (CH) + low timer (CH), single-ended each.
 
-config BLDC_PWM_FIXUP_CH3
-    bool "Runtime TIM1 CH3 PWM fixup (CubeMX OC-timing quirk)"
-    depends on BLDC_BOARD_STM32G431_ESC
-    default y
+config BLDC_PWM_TIMER_HIGH
+    int "High-side / primary PWM timer (CubeMX htimN)"
+    default 1
+
+config BLDC_PWM_TIMER_LOW
+    int "Low-side PWM timer (CubeMX htimN, DUAL layout only)"
+    default 0
+
+config BLDC_PWM_TIMER_AUX
+    int "Auxiliary PWM timer (CubeMX htimN, optional INNx etc.)"
+    default 0 if BLDC_BOARD_STM32G431_ESC
+    default 3 if BLDC_BOARD_STM32F411_DEMO
+
+config BLDC_PWM_TIMER_HIGH_IS_ADVANCED
+    bool "Primary timer is advanced (TIM1/TIM8 — MOE + complementary)"
+    default y if BLDC_BOARD_STM32G431_ESC
+    default y if BLDC_BOARD_STM32F411_DEMO
 
 config BLDC_HAS_DRV8323
     bool "DRV8323R SPI gate driver"

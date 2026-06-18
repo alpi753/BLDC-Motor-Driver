@@ -75,7 +75,13 @@ const osThreadAttr_t telemTask_attributes = {
   .priority = (osPriority_t) osPriorityLow,
   .stack_size = 512 * 4
 };
-
+/* Definitions for commTask */
+osThreadId_t commTaskHandle;
+const osThreadAttr_t commTask_attributes = {
+  .name = "commTask",
+  .priority = (osPriority_t) osPriorityAboveNormal,
+  .stack_size = 512 * 4
+};
 /* USER CODE BEGIN PV */
 
 /* USER CODE END PV */
@@ -95,6 +101,7 @@ static void MX_RNG_Init(void);
 static void MX_SPI1_Init(void);
 void MainTask(void *argument);
 extern void TelemThread(void *argument);
+extern void CommThread(void *argument);
 
 /* USER CODE BEGIN PFP */
 
@@ -177,6 +184,9 @@ int main(void)
 
   /* creation of telemTask */
   telemTaskHandle = osThreadNew(TelemThread, NULL, &telemTask_attributes);
+
+  /* creation of commTask */
+  commTaskHandle = osThreadNew(CommThread, NULL, &commTask_attributes);
 
   /* USER CODE BEGIN RTOS_THREADS */
   /* add threads, ... */
@@ -705,10 +715,6 @@ static void MX_TIM1_Init(void)
   {
     Error_Handler();
   }
-  if (HAL_TIM_OC_Init(&htim1) != HAL_OK)
-  {
-    Error_Handler();
-  }
   sMasterConfig.MasterOutputTrigger = TIM_TRGO_RESET;
   sMasterConfig.MasterOutputTrigger2 = TIM_TRGO2_RESET;
   sMasterConfig.MasterSlaveMode = TIM_MASTERSLAVEMODE_DISABLE;
@@ -731,8 +737,7 @@ static void MX_TIM1_Init(void)
   {
     Error_Handler();
   }
-  sConfigOC.OCMode = TIM_OCMODE_TIMING;
-  if (HAL_TIM_OC_ConfigChannel(&htim1, &sConfigOC, TIM_CHANNEL_3) != HAL_OK)
+  if (HAL_TIM_PWM_ConfigChannel(&htim1, &sConfigOC, TIM_CHANNEL_3) != HAL_OK)
   {
     Error_Handler();
   }

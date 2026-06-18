@@ -26,16 +26,23 @@
 /* Timer phase / CCER bit masks (TIM1 advanced timer)                         */
 /* -------------------------------------------------------------------------- */
 #define PHASE_1_CH                TIM_CHANNEL_1
-#define CH1E                      TIM_CCER_CC1E
-#define CH1NE                     TIM_CCER_CC1NE
-
 #define PHASE_2_CH                TIM_CHANNEL_2
-#define CH2E                      TIM_CCER_CC2E
-#define CH2NE                     TIM_CCER_CC2NE
-
 #define PHASE_3_CH                TIM_CHANNEL_3
-#define CH3E                      TIM_CCER_CC3E
-#define CH3NE                     TIM_CCER_CC3NE
+
+#define BLDC_PHASE1_PWM_CH        TIM_CHANNEL_1
+#define BLDC_PHASE1_LOW_CCR_CH    TIM_CHANNEL_1
+#define BLDC_PHASE1_CCER_E        TIM_CCER_CC1E
+#define BLDC_PHASE1_CCER_NE       TIM_CCER_CC1NE
+
+#define BLDC_PHASE2_PWM_CH        TIM_CHANNEL_2
+#define BLDC_PHASE2_LOW_CCR_CH    TIM_CHANNEL_2
+#define BLDC_PHASE2_CCER_E        TIM_CCER_CC2E
+#define BLDC_PHASE2_CCER_NE       TIM_CCER_CC2NE
+
+#define BLDC_PHASE3_PWM_CH        TIM_CHANNEL_3
+#define BLDC_PHASE3_LOW_CCR_CH    TIM_CHANNEL_3
+#define BLDC_PHASE3_CCER_E        TIM_CCER_CC3E
+#define BLDC_PHASE3_CCER_NE       TIM_CCER_CC3NE
 
 
 /* -------------------------------------------------------------------------- */

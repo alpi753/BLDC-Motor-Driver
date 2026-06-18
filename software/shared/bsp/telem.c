@@ -54,7 +54,7 @@ static int bldc_telem_adc_dma_read(uint16_t *out_buf)
 		return 1;
 }
 
-static void bldc_telem_update(void)
+void bldc_telem_update(void)
 {
     uint16_t adc[ADC_CHANNEL_COUNT];
 
@@ -97,13 +97,13 @@ static void bldc_telem_update(void)
       }
     }
 
-    const float period = ((float)(__HAL_TIM_GET_AUTORELOAD(bldc_h.htim) + 1.0f) + 1); // period = arr + 1, because STM32 timers are inclusive-counting devices.
+    const float period = (float)(__HAL_TIM_GET_AUTORELOAD(bldc_h.htim_high) + 1U);
     if (period > 1.0f)
     {
       // duty = CCR / (ARR + 1)
-      float duty_a = (float)__HAL_TIM_GET_COMPARE(bldc_h.htim, TIM_CHANNEL_1) / period;
-      float duty_b = (float)__HAL_TIM_GET_COMPARE(bldc_h.htim, TIM_CHANNEL_2) / period;
-      float duty_c = (float)__HAL_TIM_GET_COMPARE(bldc_h.htim, TIM_CHANNEL_3) / period;
+      float duty_a = (float)__HAL_TIM_GET_COMPARE(bldc_h.htim_high, bldc_h.chA) / period;
+      float duty_b = (float)__HAL_TIM_GET_COMPARE(bldc_h.htim_high, bldc_h.chB) / period;
+      float duty_c = (float)__HAL_TIM_GET_COMPARE(bldc_h.htim_high, bldc_h.chC) / period;
 
       duty_a = fminf(fmaxf(duty_a, 0.0f), 1.0f);
       duty_b = fminf(fmaxf(duty_b, 0.0f), 1.0f);
@@ -180,8 +180,10 @@ void bldc_telem_fake(void)
 
 
 void bldc_telem_init(void) {
+#if !BLDC_TELEM_USE_DEMO
   bsp_usb_init();
 	bldc_adc_dma_start();
+#endif
 	telem_data.temp_c = 0.0f; 
 }
 

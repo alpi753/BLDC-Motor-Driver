@@ -33,18 +33,31 @@
 #define DRV8323R_FAULT_Pin        SPI1_FAULT_Pin
 
 /* -------------------------------------------------------------------------- */
-/* Timer phase / CCER bit masks (TIM3 general-purpose PWM on demo board)      */
+/* DRV8323 inputs (hardware/untitled.kicad_pcb netlist)                       */
+/*  INHx: TIM1 CH1/2/3 on PA8/PA9/PA10                                        */
+/*  INLB/INLC: TIM1 CH2N/CH3N on PB0/PB1                                      */
+/*  INLA: PC13 — no timer AF; driven as GPIO                                  */
 /* -------------------------------------------------------------------------- */
 #define PHASE_1_CH                TIM_CHANNEL_1
-#define CH1E                      TIM_CCER_CC1E
-#define CH1NE                     TIM_CCER_CC1NE
-
 #define PHASE_2_CH                TIM_CHANNEL_2
-#define CH2E                      TIM_CCER_CC2E
-#define CH2NE                     TIM_CCER_CC2NE
-
 #define PHASE_3_CH                TIM_CHANNEL_3
-#define CH3E                      TIM_CCER_CC3E
-#define CH3NE                     TIM_CCER_CC3NE
+
+#define BLDC_PHASE1_PWM_CH        TIM_CHANNEL_1
+#define BLDC_PHASE1_LOW_CCR_CH    TIM_CHANNEL_1
+#define BLDC_PHASE1_CCER_E        TIM_CCER_CC1E
+#define BLDC_PHASE1_CCER_NE       0U
+#define BLDC_PHASE1_LOW_USE_GPIO  1
+#define BLDC_PHASE1_LOW_GPIO_Port INLA_GPIO_Port
+#define BLDC_PHASE1_LOW_GPIO_Pin  INLA_Pin
+
+#define BLDC_PHASE2_PWM_CH        TIM_CHANNEL_2
+#define BLDC_PHASE2_LOW_CCR_CH    TIM_CHANNEL_2
+#define BLDC_PHASE2_CCER_E        TIM_CCER_CC2E
+#define BLDC_PHASE2_CCER_NE       TIM_CCER_CC2NE
+
+#define BLDC_PHASE3_PWM_CH        TIM_CHANNEL_3
+#define BLDC_PHASE3_LOW_CCR_CH    TIM_CHANNEL_3
+#define BLDC_PHASE3_CCER_E        TIM_CCER_CC3E
+#define BLDC_PHASE3_CCER_NE       TIM_CCER_CC3NE
 
 #endif /* BLDC_BOARD_STM32F411_DEMO_H */
