@@ -37,4 +37,17 @@
 #define CH3E                      TIM_CCER_CC3E
 #define CH3NE                     TIM_CCER_CC3NE
 
+
+/* -------------------------------------------------------------------------- */
+/* DRV8323R SPI / enable pins (CubeMX names on demo board)                    */
+/* -------------------------------------------------------------------------- */
+#if CONFIG_BLDC_HAS_DRV8323
+#define DRV8323R_CS_GPIO_Port     SPI1_CS_GPIO_Port
+#define DRV8323R_CS_Pin           SPI1_CS_Pin
+#define DRV8323R_EN_GPIO_Port     SPI1_EN_GPIO_Port
+#define DRV8323R_EN_Pin           SPI1_EN_Pin
+#define DRV8323R_FAULT_GPIO_Port  SPI1_FAULT_GPIO_Port
+#define DRV8323R_FAULT_Pin        SPI1_FAULT_Pin
+#endif
+
 #endif /* BLDC_BOARD_STM32G431_ESC_H */

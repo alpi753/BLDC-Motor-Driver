@@ -1,9 +1,11 @@
 #include "bsp.h"
 #include "bldc.h"
+#include "bsp_math.h"
 
 void bsp_init(void)
 {
     dwt_init();
+    bsp_hw_accel_init();
     bsp_board_init();
 }
 

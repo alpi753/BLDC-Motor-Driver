@@ -3,6 +3,7 @@
 
 #include <stdint.h>
 #include "bsp.h"
+#include "bsp_math.h"
 
 #ifdef __cplusplus
 extern "C" {

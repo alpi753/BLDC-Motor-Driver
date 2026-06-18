@@ -111,12 +111,13 @@ function(bldc_bsp_configure)
         "${_gen_dir}"
     )
 
-    target_sources(${BSP_TARGET} PRIVATE
+    set(_board_sources
         "${BLDC_BSP_DIR}/bsp.c"
         "${_board_dir}/board.c"
     )
 
     set(_bldc_sources
+        "${BLDC_BSP_DIR}/bsp_math.c"
         "${BLDC_BSP_DIR}/commutation.c"
         "${BLDC_BSP_DIR}/telem.c"
         "${BLDC_BSP_DIR}/utils.c"
@@ -125,6 +126,7 @@ function(bldc_bsp_configure)
     set(_has_drv8323 0)
     set(_has_dronecan 0)
     set(_has_usb_telem 0)
+    set(_has_hw_accel 0)
 
     foreach(_entry IN LISTS _conf_vars)
         string(REPLACE "=" ";" _parts "${_entry}")
@@ -139,7 +141,16 @@ function(bldc_bsp_configure)
         if(_key STREQUAL "CONFIG_BLDC_HAS_USB_TELEM" AND _val STREQUAL "1")
             set(_has_usb_telem 1)
         endif()
+        if(_key STREQUAL "CONFIG_BLDC_HAS_HW_ACCEL" AND _val STREQUAL "1")
+            set(_has_hw_accel 1)
+        endif()
     endforeach()
+
+    if(_has_hw_accel)
+        list(APPEND _board_sources "${_board_dir}/hw_accel.c")
+    endif()
+
+    target_sources(${BSP_TARGET} PRIVATE ${_board_sources})
 
     if(_has_drv8323)
         list(APPEND _bldc_sources "${BLDC_BSP_DIR}/drv8323r.c")
@@ -154,8 +165,7 @@ function(bldc_bsp_configure)
     target_sources(${BSP_TARGET} PRIVATE ${_bldc_sources})
 
     set_source_files_properties(
-        "${BLDC_BSP_DIR}/bsp.c"
-        "${_board_dir}/board.c"
+        ${_board_sources}
         ${_bldc_sources}
         PROPERTIES COMPILE_OPTIONS -O3;-Wall;-Wextra
     )

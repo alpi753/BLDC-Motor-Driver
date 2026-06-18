@@ -78,14 +78,14 @@ static void bldc_telem_update(void)
 				CLAMP(ratio, 1e-6f, 1e6f);
 
         const float t0_k = 298.15f; // 25C in Kelvin
-        const float inv_t = (1.0f / t0_k) + (1.0f / THERMISTOR_BETA) * logf(ratio);
+        const float inv_t = (1.0f / t0_k) + (1.0f / THERMISTOR_BETA) * bsp_log_f(ratio);
         const float t_k = 1.0f / inv_t;
         const float temp_c_new = t_k - 273.15f;
 
         if (telem_data.temp_c == 0.0f) {
           telem_data.temp_c = temp_c_new;
         } else {
-          IIR_FILTER(telem_data.temp_c, temp_c_new);
+          telem_data.temp_c = bsp_iir_lowpass_f(telem_data.temp_c, temp_c_new, IIR_FILTER_ALPHA);
         }
       }
     }
