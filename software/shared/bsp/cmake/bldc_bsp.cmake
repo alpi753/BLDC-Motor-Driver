@@ -119,12 +119,9 @@ function(bldc_bsp_configure)
     set(_bldc_sources
         "${BLDC_BSP_DIR}/bsp_math.c"
         "${BLDC_BSP_DIR}/commutation.c"
-        "${BLDC_BSP_DIR}/telem.c"
         "${BLDC_BSP_DIR}/utils.c"
     )
 
-    set(_has_drv8323 0)
-    set(_has_dronecan 0)
     set(_has_usb_telem 0)
     set(_has_hw_accel 0)
 
@@ -132,12 +129,6 @@ function(bldc_bsp_configure)
         string(REPLACE "=" ";" _parts "${_entry}")
         list(GET _parts 0 _key)
         list(GET _parts 1 _val)
-        if(_key STREQUAL "CONFIG_BLDC_HAS_DRV8323" AND _val STREQUAL "1")
-            set(_has_drv8323 1)
-        endif()
-        if(_key STREQUAL "CONFIG_BLDC_HAS_DRONECAN" AND _val STREQUAL "1")
-            set(_has_dronecan 1)
-        endif()
         if(_key STREQUAL "CONFIG_BLDC_HAS_USB_TELEM" AND _val STREQUAL "1")
             set(_has_usb_telem 1)
         endif()
@@ -152,14 +143,8 @@ function(bldc_bsp_configure)
 
     target_sources(${BSP_TARGET} PRIVATE ${_board_sources})
 
-    if(_has_drv8323)
-        list(APPEND _bldc_sources "${BLDC_BSP_DIR}/drv8323r.c")
-    endif()
-    if(_has_dronecan)
-        list(APPEND _bldc_sources "${BLDC_BSP_DIR}/dronecan.c")
-    endif()
     if(_has_usb_telem)
-        list(APPEND _bldc_sources "${BLDC_BSP_DIR}/usb.c")
+        list(APPEND _bldc_sources "${BLDC_BSP_DIR}/telem.c")
     endif()
 
     target_sources(${BSP_TARGET} PRIVATE ${_bldc_sources})
@@ -185,30 +170,28 @@ function(bldc_bsp_configure)
         )
     endif()
 
-    if(_has_dronecan)
-        file(GLOB _dsdl_sources CONFIGURE_DEPENDS
-            "${CMAKE_SOURCE_DIR}/Middlewares/Third_Party/dsdl_generated/src/*.c"
-        )
-        if(NOT _dsdl_sources)
-            message(FATAL_ERROR
-                "BLDC BSP: DroneCAN enabled but no DSDL sources found. "
-                "Run 'make dsdl_gen_build' in ${CMAKE_SOURCE_DIR} first.")
-        endif()
-
-        target_include_directories(${BSP_TARGET} PRIVATE
-            "${CMAKE_SOURCE_DIR}/Middlewares/Third_Party/libcanard"
-            "${CMAKE_SOURCE_DIR}/Middlewares/Third_Party/dsdl_generated/include"
-        )
-        target_sources(${BSP_TARGET} PRIVATE
-            ${_dsdl_sources}
-            "${CMAKE_SOURCE_DIR}/Middlewares/Third_Party/libcanard/canard.c"
-        )
-        set_source_files_properties(
-            ${_dsdl_sources}
-            "${CMAKE_SOURCE_DIR}/Middlewares/Third_Party/libcanard/canard.c"
-            PROPERTIES COMPILE_OPTIONS -w
-        )
+    file(GLOB _dsdl_sources CONFIGURE_DEPENDS
+        "${CMAKE_SOURCE_DIR}/Middlewares/Third_Party/dsdl_generated/src/*.c"
+    )
+    if(NOT _dsdl_sources)
+        message(FATAL_ERROR
+            "BLDC BSP: DroneCAN enabled but no DSDL sources found. "
+            "Run 'make dsdl_gen_build' in ${CMAKE_SOURCE_DIR} first.")
     endif()
+
+    target_include_directories(${BSP_TARGET} PRIVATE
+        "${CMAKE_SOURCE_DIR}/Middlewares/Third_Party/libcanard"
+        "${CMAKE_SOURCE_DIR}/Middlewares/Third_Party/dsdl_generated/include"
+    )
+    target_sources(${BSP_TARGET} PRIVATE
+        ${_dsdl_sources}
+        "${CMAKE_SOURCE_DIR}/Middlewares/Third_Party/libcanard/canard.c"
+    )
+    set_source_files_properties(
+        ${_dsdl_sources}
+        "${CMAKE_SOURCE_DIR}/Middlewares/Third_Party/libcanard/canard.c"
+        PROPERTIES COMPILE_OPTIONS -w
+    )
 
     file(GLOB _core_sources CONFIGURE_DEPENDS
         "${CMAKE_SOURCE_DIR}/Core/Src/*.c"

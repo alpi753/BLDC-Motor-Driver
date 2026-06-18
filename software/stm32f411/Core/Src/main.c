@@ -23,10 +23,10 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-#include "bldc.h"
+// #include "bldc.h"
 #include "usbd_cdc.h"
 #include "usbd_cdc_if.h" 
-
+#include <stdint.h>
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -58,27 +58,15 @@ TIM_HandleTypeDef htim3;
 osThreadId_t defaultTaskHandle;
 const osThreadAttr_t defaultTask_attributes = {
   .name = "defaultTask",
-  .stack_size = 1024 * 4,
+  .stack_size = 512 * 4,
   .priority = (osPriority_t) osPriorityNormal,
 };
 /* Definitions for telemTask */
 osThreadId_t telemTaskHandle;
 const osThreadAttr_t telemTask_attributes = {
   .name = "telemTask",
-  .stack_size = 1024 * 4,
+  .stack_size = 512 * 4,
   .priority = (osPriority_t) osPriorityLow,
-};
-/* Definitions for usbTask */
-osThreadId_t usbTaskHandle;
-const osThreadAttr_t usbTask_attributes = {
-  .name = "usbTask",
-  .stack_size = 1024 * 4,
-  .priority = (osPriority_t) osPriorityLow,
-};
-/* Definitions for usbQueue */
-osMessageQueueId_t usbQueueHandle;
-const osMessageQueueAttr_t usbQueue_attributes = {
-  .name = "usbQueue"
 };
 /* USER CODE BEGIN PV */
 
@@ -95,7 +83,6 @@ static void MX_SPI1_Init(void);
 static void MX_CRC_Init(void);
 void StartDefaultTask(void *argument);
 extern void TelemThread(void *argument);
-extern void UsbThread(void *argument);
 
 /* USER CODE BEGIN PFP */
 
@@ -141,11 +128,11 @@ int main(void)
   MX_SPI1_Init();
   MX_CRC_Init();
   /* USER CODE BEGIN 2 */
-	bsp_init();
-	bldc_comm_init(bsp_get_motor_handle());
-  bldc_telem_init();
-  bldc_dronecan_init();
-  bldc_drv8323r_init();
+	// bsp_init();
+	// bldc_comm_init(bsp_get_motor_handle());
+  // bldc_telem_init();
+  // bldc_dronecan_init();
+  // bldc_drv8323r_init();
   /* USER CODE END 2 */
 
   /* Init scheduler */
@@ -163,10 +150,6 @@ int main(void)
   /* start timers, add new ones, ... */
   /* USER CODE END RTOS_TIMERS */
 
-  /* Create the queue(s) */
-  /* creation of usbQueue */
-  usbQueueHandle = osMessageQueueNew (16, sizeof(uint16_t), &usbQueue_attributes);
-
   /* USER CODE BEGIN RTOS_QUEUES */
   /* add queues, ... */
   /* USER CODE END RTOS_QUEUES */
@@ -177,9 +160,6 @@ int main(void)
 
   /* creation of telemTask */
   telemTaskHandle = osThreadNew(TelemThread, NULL, &telemTask_attributes);
-
-  /* creation of usbTask */
-  usbTaskHandle = osThreadNew(UsbThread, NULL, &usbTask_attributes);
 
   /* USER CODE BEGIN RTOS_THREADS */
   /* add threads, ... */
@@ -553,8 +533,8 @@ void StartDefaultTask(void *argument)
   /* Infinite loop */
   for(;;)
   {
-    osDelay(10);
-  }
+		osDelay(10);
+	}
   /* USER CODE END 5 */
 }
 

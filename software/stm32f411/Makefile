@@ -6,16 +6,26 @@ TARGET := $(shell python3 scripts/extract_openocd_cfg.py $(BOARD))
 target:
 	@echo "Target board: $(BOARD)"
 	@echo "OpenOCD target: $(TARGET)"
+
 build: dsdl_gen_build
 	@echo "Building firmware for $(BOARD)"
 	cmake --preset Debug 
 	cmake --build --preset Debug
 
-bins:
-		arm-none-eabi-objcopy -O binary $(ELF_FILE) build/firmware.bin
-		arm-none-eabi-objcopy -O ihex  $(ELF_FILE) build/firmware.hex
+check_build:
+	@if [ ! -d build ]; then \
+		exit 1; \
+	fi
+	@if [ -z "$(ELF_FILE)" ]; then \
+		echo "No ELF file found. Build project first."; \
+		exit 1; \
+	fi
 
-flash: build bins
+bins: check_build
+	arm-none-eabi-objcopy -O binary $(ELF_FILE) build/firmware.bin
+	arm-none-eabi-objcopy -O ihex  $(ELF_FILE) build/firmware.hex
+
+flash: check_build
 	@echo "Flashing $(ELF_FILE) to target $(BOARD)"
 	if command -v openocd >/dev/null 2>&1; then \
 		cd build && \

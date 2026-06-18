@@ -68,13 +68,6 @@ const osThreadAttr_t defaultTask_attributes = {
   .priority = (osPriority_t) osPriorityNormal,
   .stack_size = 128 * 4
 };
-/* Definitions for usbTask */
-osThreadId_t usbTaskHandle;
-const osThreadAttr_t usbTask_attributes = {
-  .name = "usbTask",
-  .priority = (osPriority_t) osPriorityLow,
-  .stack_size = 512 * 4
-};
 /* Definitions for telemTask */
 osThreadId_t telemTaskHandle;
 const osThreadAttr_t telemTask_attributes = {
@@ -82,11 +75,7 @@ const osThreadAttr_t telemTask_attributes = {
   .priority = (osPriority_t) osPriorityLow,
   .stack_size = 512 * 4
 };
-/* Definitions for usbQueue */
-osMessageQueueId_t usbQueueHandle;
-const osMessageQueueAttr_t usbQueue_attributes = {
-  .name = "usbQueue"
-};
+
 /* USER CODE BEGIN PV */
 
 /* USER CODE END PV */
@@ -105,7 +94,6 @@ static void MX_FMAC_Init(void);
 static void MX_RNG_Init(void);
 static void MX_SPI1_Init(void);
 void MainTask(void *argument);
-extern void UsbThread(void *argument);
 extern void TelemThread(void *argument);
 
 /* USER CODE BEGIN PFP */
@@ -160,12 +148,8 @@ int main(void)
   bsp_init();
   bldc_comm_init(bsp_get_motor_handle());
   bldc_telem_init();
-#if CONFIG_BLDC_HAS_DRONECAN
   bldc_dronecan_init();
-#endif
-#if CONFIG_BLDC_HAS_DRV8323
   bldc_drv8323r_init();
-#endif
   /* USER CODE END 2 */
 
   /* Init scheduler */
@@ -183,10 +167,6 @@ int main(void)
   /* start timers, add new ones, ... */
   /* USER CODE END RTOS_TIMERS */
 
-  /* Create the queue(s) */
-  /* creation of usbQueue */
-  usbQueueHandle = osMessageQueueNew (16, sizeof(uint16_t), &usbQueue_attributes);
-
   /* USER CODE BEGIN RTOS_QUEUES */
   /* add queues, ... */
   /* USER CODE END RTOS_QUEUES */
@@ -194,9 +174,6 @@ int main(void)
   /* Create the thread(s) */
   /* creation of defaultTask */
   defaultTaskHandle = osThreadNew(MainTask, NULL, &defaultTask_attributes);
-
-  /* creation of usbTask */
-  usbTaskHandle = osThreadNew(UsbThread, NULL, &usbTask_attributes);
 
   /* creation of telemTask */
   telemTaskHandle = osThreadNew(TelemThread, NULL, &telemTask_attributes);

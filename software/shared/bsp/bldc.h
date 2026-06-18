@@ -119,13 +119,10 @@ void bldc_comm_commutate(uint8_t step);
 void bldc_comm_enable(void);
 void bldc_comm_disable(void);
 
-#if CONFIG_BLDC_HAS_DRONECAN
 void bldc_dronecan_init(void);
 void bldc_dronecan_update(void);
 void bldc_dronecan_pub(void);
-#endif
 
-#if CONFIG_BLDC_HAS_DRV8323
 void bldc_drv8323r_init(void);
 uint16_t bldc_drv8323r_read_reg(uint8_t reg);
 void bldc_drv8323r_write_reg(uint8_t reg, uint16_t data);
@@ -137,10 +134,9 @@ void bldc_drv8323r_set_current_amp_gain(int gain);
 void bldc_drv8323r_dccal_on(void);
 void bldc_drv8323r_dccal_off(void);
 char *bldc_drv8323r_faults_to_string(uint32_t faults);
-#endif
 
 void bldc_telem_init(void);
-void bldc_telem_pub(void);
+void bldc_telem_fetch(usb_msg_t *msg);
 bldc_settings_t *bldc_get_settings(void);
 
 #if CONFIG_BLDC_HAS_USB_TELEM
@@ -149,7 +145,9 @@ void usb_msg_rx(uint8_t *Buf, uint32_t *Len);
 #endif
 
 #if BLDC_TELEM_USE_DEMO
-void gen_demo_telemetry(bldc_telemetry_t *telem_data);
+void bldc_telem_fake();
+#else
+void bldc_telem_update(void);
 #endif
 
 extern BLDC_Handle_t bldc_h;

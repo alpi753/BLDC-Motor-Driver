@@ -14,7 +14,7 @@ CompileFlags:
 If:
   PathMatch: bsp/boards/stm32f411/.*
 CompileFlags:
-  CompilationDatabase: ../../demo_firmware/build/Debug
+  CompilationDatabase: ../../stm32f411/build/Debug
 
 ---
 If:

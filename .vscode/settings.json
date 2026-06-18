@@ -1,6 +1,6 @@
 {
     "C_Cpp.intelliSenseEngine": "disabled",
-    "cmake.sourceDirectory": "${workspaceFolder}/software/firmware",
+    "cmake.sourceDirectory": "/home/manan/Desktop/code/PCB/software/stm32f411",
     "cmake.ignoreCMakeLists": [
         "**/Middlewares/**",
         "**/cmake/stm32cubemx/**"
@@ -17,7 +17,7 @@
         "-std=gnu11"
     ],
     "files.watcherExclude": {
-        "**/software/firmware/build/**": true,
-        "**/software/demo_firmware/build/**": true
+        "**/software/stm32g431/build/**": true,
+        "**/software/stm32f411/build/**": true
     }
 }

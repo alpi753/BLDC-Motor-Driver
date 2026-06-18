@@ -92,8 +92,8 @@ Encoded/decoded in `usb.c`. Short keys: `pp`, `kv`, `rs`, `ls`, `i_kp`, `i_ki`, 
 |-------------|----------|
 | Motor control, sensing, protocols | `firmware/Core/Src/bldc/*.c` and `firmware/Core/Inc/bldc.h` |
 | CubeMX user hooks (init calls, handles, task bodies) | `/* USER CODE BEGIN/END */` blocks in `main.c`, `freertos.c`, `usbd_cdc_if.c`, etc. |
-| Pin/peripheral/clock/DMA/timer changes | **`firmware/stm32f411.ioc`** via STM32CubeMX — **not** by hand-editing `MX_*_Init()` or `stm32f4xx_hal_msp.c` |
-| New third-party C sources | `firmware/CMakeLists.txt` (`target_sources`, include dirs, compile flags) |
+| Pin/peripheral/clock/DMA/timer changes | **`stm32f411/stm32f411.ioc`** via STM32CubeMX — **not** by hand-editing `MX_*_Init()` or `stm32f4xx_hal_msp.c` |
+| New third-party C sources | `stm32f411/CMakeLists.txt` (`target_sources`, include dirs, compile flags) |
 
 **Crucial CubeMX rule:** User code must stay inside `/* USER CODE BEGIN ... */` / `/* USER CODE END ... */` comment pairs. Regenerating from CubeMX deletes anything outside those blocks. If asked to change HAL pin assignments, clock trees, DMA, or interrupt vectors, **warn the user** and direct them to edit `stm32f411.ioc` instead.
 
@@ -107,7 +107,7 @@ Key defines agents should know before changing sensing math:
 - `BUS_VOLTAGE_DIVIDER_RATIO` = 11.0
 - Thermistor: `THERMISTOR_PULLUP` / `THERMISTOR_R25` = 10 kΩ, `THERMISTOR_BETA` = 3950
 - `BLDC_COMPLEMENTARY_DRIVE` — optional macro for TIM1/TIM8 complementary PWM (off by default)
-- `BLDC_TELEM_USE_DEMO` — enables `gen_demo_telemetry()` in `utils.c` for UI dev without hardware
+- `BLDC_TELEM_USE_DEMO` — enables `bldc_telem_fake()` in `utils.c` for UI dev without hardware
 
 ### BLDC Module Responsibilities
 
@@ -123,24 +123,24 @@ Key defines agents should know before changing sensing math:
 **Prerequisites:** `arm-none-eabi-gcc` on PATH, `cmake`, `ninja`.
 
 ```bash
-cd firmware
+cd stm32f411
 cmake --preset Debug
 cmake --build --preset Debug
-# Output: firmware/build/Debug/stm32f411.elf
+# Output: stm32f411/build/Debug/stm32f411.elf
 ```
 
-Or from `firmware/`: `make build` (runs preset + build). Flash with ST-Link + OpenOCD: `make flash`.
+Or from `stm32f411/`: `make build` (runs preset + build). Flash with ST-Link + OpenOCD: `make flash`.
 
-**clangd:** After configuring, `firmware/build/Debug/compile_commands.json` is generated. Root `.clangd` expects this path.
+**clangd:** After configuring, `stm32f411/build/Debug/compile_commands.json` is generated. Root `.clangd` expects this path.
 
 **DroneCAN DSDL codegen** (required before first build if `dsdl_generated/` is missing):
 
 ```bash
-cd firmware
+cd stm32f411
 make dsdl_gen_build   # clones DSDL + dronecan_dsdlc, generates into Middlewares/Third_Party/dsdl_generated/
 ```
 
-Git submodules at `firmware/Middlewares/Third_Party/DSDL` and `dronecan_dsdlc` are the canonical sources; the Makefile clones fresh copies for generation.
+Git submodules at `stm32f411/Middlewares/Third_Party/DSDL` and `dronecan_dsdlc` are the canonical sources; the Makefile clones fresh copies for generation.
 
 ### Firmware Compile Flags
 
@@ -258,7 +258,7 @@ When implementing FOC, wire observer outputs into `bldc_telem_update()` and ensu
 4. Keep ISR work minimal; defer to tasks
 
 ### Change a pin or peripheral
-1. Edit `firmware/stm32f411.ioc` in STM32CubeMX
+1. Edit `stm32f411/stm32f411.ioc` in STM32CubeMX
 2. Regenerate code
 3. Re-verify USER CODE blocks preserved
 4. Rebuild firmware
