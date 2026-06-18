@@ -478,5 +478,6 @@ void TelemThread(void *argument) {
 				osDelay(10);
 				bldc_dronecan_pub();
 				osDelay(90);
+				osDelay(1000-100); // total 1s loop time
 		}
 }
