@@ -3,3 +3,4 @@ Ana_ESC-backups
 *.kicad_sch.lck
 build
 dsdl_gen
+__pycache__
