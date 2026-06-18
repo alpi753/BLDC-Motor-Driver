@@ -64,6 +64,8 @@ uint32_t rand32(void);
 /* USER CODE END EFP */
 
 /* Private defines -----------------------------------------------------------*/
+#define INLA_Pin GPIO_PIN_13
+#define INLA_GPIO_Port GPIOC
 #define ADC_Ph0_Curr_Pin GPIO_PIN_0
 #define ADC_Ph0_Curr_GPIO_Port GPIOA
 #define ADC_Ph1_Curr_Pin GPIO_PIN_1
@@ -74,14 +76,20 @@ uint32_t rand32(void);
 #define ADC_V_Sense_GPIO_Port GPIOA
 #define ADC_Temp_Pin GPIO_PIN_4
 #define ADC_Temp_GPIO_Port GPIOA
-#define INLA_Pin GPIO_PIN_13
-#define INLA_GPIO_Port GPIOC
+#define NTC_FET_Pin GPIO_PIN_6
+#define NTC_FET_GPIO_Port GPIOA
+#define NTC_MTR_Pin GPIO_PIN_7
+#define NTC_MTR_GPIO_Port GPIOA
 #define INLB_Pin GPIO_PIN_0
 #define INLB_GPIO_Port GPIOB
 #define INLC_Pin GPIO_PIN_1
 #define INLC_GPIO_Port GPIOB
 #define SPI1_CS_Pin GPIO_PIN_2
 #define SPI1_CS_GPIO_Port GPIOB
+#define PROT_D4_Pin GPIO_PIN_13
+#define PROT_D4_GPIO_Port GPIOB
+#define PROT_D5_Pin GPIO_PIN_14
+#define PROT_D5_GPIO_Port GPIOB
 #define INHA_Pin GPIO_PIN_8
 #define INHA_GPIO_Port GPIOA
 #define INHB_Pin GPIO_PIN_9
