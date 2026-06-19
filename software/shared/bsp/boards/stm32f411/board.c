@@ -94,7 +94,19 @@ int bsp_telem_adc_snapshot(uint16_t *samples, unsigned count)
 }
 #endif
 
-#if CONFIG_FOC_ENABLE && !BLDC_TELEM_USE_DEMO
+#if CONFIG_FOC_ENABLE
+
+int bsp_foc_loop_uses_hw_adc_trigger(void)
+{
+    return 0;
+}
+
+void bsp_foc_loop_hw_init(void (*notify_from_isr)(void))
+{
+    (void)notify_from_isr;
+}
+
+#if !BLDC_TELEM_USE_DEMO
 int bsp_foc_sample_sensors(float *ia, float *ib, float *ic, float *vbus)
 {
     uint16_t adc[ADC_CHANNEL_COUNT];
@@ -117,4 +129,5 @@ int bsp_foc_sample_sensors(float *ia, float *ib, float *ic, float *vbus)
 #endif
     return 1;
 }
-#endif
+#endif /* !BLDC_TELEM_USE_DEMO */
+#endif /* CONFIG_FOC_ENABLE */

@@ -72,6 +72,18 @@ typedef struct {
 static TIM_HandleTypeDef htim_foc_loop;
 static TaskHandle_t foc_task_handle;
 
+static void foc_loop_notify_from_isr(void)
+{
+    BaseType_t higher_priority_woken = pdFALSE;
+
+    if (foc_task_handle == NULL) {
+        return;
+    }
+
+    vTaskNotifyGiveFromISR(foc_task_handle, &higher_priority_woken);
+    portYIELD_FROM_ISR(higher_priority_woken);
+}
+
 static foc_runtime_t foc;
 static bldc_foc_state_t foc_state;
 
@@ -726,7 +738,12 @@ void bldc_foc_comm_thread(void *argument)
     foc_task_handle = xTaskGetCurrentTaskHandle();
     bldc_foc_init();
     foc_begin_startup(bldc_get_settings());
-    bldc_foc_timer_init();
+
+    if (bsp_foc_loop_uses_hw_adc_trigger()) {
+        bsp_foc_loop_hw_init(foc_loop_notify_from_isr);
+    } else {
+        bldc_foc_timer_init();
+    }
 
     for (;;) {
         (void)ulTaskNotifyTake(pdTRUE, portMAX_DELAY);
@@ -736,11 +753,6 @@ void bldc_foc_comm_thread(void *argument)
 
 #if CONFIG_STM32_FAMILY_F4
 void TIM2_IRQHandler(void)
-{
-    HAL_TIM_IRQHandler(&htim_foc_loop);
-}
-#elif CONFIG_STM32_FAMILY_G4
-void TIM6_DAC_IRQHandler(void)
 {
     HAL_TIM_IRQHandler(&htim_foc_loop);
 }

@@ -188,6 +188,8 @@ void bsp_telem_adc_conv_cplt(ADC_HandleTypeDef *hadc);
 
 #if CONFIG_FOC_ENABLE
 int bsp_foc_sample_sensors(float *ia, float *ib, float *ic, float *vbus);
+int bsp_foc_loop_uses_hw_adc_trigger(void);
+void bsp_foc_loop_hw_init(void (*notify_from_isr)(void));
 #endif
 
 /* -------------------------------------------------------------------------- */
