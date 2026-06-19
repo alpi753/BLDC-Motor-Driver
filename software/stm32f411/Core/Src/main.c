@@ -584,7 +584,10 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
     HAL_IncTick();
   }
   /* USER CODE BEGIN Callback 1 */
-
+#if CONFIG_FOC_ENABLE
+  extern void bldc_foc_hal_period_callback(TIM_HandleTypeDef *htim);
+  bldc_foc_hal_period_callback(htim);
+#endif
   /* USER CODE END Callback 1 */
 }
 

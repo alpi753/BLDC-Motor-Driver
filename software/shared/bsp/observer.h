@@ -44,6 +44,7 @@ void bldc_foc_init(void);
 void bldc_foc_reset(void);
 void bldc_foc_set_target_rpm(float rpm);
 void bldc_foc_comm_thread(void *argument);
+void bldc_foc_hal_period_callback(TIM_HandleTypeDef *htim);
 void bldc_foc_get_state(bldc_foc_state_t *state);
 void bldc_foc_fill_telemetry(bldc_telemetry_t *telem);
 

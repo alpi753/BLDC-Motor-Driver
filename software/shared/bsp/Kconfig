@@ -81,3 +81,19 @@ config FOC_ENABLE
       Replaces trapezoidal CommThread with a field-oriented control loop:
       sliding-mode BEMF observer, PLL angle tracking, id/iq current loops,
       and SVPWM on TIM1. Requires phase-current and bus-voltage ADC paths.
+
+config FOC_LOOP_HZ
+    int "FOC control-loop frequency (Hz)"
+    depends on FOC_ENABLE
+    range 1000 20000
+    default 10000
+    help
+      Fast current/observer loop tick (TIM2 on F411, TIM6 on G431). USB and
+      DroneCAN telemetry stay at TELEM_TX_HZ (default 1 kHz).
+
+config TELEM_TX_HZ
+    int "USB / DroneCAN telemetry publish rate (Hz)"
+    range 1 1000
+    default 1000
+    help
+      TelemThread cadence for CBOR USB frames and DroneCAN ESC status.

@@ -61,7 +61,10 @@ typedef struct {
     float current_derating_start;
 } bldc_settings_t;
 
+#define BLDC_DEVICE_ID_LEN 16U
+
 typedef struct {
+    uint8_t device_id[BLDC_DEVICE_ID_LEN];
     float rpm_actual;
     float rpm_target;
     float current_phase_a;

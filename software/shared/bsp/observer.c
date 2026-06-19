@@ -11,7 +11,7 @@
 #endif
 
 #define FOC_TWO_PI            (2.0f * M_PI)
-#define FOC_LOOP_DT_S         0.001f
+#define FOC_LOOP_DT_S         (1.0f / (float)CONFIG_FOC_LOOP_HZ)
 #define FOC_SQRT3             1.7320508075688772f
 #define FOC_INV_SQRT3         0.5773502691896258f
 #define FOC_PWM_MIN_DUTY      0.02f
@@ -57,8 +57,101 @@ typedef struct {
     uint8_t driver_ready;
 } foc_runtime_t;
 
+#if CONFIG_STM32_FAMILY_F4
+#define FOC_LOOP_TIM          TIM2
+#define FOC_LOOP_TIM_IRQn     TIM2_IRQn
+#define FOC_LOOP_TIM_CLK_EN() __HAL_RCC_TIM2_CLK_ENABLE()
+#elif CONFIG_STM32_FAMILY_G4
+#define FOC_LOOP_TIM          TIM6
+#define FOC_LOOP_TIM_IRQn     TIM6_DAC_IRQn
+#define FOC_LOOP_TIM_CLK_EN() __HAL_RCC_TIM6_CLK_ENABLE()
+#else
+#error "FOC loop timer not defined for this STM32 family"
+#endif
+
+static TIM_HandleTypeDef htim_foc_loop;
+static TaskHandle_t foc_task_handle;
+
 static foc_runtime_t foc;
 static bldc_foc_state_t foc_state;
+
+static uint32_t foc_timer_clock_hz(void)
+{
+    uint32_t pclk1 = HAL_RCC_GetPCLK1Freq();
+    uint32_t ppre1;
+
+#if CONFIG_STM32_FAMILY_F4
+    ppre1 = (RCC->CFGR & RCC_CFGR_PPRE1) >> RCC_CFGR_PPRE1_Pos;
+#elif CONFIG_STM32_FAMILY_G4
+    ppre1 = (RCC->CFGR & RCC_CFGR_PPRE1) >> RCC_CFGR_PPRE1_Pos;
+#else
+    ppre1 = 0U;
+#endif
+
+    if (ppre1 >= 4U) {
+        return pclk1 * 2U;
+    }
+
+    return pclk1;
+}
+
+static void bldc_foc_timer_init(void)
+{
+    const uint32_t timclk = foc_timer_clock_hz();
+    const uint32_t target_hz = (uint32_t)CONFIG_FOC_LOOP_HZ;
+    uint32_t prescaler = 0U;
+    uint32_t period;
+
+    if (target_hz == 0U || timclk < target_hz) {
+        Error_Handler();
+    }
+
+    period = (timclk / target_hz);
+    if (period > 0U) {
+        period -= 1U;
+    }
+
+    while (period > 65535U) {
+        prescaler++;
+        period = (timclk / (target_hz * (prescaler + 1U)));
+        if (period > 0U) {
+            period -= 1U;
+        }
+        if (prescaler > 65535U) {
+            Error_Handler();
+        }
+    }
+
+    FOC_LOOP_TIM_CLK_EN();
+
+    htim_foc_loop.Instance = FOC_LOOP_TIM;
+    htim_foc_loop.Init.Prescaler = (uint16_t)prescaler;
+    htim_foc_loop.Init.CounterMode = TIM_COUNTERMODE_UP;
+    htim_foc_loop.Init.Period = (uint16_t)period;
+    htim_foc_loop.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_ENABLE;
+    if (HAL_TIM_Base_Init(&htim_foc_loop) != HAL_OK) {
+        Error_Handler();
+    }
+
+    HAL_NVIC_SetPriority(FOC_LOOP_TIM_IRQn, 6, 0);
+    HAL_NVIC_EnableIRQ(FOC_LOOP_TIM_IRQn);
+
+    if (HAL_TIM_Base_Start_IT(&htim_foc_loop) != HAL_OK) {
+        Error_Handler();
+    }
+}
+
+void bldc_foc_hal_period_callback(TIM_HandleTypeDef *htim)
+{
+    BaseType_t higher_priority_woken = pdFALSE;
+
+    if (htim->Instance != FOC_LOOP_TIM || foc_task_handle == NULL) {
+        return;
+    }
+
+    vTaskNotifyGiveFromISR(foc_task_handle, &higher_priority_woken);
+    portYIELD_FROM_ISR(higher_priority_woken);
+}
 
 static float foc_cos(float radians)
 {
@@ -630,13 +723,27 @@ void bldc_foc_comm_thread(void *argument)
 {
     (void)argument;
 
+    foc_task_handle = xTaskGetCurrentTaskHandle();
     bldc_foc_init();
     foc_begin_startup(bldc_get_settings());
+    bldc_foc_timer_init();
 
     for (;;) {
+        (void)ulTaskNotifyTake(pdTRUE, portMAX_DELAY);
         foc_step_once();
-        osDelay(1);
     }
 }
+
+#if CONFIG_STM32_FAMILY_F4
+void TIM2_IRQHandler(void)
+{
+    HAL_TIM_IRQHandler(&htim_foc_loop);
+}
+#elif CONFIG_STM32_FAMILY_G4
+void TIM6_DAC_IRQHandler(void)
+{
+    HAL_TIM_IRQHandler(&htim_foc_loop);
+}
+#endif
 
 #endif /* CONFIG_FOC_ENABLE */

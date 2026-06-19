@@ -173,7 +173,8 @@ void bldc_telem_init(void) {
     Error_Handler();
   }
 #endif
-	telem_data.temp_c = 0.0f; 
+	get_device_id(telem_data.device_id);
+	telem_data.temp_c = 0.0f;
 }
 
 void bldc_telem_fetch(usb_msg_t *msg) {
@@ -230,7 +231,10 @@ static int usb_telem_encode(nanocbor_encoder_t* enc, usb_msg_t msg)
 
     nanocbor_fmt_uint(enc, msg.type);
 
-    nanocbor_fmt_map(enc, 22);
+    nanocbor_fmt_map(enc, 23);
+
+    nanocbor_put_tstr(enc, "id");
+    nanocbor_put_bstr(enc, msg.data.telemetry.device_id, BLDC_DEVICE_ID_LEN);
 
     nanocbor_put_tstr(enc, "rpm");
     nanocbor_fmt_float(enc, msg.data.telemetry.rpm_actual);
@@ -466,9 +470,7 @@ void TelemThread(void *argument) {
 		for (;;) {
 				bldc_telem_fetch(&msg);
 				usb_msg_tx(&msg, buf, sizeof(buf));
-				osDelay(10);
 				bldc_dronecan_pub();
-				osDelay(90);
-				osDelay(1000-100); // total 1s loop time
+				osDelay(TELEM_TX_PERIOD_MS);
 		}
 }
