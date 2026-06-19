@@ -1,162 +1,239 @@
-# BLDC Motor Firmware Project
+# BLDC Motor Driver — Agent & Contributor Guide
 
-Guidelines for AI agents and contributors working in this repository.
-Current repository is for the Console 
+Guidelines for AI agents and humans working in this repository.
 
-## What This Project Is
+## What this project is
 
-2. **`console/`** — **Electron + React + TypeScript** desktop dashboard. Connects to the firmware over serial, decodes **CBOR** telemetry frames, and renders live motor diagnostics in chart cards.
+| Component | Path | Role |
+|-----------|------|------|
+| **Hardware** | `hardware/` | KiCad ESC/MCU designs (`untitled.kicad_pcb`, `Ana_ESC.kicad_pcb`, etc.) |
+| **Shared BSP** | `software/shared/bsp/` | Motor control, telemetry, USB/CBOR, DroneCAN — compiled into both MCU targets |
+| **STM32F411 firmware** | `software/stm32f411/` | Single-ADC ESC firmware (CubeMX + CMake) |
+| **STM32G431 firmware** | `software/stm32g431/` | Dual-ADC ESC firmware with HW math accelerators |
+| **Console** | `software/console/` | Electron + React dashboard; decodes CBOR over USB CDC |
 
-The long-term goal is sensorless FOC diagnostics, ESC tuning, and DroneCAN integration. Several UI and protocol paths exist but are only partially connected — see [Current State & Gaps](#current-state--gaps).
+Long-term goal: sensorless FOC diagnostics, ESC tuning, and DroneCAN. Several paths exist but are only partially connected — see [Current state & gaps](#current-state--gaps).
+
+**Do not edit KiCad PCB/schematic files unless the user explicitly requests a hardware change.**
 
 ---
-## Architecture & Data Flow
+
+## Architecture & data flow
 
 ```
-┌─────────────────────┐     USB CDC (115200 baud)      ┌──────────────────────┐
-│  STM32F411          │  CBOR frames: [type, payload]  │  Electron main       │
-│                     │ ─────────────────────────────► │  serial.ts decoder   │
-│  TelemThread (10Hz) │                                │       │              │
-│                     │ ◄───────────────────────────── │  ipcMain → renderer  │
-│                     │  settings CBOR (RX, partial)   │  dashboard cards     │
-└─────────────────────┘                                └──────────────────────┘
+┌──────────────────────┐     USB CDC 115200 baud     ┌──────────────────────┐
+│  STM32F411 / G431    │  CBOR [type, payload]       │  Electron main       │
+│  TelemThread (~1Hz)  │ ──────────────────────────► │  electron/lib/       │
+│                      │                             │    serial.ts         │
+│  CommThread          │ ◄────────────────────────── │       │              │
+│  (trapezoidal PWM)   │   settings CBOR (RX)        │  ipcMain → renderer  │
+└──────────────────────┘                             └──────────────────────┘
          │
-         ├── TIM3 PWM → 3-phase outputs (commutation)
-         ├── SPI1   → DRV8323R (enable, faults, gain, OC config)
-         ├── ADC1   → phase currents, bus voltage, NTC temperature (DMA)
-         └── (future) CAN → DroneCAN via libcanard
+         ├── TIM1 CH1/2/3 (+ CH2N/CH3N) → DRV8323 → 3-phase bridge
+         ├── SPI1 → DRV8323R (CS, EN, FAULT, registers)
+         └── ADC → phase currents, VBus, NTC (board-specific routing)
 ```
 
-### FreeRTOS Tasks (`main.c`)
+### FreeRTOS tasks (`main.c`, both targets)
 
 | Task | Priority | Role |
 |------|----------|------|
-| `defaultTask` | Normal | Initializes USB device (`MX_USB_DEVICE_Init`), idle loop |
-| `telemTask` | Low | Samples ADC, publishes telemetry, Dequeues messages, CBOR-encodes, transmits over CDC  |
+| `defaultTask` / `MainTask` | Normal | `MX_USB_DEVICE_Init()`, idle loop |
+| `telemTask` | Low | `TelemThread` — ADC snapshot, CBOR encode, USB TX, DroneCAN pub |
+| `commTask` | Above normal | `CommThread` — trapezoidal commutation via TIM1 |
 
-### Electron Process Model
+`bsp_init()`, `bldc_comm_init()`, and `bldc_telem_init()` run in `main()` before the scheduler starts.
 
-- **Main process** (`electron/main.ts`): owns the `SerialPort` connection, parses CBOR, broadcasts `usb:telem` / `usb:data` to all windows.
-- **Preload** (`electron/preload.ts`): exposes `window.api` via `contextIsolation` — renderer never gets raw `ipcRenderer` or Node APIs.
-- **Renderer** (`src/`): React SPA with hash routing (`react-router-dom`). Sub-windows are separate `BrowserWindow` instances loading routes like `#/settings` or `#/card/motor-speed`.
+### Board selection (CMake)
+
+Shared BSP is wired via `software/shared/bsp/cmake/bldc_bsp.cmake`:
+
+```bash
+cmake -DBLDC_BOARD=stm32f411 ..   # or stm32g431 (cache default)
+```
+
+Board options live in `software/shared/bsp/boards/<name>/board.conf` and `board.h`. CMake generates `build/.../generated/bsp_autoconf.h`.
+
+### Electron process model
+
+- **Main** (`electron/main.ts`): owns `SerialPort`, parses CBOR, broadcasts `usb:telem` / `usb:data`.
+- **Preload** (`electron/preload.ts`): exposes `window.api` with `contextIsolation` — renderer never gets raw `ipcRenderer`.
+- **Renderer** (`src/`): React SPA, hash routing (`react-router-dom`). Pop-out card windows load routes like `#/card/motor-speed`.
 
 ---
 
-## USB / CBOR Protocol
+## Board comparison — ADC & telemetry
 
-Firmware and console communicate over USB CDC at **115200 baud**. Payloads are **CBOR arrays** of `[message_type, payload]`.
+Both targets share `bldc_telem_update()` in `telem.c` when `BLDC_TELEM_USE_DEMO=0`.
 
-### Message Types (`bldc.h`)
+### Build flags (`board.conf`)
+
+| Flag | F411 | G431 |
+|------|------|------|
+| `CONFIG_BLDC_TELEM_USE_DEMO` | **n** | **n** |
+| `CONFIG_BLDC_HAS_USB_TELEM` | y | y |
+| `CONFIG_BLDC_ADC_DMA_CHANNELS` | **6** | **5** |
+| `CONFIG_BLDC_HAS_HW_ACCEL` | no | **y** (CORDIC, FMAC, RNG) |
+
+### ADC architecture
+
+**STM32F411** — single ADC1, 6-channel circular DMA scan:
+
+| DMA rank | Pin | Signal |
+|----------|-----|--------|
+| 1–3 | PA0–PA2 | Phase currents |
+| 4 | **PA5** | VBus (`V_Bus_Sense`, `ADC1_IN5`) |
+| 5–6 | PA6–PA7 | NTC FET / NTC motor |
+
+Snapshot: tear-free `memcpy` of DMA buffer (`boards/stm32f411/board.c`).
+
+**STM32G431** — dual ADC, software-triggered sampling each telem tick:
+
+| ADC | Mode | Pins | Signal |
+|-----|------|------|--------|
+| ADC1 | Injected (EXTI15 SW trigger) | PA0–PA2 | Phase currents |
+| ADC2 | Regular 3-ch polled scan | PA6, PA7, PB2 | NTC FET, NTC motor, VBus |
+
+Snapshot: `boards/stm32g431/board.c` assembles a unified 5-sample buffer.
+
+### `bldc_telemetry_t` — what is real vs stubbed
+
+| Field | CBOR key | F411 | G431 |
+|-------|----------|------|------|
+| Phase currents | `i_a`–`i_c` | Real (DMA) | Real (injected) |
+| Bus voltage | `v_bat` | Real (PA5 × 11 divider) | Real (PB2 × 11 divider) |
+| Phase voltages | `v_a`–`v_c` | Real (duty × Vbus) | Real (duty × Vbus) |
+| FET temperature | `temp` | Real (PA6, software log + IIR) | Real (PA6, CORDIC + FMAC IIR) |
+| Battery current | `i_bat` | Approx (mean \|i_phase\|) | Same |
+| Energy used | `e_used` | Integrated | Integrated |
+| Timestamp | `ts` | `millis32()` | `millis32()` |
+| RPM, target RPM | `rpm`, `rpm_t` | **0** | **0** |
+| FOC currents | `i_d`, `i_q` | **0** | **0** |
+| Angles | `ang_m`, `ang_e`, `ang_err` | **0** | **0** |
+| Observer | `bemf`, `obs`, `pll` | **0 / 100 / 0** | **0 / 100 / 0** |
+| Energy remaining | `e_rem` | **0** | **0** |
+
+**Sampled but not telemetered:** PA7 motor NTC on both boards (`ADC_IDX_TEMP_MTR` / `ADC_SLOW_RANK_NTC_MTR`).
+
+**Demo mode:** `CONFIG_BLDC_TELEM_USE_DEMO=y` replaces all fields with `bldc_telem_fake()` random data and skips ADC init.
+
+---
+
+## USB / CBOR protocol
+
+115200 baud USB CDC. Payloads are CBOR arrays: `[message_type, payload]`.
+
+### Message types (`bldc.h`)
 
 | Value | Name | Direction | Payload |
 |-------|------|-----------|---------|
 | `0` | `USB_MSG_TELEMETRY` | MCU → host | CBOR map (short keys) |
-| `1` | `USB_MSG_SETTINGS` | Both | CBOR map of FOC/motor parameters |
+| `1` | `USB_MSG_SETTINGS` | Both | CBOR map of motor/FOC parameters |
 | `2` | `USB_MSG_DEBUG_STR` | MCU → host | CBOR text string |
 | `3` | `USB_MSG_ERROR` | MCU → host | CBOR uint error code |
 
-### Telemetry Map Keys
+Encoding/decoding lives in `software/shared/bsp/telem.c` (`usb_telem_encode`, `usb_msg_tx`, `usb_msg_rx`). CDC receive calls `usb_msg_rx` from `usbd_cdc_if.c`.
 
-Firmware encodes in `usb.c` (`usb_telem_encode`); console decodes in `electron/lib/serial.ts` (`mapTelemetry`):
+### Telemetry map keys
 
 | Key | Field | Notes |
 |-----|-------|-------|
-| `rpm`, `rpm_t` | actual / target RPM | Currently stubbed to 0 in firmware (no observer yet) |
-| `i_a`, `i_b`, `i_c` | phase currents (A) | From ADC shunt amplifiers |
-| `v_a`, `v_b`, `v_c` | phase voltages (V) | Derived from PWM duty × bus voltage |
-| `i_d`, `i_q` | FOC d/q currents | Stubbed to 0 |
-| `ang_m`, `ang_e` | mechanical / electrical angle (deg) | Stubbed to 0 |
-| `ang_err` | angle error (deg) | Stubbed to 0 |
-| `v_bat`, `i_bat` | battery voltage / current | `i_bat` approximated from phase currents |
-| `e_used`, `e_rem` | energy used / remaining (Wh) | `e_rem` not computed yet |
+| `rpm`, `rpm_t` | actual / target RPM | Stubbed 0 — no observer |
+| `i_a`, `i_b`, `i_c` | phase currents (A) | Shunt amps, PA0–PA2 |
+| `v_a`, `v_b`, `v_c` | phase voltages (V) | PWM duty × `v_bat` |
+| `i_d`, `i_q` | FOC d/q currents | Stubbed 0 |
+| `ang_m`, `ang_e` | mechanical / electrical angle (°) | Stubbed 0 |
+| `ang_err` | angle error (°) | Stubbed 0 |
+| `v_bat`, `i_bat` | battery voltage / current | Real Vbus; `i_bat` approximated |
+| `e_used`, `e_rem` | energy used / remaining (Wh) | `e_used` integrated; `e_rem` always 0 |
 | `bemf`, `obs`, `pll` | observer diagnostics (uint8) | Stubbed |
-| `temp` | temperature (°C) | NTC via Beta equation; wired end-to-end |
-| `ts` | timestamp (ms) | `millis32()` from DWT cycle counter |
+| `temp` | FET temperature (°C) | NTC Beta + IIR; PA6 only |
+| `ts` | timestamp (ms) | `millis32()` via DWT |
 
-When adding a new telemetry field, update **both** `usb.c` (encode), `bldc.h` (`bldc_telemetry_t`), `electron/lib/telemetry.ts` (types), and `electron/lib/serial.ts` (`isTelemetryPayload` + `mapTelemetry`).
+When adding a telemetry field, update **`bldc.h`** (`bldc_telemetry_t`), **`telem.c`** (populate + `usb_telem_encode`), **`electron/lib/telemetry.ts`**, **`electron/lib/serial.ts`** (`isTelemetryPayload` + `mapTelemetry`), **`src/types/electron.d.ts`**, and the relevant dashboard card.
 
-### Settings Map Keys
+### Settings map keys
 
-Encoded/decoded in `usb.c`. Short keys: `pp`, `kv`, `rs`, `ls`, `i_kp`, `i_ki`, `s_kp`, `s_ki`, `idt`, `p_kp`, `p_ki`, `bemf`, `obs`, `min_cl`, `max_ol`, `ramp`, `align`, `smode`, `l_i`, `l_v`, `l_t`, `l_cd`. RX path writes into `bldc_get_settings()` in `telem.c`. **The console settings UI does not send settings over CBOR yet** — it is a visual placeholder.
+Short keys: `pp`, `kv`, `rs`, `ls`, `i_kp`, `i_ki`, `s_kp`, `s_ki`, `idt`, `p_kp`, `p_ki`, `bemf`, `obs`, `min_cl`, `max_ol`, `ramp`, `align`, `smode`, `l_i`, `l_v`, `l_t`, `l_cd`.
+
+RX path in `usb_msg_rx` decodes into `bldc_get_settings()` in `telem.c`. **Console settings UI does not send settings over CBOR yet.**
 
 ---
 
-## Firmware Guide
+## Firmware guide
 
-### Where to Put Code
+### Where to put code
 
 | Change type | Location |
 |-------------|----------|
-| Motor control, sensing, protocols | `firmware/Core/Src/bldc/*.c` and `firmware/Core/Inc/bldc.h` |
-| CubeMX user hooks (init calls, handles, task bodies) | `/* USER CODE BEGIN/END */` blocks in `main.c`, `freertos.c`, `usbd_cdc_if.c`, etc. |
-| Pin/peripheral/clock/DMA/timer changes | **`stm32f411/stm32f411.ioc`** via STM32CubeMX — **not** by hand-editing `MX_*_Init()` or `stm32f4xx_hal_msp.c` |
-| New third-party C sources | `stm32f411/CMakeLists.txt` (`target_sources`, include dirs, compile flags) |
+| Motor control, sensing, protocols | `software/shared/bsp/*.c` and `bldc.h` |
+| Board-specific ADC snapshot, pins, timers | `software/shared/bsp/boards/<board>/board.c`, `board.h` |
+| Board Kconfig options | `software/shared/bsp/boards/<board>/board.conf` |
+| CubeMX user hooks (init, tasks, callbacks) | `/* USER CODE BEGIN/END */` in `main.c`, `freertos.c`, `usbd_cdc_if.c`, etc. |
+| Pin / clock / DMA / peripheral config | **`<target>/<target>.ioc`** via STM32CubeMX — not by hand-editing `MX_*_Init()` or `*_hal_msp.c` |
+| New third-party C sources | `<target>/CMakeLists.txt` |
 
-**Crucial CubeMX rule:** User code must stay inside `/* USER CODE BEGIN ... */` / `/* USER CODE END ... */` comment pairs. Regenerating from CubeMX deletes anything outside those blocks. If asked to change HAL pin assignments, clock trees, DMA, or interrupt vectors, **warn the user** and direct them to edit `stm32f411.ioc` instead.
+**CubeMX rule:** Code outside `USER CODE` blocks is deleted on regeneration. Warn the user and point them to the `.ioc` file for pin or peripheral changes.
 
-### Hardware Constants (`bldc.h`)
+### Shared module responsibilities (`software/shared/bsp/`)
 
-Key defines agents should know before changing sensing math:
+| File | Role |
+|------|------|
+| `bsp.c` / `bsp.h` | Init orchestration, motor handle, telem ADC hooks |
+| `boards/<board>/board.c` | PWM handle binding, ADC snapshot implementation |
+| `boards/<board>/board.h` | ADC indices, divider constants, phase timer macros |
+| `boards/stm32g431/hw_accel.c` | CORDIC sin/log, FMAC IIR, HW RNG (G431 only) |
+| `bsp_math.c` | Portable wrappers; software fallback on F411 |
+| `commutation.c` | `bldc_comm_init/enable/disable/set_duty/commutate`, TIM1 trapezoidal drive |
+| `drv8323r.c` | SPI register access, fault decode, OC config |
+| `telem.c` | `bldc_telem_update`, CBOR USB codec, `TelemThread`, settings decode |
+| `dronecan.c` | libcanard init, DNA, ESC status — **CAN HAL TX/RX not implemented** |
+| `utils.c` | `micros64()` / `millis32()` via DWT, `get_device_id()`, `rand32()` |
+
+### Hardware constants (`board.h` / `bldc.h`)
 
 - `ADC_REF_VOLT` = 3.3 V, `ADC_MAX_COUNT` = 4095
-- `PHASE_CURRENT_ZERO_V` = 1.65 V (mid-rail shunt amp bias)
-- `PHASE_CURRENT_V_PER_A` = 0.100 V/A
+- `PHASE_CURRENT_ZERO_V` = 1.65 V, `PHASE_CURRENT_V_PER_A` = 0.100 V/A
 - `BUS_VOLTAGE_DIVIDER_RATIO` = 11.0
 - Thermistor: `THERMISTOR_PULLUP` / `THERMISTOR_R25` = 10 kΩ, `THERMISTOR_BETA` = 3950
-- `BLDC_COMPLEMENTARY_DRIVE` — optional macro for TIM1/TIM8 complementary PWM (off by default)
-- `BLDC_TELEM_USE_DEMO` — enables `bldc_telem_fake()` in `utils.c` for UI dev without hardware
+- `IIR_FILTER_ALPHA` = 0.1 (temperature low-pass)
 
-### BLDC Module Responsibilities
-
-- **`commutation.c`** — `bldc_comm_init/enable/disable/set_duty`, trapezoidal 6-step via `bldc_comm_trapeziod()` (note: header declares `bldc_comm_commutate()` — name mismatch, fix if linking fails). Uses `TIM3` channels mapped in `main.c`.
-- **`drv8323r.c`** — SPI register read/write, fault decode, OC gain/mode, DC calibration.
-- **`telem.c`** — ADC DMA (5 channels), IIR temperature filter, energy integration, `TelemThread`.
-- **`usb.c`** — CBOR codec, `UsbThread`, `usb_msg_rx` called from CDC receive callback.
-- **`dronecan.c`** — libcanard init, DNA allocation handler, ESC RawCommand/Status/NodeStatus. **CAN HAL TX/RX not implemented** — `bldc_dronecan_update()` is a stub.
-- **`utils.c`** — `micros64()` / `millis32()` via DWT, `get_device_id()` from STM32 UID, `rand32()`.
-
-### Build & Flash
-
-**Prerequisites:** `arm-none-eabi-gcc` on PATH, `cmake`, `ninja`.
+### Build & flash
 
 ```bash
-cd stm32f411
+cd software/stm32f411   # or stm32g431
 cmake --preset Debug
 cmake --build --preset Debug
-# Output: stm32f411/build/Debug/stm32f411.elf
+# Output: build/Debug/<target>.elf
+make flash              # ST-Link + OpenOCD
 ```
 
-Or from `stm32f411/`: `make build` (runs preset + build). Flash with ST-Link + OpenOCD: `make flash`.
+**clangd:** `build/Debug/compile_commands.json` is generated on configure. Root `.clangd` points at the F411 build by default.
 
-**clangd:** After configuring, `stm32f411/build/Debug/compile_commands.json` is generated. Root `.clangd` expects this path.
-
-**DroneCAN DSDL codegen** (required before first build if `dsdl_generated/` is missing):
+**DroneCAN DSDL codegen** (if `Middlewares/Third_Party/dsdl_generated/` is missing):
 
 ```bash
-cd stm32f411
-make dsdl_gen_build   # clones DSDL + dronecan_dsdlc, generates into Middlewares/Third_Party/dsdl_generated/
+make dsdl_gen_build
 ```
 
-Git submodules at `stm32f411/Middlewares/Third_Party/DSDL` and `dronecan_dsdlc` are the canonical sources; the Makefile clones fresh copies for generation.
+### Compile flags
 
-### Firmware Compile Flags
-
-- `Core/Src/*.c` and `Core/Src/bldc/*.c`: `-O3 -Wall -Wextra` (strict)
-- Third-party (libcanard, NanoCBOR, DSDL generated): `-w` (warnings suppressed)
+- Application + BSP sources: `-O3 -Wall -Wextra`
+- Third-party (libcanard, NanoCBOR, DSDL generated): `-w`
 
 ---
 
-## Console Guide
+## Console guide
 
-### Tech Stack
+### Tech stack
 
 - **Vite 8** + **React 19** + **TypeScript 5.9**
-- **Tailwind CSS 4** + **shadcn/ui** components (`components.json`, `@/` path alias)
+- **Tailwind CSS 4** + **shadcn/ui** (`@/` path alias)
 - **Recharts** for dashboard charts
-- **Electron 42** with `contextIsolation: true`, `nodeIntegration: false`
-- **serialport** + **cbor** for device I/O
+- **Electron 42** (`contextIsolation: true`, `nodeIntegration: false`)
+- **serialport** + **cbor**
 
-### IPC Surface (`window.api`)
+### IPC surface (`window.api`)
 
 Defined in `electron/preload.ts`, typed in `src/types/electron.d.ts`:
 
@@ -164,115 +241,111 @@ Defined in `electron/preload.ts`, typed in `src/types/electron.d.ts`:
 |---------|------|---------|
 | `usb:list` / `usb:refresh` | invoke | Enumerate USB serial devices |
 | `usb:connect` / `usb:disconnect` | invoke | Open/close port at 115200 |
-| `usb:send-data` | invoke | Write newline-terminated string to port |
+| `usb:send-data` | invoke | Write string to port |
 | `usb:setup-port-reader` | invoke | Attach CBOR stream parser |
-| `usb:telem` / `usb:data` | event (main→renderer) | Parsed telemetry / raw messages |
+| `usb:telem` / `usb:data` | event | Parsed telemetry / raw messages |
 | `usb:update` / `usb:on-update` | event | Device list changes |
 | `open-new-window` | send | Spawn sub-window at `/#/{path}` |
 | `file:save-file` | invoke | Write binary to `~/Documents/BLDC/{name}` |
 
-**All serial/CBOR logic belongs in `electron/lib/serial.ts`.** Do not add `serialport` usage in renderer code.
+**All serial/CBOR logic belongs in `electron/lib/serial.ts`.** Do not use `serialport` in renderer code.
 
-### UI Structure
+### UI structure
 
-- **`src/windows/main.tsx`** — Dashboard; subscribes to `usb:telem`, maintains 40-sample history, feeds cards.
-- **`src/cards/*.tsx`** — Presentational chart widgets; accept typed `data` props, include fallback demo data when empty.
-- **`src/components/top-bar.tsx`** — Device connect dropdown (`useUsbDevices`), navigation.
-- **`src/windows/settings.tsx`** — Motor/FOC settings form (**UI only, not wired to CBOR settings TX**).
-- **`src/windows/console.tsx`** — Raw serial console via `usb:send-data` / `usb:data`.
-- **`src/components/card-wrapper.tsx`** — Pop-out button opens detached card window.
+| Path | Role |
+|------|------|
+| `src/windows/main.tsx` | Dashboard; subscribes to `usb:telem`, 40-sample history |
+| `src/cards/*.tsx` | Chart widgets; fallback demo data when empty |
+| `src/components/top-bar.tsx` | Device connect dropdown |
+| `src/windows/settings.tsx` | Settings form — **UI only, no CBOR TX** |
+| `src/windows/console.tsx` | Raw serial console |
+| `src/components/card-wrapper.tsx` | Pop-out card windows |
+| `App.tsx` | Routes including `/card/...` |
 
-Cards can be opened as pop-out windows via routes in `App.tsx` (e.g. `/card/motor-speed`).
-
-### Build & Run
-
-**Prerequisites:** Node.js, npm. Linux serial access requires `dialout` group:
-
-```bash
-sudo usermod -a -G dialout $USER   # re-login required
-```
+### Build & run
 
 ```bash
-cd console
+cd software/console
 npm install
-npm run dev          # Vite + Electron (opens DevTools in dev mode)
-npm run build        # Production React + electron tsc
-npm run build:linux  # Package AppImage/deb via electron-builder
+npm run dev
+npm run build
+npm run build:linux
 ```
 
-Dev mode runs Electron with `--no-sandbox --ozone-platform=x11` (Linux).
-
-### Console Code Style
-
-- Functional components + hooks; no class components.
-- Use existing shadcn/ui primitives under `src/components/ui/` — don't reinvent buttons, dialogs, etc.
-- Global types (`TelemetryData`, `Device`) live in `src/types/electron.d.ts`.
-- Prefer `useMemo` for chart data transforms (see `main.tsx`).
-- Toast notifications via `sonner` (`use-devices.ts` pattern).
+Linux dev mode uses `--no-sandbox --ozone-platform=x11`.
 
 ---
 
-## Current State & Gaps
-
-Agents should treat these as known incomplete areas — don't assume features work end-to-end:
+## Current state & gaps
 
 | Area | Status |
 |------|--------|
-| Phase current / voltage / temp / battery telemetry | Working from real ADC |
-| RPM, angles, i_d/i_q, observer fields | Stubbed to 0 in `telem.c` (no FOC observer) |
-| Settings UI → firmware | Not connected; firmware RX handler exists |
-| `bldc_comm_commutate` vs `bldc_comm_trapeziod` | Header/implementation name mismatch |
-| DroneCAN CAN bus I/O | Protocol layer only; no HAL CAN driver hooked up |
-| `BLDC_TELEM_USE_DEMO` | Uncomment in `bldc.h` for synthetic telemetry without hardware |
-| `TelemetryData` type | Missing `temperature` field in `electron.d.ts` (present in `BLDCTelemetry`) |
-| Settings window | Static form controls, no state persistence or IPC |
+| Phase currents, Vbus, phase voltages, FET temp, energy used | **Working** on both boards (real ADC) |
+| Motor NTC (PA7) | Sampled in ADC; **not in telemetry map** |
+| RPM, angles, `i_d`/`i_q`, observer fields | Stubbed in `bldc_telem_update()` |
+| `i_bat` | Approximated from phase currents, not a bus shunt |
+| `e_rem` | Always 0; `BATTERY_CAPACITY_WH` unused |
+| Telemetry publish rate | ~**1 Hz** (`TelemThread` 1 s loop) |
+| Settings UI → firmware | Not connected; firmware RX exists |
+| DroneCAN bus I/O | Protocol layer only |
+| `TelemetryData` in `electron.d.ts` | Missing `temperature` field (mapped in `serial.ts` as `BLDCTelemetry.temperature`) |
+| Demo telemetry | Off on both boards; enable via `board.conf` for UI-only dev |
 
-When implementing FOC, wire observer outputs into `bldc_telem_update()` and ensure CBOR keys stay in sync with the console.
+When implementing FOC, wire observer outputs into `bldc_telem_update()` and keep CBOR keys in sync with the console.
 
 ---
 
-## Common Agent Tasks
+## Common tasks
 
 ### Add a telemetry field
-1. Add to `bldc_telemetry_t` in `bldc.h`
-2. Populate in `telem.c` (`bldc_telem_update` or demo generator)
-3. Encode in `usb.c` (`usb_telem_encode`)
-4. Add to `TelemetryRaw` / `BLDCTelemetry` in `electron/lib/telemetry.ts`
-5. Update `isTelemetryPayload` + `mapTelemetry` in `serial.ts`
-6. Add to `TelemetryData` in `electron.d.ts` and wire into relevant card
+
+1. `bldc_telemetry_t` in `bldc.h`
+2. Populate in `telem.c` (`bldc_telem_update` or `bldc_telem_fake`)
+3. `usb_telem_encode` in `telem.c`
+4. `electron/lib/telemetry.ts` types
+5. `isTelemetryPayload` + `mapTelemetry` in `serial.ts`
+6. `TelemetryData` in `electron.d.ts` + dashboard card
 
 ### Add a dashboard card
-1. Create `src/cards/my-card.tsx` (props + chart, fallback data)
-2. Import in `src/windows/main.tsx`, derive data from `telemetry` / `telemetryHistory`
-3. Wrap in `CardWrapper` with a route string
-4. Add route in `App.tsx` under `/card/...` with `SubWindowLayout`
+
+1. `src/cards/my-card.tsx`
+2. Import in `src/windows/main.tsx`
+3. Wrap in `CardWrapper` with route string
+4. Add route in `App.tsx`
 
 ### Add firmware motor logic
-1. Implement in `Core/Src/bldc/` (new `.c` file auto-picked up by CMake `GLOB`)
-2. Declare public API in `bldc.h`
-3. Call from `main.c` USER CODE blocks or an RTOS task
+
+1. New or existing file under `software/shared/bsp/`
+2. Declare API in `bldc.h`
+3. Call from `main.c` USER CODE or an RTOS task
 4. Keep ISR work minimal; defer to tasks
 
 ### Change a pin or peripheral
-1. Edit `stm32f411/stm32f411.ioc` in STM32CubeMX
+
+1. Edit `<target>/<target>.ioc` in STM32CubeMX
 2. Regenerate code
-3. Re-verify USER CODE blocks preserved
-4. Rebuild firmware
+3. Update `board.h` ADC indices if scan order changed
+4. Re-verify USER CODE blocks and rebuild
+
+### Enable VBus on F411
+
+VBus must land on an ADC pin (currently **PA5**). Update CubeMX, then align `board.h` indices and `CONFIG_BLDC_ADC_DMA_CHANNELS` in `board.conf`. **Do not reroute nets in KiCad without explicit user approval.**
 
 ---
 
-## Testing & Verification
+## Testing & verification
 
-- **Firmware:** No automated test suite. Verify with `cmake --build --preset Debug` (zero errors). Flash and confirm CDC port appears.
-- **Console:** `npm run lint` (ESLint). Manual test: connect device, confirm cards update from `usb:telem` events.
-- **Without hardware:** Enable `BLDC_TELEM_USE_DEMO` in `bldc.h` and rebuild firmware, or rely on card fallback demo data in the renderer.
+- **Firmware:** `cmake --build --preset Debug` (zero errors). Flash and confirm CDC port appears.
+- **Console:** `npm run lint`. Connect device; confirm cards update from `usb:telem`.
+- **Without hardware:** `CONFIG_BLDC_TELEM_USE_DEMO=y` in `board.conf`, or card fallback demo data in the renderer.
 
 ---
 
-## Do Not
+## Do not
 
-- Edit STM32 HAL init functions, `stm32f4xx_hal_msp.c`, or `startup_*.s` directly for configuration changes — use CubeMX.
+- Edit KiCad PCB/schematic files unless the user explicitly asks.
+- Edit STM32 HAL init or `*_hal_msp.c` for configuration changes — use CubeMX.
 - Put `serialport` or filesystem access in React renderer code.
-- Add code outside CubeMX USER CODE blocks in generated files (except `bldc/` and top-level `CMakeLists.txt`).
-- Assume settings forms or DroneCAN motor commands are functional without verifying the data path.
+- Add code outside CubeMX USER CODE blocks in generated files (except shared BSP and top-level `CMakeLists.txt`).
+- Assume settings forms or DroneCAN motor commands work without verifying the data path.
 - Create markdown documentation files unless explicitly asked.
