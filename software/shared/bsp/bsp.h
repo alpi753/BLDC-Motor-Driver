@@ -47,6 +47,10 @@ int bsp_telem_adc_snapshot(uint16_t *samples, unsigned count);
 void bsp_telem_adc_conv_cplt(ADC_HandleTypeDef *hadc);
 #endif
 
+#if CONFIG_FOC_ENABLE
+int bsp_foc_sample_sensors(float *ia, float *ib, float *ic, float *vbus);
+#endif
+
 #ifdef __cplusplus
 }
 #endif

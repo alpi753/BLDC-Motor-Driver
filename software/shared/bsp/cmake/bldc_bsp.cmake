@@ -118,7 +118,8 @@ function(bldc_bsp_generate_autoconf conf_vars output_header)
         message(FATAL_ERROR "BLDC BSP: unknown CONFIG_BLDC_PWM_LAYOUT '${_pwm_layout}'")
     endif()
     string(APPEND _header "#define BLDC_TELEM_USE_DEMO CONFIG_BLDC_TELEM_USE_DEMO\n")
-    string(APPEND _header "#define ADC_CHANNEL_COUNT CONFIG_BLDC_ADC_DMA_CHANNELS\n\n")
+    string(APPEND _header "#define ADC_CHANNEL_COUNT CONFIG_BLDC_ADC_DMA_CHANNELS\n")
+    string(APPEND _header "#define BLDC_FOC_ENABLE CONFIG_FOC_ENABLE\n\n")
     string(APPEND _header "#endif /* BLDC_BSP_AUTOCONF_H */\n")
 
     file(WRITE "${output_header}" "${_header}")
@@ -165,6 +166,7 @@ function(bldc_bsp_configure)
 
     set(_has_usb_telem 0)
     set(_has_hw_accel 0)
+    set(_has_foc_enable 0)
 
     foreach(_entry IN LISTS _conf_vars)
         string(REPLACE "=" ";" _parts "${_entry}")
@@ -176,6 +178,9 @@ function(bldc_bsp_configure)
         if(_key STREQUAL "CONFIG_BLDC_HAS_HW_ACCEL" AND _val STREQUAL "1")
             set(_has_hw_accel 1)
         endif()
+        if(_key STREQUAL "CONFIG_FOC_ENABLE" AND _val STREQUAL "1")
+            set(_has_foc_enable 1)
+        endif()
     endforeach()
 
     if(_has_hw_accel)
@@ -186,6 +191,10 @@ function(bldc_bsp_configure)
 
     if(_has_usb_telem)
         list(APPEND _bldc_sources "${BLDC_BSP_DIR}/telem.c")
+    endif()
+
+    if(_has_foc_enable)
+        list(APPEND _bldc_sources "${BLDC_BSP_DIR}/observer.c")
     endif()
 
     target_sources(${BSP_TARGET} PRIVATE ${_bldc_sources})

@@ -1,5 +1,6 @@
 #include "bldc.h"
 #include "cmsis_os.h"
+#include "observer.h"
 
 BLDC_Handle_t bldc_h;
 
@@ -425,6 +426,7 @@ void bldc_comm_commutate(uint8_t step)
     bldc_comm_enable();
 }
 
+#if !CONFIG_FOC_ENABLE
 static uint16_t comm_duty_from_percent(uint8_t percent)
 {
     const uint32_t period = (uint32_t)__HAL_TIM_GET_AUTORELOAD(bldc_h.htim_high) + 1U;
@@ -500,9 +502,14 @@ static int comm_gate_driver_ok(void)
     bldc_drv8323r_reset_faults();
     return 0;
 }
+#endif /* !CONFIG_FOC_ENABLE */
 
 void CommThread(void *argument)
 {
+#if CONFIG_FOC_ENABLE
+    bldc_foc_comm_thread(argument);
+    return;
+#else
     uint8_t step = 1U;
 
     (void)argument;
@@ -534,4 +541,5 @@ void CommThread(void *argument)
 
         osDelay(period_ms);
     }
+#endif /* CONFIG_FOC_ENABLE */
 }

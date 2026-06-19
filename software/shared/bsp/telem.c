@@ -3,6 +3,7 @@
 #include <string.h>
 #include "cmsis_os.h"
 #include "bldc.h"
+#include "observer.h"
 #include "main.h"
 #include "dronecan.c"
 #include "usb_device.h"
@@ -109,18 +110,20 @@ void bldc_telem_update(void)
     }
 
     telem_data.timestamp_ms = millis32();
-    /* The remaining fields require rotor position/speed observers not wired yet. */
+#if CONFIG_FOC_ENABLE
+    bldc_foc_fill_telemetry(&telem_data);
+#else
     telem_data.rpm_actual = 0.0f;
     telem_data.rpm_target = 0.0f;
     telem_data.i_d = 0.0f;
     telem_data.i_q = 0.0f;
     telem_data.angle_mechanical = 0.0f;
     telem_data.angle_electrical = 0.0f;
-
     telem_data.bemf_strength = 0U;
     telem_data.obs_confidence = 100U;
     telem_data.pll_lock_status = 0U;
     telem_data.angle_error_deg = 0U;
+#endif
 }
 #else
 static float fake_rand_f(float lo, float hi)

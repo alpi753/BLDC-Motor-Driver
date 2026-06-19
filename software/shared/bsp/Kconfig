@@ -73,3 +73,11 @@ config BLDC_ADC_DMA_CHANNELS
     int "ADC DMA channel count"
     range 1 16
     default 5
+
+config FOC_ENABLE
+    bool "Sensorless FOC + observer (observer.c)"
+    default n
+    help
+      Replaces trapezoidal CommThread with a field-oriented control loop:
+      sliding-mode BEMF observer, PLL angle tracking, id/iq current loops,
+      and SVPWM on TIM1. Requires phase-current and bus-voltage ADC paths.

@@ -1,6 +1,7 @@
 #include <string.h>
 
 #include "bsp.h"
+#include "bldc.h"
 #include "main.h"
 
 extern TIM_HandleTypeDef htim1;
@@ -90,6 +91,31 @@ int bsp_telem_adc_snapshot(uint16_t *samples, unsigned count)
         seq_after = adc_dma_seq;
     } while (seq_before != seq_after);
 
+    return 1;
+}
+#endif
+
+#if CONFIG_FOC_ENABLE && !BLDC_TELEM_USE_DEMO
+int bsp_foc_sample_sensors(float *ia, float *ib, float *ic, float *vbus)
+{
+    uint16_t adc[ADC_CHANNEL_COUNT];
+
+    if (ia == NULL || ib == NULL || ic == NULL || vbus == NULL) {
+        return 0;
+    }
+
+    if (!bsp_telem_adc_snapshot(adc, ADC_CHANNEL_COUNT)) {
+        return 0;
+    }
+
+    *ia = ADC_TO_CURR(adc[ADC_IDX_PHASE_A]);
+    *ib = ADC_TO_CURR(adc[ADC_IDX_PHASE_B]);
+    *ic = ADC_TO_CURR(adc[ADC_IDX_PHASE_C]);
+#if ADC_HAS_VBUS_ADC
+    *vbus = ADC_TO_VOLT(adc[ADC_IDX_VBUS]) * BUS_VOLTAGE_DIVIDER_RATIO;
+#else
+    *vbus = 0.0f;
+#endif
     return 1;
 }
 #endif

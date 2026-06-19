@@ -1,0 +1,642 @@
+#include "observer.h"
+
+#if CONFIG_FOC_ENABLE
+
+#include "cmsis_os.h"
+#include <math.h>
+#include <string.h>
+
+#ifndef M_PI
+#define M_PI 3.14159265358979323846f
+#endif
+
+#define FOC_TWO_PI            (2.0f * M_PI)
+#define FOC_LOOP_DT_S         0.001f
+#define FOC_SQRT3             1.7320508075688772f
+#define FOC_INV_SQRT3         0.5773502691896258f
+#define FOC_PWM_MIN_DUTY      0.02f
+#define FOC_PWM_MAX_DUTY      0.98f
+#define FOC_DEFAULT_POLE_PAIRS 7.0f
+#define FOC_DEFAULT_VBUS      24.0f
+#define FOC_PLL_LOCK_RPM        120.0f
+#define FOC_PLL_LOCK_BEMF       0.15f
+
+typedef struct {
+    float kp;
+    float ki;
+    float integral;
+    float out_min;
+    float out_max;
+} foc_pi_t;
+
+typedef struct {
+    foc_pi_t id;
+    foc_pi_t iq;
+    foc_pi_t speed;
+    foc_pi_t pll;
+
+    float i_hat_alpha;
+    float i_hat_beta;
+    float e_alpha;
+    float e_beta;
+
+    float theta_elec;
+    float omega_elec;
+    float theta_open_loop;
+
+    float rpm_target;
+    float open_loop_omega;
+    float last_v_alpha;
+    float last_v_beta;
+
+    bldc_foc_mode_t mode;
+    uint32_t align_until_ms;
+    uint32_t ramp_until_ms;
+
+    uint8_t pwm_ready;
+    uint8_t driver_ready;
+} foc_runtime_t;
+
+static foc_runtime_t foc;
+static bldc_foc_state_t foc_state;
+
+static float foc_cos(float radians)
+{
+    return bsp_sin_f(radians + (0.5f * M_PI));
+}
+
+static float foc_wrap_angle(float radians)
+{
+    while (radians >= M_PI) {
+        radians -= FOC_TWO_PI;
+    }
+    while (radians < -M_PI) {
+        radians += FOC_TWO_PI;
+    }
+    return radians;
+}
+
+static float foc_sat(float value, float limit)
+{
+    if (value > limit) {
+        return limit;
+    }
+    if (value < -limit) {
+        return -limit;
+    }
+    return value;
+}
+
+static void foc_pi_init(foc_pi_t *pi, float kp, float ki, float out_min, float out_max)
+{
+    pi->kp = kp;
+    pi->ki = ki;
+    pi->integral = 0.0f;
+    pi->out_min = out_min;
+    pi->out_max = out_max;
+}
+
+static float foc_pi_step(foc_pi_t *pi, float error, float dt)
+{
+    pi->integral += error * dt;
+    pi->integral = foc_sat(pi->integral, pi->out_max);
+    const float out = (pi->kp * error) + (pi->ki * pi->integral);
+    return foc_sat(out, pi->out_max);
+}
+
+static void foc_clarke(float ia, float ib, float ic, float *i_alpha, float *i_beta)
+{
+    (void)ic;
+    *i_alpha = ia;
+    *i_beta = FOC_INV_SQRT3 * (ia + (2.0f * ib));
+}
+
+static void foc_park(float i_alpha, float i_beta, float theta, float *id, float *iq)
+{
+    const float c = foc_cos(theta);
+    const float s = bsp_sin_f(theta);
+    *id = (i_alpha * c) + (i_beta * s);
+    *iq = (-i_alpha * s) + (i_beta * c);
+}
+
+static void foc_inv_park(float vd, float vq, float theta, float *v_alpha, float *v_beta)
+{
+    const float c = foc_cos(theta);
+    const float s = bsp_sin_f(theta);
+    *v_alpha = (vd * c) - (vq * s);
+    *v_beta = (vd * s) + (vq * c);
+}
+
+static void foc_inv_clarke(float v_alpha, float v_beta, float *va, float *vb, float *vc)
+{
+    *va = v_alpha;
+    *vb = (-0.5f * v_alpha) + (0.5f * FOC_SQRT3 * v_beta);
+    *vc = (-0.5f * v_alpha) - (0.5f * FOC_SQRT3 * v_beta);
+}
+
+static float foc_effective_pole_pairs(const bldc_settings_t *settings)
+{
+    if (settings != NULL && settings->pole_pairs >= 1.0f) {
+        return settings->pole_pairs;
+    }
+    return FOC_DEFAULT_POLE_PAIRS;
+}
+
+static float foc_effective_vbus(const bldc_settings_t *settings, float measured_vbus)
+{
+    if (measured_vbus > 5.0f) {
+        return measured_vbus;
+    }
+    if (settings != NULL && settings->max_bus_voltage > 5.0f) {
+        return settings->max_bus_voltage;
+    }
+    return FOC_DEFAULT_VBUS;
+}
+
+static float foc_rpm_to_omega_elec(float rpm, float pole_pairs)
+{
+    return (rpm * FOC_TWO_PI * pole_pairs) / 60.0f;
+}
+
+static float foc_omega_elec_to_rpm(float omega, float pole_pairs)
+{
+    if (pole_pairs < 1.0f) {
+        return 0.0f;
+    }
+    return (omega * 60.0f) / (FOC_TWO_PI * pole_pairs);
+}
+
+static void foc_ensure_driver_ready(void)
+{
+    if (foc.driver_ready) {
+        return;
+    }
+
+    bldc_drv8323r_init();
+    foc.driver_ready = 1U;
+}
+
+static int foc_gate_driver_ok(void)
+{
+    const uint32_t faults = bldc_drv8323r_read_faults();
+    if (faults == 0U) {
+        return 1;
+    }
+
+    bldc_drv8323r_reset_faults();
+    foc.mode = BLDC_FOC_MODE_FAULT;
+    return 0;
+}
+
+static void foc_pwm_start(void)
+{
+    if (foc.pwm_ready) {
+        return;
+    }
+
+    (void)HAL_TIM_PWM_Start(bldc_h.htim_high, bldc_h.chA);
+    (void)HAL_TIM_PWM_Start(bldc_h.htim_high, bldc_h.chB);
+    (void)HAL_TIM_PWM_Start(bldc_h.htim_high, bldc_h.chC);
+
+#if CONFIG_BLDC_PWM_TIMER_HIGH_IS_ADVANCED
+    (void)HAL_TIMEx_PWMN_Start(bldc_h.htim_high, bldc_h.chA);
+    (void)HAL_TIMEx_PWMN_Start(bldc_h.htim_high, bldc_h.chB);
+    (void)HAL_TIMEx_PWMN_Start(bldc_h.htim_high, bldc_h.chC);
+    __HAL_TIM_MOE_ENABLE(bldc_h.htim_high);
+#endif
+
+    TIM_TypeDef *tim = bldc_h.htim_high->Instance;
+    tim->CCER |= (TIM_CCER_CC1E | TIM_CCER_CC1NE |
+                  TIM_CCER_CC2E | TIM_CCER_CC2NE |
+                  TIM_CCER_CC3E | TIM_CCER_CC3NE);
+
+    foc.pwm_ready = 1U;
+}
+
+static void foc_pwm_disable(void)
+{
+    TIM_TypeDef *tim = bldc_h.htim_high->Instance;
+
+#if CONFIG_BLDC_PWM_TIMER_HIGH_IS_ADVANCED
+    __HAL_TIM_MOE_DISABLE(bldc_h.htim_high);
+#endif
+
+    tim->CCER &= ~(TIM_CCER_CC1E | TIM_CCER_CC1NE |
+                   TIM_CCER_CC2E | TIM_CCER_CC2NE |
+                   TIM_CCER_CC3E | TIM_CCER_CC3NE);
+
+    __HAL_TIM_SET_COMPARE(bldc_h.htim_high, bldc_h.chA, 0U);
+    __HAL_TIM_SET_COMPARE(bldc_h.htim_high, bldc_h.chB, 0U);
+    __HAL_TIM_SET_COMPARE(bldc_h.htim_high, bldc_h.chC, 0U);
+
+    foc.pwm_ready = 0U;
+}
+
+static void foc_apply_phase_voltages(float va, float vb, float vc, float vbus)
+{
+    const float period = (float)(__HAL_TIM_GET_AUTORELOAD(bldc_h.htim_high) + 1U);
+    float da;
+    float db;
+    float dc;
+
+    if (vbus < 1.0f || period < 1.0f) {
+        foc_pwm_disable();
+        return;
+    }
+
+    foc_pwm_start();
+
+    da = 0.5f + (0.5f * (va / vbus));
+    db = 0.5f + (0.5f * (vb / vbus));
+    dc = 0.5f + (0.5f * (vc / vbus));
+
+    da = foc_sat(da, FOC_PWM_MAX_DUTY);
+    db = foc_sat(db, FOC_PWM_MAX_DUTY);
+    dc = foc_sat(dc, FOC_PWM_MAX_DUTY);
+
+    if (da < FOC_PWM_MIN_DUTY) da = FOC_PWM_MIN_DUTY;
+    if (db < FOC_PWM_MIN_DUTY) db = FOC_PWM_MIN_DUTY;
+    if (dc < FOC_PWM_MIN_DUTY) dc = FOC_PWM_MIN_DUTY;
+
+    __HAL_TIM_SET_COMPARE(bldc_h.htim_high, bldc_h.chA, (uint16_t)(da * period));
+    __HAL_TIM_SET_COMPARE(bldc_h.htim_high, bldc_h.chB, (uint16_t)(db * period));
+    __HAL_TIM_SET_COMPARE(bldc_h.htim_high, bldc_h.chC, (uint16_t)(dc * period));
+}
+
+static void foc_observer_reset(const bldc_settings_t *settings)
+{
+    const float gain = (settings != NULL && settings->observer_gain > 0.0f)
+                           ? settings->observer_gain
+                           : 25.0f;
+    const float pll_kp = (settings != NULL && settings->pll_kp > 0.0f)
+                             ? settings->pll_kp
+                             : 80.0f;
+    const float pll_ki = (settings != NULL && settings->pll_ki > 0.0f)
+                             ? settings->pll_ki
+                             : 2500.0f;
+
+    foc.i_hat_alpha = 0.0f;
+    foc.i_hat_beta = 0.0f;
+    foc.e_alpha = 0.0f;
+    foc.e_beta = 0.0f;
+    foc.theta_elec = 0.0f;
+    foc.omega_elec = 0.0f;
+    foc.theta_open_loop = 0.0f;
+
+    foc_pi_init(&foc.id,
+                (settings != NULL && settings->current_kp > 0.0f) ? settings->current_kp : 0.8f,
+                (settings != NULL && settings->current_ki > 0.0f) ? settings->current_ki : 120.0f,
+                -0.95f * FOC_DEFAULT_VBUS,
+                0.95f * FOC_DEFAULT_VBUS);
+    foc_pi_init(&foc.iq,
+                (settings != NULL && settings->current_kp > 0.0f) ? settings->current_kp : 0.8f,
+                (settings != NULL && settings->current_ki > 0.0f) ? settings->current_ki : 120.0f,
+                -0.95f * FOC_DEFAULT_VBUS,
+                0.95f * FOC_DEFAULT_VBUS);
+    foc_pi_init(&foc.speed,
+                (settings != NULL && settings->speed_kp > 0.0f) ? settings->speed_kp : 0.0025f,
+                (settings != NULL && settings->speed_ki > 0.0f) ? settings->speed_ki : 0.05f,
+                -20.0f,
+                20.0f);
+    foc_pi_init(&foc.pll, pll_kp, pll_ki, -4000.0f, 4000.0f);
+
+    (void)gain;
+}
+
+static void foc_observer_step(const bldc_settings_t *settings,
+                              float ia,
+                              float ib,
+                              float ic,
+                              float v_alpha,
+                              float v_beta,
+                              float dt)
+{
+    const float rs = (settings != NULL && settings->phase_resistance > 0.0f)
+                         ? settings->phase_resistance
+                         : 0.05f;
+    const float ls = (settings != NULL && settings->phase_inductance > 1e-6f)
+                         ? settings->phase_inductance
+                         : 8.0e-6f;
+    const float lambda = (settings != NULL && settings->observer_gain > 0.0f)
+                             ? settings->observer_gain
+                             : 25.0f;
+    float i_alpha;
+    float i_beta;
+    float i_err_alpha;
+    float i_err_beta;
+    float pll_err;
+
+    foc_clarke(ia, ib, ic, &i_alpha, &i_beta);
+
+    i_err_alpha = i_alpha - foc.i_hat_alpha;
+    i_err_beta = i_beta - foc.i_hat_beta;
+
+    foc.e_alpha += lambda * i_err_alpha * dt;
+    foc.e_beta += lambda * i_err_beta * dt;
+
+    foc.i_hat_alpha += ((v_alpha - (rs * foc.i_hat_alpha) - foc.e_alpha) / ls) * dt;
+    foc.i_hat_beta += ((v_beta - (rs * foc.i_hat_beta) - foc.e_beta) / ls) * dt;
+
+    pll_err = (-foc.e_alpha * foc_cos(foc.theta_elec)) - (foc.e_beta * bsp_sin_f(foc.theta_elec));
+    foc.omega_elec += foc_pi_step(&foc.pll, pll_err, dt) * dt;
+    foc.theta_elec = foc_wrap_angle(foc.theta_elec + (foc.omega_elec * dt));
+
+    foc_state.i_alpha = i_alpha;
+    foc_state.i_beta = i_beta;
+    foc_state.bemf_alpha = foc.e_alpha;
+    foc_state.bemf_beta = foc.e_beta;
+    foc_state.bemf_magnitude = sqrtf((foc.e_alpha * foc.e_alpha) + (foc.e_beta * foc.e_beta));
+    foc_state.theta_elec_rad = foc.theta_elec;
+    foc_state.omega_elec_rad_s = foc.omega_elec;
+}
+
+static void foc_run_current_controller(const bldc_settings_t *settings,
+                                       float ia,
+                                       float ib,
+                                       float ic,
+                                       float theta,
+                                       float iq_target,
+                                       float vbus,
+                                       float dt,
+                                       float *va,
+                                       float *vb,
+                                       float *vc)
+{
+    float i_alpha;
+    float i_beta;
+    float id;
+    float iq;
+    float vd;
+    float vq;
+    float v_alpha;
+    float v_beta;
+    const float rs = (settings != NULL && settings->phase_resistance > 0.0f)
+                         ? settings->phase_resistance
+                         : 0.05f;
+    const float ls = (settings != NULL && settings->phase_inductance > 1e-6f)
+                         ? settings->phase_inductance
+                         : 8.0e-6f;
+    const float id_target = (settings != NULL) ? settings->i_d_target : 0.0f;
+    const float pole_pairs = foc_effective_pole_pairs(settings);
+    const float omega = foc.omega_elec;
+
+    foc_clarke(ia, ib, ic, &i_alpha, &i_beta);
+    foc_park(i_alpha, i_beta, theta, &id, &iq);
+
+    vd = foc_pi_step(&foc.id, id_target - id, dt);
+    vq = foc_pi_step(&foc.iq, iq_target - iq, dt);
+
+    vd -= omega * ls * iq;
+    vq += omega * ls * id;
+    (void)rs;
+
+    foc_inv_park(vd, vq, theta, &v_alpha, &v_beta);
+    foc.last_v_alpha = v_alpha;
+    foc.last_v_beta = v_beta;
+    foc_inv_clarke(v_alpha, v_beta, va, vb, vc);
+
+    foc_state.i_d = id;
+    foc_state.i_q = iq;
+    foc_state.v_d = vd;
+    foc_state.v_q = vq;
+
+    (void)vbus;
+    (void)pole_pairs;
+}
+
+static void foc_update_mode(const bldc_settings_t *settings, float measured_rpm)
+{
+    const uint32_t now_ms = millis32();
+    const float min_rpm = (settings != NULL && settings->min_rpm_closed_loop > 0.0f)
+                              ? settings->min_rpm_closed_loop
+                              : 500.0f;
+
+    switch (foc.mode) {
+    case BLDC_FOC_MODE_ALIGN:
+        if (now_ms >= foc.align_until_ms) {
+            foc.mode = BLDC_FOC_MODE_OPEN_LOOP;
+            foc.ramp_until_ms = now_ms + (uint32_t)((settings != NULL && settings->startup_ramp_time_ms > 0.0f)
+                                                        ? settings->startup_ramp_time_ms
+                                                        : 500.0f);
+            foc.open_loop_omega = foc_rpm_to_omega_elec(120.0f, foc_effective_pole_pairs(settings));
+        }
+        break;
+
+    case BLDC_FOC_MODE_OPEN_LOOP:
+        if (now_ms >= foc.ramp_until_ms || measured_rpm >= min_rpm) {
+            foc.mode = BLDC_FOC_MODE_CLOSED_LOOP;
+            foc.omega_elec = foc.open_loop_omega;
+            foc.theta_elec = foc.theta_open_loop;
+            foc.pll.integral = foc.open_loop_omega;
+        }
+        break;
+
+    case BLDC_FOC_MODE_FAULT:
+    case BLDC_FOC_MODE_IDLE:
+    case BLDC_FOC_MODE_CLOSED_LOOP:
+    default:
+        break;
+    }
+}
+
+static void foc_step_once(void)
+{
+    bldc_settings_t *settings = bldc_get_settings();
+    float ia = 0.0f;
+    float ib = 0.0f;
+    float ic = 0.0f;
+    float vbus = 0.0f;
+    float va = 0.0f;
+    float vb = 0.0f;
+    float vc = 0.0f;
+    float theta;
+    float iq_target = 0.0f;
+    const float pole_pairs = foc_effective_pole_pairs(settings);
+    const float dt = FOC_LOOP_DT_S;
+
+    if (!bsp_foc_sample_sensors(&ia, &ib, &ic, &vbus)) {
+        return;
+    }
+
+    if (!foc_gate_driver_ok()) {
+        foc_pwm_disable();
+        foc_state.mode = BLDC_FOC_MODE_FAULT;
+        return;
+    }
+
+    vbus = foc_effective_vbus(settings, vbus);
+    foc_state.rpm_target = foc.rpm_target;
+
+    if (foc.rpm_target <= 0.0f) {
+        foc.rpm_target = (settings != NULL && settings->max_rpm_open_loop > 0.0f)
+                             ? settings->max_rpm_open_loop
+                             : 1200.0f;
+        foc_state.rpm_target = foc.rpm_target;
+    }
+
+    foc_update_mode(settings, foc_state.rpm_actual);
+
+    switch (foc.mode) {
+    case BLDC_FOC_MODE_ALIGN: {
+        const float align_current = (settings != NULL && settings->alignment_current > 0.0f)
+                                        ? settings->alignment_current
+                                        : 2.0f;
+        theta = 0.0f;
+        foc_run_current_controller(settings, ia, ib, ic, theta, align_current, vbus, dt, &va, &vb, &vc);
+        foc.theta_open_loop = theta;
+        foc_observer_step(settings, ia, ib, ic, foc.last_v_alpha, foc.last_v_beta, dt);
+        break;
+    }
+
+    case BLDC_FOC_MODE_OPEN_LOOP: {
+        foc.open_loop_omega += foc_rpm_to_omega_elec(60.0f, pole_pairs) * dt;
+        foc.theta_open_loop = foc_wrap_angle(foc.theta_open_loop + (foc.open_loop_omega * dt));
+        theta = foc.theta_open_loop;
+        iq_target = (settings != NULL && settings->alignment_current > 0.0f)
+                        ? settings->alignment_current
+                        : 2.0f;
+        foc_run_current_controller(settings, ia, ib, ic, theta, iq_target, vbus, dt, &va, &vb, &vc);
+        foc_observer_step(settings, ia, ib, ic, foc.last_v_alpha, foc.last_v_beta, dt);
+        break;
+    }
+
+    case BLDC_FOC_MODE_CLOSED_LOOP: {
+        theta = foc.theta_elec;
+        iq_target = foc_pi_step(&foc.speed,
+                                foc_rpm_to_omega_elec(foc.rpm_target, pole_pairs) - foc.omega_elec,
+                                dt);
+        if (settings != NULL && settings->max_phase_current > 0.0f) {
+            iq_target = foc_sat(iq_target, settings->max_phase_current);
+        }
+        foc_run_current_controller(settings, ia, ib, ic, theta, iq_target, vbus, dt, &va, &vb, &vc);
+        foc_observer_step(settings, ia, ib, ic, foc.last_v_alpha, foc.last_v_beta, dt);
+        break;
+    }
+
+    case BLDC_FOC_MODE_FAULT:
+        foc_pwm_disable();
+        return;
+
+    case BLDC_FOC_MODE_IDLE:
+    default:
+        foc_pwm_disable();
+        return;
+    }
+
+    foc_apply_phase_voltages(va, vb, vc, vbus);
+
+    foc_state.mode = foc.mode;
+    foc_state.rpm_actual = foc_omega_elec_to_rpm(foc.omega_elec, pole_pairs);
+    foc_state.angle_error_rad = foc_wrap_angle(foc.theta_open_loop - foc.theta_elec);
+    foc_state.pll_locked = (foc_state.rpm_actual >= FOC_PLL_LOCK_RPM &&
+                            foc_state.bemf_magnitude >= FOC_PLL_LOCK_BEMF)
+                               ? 1U
+                               : 0U;
+    {
+        int confidence = (int)(60.0f + (foc_state.bemf_magnitude * 80.0f));
+        if (confidence < 0) confidence = 0;
+        if (confidence > 100) confidence = 100;
+        foc_state.confidence = (uint8_t)confidence;
+    }
+}
+
+void bldc_foc_init(void)
+{
+    memset(&foc, 0, sizeof(foc));
+    memset(&foc_state, 0, sizeof(foc_state));
+    foc_observer_reset(bldc_get_settings());
+    foc.mode = BLDC_FOC_MODE_IDLE;
+    foc_state.mode = BLDC_FOC_MODE_IDLE;
+    foc_state.confidence = 0U;
+}
+
+void bldc_foc_reset(void)
+{
+    foc_pwm_disable();
+    foc_observer_reset(bldc_get_settings());
+    foc.mode = BLDC_FOC_MODE_IDLE;
+    foc_state.mode = BLDC_FOC_MODE_IDLE;
+}
+
+void bldc_foc_set_target_rpm(float rpm)
+{
+    foc.rpm_target = rpm;
+    foc_state.rpm_target = rpm;
+}
+
+void bldc_foc_get_state(bldc_foc_state_t *state)
+{
+    if (state == NULL) {
+        return;
+    }
+    *state = foc_state;
+}
+
+void bldc_foc_fill_telemetry(bldc_telemetry_t *telem)
+{
+    const bldc_settings_t *settings = bldc_get_settings();
+    const float pole_pairs = foc_effective_pole_pairs(settings);
+
+    if (telem == NULL) {
+        return;
+    }
+
+    telem->rpm_actual = foc_state.rpm_actual;
+    telem->rpm_target = foc_state.rpm_target;
+    telem->i_d = foc_state.i_d;
+    telem->i_q = foc_state.i_q;
+    telem->angle_electrical = foc_state.theta_elec_rad * (180.0f / M_PI);
+    telem->angle_mechanical = telem->angle_electrical / pole_pairs;
+    {
+        int bemf = (int)(foc_state.bemf_magnitude * 40.0f);
+        int ang_err = (int)(fabsf(foc_state.angle_error_rad) * (180.0f / M_PI));
+        if (bemf < 0) bemf = 0;
+        if (bemf > 255) bemf = 255;
+        if (ang_err < 0) ang_err = 0;
+        if (ang_err > 255) ang_err = 255;
+        telem->bemf_strength = (uint8_t)bemf;
+        telem->angle_error_deg = (uint8_t)ang_err;
+    }
+    telem->obs_confidence = foc_state.confidence;
+    telem->pll_lock_status = foc_state.pll_locked;
+}
+
+static void foc_begin_startup(const bldc_settings_t *settings)
+{
+    const uint32_t now_ms = millis32();
+    const uint8_t startup_mode = settings ? settings->startup_mode : 0U;
+
+    foc_ensure_driver_ready();
+    foc_observer_reset(settings);
+
+    if (startup_mode == 2U) {
+        foc.mode = BLDC_FOC_MODE_CLOSED_LOOP;
+        foc.omega_elec = foc_rpm_to_omega_elec(200.0f, foc_effective_pole_pairs(settings));
+    } else if (startup_mode == 1U || startup_mode == 0U) {
+        foc.mode = BLDC_FOC_MODE_ALIGN;
+        foc.align_until_ms = now_ms + 150U;
+    } else {
+        foc.mode = BLDC_FOC_MODE_OPEN_LOOP;
+        foc.ramp_until_ms = now_ms + (uint32_t)((settings != NULL && settings->startup_ramp_time_ms > 0.0f)
+                                                    ? settings->startup_ramp_time_ms
+                                                    : 500.0f);
+        foc.open_loop_omega = foc_rpm_to_omega_elec(120.0f, foc_effective_pole_pairs(settings));
+    }
+
+    foc_state.mode = foc.mode;
+}
+
+void bldc_foc_comm_thread(void *argument)
+{
+    (void)argument;
+
+    bldc_foc_init();
+    foc_begin_startup(bldc_get_settings());
+
+    for (;;) {
+        foc_step_once();
+        osDelay(1);
+    }
+}
+
+#endif /* CONFIG_FOC_ENABLE */
