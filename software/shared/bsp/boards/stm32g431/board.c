@@ -159,11 +159,6 @@ void HAL_ADCEx_InjectedConvCpltCallback(ADC_HandleTypeDef *hadc)
     }
 }
 
-void ADC1_2_IRQHandler(void)
-{
-    HAL_ADC_IRQHandler(&hadc1);
-}
-
 int bsp_foc_sample_sensors(float *ia, float *ib, float *ic, float *vbus)
 {
     if (ia == NULL || ib == NULL || ic == NULL || vbus == NULL) {
