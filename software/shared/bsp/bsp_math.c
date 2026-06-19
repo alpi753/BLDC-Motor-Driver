@@ -1,5 +1,4 @@
-#include "bsp_math.h"
-#include "bsp_autoconf.h"
+#include "bsp.h"
 #include <math.h>
 
 #if CONFIG_BLDC_HAS_HW_ACCEL

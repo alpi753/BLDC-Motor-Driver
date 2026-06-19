@@ -1,9 +1,7 @@
-#include "bsp_autoconf.h"
+#include "bsp.h"
 
 #if CONFIG_BLDC_HAS_HW_ACCEL
 
-#include "main.h"
-#include "bldc.h"
 #include <math.h>
 #include <stdbool.h>
 

@@ -1,6 +1,5 @@
-#include "bldc.h"
+#include "bsp.h"
 #include "cmsis_os.h"
-#include "observer.h"
 
 BLDC_Handle_t bldc_h;
 

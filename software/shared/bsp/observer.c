@@ -1,4 +1,4 @@
-#include "observer.h"
+#include "bsp.h"
 
 #if CONFIG_FOC_ENABLE
 

@@ -1,6 +1,4 @@
 #include "bsp.h"
-#include "bldc.h"
-#include "bsp_math.h"
 
 void bsp_init(void)
 {

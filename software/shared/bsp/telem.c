@@ -2,8 +2,7 @@
 #include <stdint.h>
 #include <string.h>
 #include "cmsis_os.h"
-#include "bldc.h"
-#include "observer.h"
+#include "bsp.h"
 #include "main.h"
 #include "dronecan.c"
 #include "usb_device.h"

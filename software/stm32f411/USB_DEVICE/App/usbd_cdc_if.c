@@ -22,7 +22,7 @@
 #include "usbd_cdc_if.h"
 
 /* USER CODE BEGIN INCLUDE */
-#include "bldc.h"
+#include "bsp.h"
 
 extern void usb_msg_rx(uint8_t *Buf, uint32_t *Len);
 /* USER CODE END INCLUDE */
