@@ -219,6 +219,10 @@ typedef struct {
     float alignment_time_ms;
     float open_loop_ramp_rpm_s;
     float alignment_current;
+    float open_loop_current;
+    float open_loop_start_rpm;
+    float handoff_angle_err_deg;
+    float handoff_min_confidence;
     float rpm_target;
     uint8_t startup_mode;
     float max_phase_current;

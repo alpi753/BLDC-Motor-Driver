@@ -539,30 +539,131 @@ static void foc_run_current_controller(const bldc_settings_t *settings,
     (void)pole_pairs;
 }
 
-static void foc_update_mode(const bldc_settings_t *settings, float measured_rpm)
+static float foc_alignment_current(const bldc_settings_t *settings)
 {
-    const uint32_t now_ms = millis32();
+    if (settings != NULL && settings->alignment_current > 0.0f) {
+        return settings->alignment_current;
+    }
+
+    return 2.0f;
+}
+
+static float foc_open_loop_current(const bldc_settings_t *settings)
+{
+    float iq = 0.0f;
+
+    if (settings != NULL && settings->open_loop_current > 0.0f) {
+        iq = settings->open_loop_current;
+    } else {
+        iq = foc_alignment_current(settings);
+    }
+
+    if (settings != NULL && settings->max_phase_current > 0.0f) {
+        iq = foc_sat(iq, settings->max_phase_current);
+    }
+
+    return iq;
+}
+
+static float foc_open_loop_start_rpm(const bldc_settings_t *settings)
+{
+    const float min_cl = (settings != NULL && settings->min_rpm_closed_loop > 0.0f)
+                             ? settings->min_rpm_closed_loop
+                             : 500.0f;
+    float start_rpm;
+
+    if (settings != NULL && settings->open_loop_start_rpm > 0.0f) {
+        start_rpm = settings->open_loop_start_rpm;
+    } else {
+        start_rpm = 150.0f;
+    }
+
+    if (start_rpm > min_cl) {
+        start_rpm = min_cl;
+    }
+
+    if (settings != NULL && settings->max_rpm_open_loop > 0.0f &&
+        start_rpm > settings->max_rpm_open_loop) {
+        start_rpm = settings->max_rpm_open_loop;
+    }
+
+    return start_rpm;
+}
+
+static void foc_begin_open_loop(const bldc_settings_t *settings, uint32_t now_ms)
+{
+    const float pole_pairs = foc_effective_pole_pairs(settings);
+    const float start_rpm = foc_open_loop_start_rpm(settings);
+
+    foc.mode = BLDC_FOC_MODE_OPEN_LOOP;
+    foc.ramp_until_ms = now_ms + (uint32_t)((settings != NULL && settings->startup_ramp_time_ms > 0.0f)
+                                                ? settings->startup_ramp_time_ms
+                                                : 500.0f);
+    foc.open_loop_omega = foc_rpm_to_omega_elec(start_rpm, pole_pairs);
+    foc.theta_open_loop = 0.0f;
+}
+
+static void foc_enter_closed_loop_from_open_loop(void)
+{
+    foc.mode = BLDC_FOC_MODE_CLOSED_LOOP;
+    foc.theta_elec = foc.theta_open_loop;
+    foc.omega_elec = foc.open_loop_omega;
+    foc.pll.integral = foc.omega_elec;
+    foc.speed.integral = 0.0f;
+}
+
+static int foc_handoff_ready(const bldc_settings_t *settings)
+{
+    const float pole_pairs = foc_effective_pole_pairs(settings);
     const float min_rpm = (settings != NULL && settings->min_rpm_closed_loop > 0.0f)
                               ? settings->min_rpm_closed_loop
                               : 500.0f;
+    const float ol_rpm = foc_omega_elec_to_rpm(foc.open_loop_omega, pole_pairs);
+    const float max_ang_deg = (settings != NULL && settings->handoff_angle_err_deg > 0.0f)
+                                  ? settings->handoff_angle_err_deg
+                                  : 25.0f;
+    const float max_ang_rad = max_ang_deg * (M_PI / 180.0f);
+    uint8_t min_conf = (settings != NULL && settings->handoff_min_confidence > 0.0f)
+                           ? (uint8_t)settings->handoff_min_confidence
+                           : 55U;
+
+    if (min_conf > 100U) {
+        min_conf = 100U;
+    }
+
+    if (ol_rpm < min_rpm) {
+        return 0;
+    }
+
+    if (!foc_state.pll_locked) {
+        return 0;
+    }
+
+    if (foc_state.confidence < min_conf) {
+        return 0;
+    }
+
+    if (fabsf(foc_state.angle_error_rad) > max_ang_rad) {
+        return 0;
+    }
+
+    return 1;
+}
+
+static void foc_update_mode(const bldc_settings_t *settings)
+{
+    const uint32_t now_ms = millis32();
 
     switch (foc.mode) {
     case BLDC_FOC_MODE_ALIGN:
         if (now_ms >= foc.align_until_ms) {
-            foc.mode = BLDC_FOC_MODE_OPEN_LOOP;
-            foc.ramp_until_ms = now_ms + (uint32_t)((settings != NULL && settings->startup_ramp_time_ms > 0.0f)
-                                                        ? settings->startup_ramp_time_ms
-                                                        : 500.0f);
-            foc.open_loop_omega = foc_rpm_to_omega_elec(120.0f, foc_effective_pole_pairs(settings));
+            foc_begin_open_loop(settings, now_ms);
         }
         break;
 
     case BLDC_FOC_MODE_OPEN_LOOP:
-        if (now_ms >= foc.ramp_until_ms || measured_rpm >= min_rpm) {
-            foc.mode = BLDC_FOC_MODE_CLOSED_LOOP;
-            foc.omega_elec = foc.open_loop_omega;
-            foc.theta_elec = foc.theta_open_loop;
-            foc.pll.integral = foc.open_loop_omega;
+        if (foc_handoff_ready(settings)) {
+            foc_enter_closed_loop_from_open_loop();
         }
         break;
 
@@ -611,13 +712,11 @@ static void foc_step_once(void)
         return;
     }
 
-    foc_update_mode(settings, foc_state.rpm_actual);
+    foc_update_mode(settings);
 
     switch (foc.mode) {
     case BLDC_FOC_MODE_ALIGN: {
-        const float align_current = (settings != NULL && settings->alignment_current > 0.0f)
-                                        ? settings->alignment_current
-                                        : 2.0f;
+        const float align_current = foc_alignment_current(settings);
         theta = 0.0f;
         foc_run_current_controller(settings, ia, ib, ic, theta, align_current, vbus, dt, &va, &vb, &vc);
         foc.theta_open_loop = theta;
@@ -626,6 +725,7 @@ static void foc_step_once(void)
     }
 
     case BLDC_FOC_MODE_OPEN_LOOP: {
+        const uint32_t now_ms = millis32();
         const float ramp_rpm_s =
             (settings != NULL && settings->open_loop_ramp_rpm_s > 0.0f)
                 ? settings->open_loop_ramp_rpm_s
@@ -636,15 +736,15 @@ static void foc_step_once(void)
                 : 1200.0f;
         const float max_ol_omega = foc_rpm_to_omega_elec(max_ol_rpm, pole_pairs);
 
-        foc.open_loop_omega += foc_rpm_to_omega_elec(ramp_rpm_s, pole_pairs) * dt;
-        if (foc.open_loop_omega > max_ol_omega) {
-            foc.open_loop_omega = max_ol_omega;
+        if (now_ms < foc.ramp_until_ms) {
+            foc.open_loop_omega += foc_rpm_to_omega_elec(ramp_rpm_s, pole_pairs) * dt;
+            if (foc.open_loop_omega > max_ol_omega) {
+                foc.open_loop_omega = max_ol_omega;
+            }
         }
         foc.theta_open_loop = foc_wrap_angle(foc.theta_open_loop + (foc.open_loop_omega * dt));
         theta = foc.theta_open_loop;
-        iq_target = (settings != NULL && settings->alignment_current > 0.0f)
-                        ? settings->alignment_current
-                        : 2.0f;
+        iq_target = foc_open_loop_current(settings);
         foc_run_current_controller(settings, ia, ib, ic, theta, iq_target, vbus, dt, &va, &vb, &vc);
         foc_observer_step(settings, ia, ib, ic, foc.last_v_alpha, foc.last_v_beta, dt);
         break;
@@ -783,14 +883,15 @@ static void foc_begin_startup(const bldc_settings_t *settings)
     foc_observer_reset(settings);
 
     if (startup_mode == 2U) {
-        foc.mode = BLDC_FOC_MODE_CLOSED_LOOP;
-        foc.omega_elec = foc_rpm_to_omega_elec(200.0f, foc_effective_pole_pairs(settings));
+        const float pole_pairs = foc_effective_pole_pairs(settings);
+        const float min_cl = (settings != NULL && settings->min_rpm_closed_loop > 0.0f)
+                                 ? settings->min_rpm_closed_loop
+                                 : 500.0f;
+
+        foc_begin_open_loop(settings, now_ms);
+        foc.open_loop_omega = foc_rpm_to_omega_elec(min_cl, pole_pairs);
     } else if (startup_mode == 1U) {
-        foc.mode = BLDC_FOC_MODE_OPEN_LOOP;
-        foc.ramp_until_ms = now_ms + (uint32_t)((settings != NULL && settings->startup_ramp_time_ms > 0.0f)
-                                                    ? settings->startup_ramp_time_ms
-                                                    : 500.0f);
-        foc.open_loop_omega = foc_rpm_to_omega_elec(120.0f, foc_effective_pole_pairs(settings));
+        foc_begin_open_loop(settings, now_ms);
     } else {
         const float align_ms = (settings != NULL && settings->alignment_time_ms > 0.0f)
                                    ? settings->alignment_time_ms

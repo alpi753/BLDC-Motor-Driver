@@ -42,6 +42,10 @@ void bldc_settings_init_defaults(void)
         .alignment_time_ms = 150.0f,
         .open_loop_ramp_rpm_s = 60.0f,
         .alignment_current = 2.0f,
+        .open_loop_current = 1.5f,
+        .open_loop_start_rpm = 150.0f,
+        .handoff_angle_err_deg = 25.0f,
+        .handoff_min_confidence = 55.0f,
         .rpm_target = 0.0f,
         .startup_mode = 0U,
         .max_phase_current = 20.0f,
@@ -337,7 +341,7 @@ static int settings_encode(nanocbor_encoder_t* enc, usb_msg_t msg)
     nanocbor_fmt_array(enc, 2);
     nanocbor_fmt_uint(enc, USB_MSG_SETTINGS);
 
-    nanocbor_fmt_map(enc, 19);
+    nanocbor_fmt_map(enc, 23);
 
     nanocbor_put_tstr(enc, "pp"); nanocbor_fmt_float(enc, msg.data.settings.pole_pairs);
     nanocbor_put_tstr(enc, "rs"); nanocbor_fmt_float(enc, msg.data.settings.phase_resistance);
@@ -358,6 +362,10 @@ static int settings_encode(nanocbor_encoder_t* enc, usb_msg_t msg)
     nanocbor_put_tstr(enc, "align_t"); nanocbor_fmt_float(enc, msg.data.settings.alignment_time_ms);
     nanocbor_put_tstr(enc, "ol_ramp"); nanocbor_fmt_float(enc, msg.data.settings.open_loop_ramp_rpm_s);
     nanocbor_put_tstr(enc, "align"); nanocbor_fmt_float(enc, msg.data.settings.alignment_current);
+    nanocbor_put_tstr(enc, "ol_i"); nanocbor_fmt_float(enc, msg.data.settings.open_loop_current);
+    nanocbor_put_tstr(enc, "ol_start"); nanocbor_fmt_float(enc, msg.data.settings.open_loop_start_rpm);
+    nanocbor_put_tstr(enc, "ho_ae"); nanocbor_fmt_float(enc, msg.data.settings.handoff_angle_err_deg);
+    nanocbor_put_tstr(enc, "ho_conf"); nanocbor_fmt_float(enc, msg.data.settings.handoff_min_confidence);
     nanocbor_put_tstr(enc, "rpm_t"); nanocbor_fmt_float(enc, msg.data.settings.rpm_target);
     nanocbor_put_tstr(enc, "smode"); nanocbor_fmt_uint(enc, msg.data.settings.startup_mode);
 
@@ -391,6 +399,10 @@ static int settings_decode(nanocbor_value_t* map, bldc_settings_t *settings) {
       else if (MATCH_STR("align_t")) { if (nanocbor_get_float(map, &fval) >= 0) settings->alignment_time_ms = fval; }
       else if (MATCH_STR("ol_ramp")) { if (nanocbor_get_float(map, &fval) >= 0) settings->open_loop_ramp_rpm_s = fval; }
       else if (MATCH_STR("align")) { if (nanocbor_get_float(map, &fval) >= 0) settings->alignment_current = fval; }
+      else if (MATCH_STR("ol_i")) { if (nanocbor_get_float(map, &fval) >= 0) settings->open_loop_current = fval; }
+      else if (MATCH_STR("ol_start")) { if (nanocbor_get_float(map, &fval) >= 0) settings->open_loop_start_rpm = fval; }
+      else if (MATCH_STR("ho_ae")) { if (nanocbor_get_float(map, &fval) >= 0) settings->handoff_angle_err_deg = fval; }
+      else if (MATCH_STR("ho_conf")) { if (nanocbor_get_float(map, &fval) >= 0) settings->handoff_min_confidence = fval; }
       else if (MATCH_STR("rpm_t")) { if (nanocbor_get_float(map, &fval) >= 0) settings->rpm_target = fval; }
       else if (MATCH_STR("smode")) { if (nanocbor_get_uint32(map, &uval) >= 0) settings->startup_mode = (uint8_t)uval; }
       else if (MATCH_STR("l_i")) { if (nanocbor_get_float(map, &fval) >= 0) settings->max_phase_current = fval; }
