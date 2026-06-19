@@ -23,6 +23,31 @@ static bldc_telemetry_t telem_data;
 
 static bldc_settings_t settings_data;
 
+void bldc_settings_init_defaults(void)
+{
+    settings_data = (bldc_settings_t){
+        .pole_pairs = 7.0f,
+        .phase_resistance = 0.05f,
+        .phase_inductance = 8.0e-6f,
+        .current_kp = 0.8f,
+        .current_ki = 120.0f,
+        .speed_kp = 0.0025f,
+        .speed_ki = 0.05f,
+        .pll_kp = 80.0f,
+        .pll_ki = 2500.0f,
+        .observer_gain = 25.0f,
+        .min_rpm_closed_loop = 500.0f,
+        .max_rpm_open_loop = 1200.0f,
+        .startup_ramp_time_ms = 500.0f,
+        .alignment_time_ms = 150.0f,
+        .open_loop_ramp_rpm_s = 60.0f,
+        .alignment_current = 2.0f,
+        .rpm_target = 0.0f,
+        .startup_mode = 0U,
+        .max_phase_current = 20.0f,
+    };
+}
+
 
 #if !BLDC_TELEM_USE_DEMO
 void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef *hadc)
@@ -166,6 +191,7 @@ void bldc_telem_fake(void)
 
 
 void bldc_telem_init(void) {
+  bldc_settings_init_defaults();
 #if !BLDC_TELEM_USE_DEMO
   bsp_usb_init();
   if (bsp_telem_adc_init() != 0) {
@@ -311,10 +337,9 @@ static int settings_encode(nanocbor_encoder_t* enc, usb_msg_t msg)
     nanocbor_fmt_array(enc, 2);
     nanocbor_fmt_uint(enc, USB_MSG_SETTINGS);
 
-    nanocbor_fmt_map(enc, 22);
+    nanocbor_fmt_map(enc, 19);
 
     nanocbor_put_tstr(enc, "pp"); nanocbor_fmt_float(enc, msg.data.settings.pole_pairs);
-    nanocbor_put_tstr(enc, "kv"); nanocbor_fmt_float(enc, msg.data.settings.motor_kv);
     nanocbor_put_tstr(enc, "rs"); nanocbor_fmt_float(enc, msg.data.settings.phase_resistance);
     nanocbor_put_tstr(enc, "ls"); nanocbor_fmt_float(enc, msg.data.settings.phase_inductance);
 
@@ -322,23 +347,21 @@ static int settings_encode(nanocbor_encoder_t* enc, usb_msg_t msg)
     nanocbor_put_tstr(enc, "i_ki"); nanocbor_fmt_float(enc, msg.data.settings.current_ki);
     nanocbor_put_tstr(enc, "s_kp"); nanocbor_fmt_float(enc, msg.data.settings.speed_kp);
     nanocbor_put_tstr(enc, "s_ki"); nanocbor_fmt_float(enc, msg.data.settings.speed_ki);
-    nanocbor_put_tstr(enc, "idt"); nanocbor_fmt_float(enc, msg.data.settings.i_d_target);
 
     nanocbor_put_tstr(enc, "p_kp"); nanocbor_fmt_float(enc, msg.data.settings.pll_kp);
     nanocbor_put_tstr(enc, "p_ki"); nanocbor_fmt_float(enc, msg.data.settings.pll_ki);
-    nanocbor_put_tstr(enc, "bemf"); nanocbor_fmt_float(enc, msg.data.settings.bemf_filter_cutoff_hz);
     nanocbor_put_tstr(enc, "obs"); nanocbor_fmt_float(enc, msg.data.settings.observer_gain);
     nanocbor_put_tstr(enc, "min_cl"); nanocbor_fmt_float(enc, msg.data.settings.min_rpm_closed_loop);
     nanocbor_put_tstr(enc, "max_ol"); nanocbor_fmt_float(enc, msg.data.settings.max_rpm_open_loop);
 
     nanocbor_put_tstr(enc, "ramp"); nanocbor_fmt_float(enc, msg.data.settings.startup_ramp_time_ms);
+    nanocbor_put_tstr(enc, "align_t"); nanocbor_fmt_float(enc, msg.data.settings.alignment_time_ms);
+    nanocbor_put_tstr(enc, "ol_ramp"); nanocbor_fmt_float(enc, msg.data.settings.open_loop_ramp_rpm_s);
     nanocbor_put_tstr(enc, "align"); nanocbor_fmt_float(enc, msg.data.settings.alignment_current);
+    nanocbor_put_tstr(enc, "rpm_t"); nanocbor_fmt_float(enc, msg.data.settings.rpm_target);
     nanocbor_put_tstr(enc, "smode"); nanocbor_fmt_uint(enc, msg.data.settings.startup_mode);
 
     nanocbor_put_tstr(enc, "l_i"); nanocbor_fmt_float(enc, msg.data.settings.max_phase_current);
-    nanocbor_put_tstr(enc, "l_v"); nanocbor_fmt_float(enc, msg.data.settings.max_bus_voltage);
-    nanocbor_put_tstr(enc, "l_t"); nanocbor_fmt_float(enc, msg.data.settings.max_temperature);
-    nanocbor_put_tstr(enc, "l_cd"); nanocbor_fmt_float(enc, msg.data.settings.current_derating_start);
 
     return nanocbor_encoded_len(enc);
 }
@@ -353,27 +376,24 @@ static int settings_decode(nanocbor_value_t* map, bldc_settings_t *settings) {
       float fval;
       uint32_t uval;
       if (MATCH_STR("pp")) { if (nanocbor_get_float(map, &fval) >= 0) settings->pole_pairs = fval; }
-      else if (MATCH_STR("kv")) { if (nanocbor_get_float(map, &fval) >= 0) settings->motor_kv = fval; }
       else if (MATCH_STR("rs")) { if (nanocbor_get_float(map, &fval) >= 0) settings->phase_resistance = fval; }
       else if (MATCH_STR("ls")) { if (nanocbor_get_float(map, &fval) >= 0) settings->phase_inductance = fval; }
       else if (MATCH_STR("i_kp")) { if (nanocbor_get_float(map, &fval) >= 0) settings->current_kp = fval; }
       else if (MATCH_STR("i_ki")) { if (nanocbor_get_float(map, &fval) >= 0) settings->current_ki = fval; }
       else if (MATCH_STR("s_kp")) { if (nanocbor_get_float(map, &fval) >= 0) settings->speed_kp = fval; }
       else if (MATCH_STR("s_ki")) { if (nanocbor_get_float(map, &fval) >= 0) settings->speed_ki = fval; }
-      else if (MATCH_STR("idt")) { if (nanocbor_get_float(map, &fval) >= 0) settings->i_d_target = fval; }
       else if (MATCH_STR("p_kp")) { if (nanocbor_get_float(map, &fval) >= 0) settings->pll_kp = fval; }
       else if (MATCH_STR("p_ki")) { if (nanocbor_get_float(map, &fval) >= 0) settings->pll_ki = fval; }
-      else if (MATCH_STR("bemf")) { if (nanocbor_get_float(map, &fval) >= 0) settings->bemf_filter_cutoff_hz = fval; }
       else if (MATCH_STR("obs")) { if (nanocbor_get_float(map, &fval) >= 0) settings->observer_gain = fval; }
       else if (MATCH_STR("min_cl")) { if (nanocbor_get_float(map, &fval) >= 0) settings->min_rpm_closed_loop = fval; }
       else if (MATCH_STR("max_ol")) { if (nanocbor_get_float(map, &fval) >= 0) settings->max_rpm_open_loop = fval; }
       else if (MATCH_STR("ramp")) { if (nanocbor_get_float(map, &fval) >= 0) settings->startup_ramp_time_ms = fval; }
+      else if (MATCH_STR("align_t")) { if (nanocbor_get_float(map, &fval) >= 0) settings->alignment_time_ms = fval; }
+      else if (MATCH_STR("ol_ramp")) { if (nanocbor_get_float(map, &fval) >= 0) settings->open_loop_ramp_rpm_s = fval; }
       else if (MATCH_STR("align")) { if (nanocbor_get_float(map, &fval) >= 0) settings->alignment_current = fval; }
+      else if (MATCH_STR("rpm_t")) { if (nanocbor_get_float(map, &fval) >= 0) settings->rpm_target = fval; }
       else if (MATCH_STR("smode")) { if (nanocbor_get_uint32(map, &uval) >= 0) settings->startup_mode = (uint8_t)uval; }
       else if (MATCH_STR("l_i")) { if (nanocbor_get_float(map, &fval) >= 0) settings->max_phase_current = fval; }
-      else if (MATCH_STR("l_v")) { if (nanocbor_get_float(map, &fval) >= 0) settings->max_bus_voltage = fval; }
-      else if (MATCH_STR("l_t")) { if (nanocbor_get_float(map, &fval) >= 0) settings->max_temperature = fval; }
-      else if (MATCH_STR("l_cd")) { if (nanocbor_get_float(map, &fval) >= 0) settings->current_derating_start = fval; }
       else { nanocbor_skip(map);} // unknown key 
 			return 1; // success
 }
@@ -456,6 +476,9 @@ void usb_msg_rx(uint8_t *buf, uint32_t *len) {
 							}
             }
             #undef MATCH_STR
+#if CONFIG_FOC_ENABLE
+            bldc_foc_apply_settings();
+#endif
         }
     }
 }

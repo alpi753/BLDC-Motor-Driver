@@ -204,27 +204,24 @@ typedef enum {
 
 typedef struct {
     float pole_pairs;
-    float motor_kv;
     float phase_resistance;
     float phase_inductance;
     float current_kp;
     float current_ki;
     float speed_kp;
     float speed_ki;
-    float i_d_target;
     float pll_kp;
     float pll_ki;
-    float bemf_filter_cutoff_hz;
     float observer_gain;
     float min_rpm_closed_loop;
     float max_rpm_open_loop;
     float startup_ramp_time_ms;
+    float alignment_time_ms;
+    float open_loop_ramp_rpm_s;
     float alignment_current;
+    float rpm_target;
     uint8_t startup_mode;
     float max_phase_current;
-    float max_bus_voltage;
-    float max_temperature;
-    float current_derating_start;
 } bldc_settings_t;
 
 #define BLDC_DEVICE_ID_LEN 16U
@@ -364,6 +361,8 @@ typedef struct {
 void bldc_foc_init(void);
 void bldc_foc_reset(void);
 void bldc_foc_set_target_rpm(float rpm);
+void bldc_foc_apply_settings(void);
+void bldc_settings_init_defaults(void);
 void bldc_foc_comm_thread(void *argument);
 void bldc_foc_hal_period_callback(TIM_HandleTypeDef *htim);
 void bldc_foc_get_state(bldc_foc_state_t *state);

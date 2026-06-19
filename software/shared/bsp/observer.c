@@ -87,6 +87,8 @@ static void foc_loop_notify_from_isr(void)
 static foc_runtime_t foc;
 static bldc_foc_state_t foc_state;
 
+static void foc_begin_startup(const bldc_settings_t *settings);
+
 static uint32_t foc_timer_clock_hz(void)
 {
     uint32_t pclk1 = HAL_RCC_GetPCLK1Freq();
@@ -249,12 +251,12 @@ static float foc_effective_pole_pairs(const bldc_settings_t *settings)
 
 static float foc_effective_vbus(const bldc_settings_t *settings, float measured_vbus)
 {
+    (void)settings;
+
     if (measured_vbus > 5.0f) {
         return measured_vbus;
     }
-    if (settings != NULL && settings->max_bus_voltage > 5.0f) {
-        return settings->max_bus_voltage;
-    }
+
     return FOC_DEFAULT_VBUS;
 }
 
@@ -366,6 +368,34 @@ static void foc_apply_phase_voltages(float va, float vb, float vc, float vbus)
     __HAL_TIM_SET_COMPARE(bldc_h.htim_high, bldc_h.chA, (uint16_t)(da * period));
     __HAL_TIM_SET_COMPARE(bldc_h.htim_high, bldc_h.chB, (uint16_t)(db * period));
     __HAL_TIM_SET_COMPARE(bldc_h.htim_high, bldc_h.chC, (uint16_t)(dc * period));
+}
+
+static void foc_sync_controllers_from_settings(const bldc_settings_t *settings)
+{
+    if (settings == NULL) {
+        return;
+    }
+
+    if (settings->current_kp > 0.0f) {
+        foc.id.kp = settings->current_kp;
+        foc.iq.kp = settings->current_kp;
+    }
+    if (settings->current_ki > 0.0f) {
+        foc.id.ki = settings->current_ki;
+        foc.iq.ki = settings->current_ki;
+    }
+    if (settings->speed_kp > 0.0f) {
+        foc.speed.kp = settings->speed_kp;
+    }
+    if (settings->speed_ki > 0.0f) {
+        foc.speed.ki = settings->speed_ki;
+    }
+    if (settings->pll_kp > 0.0f) {
+        foc.pll.kp = settings->pll_kp;
+    }
+    if (settings->pll_ki > 0.0f) {
+        foc.pll.ki = settings->pll_ki;
+    }
 }
 
 static void foc_observer_reset(const bldc_settings_t *settings)
@@ -481,7 +511,7 @@ static void foc_run_current_controller(const bldc_settings_t *settings,
     const float ls = (settings != NULL && settings->phase_inductance > 1e-6f)
                          ? settings->phase_inductance
                          : 8.0e-6f;
-    const float id_target = (settings != NULL) ? settings->i_d_target : 0.0f;
+    const float id_target = 0.0f;
     const float pole_pairs = foc_effective_pole_pairs(settings);
     const float omega = foc.omega_elec;
 
@@ -573,10 +603,12 @@ static void foc_step_once(void)
     foc_state.rpm_target = foc.rpm_target;
 
     if (foc.rpm_target <= 0.0f) {
-        foc.rpm_target = (settings != NULL && settings->max_rpm_open_loop > 0.0f)
-                             ? settings->max_rpm_open_loop
-                             : 1200.0f;
-        foc_state.rpm_target = foc.rpm_target;
+        if (foc.mode != BLDC_FOC_MODE_IDLE && foc.mode != BLDC_FOC_MODE_FAULT) {
+            foc.mode = BLDC_FOC_MODE_IDLE;
+            foc_state.mode = BLDC_FOC_MODE_IDLE;
+        }
+        foc_pwm_disable();
+        return;
     }
 
     foc_update_mode(settings, foc_state.rpm_actual);
@@ -594,7 +626,20 @@ static void foc_step_once(void)
     }
 
     case BLDC_FOC_MODE_OPEN_LOOP: {
-        foc.open_loop_omega += foc_rpm_to_omega_elec(60.0f, pole_pairs) * dt;
+        const float ramp_rpm_s =
+            (settings != NULL && settings->open_loop_ramp_rpm_s > 0.0f)
+                ? settings->open_loop_ramp_rpm_s
+                : 60.0f;
+        const float max_ol_rpm =
+            (settings != NULL && settings->max_rpm_open_loop > 0.0f)
+                ? settings->max_rpm_open_loop
+                : 1200.0f;
+        const float max_ol_omega = foc_rpm_to_omega_elec(max_ol_rpm, pole_pairs);
+
+        foc.open_loop_omega += foc_rpm_to_omega_elec(ramp_rpm_s, pole_pairs) * dt;
+        if (foc.open_loop_omega > max_ol_omega) {
+            foc.open_loop_omega = max_ol_omega;
+        }
         foc.theta_open_loop = foc_wrap_angle(foc.theta_open_loop + (foc.open_loop_omega * dt));
         theta = foc.theta_open_loop;
         iq_target = (settings != NULL && settings->alignment_current > 0.0f)
@@ -669,6 +714,29 @@ void bldc_foc_set_target_rpm(float rpm)
     foc_state.rpm_target = rpm;
 }
 
+void bldc_foc_apply_settings(void)
+{
+    bldc_settings_t *settings = bldc_get_settings();
+
+    if (settings == NULL) {
+        return;
+    }
+
+    foc_sync_controllers_from_settings(settings);
+    bldc_foc_set_target_rpm(settings->rpm_target);
+
+    if (settings->rpm_target <= 0.0f) {
+        foc_pwm_disable();
+        foc.mode = BLDC_FOC_MODE_IDLE;
+        foc_state.mode = BLDC_FOC_MODE_IDLE;
+        return;
+    }
+
+    if (foc.mode == BLDC_FOC_MODE_IDLE || foc.mode == BLDC_FOC_MODE_FAULT) {
+        foc_begin_startup(settings);
+    }
+}
+
 void bldc_foc_get_state(bldc_foc_state_t *state)
 {
     if (state == NULL) {
@@ -717,15 +785,19 @@ static void foc_begin_startup(const bldc_settings_t *settings)
     if (startup_mode == 2U) {
         foc.mode = BLDC_FOC_MODE_CLOSED_LOOP;
         foc.omega_elec = foc_rpm_to_omega_elec(200.0f, foc_effective_pole_pairs(settings));
-    } else if (startup_mode == 1U || startup_mode == 0U) {
-        foc.mode = BLDC_FOC_MODE_ALIGN;
-        foc.align_until_ms = now_ms + 150U;
-    } else {
+    } else if (startup_mode == 1U) {
         foc.mode = BLDC_FOC_MODE_OPEN_LOOP;
         foc.ramp_until_ms = now_ms + (uint32_t)((settings != NULL && settings->startup_ramp_time_ms > 0.0f)
                                                     ? settings->startup_ramp_time_ms
                                                     : 500.0f);
         foc.open_loop_omega = foc_rpm_to_omega_elec(120.0f, foc_effective_pole_pairs(settings));
+    } else {
+        const float align_ms = (settings != NULL && settings->alignment_time_ms > 0.0f)
+                                   ? settings->alignment_time_ms
+                                   : 150.0f;
+
+        foc.mode = BLDC_FOC_MODE_ALIGN;
+        foc.align_until_ms = now_ms + (uint32_t)align_ms;
     }
 
     foc_state.mode = foc.mode;
@@ -737,7 +809,7 @@ void bldc_foc_comm_thread(void *argument)
 
     foc_task_handle = xTaskGetCurrentTaskHandle();
     bldc_foc_init();
-    foc_begin_startup(bldc_get_settings());
+    bldc_foc_apply_settings();
 
     if (bsp_foc_loop_uses_hw_adc_trigger()) {
         bsp_foc_loop_hw_init(foc_loop_notify_from_isr);
