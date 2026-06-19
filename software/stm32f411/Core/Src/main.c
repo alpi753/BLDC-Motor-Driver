@@ -69,7 +69,7 @@ const osThreadAttr_t telemTask_attributes = {
 osThreadId_t commTaskHandle;
 const osThreadAttr_t commTask_attributes = {
   .name = "commTask",
-  .stack_size = 512 * 4,
+  .stack_size = 1024 * 4,
   .priority = (osPriority_t) osPriorityAboveNormal,
 };
 /* USER CODE BEGIN PV */

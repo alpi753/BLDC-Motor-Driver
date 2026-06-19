@@ -66,7 +66,7 @@ osThreadId_t defaultTaskHandle;
 const osThreadAttr_t defaultTask_attributes = {
   .name = "defaultTask",
   .priority = (osPriority_t) osPriorityNormal,
-  .stack_size = 128 * 4
+  .stack_size = 512 * 4
 };
 /* Definitions for telemTask */
 osThreadId_t telemTaskHandle;
@@ -80,7 +80,7 @@ osThreadId_t commTaskHandle;
 const osThreadAttr_t commTask_attributes = {
   .name = "commTask",
   .priority = (osPriority_t) osPriorityAboveNormal,
-  .stack_size = 512 * 4
+  .stack_size = 1024 * 4
 };
 /* USER CODE BEGIN PV */
 
