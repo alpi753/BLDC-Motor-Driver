@@ -1,3 +1,5 @@
+#include <string.h>
+
 #include "bsp.h"
 #include "main.h"
 
@@ -8,6 +10,11 @@ static BLDC_Handle_t motor_handle;
 
 #if CONFIG_BLDC_PWM_TIMER_HIGH != 1
 #error "stm32f411 board.c: CONFIG_BLDC_PWM_TIMER_HIGH must be 1 (htim1)"
+#endif
+
+#if !BLDC_TELEM_USE_DEMO
+static uint16_t adc_dma_buf[ADC_CHANNEL_COUNT];
+static volatile uint32_t adc_dma_seq;
 #endif
 
 void bsp_board_init(void)
@@ -50,3 +57,39 @@ void bsp_usb_init(void)
     MX_USB_DEVICE_Init();
 #endif
 }
+
+#if !BLDC_TELEM_USE_DEMO
+int bsp_telem_adc_init(void)
+{
+    adc_dma_seq = 0U;
+    if (HAL_ADC_Start_DMA(&hadc1, (uint32_t *)adc_dma_buf, ADC_CHANNEL_COUNT) != HAL_OK) {
+        return -1;
+    }
+    return 0;
+}
+
+void bsp_telem_adc_conv_cplt(ADC_HandleTypeDef *hadc)
+{
+    if (hadc == &hadc1) {
+        adc_dma_seq++;
+    }
+}
+
+int bsp_telem_adc_snapshot(uint16_t *samples, unsigned count)
+{
+    uint32_t seq_before;
+    uint32_t seq_after;
+
+    if (samples == NULL || count != ADC_CHANNEL_COUNT) {
+        return 0;
+    }
+
+    do {
+        seq_before = adc_dma_seq;
+        memcpy(samples, adc_dma_buf, sizeof(uint16_t) * ADC_CHANNEL_COUNT);
+        seq_after = adc_dma_seq;
+    } while (seq_before != seq_after);
+
+    return 1;
+}
+#endif

@@ -17,6 +17,19 @@
 #define THERMISTOR_BETA           3950.0f
 #define BATTERY_CAPACITY_WH       100.0f
 
+/* Unified snapshot layout produced by bsp_telem_adc_snapshot() in board.c:
+ * Phase currents from ADC1 injected (PA0–PA2 / IN1–IN3).
+ * Slow sensors from ADC2 regular scan rank order: CH3, CH4, CH12. */
+#define ADC_HAS_VBUS_ADC          1
+#define ADC_IDX_PHASE_A           0U
+#define ADC_IDX_PHASE_B           1U
+#define ADC_IDX_PHASE_C           2U
+#define ADC_IDX_VBUS              3U
+#define ADC_IDX_TEMP              4U
+#define ADC_SLOW_RANK_NTC_FET     0U
+#define ADC_SLOW_RANK_NTC_MTR     1U
+#define ADC_SLOW_RANK_VBUS        2U
+
 #define MAJOR_SW                  1
 #define MINOR_SW                  0
 #define MAJOR_HW                  1

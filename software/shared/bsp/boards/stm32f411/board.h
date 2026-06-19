@@ -17,6 +17,17 @@
 #define THERMISTOR_BETA           3950.0f
 #define BATTERY_CAPACITY_WH       100.0f
 
+/* ADC1 regular DMA scan order (single ADC — mirrors g431 signal groups).
+ * Phase currents: PA0–PA2 (g431: ADC1 injected IN1–IN3).
+ * NTC sensors:    PA6–PA7 (g431: ADC2 IN3/IN4).
+ * VBus on PB2 has no ADC input on STM32F411; bus voltage is not sampled. */
+#define ADC_HAS_VBUS_ADC          0
+#define ADC_IDX_PHASE_A           0U
+#define ADC_IDX_PHASE_B           1U
+#define ADC_IDX_PHASE_C           2U
+#define ADC_IDX_TEMP              3U
+#define ADC_IDX_TEMP_MTR          4U
+
 #define MAJOR_SW                  1
 #define MINOR_SW                  0
 #define MAJOR_HW                  1
@@ -34,6 +45,9 @@
 
 /* -------------------------------------------------------------------------- */
 /* DRV8323 inputs (hardware/untitled.kicad_pcb netlist)                       */
+/*  Phase currents: PA0–PA2 (same nets as g431 Curr_Sense_A/B/C)             */
+/*  NTC sensors:    PA6–PA7 (same nets as g431 NTC_Mosfet / NTC_Motor)       */
+/*  VBus divider:   PB2 on PCB — no ADC pin on F411 (see ADC_HAS_VBUS_ADC)   */
 /*  INHx: TIM1 CH1/2/3 on PA8/PA9/PA10                                        */
 /*  INLB/INLC: TIM1 CH2N/CH3N on PB0/PB1                                      */
 /*  INLA: PC13 — no timer AF; driven as GPIO                                  */

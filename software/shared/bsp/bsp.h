@@ -41,6 +41,12 @@ BLDC_Handle_t *bsp_get_motor_handle(void);
 void bsp_board_init(void);
 BLDC_Handle_t *bsp_board_get_motor_handle(void);
 
+#if !BLDC_TELEM_USE_DEMO
+int bsp_telem_adc_init(void);
+int bsp_telem_adc_snapshot(uint16_t *samples, unsigned count);
+void bsp_telem_adc_conv_cplt(ADC_HandleTypeDef *hadc);
+#endif
+
 #ifdef __cplusplus
 }
 #endif

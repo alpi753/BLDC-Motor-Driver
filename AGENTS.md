@@ -17,8 +17,8 @@ The long-term goal is sensorless FOC diagnostics, ESC tuning, and DroneCAN integ
 │  STM32F411          │  CBOR frames: [type, payload]  │  Electron main       │
 │                     │ ─────────────────────────────► │  serial.ts decoder   │
 │  TelemThread (10Hz) │                                │       │              │
-│    → usbQueue       │ ◄───────────────────────────── │  ipcMain → renderer  │
-│  UsbThread          │  settings CBOR (RX, partial)   │  dashboard cards     │
+│                     │ ◄───────────────────────────── │  ipcMain → renderer  │
+│                     │  settings CBOR (RX, partial)   │  dashboard cards     │
 └─────────────────────┘                                └──────────────────────┘
          │
          ├── TIM3 PWM → 3-phase outputs (commutation)
@@ -32,10 +32,7 @@ The long-term goal is sensorless FOC diagnostics, ESC tuning, and DroneCAN integ
 | Task | Priority | Role |
 |------|----------|------|
 | `defaultTask` | Normal | Initializes USB device (`MX_USB_DEVICE_Init`), idle loop |
-| `telemTask` | Low | Samples ADC, publishes telemetry to `usbQueue` at ~10 Hz, calls `bldc_dronecan_pub()` |
-| `usbTask` | Low | Dequeues messages, CBOR-encodes, transmits over CDC |
-
-Inter-task messaging uses `usbQueue` (FreeRTOS message queue). Messages are `usb_msg_t` structs defined in `bldc.h`.
+| `telemTask` | Low | Samples ADC, publishes telemetry, Dequeues messages, CBOR-encodes, transmits over CDC  |
 
 ### Electron Process Model
 
@@ -224,7 +221,6 @@ Agents should treat these as known incomplete areas — don't assume features wo
 | Phase current / voltage / temp / battery telemetry | Working from real ADC |
 | RPM, angles, i_d/i_q, observer fields | Stubbed to 0 in `telem.c` (no FOC observer) |
 | Settings UI → firmware | Not connected; firmware RX handler exists |
-| `usbQueue` size in `main.c` | Created with `sizeof(uint16_t)` but stores `usb_msg_t` — likely bug |
 | `bldc_comm_commutate` vs `bldc_comm_trapeziod` | Header/implementation name mismatch |
 | DroneCAN CAN bus I/O | Protocol layer only; no HAL CAN driver hooked up |
 | `BLDC_TELEM_USE_DEMO` | Uncomment in `bldc.h` for synthetic telemetry without hardware |

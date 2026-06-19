@@ -24,78 +24,62 @@ static bldc_telemetry_t telem_data;
 static bldc_settings_t settings_data;
 
 
-static uint16_t adc_dma_buf[ADC_CHANNEL_COUNT];
-static volatile uint8_t adc_dma_ready = 0;
-int bldc_adc_dma_start(void)
-{
-		adc_dma_ready = 0;
-    // Start ADC in DMA mode 
-    return HAL_ADC_Start_DMA(bldc_h.hadc,
-                          (uint32_t*)adc_dma_buf,
-                          ADC_CHANNEL_COUNT);
-}
-
+#if !BLDC_TELEM_USE_DEMO
 void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef *hadc)
 {
-    if (hadc == bldc_h.hadc)
-    {
-        adc_dma_ready = 1;
-    }
+    bsp_telem_adc_conv_cplt(hadc);
 }
 
-#if !BLDC_TELEM_USE_DEMO
-static int bldc_telem_adc_dma_read(uint16_t *out_buf)
+static void bldc_telem_update_temp(float *temp_c, uint16_t raw)
 {
-		if (!adc_dma_ready)
-				return 0;
+    const float v = ADC_TO_VOLT(raw);
+    const float vref = ADC_REF_VOLT;
+    const float min_v = 0.005f;
 
-		memcpy(out_buf, adc_dma_buf, sizeof(uint16_t) * ADC_CHANNEL_COUNT);
-		adc_dma_ready = 0;
-		return 1;
+    if (v <= min_v || v >= ADC_REF_VOLT) {
+        return;
+    }
+
+    float r_ntc = THERMISTOR_PULLUP * (v / (vref - v));
+    float ratio = r_ntc / THERMISTOR_R25;
+    CLAMP(ratio, 1e-6f, 1e6f);
+
+    const float t0_k = 298.15f;
+    const float inv_t = (1.0f / t0_k) + (1.0f / THERMISTOR_BETA) * bsp_log_f(ratio);
+    const float t_k = 1.0f / inv_t;
+    const float temp_c_new = t_k - 273.15f;
+
+    if (*temp_c == 0.0f) {
+        *temp_c = temp_c_new;
+    } else {
+        *temp_c = bsp_iir_lowpass_f(*temp_c, temp_c_new, IIR_FILTER_ALPHA);
+    }
 }
 
 void bldc_telem_update(void)
 {
     uint16_t adc[ADC_CHANNEL_COUNT];
 
-    /* bldc_telem_adc_dma_read returns 1 on success, 0 on failure */
-    if (!bldc_telem_adc_dma_read(adc)) return;
+    if (!bsp_telem_adc_snapshot(adc, ADC_CHANNEL_COUNT)) {
+        return;
+    }
 
 
-    telem_data.current_phase_a = ADC_TO_CURR(adc[0]);
-    telem_data.current_phase_b = ADC_TO_CURR(adc[1]);
-    telem_data.current_phase_c = ADC_TO_CURR(adc[2]);
+    telem_data.current_phase_a = ADC_TO_CURR(adc[ADC_IDX_PHASE_A]);
+    telem_data.current_phase_b = ADC_TO_CURR(adc[ADC_IDX_PHASE_B]);
+    telem_data.current_phase_c = ADC_TO_CURR(adc[ADC_IDX_PHASE_C]);
 
-    telem_data.battery_voltage = ADC_TO_VOLT(adc[3]) * BUS_VOLTAGE_DIVIDER_RATIO;
+#if ADC_HAS_VBUS_ADC
+    telem_data.battery_voltage = ADC_TO_VOLT(adc[ADC_IDX_VBUS]) * BUS_VOLTAGE_DIVIDER_RATIO;
+#else
+    telem_data.battery_voltage = 0.0f;
+#endif
     telem_data.battery_current =
         (fabsf(telem_data.current_phase_a) +
          fabsf(telem_data.current_phase_b) +
          fabsf(telem_data.current_phase_c)) / 3.0f;
 
-    /* Temperature (NTC thermistor conversion using pull-up divider and Beta equation) */
-		// TODO: should be calibrated with thermistor curve, and scaled nonlinearly if needed.
-    {
-      const float v = ADC_TO_VOLT(adc[4]);
-      const float vref = ADC_REF_VOLT;
-      const float min_v = 0.005f;
-
-      if (v > min_v && v < ADC_REF_VOLT) {
-        float r_ntc = THERMISTOR_PULLUP * (v / (vref - v));
-        float ratio = r_ntc / THERMISTOR_R25;
-				CLAMP(ratio, 1e-6f, 1e6f);
-
-        const float t0_k = 298.15f; // 25C in Kelvin
-        const float inv_t = (1.0f / t0_k) + (1.0f / THERMISTOR_BETA) * bsp_log_f(ratio);
-        const float t_k = 1.0f / inv_t;
-        const float temp_c_new = t_k - 273.15f;
-
-        if (telem_data.temp_c == 0.0f) {
-          telem_data.temp_c = temp_c_new;
-        } else {
-          telem_data.temp_c = bsp_iir_lowpass_f(telem_data.temp_c, temp_c_new, IIR_FILTER_ALPHA);
-        }
-      }
-    }
+    bldc_telem_update_temp(&telem_data.temp_c, adc[ADC_IDX_TEMP]);
 
     const float period = (float)(__HAL_TIM_GET_AUTORELOAD(bldc_h.htim_high) + 1U);
     if (period > 1.0f)
@@ -182,7 +166,9 @@ void bldc_telem_fake(void)
 void bldc_telem_init(void) {
 #if !BLDC_TELEM_USE_DEMO
   bsp_usb_init();
-	bldc_adc_dma_start();
+  if (bsp_telem_adc_init() != 0) {
+    Error_Handler();
+  }
 #endif
 	telem_data.temp_c = 0.0f; 
 }
