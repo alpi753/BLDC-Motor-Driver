@@ -40,10 +40,11 @@ libcanard:
 	@test -d $(TP_BASE)/libcanard || git clone https://github.com/dronecan/libcanard $(TP_BASE)/libcanard	
 
 dsdl_gen_build: libcanard dsdl_gen dsdlc
-	python3 $(TP_BASE)/dronecan_dsdlc/dronecan_dsdlc.py \
+	@echo "Generating DSDL code for libcanard"
+	@python3 $(TP_BASE)/dronecan_dsdlc/dronecan_dsdlc.py \
 		-O $(GEN_DIR) \
 		$(TP_BASE)/DSDL/uavcan \
-		$(TP_BASE)/DSDL/dronecan
+		$(TP_BASE)/DSDL/dronecan > /dev/null
 
 clean:
 	rm -rf build $(GEN_DIR)

@@ -100,14 +100,15 @@ void HAL_ADC_MspInit(ADC_HandleTypeDef* hadc)
 
     __HAL_RCC_GPIOA_CLK_ENABLE();
     /**ADC1 GPIO Configuration
-    PA0-WKUP     ------> ADC1_IN0  (phase A current)
-    PA1     ------> ADC1_IN1  (phase B current)
-    PA2     ------> ADC1_IN2  (phase C current)
-    PA6     ------> ADC1_IN6  (NTC_FET)
-    PA7     ------> ADC1_IN7  (NTC_MTR)
+    PA0-WKUP     ------> ADC1_IN0
+    PA1     ------> ADC1_IN1
+    PA2     ------> ADC1_IN2
+    PA5     ------> ADC1_IN5
+    PA6     ------> ADC1_IN6
+    PA7     ------> ADC1_IN7
     */
-    GPIO_InitStruct.Pin = ADC_Ph0_Curr_Pin|ADC_Ph1_Curr_Pin|ADC_Ph2_Curr_Pin|NTC_FET_Pin
-                          |NTC_MTR_Pin;
+    GPIO_InitStruct.Pin = ADC_Ph0_Curr_Pin|ADC_Ph1_Curr_Pin|ADC_Ph2_Curr_Pin|V_Bus_Sense_Pin
+                          |NTC_FET_Pin|NTC_MTR_Pin;
     GPIO_InitStruct.Mode = GPIO_MODE_ANALOG;
     GPIO_InitStruct.Pull = GPIO_NOPULL;
     HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
@@ -159,11 +160,12 @@ void HAL_ADC_MspDeInit(ADC_HandleTypeDef* hadc)
     PA0-WKUP     ------> ADC1_IN0
     PA1     ------> ADC1_IN1
     PA2     ------> ADC1_IN2
+    PA5     ------> ADC1_IN5
     PA6     ------> ADC1_IN6
     PA7     ------> ADC1_IN7
     */
-    HAL_GPIO_DeInit(GPIOA, ADC_Ph0_Curr_Pin|ADC_Ph1_Curr_Pin|ADC_Ph2_Curr_Pin|NTC_FET_Pin
-                          |NTC_MTR_Pin);
+    HAL_GPIO_DeInit(GPIOA, ADC_Ph0_Curr_Pin|ADC_Ph1_Curr_Pin|ADC_Ph2_Curr_Pin|V_Bus_Sense_Pin
+                          |NTC_FET_Pin|NTC_MTR_Pin);
 
     /* ADC1 DMA DeInit */
     HAL_DMA_DeInit(hadc->DMA_Handle);

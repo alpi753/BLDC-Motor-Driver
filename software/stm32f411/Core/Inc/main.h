@@ -74,6 +74,8 @@ uint32_t rand32(void);
 #define ADC_Ph2_Curr_GPIO_Port GPIOA
 #define SENS1_Pin GPIO_PIN_3
 #define SENS1_GPIO_Port GPIOA
+#define V_Bus_Sense_Pin GPIO_PIN_5
+#define V_Bus_Sense_GPIO_Port GPIOA
 #define NTC_FET_Pin GPIO_PIN_6
 #define NTC_FET_GPIO_Port GPIOA
 #define NTC_MTR_Pin GPIO_PIN_7
