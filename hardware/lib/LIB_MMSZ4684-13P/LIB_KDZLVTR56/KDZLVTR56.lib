@@ -1,0 +1,30 @@
+EESchema-LIBRARY Version 2.3
+#encoding utf-8
+#SamacSys ECAD Model KDZLVTR56
+#/2064157/1698287/2.50/2/2/Zener Diode
+DEF KDZLVTR56 Z 0 30 Y Y 1 F N
+F0 "Z" 400 350 50 H V L CNN
+F1 "KDZLVTR56" 400 250 50 H V L CNN
+F2 "KDZLVTR56" 400 150 50 H I L CNN
+F3 "https://fscdn.rohm.com/en/products/databook/datasheet/discrete/diode/zener/kdzlvtr56-e.pdf" 400 50 50 H I L CNN
+F4 "1W 56V, SOD-123FL, High Power / High Voltage Zener Diode" 400 -50 50 H I L CNN "Description"
+F5 "0.9" 400 -150 50 H I L CNN "Height"
+F6 "ROHM Semiconductor" 400 -250 50 H I L CNN "Manufacturer_Name"
+F7 "KDZLVTR56" 400 -350 50 H I L CNN "Manufacturer_Part_Number"
+F8 "755-KDZLVTR56" 400 -450 50 H I L CNN "Mouser Part Number"
+F9 "https://www.mouser.co.uk/ProductDetail/ROHM-Semiconductor/KDZLVTR56?qs=4v%252BiZTmLVHFcNZr%2FM%252BpO7w%3D%3D" 400 -550 50 H I L CNN "Mouser Price/Stock"
+F10 "" 400 -650 50 H I L CNN "Arrow Part Number"
+F11 "" 400 -750 50 H I L CNN "Arrow Price/Stock"
+DRAW
+X ~ 1 0 0 100 R 50 50 0 0 P
+X ~ 2 600 0 100 L 50 50 0 0 P
+P 2 0 1 6 200 80 200 -80 N
+P 2 0 1 6 200 80 240 100 N
+P 2 0 1 6 160 -100 200 -80 N
+P 2 0 1 6 100 0 200 0 N
+P 2 0 1 6 500 0 400 0 N
+P 4 0 1 10 200 0 400 100 400 -100 200 0 F
+ENDDRAW
+ENDDEF
+#
+#End Library

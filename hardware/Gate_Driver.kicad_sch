@@ -11867,7 +11867,7 @@
 		(uuid "818b0460-584d-4da4-a3a6-5d1bd52b94cc")
 	)
 	(hierarchical_label "FAULT"
-		(shape input)
+		(shape output)
 		(at 125.73 97.79 0)
 		(effects
 			(font
@@ -13669,7 +13669,7 @@
 				)
 			)
 		)
-		(property "Footprint" "08056D104KAT2A:CAPC2012X140N"
+		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder"
 			(at 157.48 46.99 0)
 			(effects
 				(font

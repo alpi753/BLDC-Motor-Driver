@@ -1,6 +1,5 @@
 Ana_ESC-backups
 *.kicad_sch-bak
 *.kicad_sch.lck
-build
-dsdl_gen
-__pycache__
+Bitirme_Maliye.xlsx
+Notlar.md

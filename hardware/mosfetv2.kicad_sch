@@ -1887,6 +1887,17 @@
 		)
 		(uuid "b799bbee-d58b-4223-8c79-9d08d29e9c6a")
 	)
+	(text "I = 15A\nRDSON = 0.005 OHM\nPLOSS = I^2 * R\nPLOSS = 1.125 W\n-----\nRDSON(T=125) = 1.5*0.005 = 0.0075 OHM\nPLOSS = 1.6875 W\n-----\nMOSFET TEMPERATURE\n= 25 + 1.6875 * 31.3\n= 77.81 C\n"
+		(exclude_from_sim no)
+		(at 55.372 390.652 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "ed98193b-0455-40ed-8b13-42f6b29a6b0c")
+	)
 	(text "Bu değeri biraza daha düşürebiliriz thermal vialar ile"
 		(exclude_from_sim no)
 		(at 50.546 320.802 0)
@@ -12565,7 +12576,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "d65d091c-3dca-437f-be7e-e1133110fc3c")
-		(property "Reference" "Power_Pad_SMD1"
+		(property "Reference" "Batt-1"
 			(at 62.23 31.7499 0)
 			(effects
 				(font
@@ -12707,7 +12718,7 @@
 		(instances
 			(project ""
 				(path "/57129761-6d47-486c-bd7a-90dbb6f75754/a2e9c01f-dc3c-42e3-9ad2-b4c7bc962bba"
-					(reference "Power_Pad_SMD1")
+					(reference "Batt-1")
 					(unit 1)
 				)
 			)

@@ -229,6 +229,16 @@
 		)
 		(uuid "6e558ac9-c9ee-4d5d-9204-562adc50ff63")
 	)
+	(wire
+		(pts
+			(xy 82.55 95.25) (xy 114.3 95.25)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "7007628a-b142-4370-b2e9-2861aee9f3dd")
+	)
 	(polyline
 		(pts
 			(xy 236.6665 69.0082) (xy 246.8265 69.0082)
@@ -318,6 +328,16 @@
 			(type default)
 		)
 		(uuid "8842457e-b886-440e-8988-e8fa82fedece")
+	)
+	(wire
+		(pts
+			(xy 82.55 77.47) (xy 114.3 77.47)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "8e3cdc11-27d7-4365-a6ec-cb31a534277c")
 	)
 	(wire
 		(pts
@@ -438,6 +458,16 @@
 			(type default)
 		)
 		(uuid "be10309e-ac45-4ddd-9047-4b9989823c16")
+	)
+	(wire
+		(pts
+			(xy 82.55 52.07) (xy 114.3 52.07)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "c42b2e18-9eb1-4e70-9a29-8de61c636ed8")
 	)
 	(polyline
 		(pts
@@ -1150,16 +1180,6 @@
 				(justify right)
 			)
 		)
-		(pin "NTC_MTR" input
-			(at 82.55 95.25 0)
-			(uuid "3a0b0f46-1881-4a49-8205-92e539b23464")
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
 		(pin "SCLK" output
 			(at 82.55 85.09 0)
 			(uuid "38bc986d-292a-4440-b27a-fbe937ad08d1")
@@ -1190,51 +1210,9 @@
 				(justify right)
 			)
 		)
-		(instances
-			(project "Ana_ESC2_OneGND_Layer"
-				(path "/57129761-6d47-486c-bd7a-90dbb6f75754"
-					(page "4")
-				)
-			)
-		)
-	)
-	(sheet
-		(at 49.53 124.46)
-		(size 43.18 69.85)
-		(exclude_from_sim yes)
-		(in_bom no)
-		(on_board no)
-		(dnp yes)
-		(fields_autoplaced yes)
-		(stroke
-			(width 0.1524)
-			(type solid)
-		)
-		(fill
-			(color 0 0 0 0.0000)
-		)
-		(uuid "93a25273-1af9-476d-be50-92121d872328")
-		(property "Sheetname" "Mosfets"
-			(at 49.53 123.7484 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left bottom)
-			)
-		)
-		(property "Sheetfile" "Mosfets.kicad_sch"
-			(at 49.53 194.8946 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left top)
-			)
-		)
-		(pin "FAZ_A" output
-			(at 92.71 134.62 0)
-			(uuid "e793609a-3765-4b9e-881a-35dd398e631a")
+		(pin "CAL" output
+			(at 82.55 77.47 0)
+			(uuid "167bbac7-9116-4026-9beb-0614f7b95e82")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1242,9 +1220,9 @@
 				(justify right)
 			)
 		)
-		(pin "FAZ_B" output
-			(at 92.71 139.7 0)
-			(uuid "e3a6e0f3-24e1-4256-86d5-90aec4929c13")
+		(pin "FAULT" input
+			(at 82.55 95.25 0)
+			(uuid "91dc3f2a-cc82-4935-8c87-2ace588108ef")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1252,180 +1230,20 @@
 				(justify right)
 			)
 		)
-		(pin "FAZ_C" output
-			(at 92.71 144.78 0)
-			(uuid "26b78ad1-ed5b-4866-9a01-e4cd50b02fe6")
+		(pin "Enable" output
+			(at 82.55 52.07 0)
+			(uuid "bb493d21-6072-42cc-b6c6-45287d764ff9")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify right)
-			)
-		)
-		(pin "GHA" input
-			(at 49.53 129.54 180)
-			(uuid "2d99bc5c-dde0-4824-9d54-72e2e7995f7c")
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(pin "GHB" input
-			(at 49.53 132.08 180)
-			(uuid "a79b758a-51fa-4176-ad56-a4cd71d4eac2")
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(pin "GHC" input
-			(at 49.53 134.62 180)
-			(uuid "051b9815-0b8b-4ea6-81c0-5d39c8d99ca8")
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(pin "GLA" input
-			(at 49.53 138.43 180)
-			(uuid "29ac1a5d-fa97-432b-9793-a85d14861938")
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(pin "GLB" input
-			(at 49.53 140.97 180)
-			(uuid "be1dbb33-613f-4a0f-9c61-1074fb3a4079")
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(pin "GLC" input
-			(at 49.53 143.51 180)
-			(uuid "dd296680-7e41-426b-bf9e-a278821e80b0")
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(pin "SHA" output
-			(at 49.53 158.75 180)
-			(uuid "c0611b37-c4e2-49da-a7ac-3c9a30d0b90c")
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(pin "SHB" output
-			(at 49.53 161.29 180)
-			(uuid "bfba9c05-4870-4b09-b308-8f140a263374")
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(pin "SHC" output
-			(at 49.53 163.83 180)
-			(uuid "e00a21ff-3c7d-4641-91bc-91c08b29972c")
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(pin "SNA" output
-			(at 49.53 170.18 180)
-			(uuid "b7ad0cbb-2348-46bd-b038-7c25852da994")
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(pin "SNB" output
-			(at 49.53 172.72 180)
-			(uuid "f023e188-fa2f-44e3-be56-beca8d016c4e")
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(pin "SNC" output
-			(at 49.53 175.26 180)
-			(uuid "72e1c5c0-6d13-4637-8674-2a11f0d068fc")
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(pin "SPA" output
-			(at 49.53 179.07 180)
-			(uuid "db762568-9516-40a1-ad4d-f730ca8e07d8")
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(pin "SPB" output
-			(at 49.53 181.61 180)
-			(uuid "2993f3c6-f788-4457-bc54-d443c918ba99")
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(pin "SPC" output
-			(at 49.53 184.15 180)
-			(uuid "2cb5b8da-f541-42cc-8449-629db61859ee")
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(pin "Vdrain" output
-			(at 49.53 125.73 180)
-			(uuid "f95d7ca6-df53-4084-ac47-e7771e5bf3cb")
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
 			)
 		)
 		(instances
 			(project "Ana_ESC2_OneGND_Layer"
 				(path "/57129761-6d47-486c-bd7a-90dbb6f75754"
-					(page "2")
+					(page "4")
 				)
 			)
 		)
@@ -1974,7 +1792,7 @@
 				(justify left)
 			)
 		)
-		(pin "FAULT" input
+		(pin "FAULT" output
 			(at 114.3 95.25 180)
 			(uuid "8b4500a3-40a8-4592-813b-7bbe1df37964")
 			(effects

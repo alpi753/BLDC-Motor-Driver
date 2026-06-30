@@ -38,8 +38,8 @@
         "other_text_upright": false,
         "pads": {
           "drill": 0.7,
-          "height": 2.0,
-          "width": 2.0
+          "height": 1.5,
+          "width": 1.5
         },
         "silk_line_width": 0.1,
         "silk_text_italic": false,
@@ -96,9 +96,9 @@
         "missing_footprint": "warning",
         "net_conflict": "warning",
         "nonmirrored_text_on_back_layer": "warning",
-        "npth_inside_courtyard": "ignore",
+        "npth_inside_courtyard": "warning",
         "padstack": "warning",
-        "pth_inside_courtyard": "ignore",
+        "pth_inside_courtyard": "warning",
         "shorting_items": "error",
         "silk_edge_clearance": "warning",
         "silk_over_copper": "warning",
@@ -504,10 +504,10 @@
       "gencad": "",
       "idf": "",
       "netlist": "",
-      "plot": "",
+      "plot": "C:/Users/alper/Downloads/",
       "pos_files": "C:/Users/alper/Desktop/",
       "specctra_dsn": "",
-      "step": "bldc.glb",
+      "step": "bldc.step",
       "svg": "",
       "vrml": ""
     },
@@ -933,7 +933,7 @@
     },
     "net_format_name": "",
     "page_layout_descr_file": "",
-    "plot_directory": "",
+    "plot_directory": "C:/Users/alper/Downloads/semtik",
     "space_save_all_events": true,
     "spice_current_sheet_as_root": false,
     "spice_external_command": "spice \"%I\"",
@@ -948,10 +948,6 @@
     [
       "57129761-6d47-486c-bd7a-90dbb6f75754",
       "Root"
-    ],
-    [
-      "93a25273-1af9-476d-be50-92121d872328",
-      "Mosfets"
     ],
     [
       "beeab9ba-c868-48bf-b621-5886b9552033",
