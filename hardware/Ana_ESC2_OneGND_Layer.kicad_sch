@@ -521,6 +521,16 @@
 	)
 	(wire
 		(pts
+			(xy 82.55 48.26) (xy 114.3 48.26)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "f4c64945-747a-4665-98ba-b8573204eb23")
+	)
+	(wire
+		(pts
 			(xy 82.55 90.17) (xy 114.3 90.17)
 		)
 		(stroke
@@ -1240,6 +1250,16 @@
 				(justify right)
 			)
 		)
+		(pin "nSCS" output
+			(at 82.55 48.26 0)
+			(uuid "8ec767cd-90d5-43f2-9315-59749e5a9873")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
 		(instances
 			(project "Ana_ESC2_OneGND_Layer"
 				(path "/57129761-6d47-486c-bd7a-90dbb6f75754"
@@ -1855,6 +1875,16 @@
 		(pin "SENS3" output
 			(at 114.3 114.3 180)
 			(uuid "b594017d-6e22-4bd8-a5cb-bc9ddbb02f52")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "nSCS" input
+			(at 114.3 48.26 180)
+			(uuid "85b50a3a-df79-4d74-9cb1-7596d6dac3f8")
 			(effects
 				(font
 					(size 1.27 1.27)
