@@ -34,6 +34,18 @@ enable_language(C ASM)
 # Create an executable object type
 add_executable(${CMAKE_PROJECT_NAME})
 
+# TinyCBOR is vendored for allocation-free CBOR encoding and decoding on the MCU.
+add_library(tinycbor STATIC
+    Third_Party/TinyCBOR/src/cborencoder.c
+    Third_Party/TinyCBOR/src/cborencoder_close_container_checked.c
+    Third_Party/TinyCBOR/src/cborencoder_float.c
+    Third_Party/TinyCBOR/src/cborparser.c
+    Third_Party/TinyCBOR/src/cborparser_float.c
+)
+target_include_directories(tinycbor PUBLIC
+    ${CMAKE_CURRENT_SOURCE_DIR}/Third_Party/TinyCBOR/src
+)
+
 # Add STM32CubeMX generated sources
 add_subdirectory(cmake/stm32cubemx)
 
@@ -63,6 +75,7 @@ list(REMOVE_ITEM CMAKE_C_IMPLICIT_LINK_LIBRARIES ob)
 # Add linked libraries
 target_link_libraries(${CMAKE_PROJECT_NAME}
     stm32cubemx
+    tinycbor
 
     # Add user defined libraries
 )
