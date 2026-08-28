@@ -18,9 +18,8 @@
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
+#include "cdc_usb_bridge.h"
 #include "usb_device.h"
-#include "usbd_cdc_if.h"
-#include <string.h>
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
@@ -45,8 +44,6 @@
 /* Private variables ---------------------------------------------------------*/
 
 /* USER CODE BEGIN PV */
-static uint8_t usb_echo_rx_buffer[APP_RX_DATA_SIZE];
-static uint8_t usb_echo_tx_buffer[APP_TX_DATA_SIZE];
 
 /* USER CODE END PV */
 
@@ -59,24 +56,6 @@ static void MX_GPIO_Init(void);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-extern USBD_HandleTypeDef hUsbDeviceFS;
-
-uint8_t CDC_EchoReceived(uint8_t *buffer, uint32_t length)
-{
-  if (length > sizeof(usb_echo_tx_buffer))
-  {
-    return USBD_FAIL;
-  }
-
-  memcpy(usb_echo_tx_buffer, buffer, length);
-  return CDC_Transmit_FS(usb_echo_tx_buffer, (uint16_t)length);
-}
-
-void CDC_EchoTransmitComplete(void)
-{
-  USBD_CDC_SetRxBuffer(&hUsbDeviceFS, usb_echo_rx_buffer);
-  (void)USBD_CDC_ReceivePacket(&hUsbDeviceFS);
-}
 
 /* USER CODE END 0 */
 
@@ -111,6 +90,7 @@ int main(void)
   MX_GPIO_Init();
   MX_USB_Device_Init();
   /* USER CODE BEGIN 2 */
+  AppCdc_Init();
 
   /* USER CODE END 2 */
 
@@ -119,6 +99,7 @@ int main(void)
   while (1)
   {
     /* USER CODE END WHILE */
+    AppCdc_Task(HAL_GetTick());
     /* USER CODE BEGIN 3 */
   }
   /* USER CODE END 3 */
