@@ -66,10 +66,3 @@ target_link_libraries(${CMAKE_PROJECT_NAME}
 
     # Add user defined libraries
 )
-
-add_custom_target(flash
-    COMMAND openocd -f interface/stlink.cfg -f target/stm32g4x.cfg
-        -c "program $<TARGET_FILE:blink.elf> verify reset exit"
-    DEPENDS blink.elf USES_TERMINAL
-)
-

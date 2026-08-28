@@ -53,6 +53,8 @@ extern "C" {
 void Error_Handler(void);
 
 /* USER CODE BEGIN EFP */
+uint8_t CDC_EchoReceived(uint8_t *buffer, uint32_t length);
+void CDC_EchoTransmitComplete(void);
 
 /* USER CODE END EFP */
 
