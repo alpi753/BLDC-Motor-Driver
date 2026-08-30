@@ -1,3 +1,0 @@
----
-Checks: '-cppcoreguidelines-avoid-non-const-global-variables,-concurrency-mt-unsafe'
-InheritParentConfig: true

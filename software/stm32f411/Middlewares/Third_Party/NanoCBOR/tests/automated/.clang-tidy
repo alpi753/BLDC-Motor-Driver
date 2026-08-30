@@ -1,3 +1,0 @@
----
-Checks: '-*-magic-numbers,-concurrency-mt-unsafe'
-InheritParentConfig: true
