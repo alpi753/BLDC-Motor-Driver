@@ -23,6 +23,8 @@
 #define VM_R_LOW_OHM 10000.0f
 #define PHASE_VOLTAGE_R_HIGH_OHM 91000.0f
 #define PHASE_VOLTAGE_R_LOW_OHM 4700.0f
+#define CSA_GAIN_V_PER_V 20.0f
+#define PHASE_SHUNT_OHM 0.002f
 #define ADC_MAX_COUNTS 4095.0f
 
 typedef struct
@@ -191,6 +193,19 @@ static uint32_t Telemetry_DividerVoltageMv(uint16_t adc_raw, uint32_t vdda_mv,
       0.5f);
 }
 
+static uint32_t Telemetry_PhaseCurrentMa(uint16_t adc_raw, uint32_t vdda_mv)
+{
+  float csa_output_mv;
+
+  if (vdda_mv == 0U)
+  {
+    return 0U;
+  }
+
+  csa_output_mv = (float)adc_raw * (float)vdda_mv / ADC_MAX_COUNTS;
+  return (uint32_t)(csa_output_mv / (CSA_GAIN_V_PER_V * PHASE_SHUNT_OHM) + 0.5f);
+}
+
 static TelemetryAdcSamples Telemetry_ReadAdcs(void)
 {
   static TelemetryAdcSamples samples;
@@ -222,9 +237,9 @@ static uint8_t Telemetry_Encode(uint32_t now_ms, size_t *payload_length)
   message.motor_rpm = Telemetry_Random() % 6001U;
   message.mosfet_temperature_cdec = 250 + (int32_t)(Telemetry_Random() % 551U);
   message.ntc_pcb_temperature_cdec = Telemetry_NtcPcbTemperatureCdec(adc.ntc_pcb, vdda_mv);
-  message.curr_a_adc_raw = adc.curr_a;
-  message.curr_b_adc_raw = adc.curr_b;
-  message.curr_c_adc_raw = adc.curr_c;
+  message.curr_a_ma = Telemetry_PhaseCurrentMa(adc.curr_a, vdda_mv);
+  message.curr_b_ma = Telemetry_PhaseCurrentMa(adc.curr_b, vdda_mv);
+  message.curr_c_ma = Telemetry_PhaseCurrentMa(adc.curr_c, vdda_mv);
   message.volt_a_mv = Telemetry_DividerVoltageMv(adc.volt_a, vdda_mv,
                                                   PHASE_VOLTAGE_R_HIGH_OHM,
                                                   PHASE_VOLTAGE_R_LOW_OHM);

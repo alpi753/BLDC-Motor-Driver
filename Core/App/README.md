@@ -17,7 +17,7 @@ The protobuf fields are:
 | `motor_rpm` | Motor speed in RPM |
 | `mosfet_temperature_cdec` | MOSFET temperature in 0.1 °C |
 | `ntc_pcb_temperature_cdec` | NTC_PCB temperature in 0.1 °C (`INT32_MIN` = invalid) |
-| `curr_a_adc_raw`, `curr_b_adc_raw`, `curr_c_adc_raw` | Raw 12-bit current-sense ADC readings |
+| `curr_a_ma`, `curr_b_ma`, `curr_c_ma` | Measured phase currents in mA |
 | `volt_a_mv`, `volt_b_mv`, `volt_c_mv` | Measured phase voltages in mV |
 
 The ADC fields are live readings; the original bus, current, RPM, and MOSFET
@@ -33,6 +33,9 @@ a 91 kΩ / 4.7 kΩ divider (approximately 20.36:1). `NTC_PCB` uses a 10 kΩ,
 3.3 V. The firmware measures VDDA through the STM32 VREFINT calibration value
 before converting the NTC reading, so it remains correct when VDDA differs
 from the 3.3 V divider supply.
+
+The DRV8323 current-sense outputs use 20 V/V gain with a 2 mΩ phase shunt,
+which gives 25 mA per millivolt at the amplifier output.
 
 ## Host monitor
 
