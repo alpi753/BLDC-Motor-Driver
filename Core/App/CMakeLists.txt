@@ -1,6 +1,7 @@
 add_library(app STATIC
     telemetry.c
     ${PROJECT_SOURCE_DIR}/protocol/bldc.pb.c
+    drv8323r.c
 )
 
 target_include_directories(app PUBLIC
