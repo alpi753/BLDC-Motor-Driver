@@ -28,7 +28,6 @@ typedef struct _bldc_Telemetry {
     uint32_t volt_a_adc_raw;
     uint32_t volt_b_adc_raw;
     uint32_t volt_c_adc_raw;
-    uint32_t vbus_adc_raw;
 } bldc_Telemetry;
 
 
@@ -37,8 +36,8 @@ extern "C" {
 #endif
 
 /* Initializer values for message structs */
-#define bldc_Telemetry_init_default              {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}
-#define bldc_Telemetry_init_zero                 {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}
+#define bldc_Telemetry_init_default              {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}
+#define bldc_Telemetry_init_zero                 {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}
 
 /* Field tags (for use in manual encoding/decoding) */
 #define bldc_Telemetry_protocol_version_tag      1
@@ -55,7 +54,6 @@ extern "C" {
 #define bldc_Telemetry_volt_a_adc_raw_tag        12
 #define bldc_Telemetry_volt_b_adc_raw_tag        13
 #define bldc_Telemetry_volt_c_adc_raw_tag        14
-#define bldc_Telemetry_vbus_adc_raw_tag          15
 
 /* Struct field encoding specification for nanopb */
 #define bldc_Telemetry_FIELDLIST(X, a) \
@@ -72,8 +70,7 @@ X(a, STATIC,   SINGULAR, UINT32,   curr_b_adc_raw,   10) \
 X(a, STATIC,   SINGULAR, UINT32,   curr_c_adc_raw,   11) \
 X(a, STATIC,   SINGULAR, UINT32,   volt_a_adc_raw,   12) \
 X(a, STATIC,   SINGULAR, UINT32,   volt_b_adc_raw,   13) \
-X(a, STATIC,   SINGULAR, UINT32,   volt_c_adc_raw,   14) \
-X(a, STATIC,   SINGULAR, UINT32,   vbus_adc_raw,     15)
+X(a, STATIC,   SINGULAR, UINT32,   volt_c_adc_raw,   14)
 #define bldc_Telemetry_CALLBACK NULL
 #define bldc_Telemetry_DEFAULT NULL
 
@@ -84,7 +81,7 @@ extern const pb_msgdesc_t bldc_Telemetry_msg;
 
 /* Maximum encoded size of messages (where known) */
 #define BLDC_PROTOCOL_BLDC_PB_H_MAX_SIZE         bldc_Telemetry_size
-#define bldc_Telemetry_size                      90
+#define bldc_Telemetry_size                      84
 
 #ifdef __cplusplus
 } /* extern "C" */

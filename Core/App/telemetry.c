@@ -19,6 +19,8 @@
 #define PCB_NTC_T25_K 298.15f
 #define PCB_NTC_R_FIXED_OHM 1000.0f
 #define PCB_NTC_DIVIDER_SUPPLY_MV 3300.0f
+#define VM_R_HIGH_OHM 330000.0f
+#define VM_R_LOW_OHM 10000.0f
 #define ADC_MAX_COUNTS 4095.0f
 
 typedef struct
@@ -172,6 +174,20 @@ static int32_t Telemetry_NtcPcbTemperatureCdec(uint16_t adc_raw, uint32_t vdda_m
       ((temperature_c >= 0.0f) ? 0.5f : -0.5f));
 }
 
+static uint32_t Telemetry_VmVoltageMv(uint16_t adc_raw, uint32_t vdda_mv)
+{
+  float adc_voltage_mv;
+
+  if (vdda_mv == 0U)
+  {
+    return 0U;
+  }
+
+  adc_voltage_mv = (float)adc_raw * (float)vdda_mv / ADC_MAX_COUNTS;
+  return (uint32_t)(adc_voltage_mv * ((VM_R_HIGH_OHM + VM_R_LOW_OHM) / VM_R_LOW_OHM) +
+      0.5f);
+}
+
 static TelemetryAdcSamples Telemetry_ReadAdcs(void)
 {
   static TelemetryAdcSamples samples;
@@ -197,7 +213,7 @@ static uint8_t Telemetry_Encode(uint32_t now_ms, size_t *payload_length)
   message.protocol_version = 1U;
   message.sequence = telemetry_sequence++;
   message.uptime_ms = now_ms;
-  message.bus_voltage_mv = 22000U + (Telemetry_Random() % 3001U);
+  message.bus_voltage_mv = Telemetry_VmVoltageMv(adc.vbus, vdda_mv);
   message.phase_current_ma = (int32_t)(Telemetry_Random() % 20001U) - 10000;
   message.motor_rpm = Telemetry_Random() % 6001U;
   message.mosfet_temperature_cdec = 250 + (int32_t)(Telemetry_Random() % 551U);
@@ -208,7 +224,6 @@ static uint8_t Telemetry_Encode(uint32_t now_ms, size_t *payload_length)
   message.volt_a_adc_raw = adc.volt_a;
   message.volt_b_adc_raw = adc.volt_b;
   message.volt_c_adc_raw = adc.volt_c;
-  message.vbus_adc_raw = adc.vbus;
 
   stream = pb_ostream_from_buffer(telemetry_payload, sizeof(telemetry_payload));
   if (!pb_encode(&stream, bldc_Telemetry_fields, &message)) return 0U;

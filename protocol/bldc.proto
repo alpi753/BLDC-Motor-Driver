@@ -20,5 +20,5 @@ message Telemetry {
   uint32 volt_a_adc_raw = 12;
   uint32 volt_b_adc_raw = 13;
   uint32 volt_c_adc_raw = 14;
-  uint32 vbus_adc_raw = 15;
+  reserved 15;
 }

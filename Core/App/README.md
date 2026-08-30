@@ -12,14 +12,13 @@ The protobuf fields are:
 | `protocol_version` | Protocol version (`1`) |
 | `sequence` | Sequence number |
 | `uptime_ms` | Device uptime in milliseconds |
-| `bus_voltage_mv` | DC bus voltage in mV |
+| `bus_voltage_mv` | Measured VM voltage in mV |
 | `phase_current_ma` | Phase current in mA |
 | `motor_rpm` | Motor speed in RPM |
 | `mosfet_temperature_cdec` | MOSFET temperature in 0.1 °C |
 | `ntc_pcb_temperature_cdec` | NTC_PCB temperature in 0.1 °C (`INT32_MIN` = invalid) |
 | `curr_a_adc_raw`, `curr_b_adc_raw`, `curr_c_adc_raw` | Raw 12-bit current-sense ADC readings |
 | `volt_a_adc_raw`, `volt_b_adc_raw`, `volt_c_adc_raw` | Raw 12-bit phase-voltage ADC readings |
-| `vbus_adc_raw` | Raw 12-bit DC bus-voltage ADC reading |
 
 The ADC fields are live readings; the original bus, current, RPM, and MOSFET
 temperature fields remain deterministic pseudo-random test data. Field numbers
@@ -27,7 +26,9 @@ in `bldc.proto` are wire-contract identifiers: do not renumber or reuse
 removed field numbers. LEDC (PB12) toggles after completed USB telemetry
 transfers, at most once every 500 ms.
 
-`NTC_PCB` uses a 10 kΩ, β3435 NTC and a 1 kΩ fixed resistor, driven from
+`VM` uses a 330 kΩ / 10 kΩ divider (34:1); its 3.3 V zener protection clamp is
+well above the expected 10–12 V operating range. `NTC_PCB` uses a 10 kΩ,
+β3435 NTC and a 1 kΩ fixed resistor, driven from
 3.3 V. The firmware measures VDDA through the STM32 VREFINT calibration value
 before converting the NTC reading, so it remains correct when VDDA differs
 from the 3.3 V divider supply.
