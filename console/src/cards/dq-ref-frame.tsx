@@ -7,28 +7,13 @@ export type DQFramePoint = {
   iq: number
 }
 
-const generateFallbackDQData = (): DQFramePoint[] => {
-  const data: DQFramePoint[] = []
-  for (let i = 0; i < 50; i++) {
-    data.push({
-      sample: i,
-      timeLabel: `+${(i * 0.1).toFixed(1)}s`,
-      id: 5 + Math.sin(i / 6) * 0.2,
-      iq: 12 + Math.cos(i / 7) * 0.5,
-    })
-  }
-  return data
-}
-
-const fallbackDQData = generateFallbackDQData()
-
 type DQRefFrameCardProps = {
   data?: DQFramePoint[]
   dataRevision?: string
 }
 
 export default function DQRefFrameCard({ data, dataRevision }: DQRefFrameCardProps) {
-  const chartData = data && data.length > 0 ? data : fallbackDQData
+  const chartData = data ?? []
 
   return (
     <div className="size-full flex flex-col rounded-xl border bg-card p-4 shadow-sm">

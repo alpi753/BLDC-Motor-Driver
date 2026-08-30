@@ -8,8 +8,8 @@ type BatteryCapCardProps = {
 }
 
 export default function BatteryCapCard({
-  usedWh = 640,
-  remainingWh = 360,
+  usedWh = 0,
+  remainingWh = 0,
   dataRevision,
 }: BatteryCapCardProps) {
 	const safeUsed = Math.max(usedWh, 0)

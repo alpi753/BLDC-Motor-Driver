@@ -1,5 +1,3 @@
-import { encode } from "cbor"
-
 /** Matches `USB_MSG_SETTINGS` in firmware `bsp.h`. */
 export const USB_MSG_SETTINGS = 1
 
@@ -70,6 +68,6 @@ export const isSettingsPayload = (value: unknown): value is SettingsRaw => {
 }
 
 export function encodeSettingsMessage(settings: MotorSettings): Buffer {
-  const payload: SettingsRaw = { ...settings, smode: Math.round(settings.smode) }
-  return Buffer.from(encode([USB_MSG_SETTINGS, payload]))
+  void settings
+  throw new Error("Settings encoding is not defined by protocol/bldc.proto")
 }

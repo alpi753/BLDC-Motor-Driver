@@ -48,20 +48,8 @@ static uint8_t telemetry_payload[TELEMETRY_PAYLOAD_SIZE];
 static uint8_t telemetry_frame[TELEMETRY_FRAME_SIZE];
 static uint32_t telemetry_next_ms;
 static uint32_t telemetry_sequence;
-static uint32_t telemetry_prng = 0x6d2b79f5U;
 static uint32_t telemetry_last_led_toggle_ms;
 static uint8_t telemetry_tx_pending;
-
-static uint32_t Telemetry_Random(void)
-{
-  uint32_t value = telemetry_prng;
-
-  value ^= value << 13;
-  value ^= value >> 17;
-  value ^= value << 5;
-  telemetry_prng = value;
-  return value;
-}
 
 static size_t Telemetry_CobsEncode(const uint8_t *input, size_t input_length,
                                    uint8_t *output, size_t output_capacity)
@@ -233,9 +221,6 @@ static uint8_t Telemetry_Encode(uint32_t now_ms, size_t *payload_length)
   message.uptime_ms = now_ms;
   message.bus_voltage_mv = Telemetry_DividerVoltageMv(adc.vbus, vdda_mv,
                                                        VM_R_HIGH_OHM, VM_R_LOW_OHM);
-  message.phase_current_ma = (int32_t)(Telemetry_Random() % 20001U) - 10000;
-  message.motor_rpm = Telemetry_Random() % 6001U;
-  message.mosfet_temperature_cdec = 250 + (int32_t)(Telemetry_Random() % 551U);
   message.ntc_pcb_temperature_cdec = Telemetry_NtcPcbTemperatureCdec(adc.ntc_pcb, vdda_mv);
   message.curr_a_ma = Telemetry_PhaseCurrentMa(adc.curr_a, vdda_mv);
   message.curr_b_ma = Telemetry_PhaseCurrentMa(adc.curr_b, vdda_mv);

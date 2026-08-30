@@ -48,6 +48,7 @@ export type LineChartProps<TData extends Record<string, unknown>> =
 		yAxisWidth?: number
 		xAxisType?: "number" | "category"
 		xDomain?: [number, number]
+		yDomain?: [number | string, number | string]
 		dataRevision?: string
 		tooltipLabelKey?: keyof TData & string
 		xTickFormatter?: (value: unknown) => string
@@ -66,6 +67,7 @@ function LineChart<TData extends Record<string, unknown>>({
 	yAxisWidth = 44,
 	xAxisType = "number",
 	xDomain = [0, TELEMETRY_HISTORY_LENGTH - 1],
+	yDomain = ["auto", "auto"],
 	dataRevision,
 	tooltipLabelKey,
 	xTickFormatter,
@@ -140,7 +142,7 @@ function LineChart<TData extends Record<string, unknown>>({
 					tickMargin={10}
 					width={yAxisWidth}
 					tickFormatter={yTickFormatter}
-					domain={["auto", "auto"]}
+					domain={yDomain}
 				/>
 				{showTooltip ? (
 					<ChartTooltip

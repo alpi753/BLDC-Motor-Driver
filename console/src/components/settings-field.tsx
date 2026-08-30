@@ -8,6 +8,7 @@ type SettingsFieldProps = {
   value: number
   step?: string | number
   min?: number
+  max?: number
   onChange: (value: number) => void
 }
 
@@ -18,6 +19,7 @@ export function SettingsField({
   value,
   step = "any",
   min,
+  max,
   onChange,
 }: SettingsFieldProps) {
   return (
@@ -28,6 +30,7 @@ export function SettingsField({
         type="number"
         step={step}
         min={min}
+        max={max}
         value={Number.isFinite(value) ? value : 0}
         onChange={(event) => onChange(Number(event.target.value))}
         className="no-drag-area"

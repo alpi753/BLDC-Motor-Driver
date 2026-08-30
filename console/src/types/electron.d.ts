@@ -36,41 +36,21 @@ declare global {
   }
 
   type TelemetryData = {
-    device_id: string
-    speed: {
-      actual_rpm: number
-      target_rpm: number
-    }
-    currents: {
+    protocol_version: number
+    sequence: number
+    uptime_ms: number
+    bus_voltage_v: number
+    ntc_pcb_temperature_c: number | null
+    currents_a: {
       phase_a: number
       phase_b: number
       phase_c: number
-      i_d: number
-      i_q: number
     }
-    voltages: {
+    voltages_v: {
       phase_a: number
       phase_b: number
       phase_c: number
-      battery: number
     }
-    angles: {
-      mechanical_deg: number
-      electrical_deg: number
-      error_deg: number
-    }
-    observer: {
-      bemf_strength: number
-      confidence: number
-      pll_lock: number
-    }
-    power: {
-      battery_current: number
-      energy_used_wh: number
-      energy_remaining_wh: number
-    }
-    timestamp_ms: number
-    temperature: number
   }
 
 	/** define a usb device type */ 

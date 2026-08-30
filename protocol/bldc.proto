@@ -9,9 +9,8 @@ message Telemetry {
   uint32 sequence = 2;
   uint32 uptime_ms = 3;
   uint32 bus_voltage_mv = 4;
-  sint32 phase_current_ma = 5;
-  uint32 motor_rpm = 6;
-  sint32 mosfet_temperature_cdec = 7;
+  // Removed prototype-only random fields. These wire IDs must not be reused.
+  reserved 5, 6, 7;
   // NTC_PCB temperature in 0.1 degrees C; INT32_MIN means invalid ADC input.
   sint32 ntc_pcb_temperature_cdec = 8;
   uint32 curr_a_ma = 9;

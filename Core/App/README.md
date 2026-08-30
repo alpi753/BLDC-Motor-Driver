@@ -13,15 +13,11 @@ The protobuf fields are:
 | `sequence` | Sequence number |
 | `uptime_ms` | Device uptime in milliseconds |
 | `bus_voltage_mv` | Measured VM voltage in mV |
-| `phase_current_ma` | Phase current in mA |
-| `motor_rpm` | Motor speed in RPM |
-| `mosfet_temperature_cdec` | MOSFET temperature in 0.1 °C |
 | `ntc_pcb_temperature_cdec` | NTC_PCB temperature in 0.1 °C (`INT32_MIN` = invalid) |
 | `curr_a_ma`, `curr_b_ma`, `curr_c_ma` | Measured phase currents in mA |
 | `volt_a_mv`, `volt_b_mv`, `volt_c_mv` | Measured phase voltages in mV |
 
-The ADC fields are live readings; the original bus, current, RPM, and MOSFET
-temperature fields remain deterministic pseudo-random test data. Field numbers
+All published measurement fields are live ADC readings. Field numbers
 in `bldc.proto` are wire-contract identifiers: do not renumber or reuse
 removed field numbers. LEDC (PB12) toggles after completed USB telemetry
 transfers, at most once every 500 ms.

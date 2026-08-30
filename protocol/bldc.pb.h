@@ -17,9 +17,6 @@ typedef struct _bldc_Telemetry {
     uint32_t sequence;
     uint32_t uptime_ms;
     uint32_t bus_voltage_mv;
-    int32_t phase_current_ma;
-    uint32_t motor_rpm;
-    int32_t mosfet_temperature_cdec;
     /* NTC_PCB temperature in 0.1 degrees C; INT32_MIN means invalid ADC input. */
     int32_t ntc_pcb_temperature_cdec;
     uint32_t curr_a_ma;
@@ -36,17 +33,14 @@ extern "C" {
 #endif
 
 /* Initializer values for message structs */
-#define bldc_Telemetry_init_default              {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}
-#define bldc_Telemetry_init_zero                 {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}
+#define bldc_Telemetry_init_default              {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}
+#define bldc_Telemetry_init_zero                 {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}
 
 /* Field tags (for use in manual encoding/decoding) */
 #define bldc_Telemetry_protocol_version_tag      1
 #define bldc_Telemetry_sequence_tag              2
 #define bldc_Telemetry_uptime_ms_tag             3
 #define bldc_Telemetry_bus_voltage_mv_tag        4
-#define bldc_Telemetry_phase_current_ma_tag      5
-#define bldc_Telemetry_motor_rpm_tag             6
-#define bldc_Telemetry_mosfet_temperature_cdec_tag 7
 #define bldc_Telemetry_ntc_pcb_temperature_cdec_tag 8
 #define bldc_Telemetry_curr_a_ma_tag             9
 #define bldc_Telemetry_curr_b_ma_tag             10
@@ -61,9 +55,6 @@ X(a, STATIC,   SINGULAR, UINT32,   protocol_version,   1) \
 X(a, STATIC,   SINGULAR, UINT32,   sequence,          2) \
 X(a, STATIC,   SINGULAR, UINT32,   uptime_ms,         3) \
 X(a, STATIC,   SINGULAR, UINT32,   bus_voltage_mv,    4) \
-X(a, STATIC,   SINGULAR, SINT32,   phase_current_ma,   5) \
-X(a, STATIC,   SINGULAR, UINT32,   motor_rpm,         6) \
-X(a, STATIC,   SINGULAR, SINT32,   mosfet_temperature_cdec,   7) \
 X(a, STATIC,   SINGULAR, SINT32,   ntc_pcb_temperature_cdec,   8) \
 X(a, STATIC,   SINGULAR, UINT32,   curr_a_ma,         9) \
 X(a, STATIC,   SINGULAR, UINT32,   curr_b_ma,        10) \
@@ -81,7 +72,7 @@ extern const pb_msgdesc_t bldc_Telemetry_msg;
 
 /* Maximum encoded size of messages (where known) */
 #define BLDC_PROTOCOL_BLDC_PB_H_MAX_SIZE         bldc_Telemetry_size
-#define bldc_Telemetry_size                      84
+#define bldc_Telemetry_size                      66
 
 #ifdef __cplusplus
 } /* extern "C" */

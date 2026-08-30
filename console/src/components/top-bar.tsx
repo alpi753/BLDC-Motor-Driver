@@ -11,7 +11,6 @@ import {
   DropdownMenuTrigger,
   DropdownMenuContent,
   DropdownMenuItem,
-  DropdownMenuSeparator,
 } from "@/components/ui/dropdown-menu"
 
 import { useUsbDevices } from "@/hooks/use-devices"
@@ -25,14 +24,6 @@ import { useNavigate } from "react-router-dom"
 export default function TopBar() {
   const navigate = useNavigate()
   const { devices, loading, onConnect, onRefresh, onDisconnect } = useUsbDevices()
-
-  const openSettingsWindow = () => {
-    if (window.api) {
-      window.api.openNewWindow('settings')
-    } else {
-      console.warn('Electron API is not available in the browser environment.')
-    }
-  }
 
   const navigateToConsole = () => {
     navigate('/console')
@@ -64,26 +55,9 @@ export default function TopBar() {
             </MenubarContent>
           </MenubarMenu>
 
-          <MenubarMenu>
-            <MenubarTrigger>Devices</MenubarTrigger>
-            <MenubarContent>
-              <MenubarItem>All Devices</MenubarItem>
-              <MenubarItem>Motor Config</MenubarItem>
-              <MenubarItem>Logs</MenubarItem>
-            </MenubarContent>
-          </MenubarMenu>
 					<MenubarMenu>
             <MenubarTrigger onClick={navigateToConsole}>Console</MenubarTrigger>
 					</MenubarMenu>
-
-          <MenubarMenu>
-            <MenubarTrigger onClick={openSettingsWindow}>Settings</MenubarTrigger>
-            {/* <MenubarContent>
-              <MenubarItem>Profile</MenubarItem>
-              <MenubarItem>System</MenubarItem>
-            </MenubarContent>
-         */}
-						</MenubarMenu> 
         </Menubar>
       </div>
 
@@ -105,9 +79,6 @@ export default function TopBar() {
 
           <DropdownMenuContent align="end">
             {/* <DropdownMenuItem>New Device</DropdownMenuItem> */}
-            <DropdownMenuItem>Import Config</DropdownMenuItem>
-            <DropdownMenuItem>Settings</DropdownMenuItem>
-            <DropdownMenuSeparator />
             <DropdownMenuItem>About</DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>

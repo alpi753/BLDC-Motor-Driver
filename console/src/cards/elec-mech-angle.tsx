@@ -7,32 +7,13 @@ export type AnglePoint = {
   electrical: number
 }
 
-const generateFallbackAngleTimeSeries = (): AnglePoint[] => {
-  const data: AnglePoint[] = []
-  const polePairs = 7
-  const totalPoints = 50
-  
-  for (let i = 0; i < totalPoints; i++) {
-    const mechanical = (i * 15) % 360 // Simulating rotation over time
-    data.push({
-      sample: i,
-      timeLabel: `+${(i * 0.1).toFixed(1)}s`,
-      mechanical: mechanical,
-      electrical: (mechanical * polePairs) % 360,
-    })
-  }
-  return data
-}
-
-const fallbackAngleTimeSeriesData = generateFallbackAngleTimeSeries()
-
 type ElecMechAngleCardProps = {
   data?: AnglePoint[]
   dataRevision?: string
 }
 
 export default function ElecMechAngleCard({ data, dataRevision }: ElecMechAngleCardProps) {
-  const chartData = data && data.length > 0 ? data : fallbackAngleTimeSeriesData
+  const chartData = data ?? []
 
   return (
     <div className="size-full flex flex-col rounded-xl border bg-card p-4 shadow-sm">

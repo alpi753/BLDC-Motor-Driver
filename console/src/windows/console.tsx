@@ -5,8 +5,6 @@ import { Input } from "@/components/ui/input"
 import { ScrollArea } from "@/components/ui/scroll-area"
 import { cn } from "@/lib/utils"
 import TopBar from "@/components/top-bar"
-import { useDeviceId } from "@/hooks/use-device-id"
-import { formatDeviceIdGrouped, formatDeviceIdShort } from "@/lib/device-id"
 import { toast } from "sonner"
 
 interface ConsoleMessage {
@@ -19,7 +17,6 @@ interface ConsoleMessage {
 const MAX_CONSOLE_MESSAGES = 1000
 const MAX_PENDING_MESSAGES = 5000
 const FLUSH_INTERVAL_MS = 33
-const MAX_BATCH_SIZE = 200
 const MAX_MESSAGE_TEXT_LENGTH = 1024
 
 const appendCappedMessages = (
@@ -40,7 +37,6 @@ const sanitizeMessage = (msg: ConsoleMessage): ConsoleMessage => {
 }
 
 export default function Console() {
-  const deviceId = useDeviceId()
   const [messages, setMessages] = React.useState<ConsoleMessage[]>([ //demo
     // start empty; real data will arrive from IPC
   ])
@@ -59,12 +55,8 @@ export default function Console() {
       return
     }
 
-    const batch = pendingMessagesRef.current.splice(0, MAX_BATCH_SIZE)
+    const batch = pendingMessagesRef.current.splice(0)
     setMessages((prev) => appendCappedMessages(prev, batch))
-
-    if (pendingMessagesRef.current.length > 0) {
-      flushTimerRef.current = setTimeout(flushMessages, FLUSH_INTERVAL_MS)
-    }
   }, [])
 
   const enqueueMessage = React.useCallback((message: ConsoleMessage) => {
@@ -148,7 +140,7 @@ export default function Console() {
         id: Date.now().toString(),
         timestamp: new Date().toLocaleTimeString([], { hour12: false }),
         type: "info",
-        text: `TELEM rpm=${telem.speed.actual_rpm.toFixed(1)} target=${telem.speed.target_rpm.toFixed(1)} vbat=${telem.voltages.battery.toFixed(2)} ts=${telem.timestamp_ms}`,
+        text: `TELEM seq=${telem.sequence} vbus=${telem.bus_voltage_v.toFixed(2)}V pcb=${telem.ntc_pcb_temperature_c?.toFixed(1) ?? "invalid"}C uptime=${telem.uptime_ms}ms`,
       })
     }
 
@@ -220,29 +212,7 @@ export default function Console() {
                     115200 bps
                   </span>
                   <span className="text-[10px] text-muted-foreground shrink-0">·</span>
-                  <span className="text-[10px] text-muted-foreground shrink-0">Device ID</span>
-                  <button
-                    type="button"
-                    className={cn(
-                      "text-[10px] font-mono truncate max-w-[min(28rem,50vw)] text-left",
-                      deviceId
-                        ? "text-foreground hover:text-primary transition-colors"
-                        : "text-muted-foreground cursor-default"
-                    )}
-                    title={deviceId ? formatDeviceIdGrouped(deviceId) : "Waiting for telemetry"}
-                    disabled={!deviceId}
-                    onClick={async () => {
-                      if (!deviceId) return
-                      try {
-                        await navigator.clipboard.writeText(deviceId)
-                        toast.success("Device ID copied")
-                      } catch {
-                        toast.error("Failed to copy device ID")
-                      }
-                    }}
-                  >
-                    {deviceId ? formatDeviceIdShort(deviceId) : "—"}
-                  </button>
+                  <span className="text-[10px] font-mono text-muted-foreground">nanopb · COBS · 0x00</span>
                 </div>
               </div>
             </div>
