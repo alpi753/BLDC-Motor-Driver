@@ -1,0 +1,3 @@
+[submodule "PCB"]
+	path = PCB
+	url = https://github.com/alpi753/BLDC-Motor-Driver
