@@ -97,14 +97,6 @@ int main(void)
   MX_ADC2_Init();
   MX_ADC1_Init();
   /* USER CODE BEGIN 2 */
-  if (HAL_ADCEx_Calibration_Start(&hadc2, ADC_SINGLE_ENDED) != HAL_OK)
-  {
-    Error_Handler();
-  }
-  if (HAL_ADCEx_Calibration_Start(&hadc1, ADC_SINGLE_ENDED) != HAL_OK)
-  {
-    Error_Handler();
-  }
   AppCdc_Init();
 
   /* USER CODE END 2 */
@@ -116,6 +108,7 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
+		AppCdc_Task(HAL_GetTick());
   }
   /* USER CODE END 3 */
 }

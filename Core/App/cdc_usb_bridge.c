@@ -21,7 +21,7 @@ static void AppCdc_RearmReception(void)
   (void)USBD_CDC_ReceivePacket(&hUsbDeviceFS);
 }
 
-static uint16_t AppCdc_ReadAdcChannel(ADC_HandleTypeDef *hadc, uint32_t channel,
+static uint16_t AppCdc_AdcReadChannel(ADC_HandleTypeDef *hadc, uint32_t channel,
                                       uint16_t previous_value)
 {
   ADC_ChannelConfTypeDef config = {0};
@@ -46,24 +46,37 @@ static uint16_t AppCdc_ReadAdcChannel(ADC_HandleTypeDef *hadc, uint32_t channel,
   return previous_value;
 }
 
-static void AppCdc_ReadAdcSamples(CdcNanopbAdcSamples *samples)
+static void AppCdc_AdcReadSamples(CdcNanopbAdcSamples *samples)
 {
   static CdcNanopbAdcSamples last_samples;
 
-  last_samples.curr_a = AppCdc_ReadAdcChannel(&hadc1, ADC_CHANNEL_1, last_samples.curr_a);
-  last_samples.curr_b = AppCdc_ReadAdcChannel(&hadc1, ADC_CHANNEL_2, last_samples.curr_b);
-  last_samples.curr_c = AppCdc_ReadAdcChannel(&hadc1, ADC_CHANNEL_3, last_samples.curr_c);
-  last_samples.volt_b = AppCdc_ReadAdcChannel(&hadc1, ADC_CHANNEL_4, last_samples.volt_b);
-  last_samples.volt_a = AppCdc_ReadAdcChannel(&hadc2, ADC_CHANNEL_13, last_samples.volt_a);
-  last_samples.ntc_pcb = AppCdc_ReadAdcChannel(&hadc2, ADC_CHANNEL_3, last_samples.ntc_pcb);
-  last_samples.vbus = AppCdc_ReadAdcChannel(&hadc2, ADC_CHANNEL_12, last_samples.vbus);
-  last_samples.volt_c = AppCdc_ReadAdcChannel(&hadc2, ADC_CHANNEL_14, last_samples.volt_c);
+  last_samples.curr_a = AppCdc_AdcReadChannel(&hadc1, ADC_CHANNEL_1, last_samples.curr_a);
+  last_samples.curr_b = AppCdc_AdcReadChannel(&hadc1, ADC_CHANNEL_2, last_samples.curr_b);
+  last_samples.curr_c = AppCdc_AdcReadChannel(&hadc1, ADC_CHANNEL_3, last_samples.curr_c);
+  last_samples.volt_b = AppCdc_AdcReadChannel(&hadc1, ADC_CHANNEL_4, last_samples.volt_b);
+  last_samples.volt_a = AppCdc_AdcReadChannel(&hadc2, ADC_CHANNEL_13, last_samples.volt_a);
+  last_samples.ntc_pcb = AppCdc_AdcReadChannel(&hadc2, ADC_CHANNEL_3, last_samples.ntc_pcb);
+  last_samples.vbus = AppCdc_AdcReadChannel(&hadc2, ADC_CHANNEL_12, last_samples.vbus);
+  last_samples.volt_c = AppCdc_AdcReadChannel(&hadc2, ADC_CHANNEL_14, last_samples.volt_c);
   *samples = last_samples;
+}
+
+
+void AppCdc_AdcCalibrate(void){
+  if (HAL_ADCEx_Calibration_Start(&hadc2, ADC_SINGLE_ENDED) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  if (HAL_ADCEx_Calibration_Start(&hadc1, ADC_SINGLE_ENDED) != HAL_OK)
+  {
+    Error_Handler();
+  }
 }
 
 void AppCdc_Init(void)
 {
-  CdcNanopb_Init(AppCdc_Transmit, AppCdc_ReadAdcSamples);
+	AppCdc_AdcCalibrate();
+  CdcNanopb_Init(AppCdc_Transmit, AppCdc_AdcReadSamples);
   AppCdc_RearmReception();
 }
 
