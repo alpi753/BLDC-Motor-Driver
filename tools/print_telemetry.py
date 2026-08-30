@@ -56,9 +56,9 @@ def format_telemetry(telemetry: bldc_pb2.Telemetry) -> str:
         f"curr_a_adc_raw={telemetry.curr_a_adc_raw} "
         f"curr_b_adc_raw={telemetry.curr_b_adc_raw} "
         f"curr_c_adc_raw={telemetry.curr_c_adc_raw} "
-        f"volt_a_adc_raw={telemetry.volt_a_adc_raw} "
-        f"volt_b_adc_raw={telemetry.volt_b_adc_raw} "
-        f"volt_c_adc_raw={telemetry.volt_c_adc_raw}"
+        f"volt_a_mv={telemetry.volt_a_mv} "
+        f"volt_b_mv={telemetry.volt_b_mv} "
+        f"volt_c_mv={telemetry.volt_c_mv}"
     )
 
 

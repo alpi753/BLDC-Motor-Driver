@@ -25,9 +25,9 @@ typedef struct _bldc_Telemetry {
     uint32_t curr_a_adc_raw;
     uint32_t curr_b_adc_raw;
     uint32_t curr_c_adc_raw;
-    uint32_t volt_a_adc_raw;
-    uint32_t volt_b_adc_raw;
-    uint32_t volt_c_adc_raw;
+    uint32_t volt_a_mv;
+    uint32_t volt_b_mv;
+    uint32_t volt_c_mv;
 } bldc_Telemetry;
 
 
@@ -51,9 +51,9 @@ extern "C" {
 #define bldc_Telemetry_curr_a_adc_raw_tag        9
 #define bldc_Telemetry_curr_b_adc_raw_tag        10
 #define bldc_Telemetry_curr_c_adc_raw_tag        11
-#define bldc_Telemetry_volt_a_adc_raw_tag        12
-#define bldc_Telemetry_volt_b_adc_raw_tag        13
-#define bldc_Telemetry_volt_c_adc_raw_tag        14
+#define bldc_Telemetry_volt_a_mv_tag             12
+#define bldc_Telemetry_volt_b_mv_tag             13
+#define bldc_Telemetry_volt_c_mv_tag             14
 
 /* Struct field encoding specification for nanopb */
 #define bldc_Telemetry_FIELDLIST(X, a) \
@@ -68,9 +68,9 @@ X(a, STATIC,   SINGULAR, SINT32,   ntc_pcb_temperature_cdec,   8) \
 X(a, STATIC,   SINGULAR, UINT32,   curr_a_adc_raw,    9) \
 X(a, STATIC,   SINGULAR, UINT32,   curr_b_adc_raw,   10) \
 X(a, STATIC,   SINGULAR, UINT32,   curr_c_adc_raw,   11) \
-X(a, STATIC,   SINGULAR, UINT32,   volt_a_adc_raw,   12) \
-X(a, STATIC,   SINGULAR, UINT32,   volt_b_adc_raw,   13) \
-X(a, STATIC,   SINGULAR, UINT32,   volt_c_adc_raw,   14)
+X(a, STATIC,   SINGULAR, UINT32,   volt_a_mv,        12) \
+X(a, STATIC,   SINGULAR, UINT32,   volt_b_mv,        13) \
+X(a, STATIC,   SINGULAR, UINT32,   volt_c_mv,        14)
 #define bldc_Telemetry_CALLBACK NULL
 #define bldc_Telemetry_DEFAULT NULL
 

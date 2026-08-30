@@ -17,8 +17,8 @@ message Telemetry {
   uint32 curr_a_adc_raw = 9;
   uint32 curr_b_adc_raw = 10;
   uint32 curr_c_adc_raw = 11;
-  uint32 volt_a_adc_raw = 12;
-  uint32 volt_b_adc_raw = 13;
-  uint32 volt_c_adc_raw = 14;
+  uint32 volt_a_mv = 12;
+  uint32 volt_b_mv = 13;
+  uint32 volt_c_mv = 14;
   reserved 15;
 }

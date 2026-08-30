@@ -21,6 +21,8 @@
 #define PCB_NTC_DIVIDER_SUPPLY_MV 3300.0f
 #define VM_R_HIGH_OHM 330000.0f
 #define VM_R_LOW_OHM 10000.0f
+#define PHASE_VOLTAGE_R_HIGH_OHM 91000.0f
+#define PHASE_VOLTAGE_R_LOW_OHM 4700.0f
 #define ADC_MAX_COUNTS 4095.0f
 
 typedef struct
@@ -174,7 +176,8 @@ static int32_t Telemetry_NtcPcbTemperatureCdec(uint16_t adc_raw, uint32_t vdda_m
       ((temperature_c >= 0.0f) ? 0.5f : -0.5f));
 }
 
-static uint32_t Telemetry_VmVoltageMv(uint16_t adc_raw, uint32_t vdda_mv)
+static uint32_t Telemetry_DividerVoltageMv(uint16_t adc_raw, uint32_t vdda_mv,
+                                           float high_side_ohm, float low_side_ohm)
 {
   float adc_voltage_mv;
 
@@ -184,7 +187,7 @@ static uint32_t Telemetry_VmVoltageMv(uint16_t adc_raw, uint32_t vdda_mv)
   }
 
   adc_voltage_mv = (float)adc_raw * (float)vdda_mv / ADC_MAX_COUNTS;
-  return (uint32_t)(adc_voltage_mv * ((VM_R_HIGH_OHM + VM_R_LOW_OHM) / VM_R_LOW_OHM) +
+  return (uint32_t)(adc_voltage_mv * ((high_side_ohm + low_side_ohm) / low_side_ohm) +
       0.5f);
 }
 
@@ -213,7 +216,8 @@ static uint8_t Telemetry_Encode(uint32_t now_ms, size_t *payload_length)
   message.protocol_version = 1U;
   message.sequence = telemetry_sequence++;
   message.uptime_ms = now_ms;
-  message.bus_voltage_mv = Telemetry_VmVoltageMv(adc.vbus, vdda_mv);
+  message.bus_voltage_mv = Telemetry_DividerVoltageMv(adc.vbus, vdda_mv,
+                                                       VM_R_HIGH_OHM, VM_R_LOW_OHM);
   message.phase_current_ma = (int32_t)(Telemetry_Random() % 20001U) - 10000;
   message.motor_rpm = Telemetry_Random() % 6001U;
   message.mosfet_temperature_cdec = 250 + (int32_t)(Telemetry_Random() % 551U);
@@ -221,9 +225,15 @@ static uint8_t Telemetry_Encode(uint32_t now_ms, size_t *payload_length)
   message.curr_a_adc_raw = adc.curr_a;
   message.curr_b_adc_raw = adc.curr_b;
   message.curr_c_adc_raw = adc.curr_c;
-  message.volt_a_adc_raw = adc.volt_a;
-  message.volt_b_adc_raw = adc.volt_b;
-  message.volt_c_adc_raw = adc.volt_c;
+  message.volt_a_mv = Telemetry_DividerVoltageMv(adc.volt_a, vdda_mv,
+                                                  PHASE_VOLTAGE_R_HIGH_OHM,
+                                                  PHASE_VOLTAGE_R_LOW_OHM);
+  message.volt_b_mv = Telemetry_DividerVoltageMv(adc.volt_b, vdda_mv,
+                                                  PHASE_VOLTAGE_R_HIGH_OHM,
+                                                  PHASE_VOLTAGE_R_LOW_OHM);
+  message.volt_c_mv = Telemetry_DividerVoltageMv(adc.volt_c, vdda_mv,
+                                                  PHASE_VOLTAGE_R_HIGH_OHM,
+                                                  PHASE_VOLTAGE_R_LOW_OHM);
 
   stream = pb_ostream_from_buffer(telemetry_payload, sizeof(telemetry_payload));
   if (!pb_encode(&stream, bldc_Telemetry_fields, &message)) return 0U;

@@ -18,7 +18,7 @@ The protobuf fields are:
 | `mosfet_temperature_cdec` | MOSFET temperature in 0.1 °C |
 | `ntc_pcb_temperature_cdec` | NTC_PCB temperature in 0.1 °C (`INT32_MIN` = invalid) |
 | `curr_a_adc_raw`, `curr_b_adc_raw`, `curr_c_adc_raw` | Raw 12-bit current-sense ADC readings |
-| `volt_a_adc_raw`, `volt_b_adc_raw`, `volt_c_adc_raw` | Raw 12-bit phase-voltage ADC readings |
+| `volt_a_mv`, `volt_b_mv`, `volt_c_mv` | Measured phase voltages in mV |
 
 The ADC fields are live readings; the original bus, current, RPM, and MOSFET
 temperature fields remain deterministic pseudo-random test data. Field numbers
@@ -27,7 +27,8 @@ removed field numbers. LEDC (PB12) toggles after completed USB telemetry
 transfers, at most once every 500 ms.
 
 `VM` uses a 330 kΩ / 10 kΩ divider (34:1); its 3.3 V zener protection clamp is
-well above the expected 10–12 V operating range. `NTC_PCB` uses a 10 kΩ,
+well above the expected 10–12 V operating range. Each phase-voltage input uses
+a 91 kΩ / 4.7 kΩ divider (approximately 20.36:1). `NTC_PCB` uses a 10 kΩ,
 β3435 NTC and a 1 kΩ fixed resistor, driven from
 3.3 V. The firmware measures VDDA through the STM32 VREFINT calibration value
 before converting the NTC reading, so it remains correct when VDDA differs
