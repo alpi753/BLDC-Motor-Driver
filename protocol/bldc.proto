@@ -12,4 +12,6 @@ message Telemetry {
   sint32 phase_current_ma = 5;
   uint32 motor_rpm = 6;
   sint32 mosfet_temperature_cdec = 7;
+  // Raw 12-bit ADC code sampled from NTC_PCB (PA6 / ADC2_IN3).
+  uint32 ntc_pcb_adc_raw = 8;
 }

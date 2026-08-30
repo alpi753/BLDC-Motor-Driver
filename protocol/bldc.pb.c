@@ -7,3 +7,6 @@
 #endif
 
 PB_BIND(bldc_Telemetry, bldc_Telemetry, AUTO)
+
+
+

@@ -16,6 +16,7 @@ The protobuf fields are:
 | `phase_current_ma` | Phase current in mA |
 | `motor_rpm` | Motor speed in RPM |
 | `mosfet_temperature_cdec` | MOSFET temperature in 0.1 °C |
+| `ntc_pcb_adc_raw` | Raw 12-bit reading from NTC_PCB (PA6 / ADC2_IN3) |
 
 Values are currently deterministic pseudo-random test data. Field numbers in
 `bldc.proto` are wire-contract identifiers: do not renumber or reuse removed

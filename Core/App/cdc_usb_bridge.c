@@ -33,6 +33,11 @@ void AppCdc_Task(uint32_t now_ms)
   }
 }
 
+void AppCdc_SetNtcPcbAdcRaw(uint16_t value)
+{
+  CdcNanopb_SetNtcPcbAdcRaw(value);
+}
+
 uint8_t AppCdc_OnReceive(uint8_t *buffer, uint32_t length)
 {
   CdcNanopb_OnReceive(buffer, length);
@@ -40,10 +45,18 @@ uint8_t AppCdc_OnReceive(uint8_t *buffer, uint32_t length)
   return USBD_OK;
 }
 
+void AppCdc_StateIndicator(uint32_t now_ms)
+{
+	static uint32_t last_led_toggle_ms = 0U;
+	if ((uint32_t)(now_ms - last_led_toggle_ms) >= 500U)
+	{
+		HAL_GPIO_TogglePin(LEDC_GPIO_Port, LEDC_Pin);
+		last_led_toggle_ms = now_ms;
+	}
+}
+
 void AppCdc_OnTransmitComplete(void)
 {
   CdcNanopb_OnTransmitComplete();
-  HAL_GPIO_TogglePin(LEDA_GPIO_Port, LEDA_Pin);
-  HAL_GPIO_TogglePin(LEDB_GPIO_Port, LEDB_Pin);
-  HAL_GPIO_TogglePin(LEDC_GPIO_Port, LEDC_Pin);
+	AppCdc_StateIndicator(HAL_GetTick());
 }
