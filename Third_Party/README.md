@@ -1,13 +1,15 @@
 # Third-party dependencies
 
-## TinyCBOR
+## nanopb
 
-`TinyCBOR` is a Git submodule pinned to TinyCBOR v0.6.1 (commit
-`c0aad2fb2137a31b9845fbaae3653540c410f215`) and is licensed under MIT.
+`nanopb` is a Git submodule pinned to nanopb v0.4.9.2 (commit
+`160d4f09e5fabb2b66aa2dea32d4f38ace2c4b3f`) and is licensed under the zlib
+license.
 
-The firmware compiles only its allocation-free encoder and parser core. JSON
-conversion, validation, and pretty-printing sources are excluded. Application
-code can include it with `#include "cbor.h"`.
+The firmware compiles only nanopb's allocation-free protobuf runtime:
+`pb_common.c`, `pb_encode.c`, and `pb_decode.c`. Protocol definitions live in
+`protocol/`; their generated `.pb.c` and `.pb.h` files are checked in so normal
+firmware builds do not require the generator.
 
 Clone this project with its dependencies using:
 

@@ -1,23 +1,43 @@
-# CDC CBOR telemetry
+# CDC nanopb telemetry
 
-`cdc_cbor.c` emits one telemetry message every 250 ms after USB CDC is
-configured. Each message is framed as `COBS(CBOR) + 0x00`, so host software
-must split the byte stream on `0x00`, COBS-decode the segment, then CBOR-decode
-the resulting payload.
+`cdc_nanopb.c` emits one protobuf `bldc.Telemetry` message every 250 ms after
+USB CDC is configured. Each message is framed as `COBS(protobuf) + 0x00`, so
+host software must split the byte stream on `0x00`, COBS-decode the segment,
+then protobuf-decode the resulting payload using `protocol/bldc.proto`.
 
-The CBOR message is a map with compact integer keys:
+The protobuf fields are:
 
-| Key | Meaning |
+| Field | Meaning |
 | --- | --- |
-| `0` | Protocol version (`1`) |
-| `1` | Message type (`1` = telemetry) |
-| `2` | Sequence number |
-| `3` | Device uptime in milliseconds |
-| `4` | Telemetry map |
+| `protocol_version` | Protocol version (`1`) |
+| `sequence` | Sequence number |
+| `uptime_ms` | Device uptime in milliseconds |
+| `bus_voltage_mv` | DC bus voltage in mV |
+| `phase_current_ma` | Phase current in mA |
+| `motor_rpm` | Motor speed in RPM |
+| `mosfet_temperature_cdec` | MOSFET temperature in 0.1 °C |
 
-Telemetry-map keys are `0` for DC bus voltage (mV), `1` for phase current
-(mA), `2` for motor speed (RPM), and `3` for MOSFET temperature (0.1 °C).
-Values are currently deterministic pseudo-random test data.
+Values are currently deterministic pseudo-random test data. Field numbers in
+`bldc.proto` are wire-contract identifiers: do not renumber or reuse removed
+field numbers. LEDA (PB14) toggles after each completed USB telemetry transfer.
+
+## Host monitor
+
+Install its only Python dependency, then read the default USB CDC device:
+
+```sh
+python3 -m pip install -r tools/requirements.txt
+python3 tools/print_telemetry.py
+```
+
+Pass a device path explicitly when it is not `/dev/ttyACM0`:
+
+```sh
+python3 tools/print_telemetry.py /dev/ttyACM1
+```
+
+The monitor uses `protocol/bldc_pb2.py`, generated from the same `.proto` as
+the firmware, and restores the TTY configuration when it exits.
 
 `cdc_usb_bridge.c` is the sole USB-Cube-facing adapter. The generated CDC file
 contains only protected callback forwarding calls, so all application behavior

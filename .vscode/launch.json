@@ -1,0 +1,47 @@
+{
+	// Use IntelliSense to learn about possible attributes.
+	// Hover to view descriptions of existing attributes.
+	// For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+	"version": "0.2.0",
+	"configurations": [
+		{
+			"showDevDebugOutput": "parsed",
+			"cwd": "${workspaceRoot}",
+			"executable": "./build/Debug/bldc.elf",
+			"name": "Debug STM32",
+			"request": "launch",
+			"type": "cortex-debug",
+			"servertype": "openocd",
+			"preLaunchTask": "Build STM",
+      "gdbPath": "/usr/bin/gdb-multiarch", 
+			"runToEntryPoint": "main",
+			"device": "stm32g431cb",
+			"searchDir": [
+			    "${workspaceRoot}/Core/Src",
+			    "${workspaceRoot}/Core/App"
+			],
+			"configFiles": [
+				"openocd.cfg"
+			],
+		},
+		{
+			"showDevDebugOutput": "parsed",
+			"cwd": "${workspaceRoot}",
+			"executable": "./build/Debug/bldc.elf",
+			"name": "Attach STM32",
+			"request": "attach",
+			"type": "cortex-debug",
+			"servertype": "openocd",
+			"preLaunchTask": "Build STM",
+      "gdbPath": "/usr/bin/gdb-multiarch", 
+			"device": "stm32g431cb",
+			"searchDir": [
+			    "${workspaceRoot}/Core/Src",
+			    "${workspaceRoot}/Core/App"
+			],
+			"configFiles": [
+				"openocd.cfg"
+			]
+		}
+	]
+}

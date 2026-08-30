@@ -34,16 +34,14 @@ enable_language(C ASM)
 # Create an executable object type
 add_executable(${CMAKE_PROJECT_NAME})
 
-# TinyCBOR is vendored for allocation-free CBOR encoding and decoding on the MCU.
-add_library(tinycbor STATIC
-    Third_Party/TinyCBOR/src/cborencoder.c
-    Third_Party/TinyCBOR/src/cborencoder_close_container_checked.c
-    Third_Party/TinyCBOR/src/cborencoder_float.c
-    Third_Party/TinyCBOR/src/cborparser.c
-    Third_Party/TinyCBOR/src/cborparser_float.c
+# Nanopb is vendored for allocation-free Protocol Buffers encoding and decoding.
+add_library(nanopb STATIC
+    Third_Party/nanopb/pb_common.c
+    Third_Party/nanopb/pb_encode.c
+    Third_Party/nanopb/pb_decode.c
 )
-target_include_directories(tinycbor PUBLIC
-    ${CMAKE_CURRENT_SOURCE_DIR}/Third_Party/TinyCBOR/src
+target_include_directories(nanopb PUBLIC
+    ${CMAKE_CURRENT_SOURCE_DIR}/Third_Party/nanopb
 )
 
 # Add STM32CubeMX generated sources
@@ -76,8 +74,21 @@ list(REMOVE_ITEM CMAKE_C_IMPLICIT_LINK_LIBRARIES ob)
 # Add linked libraries
 target_link_libraries(${CMAKE_PROJECT_NAME}
     stm32cubemx
-    tinycbor
+    nanopb
     app
 
     # Add user defined libraries
+)
+
+find_program(OPENOCD_EXECUTABLE NAMES openocd REQUIRED)
+
+add_custom_target(flash
+    COMMAND ${OPENOCD_EXECUTABLE}
+        -f interface/stlink.cfg
+        -f target/stm32g4x.cfg
+        -c "program $<TARGET_FILE:${CMAKE_PROJECT_NAME}> verify reset exit"
+    DEPENDS ${CMAKE_PROJECT_NAME}
+    USES_TERMINAL
+    VERBATIM
+    COMMENT "Flashing $<TARGET_FILE:${CMAKE_PROJECT_NAME}> with OpenOCD"
 )

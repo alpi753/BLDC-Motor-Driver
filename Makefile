@@ -10,6 +10,7 @@ build:
 flash: build
 	@echo "Flashing project..."
 	@cmake --build --preset $(PRESET) --target flash
+
 clean:
 	@echo "Cleaning project..."
 	@cmake --build --preset $(PRESET) --target clean

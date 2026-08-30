@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+package bldc;
+
+// Telemetry values use fixed engineering units so the firmware neither needs
+// floating point nor loses precision on the wire.
+message Telemetry {
+  uint32 protocol_version = 1;
+  uint32 sequence = 2;
+  uint32 uptime_ms = 3;
+  uint32 bus_voltage_mv = 4;
+  sint32 phase_current_ma = 5;
+  uint32 motor_rpm = 6;
+  sint32 mosfet_temperature_cdec = 7;
+}
