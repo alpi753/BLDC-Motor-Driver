@@ -16,7 +16,7 @@ export default function TemperaturesCard({ data = [], dataRevision }: { data?: T
         </div>
         <div className="shrink-0 text-right" aria-live="polite">
           <div className="font-mono text-xl font-medium tabular-nums">
-            {latestTemperature == null ? "—" : latestTemperature.toFixed(1)}
+            {latestTemperature == null ? "-" : latestTemperature.toFixed(1)}
           </div>
           <div className="text-[10px] uppercase tracking-wider text-muted-foreground">°C</div>
         </div>
