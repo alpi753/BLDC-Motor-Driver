@@ -12,8 +12,8 @@ message Telemetry {
   sint32 phase_current_ma = 5;
   uint32 motor_rpm = 6;
   sint32 mosfet_temperature_cdec = 7;
-  // Raw 12-bit ADC code sampled from NTC_PCB (PA6 / ADC2_IN3).
-  uint32 ntc_pcb_adc_raw = 8;
+  // NTC_PCB temperature in 0.1 degrees C; INT32_MIN means invalid ADC input.
+  sint32 ntc_pcb_temperature_cdec = 8;
   uint32 curr_a_adc_raw = 9;
   uint32 curr_b_adc_raw = 10;
   uint32 curr_c_adc_raw = 11;

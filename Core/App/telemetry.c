@@ -1,5 +1,8 @@
 #include "telemetry.h"
 
+#include <limits.h>
+#include <math.h>
+
 #include "main.h"
 #include "pb_encode.h"
 #include "protocol/bldc.pb.h"
@@ -11,6 +14,12 @@
 #define TELEMETRY_RX_BUFFER_SIZE 1024U
 #define TELEMETRY_PAYLOAD_SIZE bldc_Telemetry_size
 #define TELEMETRY_FRAME_SIZE (TELEMETRY_PAYLOAD_SIZE + 2U)
+#define PCB_NTC_R25_OHM 10000.0f
+#define PCB_NTC_BETA_K 3435.0f
+#define PCB_NTC_T25_K 298.15f
+#define PCB_NTC_R_FIXED_OHM 1000.0f
+#define PCB_NTC_DIVIDER_SUPPLY_MV 3300.0f
+#define ADC_MAX_COUNTS 4095.0f
 
 typedef struct
 {
@@ -90,14 +99,14 @@ static size_t Telemetry_CobsEncode(const uint8_t *input, size_t input_length,
   return output_index;
 }
 
-static uint16_t Telemetry_ReadAdcChannel(ADC_HandleTypeDef *hadc, uint32_t channel,
-                                         uint16_t previous_value)
+static uint16_t Telemetry_ReadAdcChannelWithSampling(ADC_HandleTypeDef *hadc, uint32_t channel,
+												uint32_t sampling_time, uint16_t previous_value)
 {
   ADC_ChannelConfTypeDef config = {0};
 
   config.Channel = channel;
   config.Rank = ADC_REGULAR_RANK_1;
-  config.SamplingTime = ADC_SAMPLETIME_2CYCLES_5;
+  config.SamplingTime = sampling_time;
   config.SingleDiff = ADC_SINGLE_ENDED;
   config.OffsetNumber = ADC_OFFSET_NONE;
   if ((HAL_ADC_ConfigChannel(hadc, &config) != HAL_OK) || (HAL_ADC_Start(hadc) != HAL_OK))
@@ -111,6 +120,56 @@ static uint16_t Telemetry_ReadAdcChannel(ADC_HandleTypeDef *hadc, uint32_t chann
   }
   (void)HAL_ADC_Stop(hadc);
   return previous_value;
+}
+
+static uint16_t Telemetry_ReadAdcChannel(ADC_HandleTypeDef *hadc, uint32_t channel,
+												uint16_t previous_value)
+{
+	return Telemetry_ReadAdcChannelWithSampling(hadc, channel, ADC_SAMPLETIME_2CYCLES_5, previous_value);
+}
+
+static uint32_t Telemetry_ReadVddaMv(void)
+{
+  uint16_t vrefint_adc;
+
+  vrefint_adc = Telemetry_ReadAdcChannelWithSampling(&hadc1, ADC_CHANNEL_VREFINT,
+                                         ADC_SAMPLETIME_640CYCLES_5, 0U);
+  if (vrefint_adc == 0U)
+  {
+    return 0U;
+  }
+
+  return __HAL_ADC_CALC_VREFANALOG_VOLTAGE(vrefint_adc, ADC_RESOLUTION_12B);
+}
+
+static int32_t Telemetry_NtcPcbTemperatureCdec(uint16_t adc_raw, uint32_t vdda_mv)
+{
+  float resistance_ohm;
+  float temperature_c;
+  float ntc_voltage_mv;
+
+  if ((adc_raw == 0U) || (vdda_mv == 0U) || (adc_raw >= ADC_MAX_COUNTS))
+  {
+    return INT32_MIN;
+  }
+
+  ntc_voltage_mv = (float)adc_raw * (float)vdda_mv / ADC_MAX_COUNTS;
+  if ((ntc_voltage_mv <= 0.0f) || (ntc_voltage_mv >= PCB_NTC_DIVIDER_SUPPLY_MV))
+  {
+    return INT32_MIN;
+  }
+
+  resistance_ohm = PCB_NTC_R_FIXED_OHM *
+      (PCB_NTC_DIVIDER_SUPPLY_MV / ntc_voltage_mv - 1.0f);
+  temperature_c = (1.0f / ((1.0f / PCB_NTC_T25_K) +
+      logf(resistance_ohm / PCB_NTC_R25_OHM) / PCB_NTC_BETA_K)) - 273.15f;
+  if (!isfinite(temperature_c))
+  {
+    return INT32_MIN;
+  }
+
+  return (int32_t)(temperature_c * 10.0f +
+      ((temperature_c >= 0.0f) ? 0.5f : -0.5f));
 }
 
 static TelemetryAdcSamples Telemetry_ReadAdcs(void)
@@ -132,6 +191,7 @@ static uint8_t Telemetry_Encode(uint32_t now_ms, size_t *payload_length)
 {
   bldc_Telemetry message = bldc_Telemetry_init_zero;
   TelemetryAdcSamples adc = Telemetry_ReadAdcs();
+  uint32_t vdda_mv = Telemetry_ReadVddaMv();
   pb_ostream_t stream;
 
   message.protocol_version = 1U;
@@ -141,7 +201,7 @@ static uint8_t Telemetry_Encode(uint32_t now_ms, size_t *payload_length)
   message.phase_current_ma = (int32_t)(Telemetry_Random() % 20001U) - 10000;
   message.motor_rpm = Telemetry_Random() % 6001U;
   message.mosfet_temperature_cdec = 250 + (int32_t)(Telemetry_Random() % 551U);
-  message.ntc_pcb_adc_raw = adc.ntc_pcb;
+  message.ntc_pcb_temperature_cdec = Telemetry_NtcPcbTemperatureCdec(adc.ntc_pcb, vdda_mv);
   message.curr_a_adc_raw = adc.curr_a;
   message.curr_b_adc_raw = adc.curr_b;
   message.curr_c_adc_raw = adc.curr_c;
