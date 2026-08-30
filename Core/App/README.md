@@ -1,6 +1,6 @@
 # CDC nanopb telemetry
 
-`cdc_nanopb.c` emits one protobuf `bldc.Telemetry` message every 250 ms after
+`telemetry.c` emits one protobuf `bldc.Telemetry` message every 250 ms after
 USB CDC is configured. Each message is framed as `COBS(protobuf) + 0x00`, so
 host software must split the byte stream on `0x00`, COBS-decode the segment,
 then protobuf-decode the resulting payload using [`protocol/bldc.proto`](../../protocol/bldc.proto).
@@ -21,9 +21,11 @@ The protobuf fields are:
 | `volt_a_adc_raw`, `volt_b_adc_raw`, `volt_c_adc_raw` | Raw 12-bit phase-voltage ADC readings |
 | `vbus_adc_raw` | Raw 12-bit DC bus-voltage ADC reading |
 
-Values are currently deterministic pseudo-random test data. Field numbers in
-`bldc.proto` are wire-contract identifiers: do not renumber or reuse removed
-field numbers. LEDA (PB14) toggles after each completed USB telemetry transfer.
+The ADC fields are live readings; the original bus, current, RPM, and MOSFET
+temperature fields remain deterministic pseudo-random test data. Field numbers
+in `bldc.proto` are wire-contract identifiers: do not renumber or reuse
+removed field numbers. LEDC (PB12) toggles after completed USB telemetry
+transfers, at most once every 500 ms.
 
 ## Host monitor
 
@@ -43,6 +45,6 @@ python3 tools/print_telemetry.py /dev/ttyACM1
 The monitor uses `protocol/bldc_pb2.py`, generated from the same `.proto` as
 the firmware, and restores the TTY configuration when it exits.
 
-`cdc_usb_bridge.c` is the sole USB-Cube-facing adapter. The generated CDC file
-contains only protected callback forwarding calls, so all application behavior
-remains under `Core/App`.
+The generated CDC file contains only protected callback forwarding calls; all
+telemetry behavior, ADC sampling, framing, and transmit state remain in
+`Core/App/telemetry.c`.

@@ -1,6 +1,5 @@
 add_library(app STATIC
-    cdc_nanopb.c
-    cdc_usb_bridge.c
+    telemetry.c
     ${PROJECT_SOURCE_DIR}/protocol/bldc.pb.c
 )
 

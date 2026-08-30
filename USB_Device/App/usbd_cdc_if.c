@@ -22,7 +22,7 @@
 #include "usbd_cdc_if.h"
 
 /* USER CODE BEGIN INCLUDE */
-#include "cdc_usb_bridge.h"
+#include "telemetry.h"
 
 /* USER CODE END INCLUDE */
 
@@ -262,7 +262,7 @@ static int8_t CDC_Control_FS(uint8_t cmd, uint8_t* pbuf, uint16_t length)
 static int8_t CDC_Receive_FS(uint8_t* Buf, uint32_t *Len)
 {
   /* USER CODE BEGIN 6 */
-  return (int8_t)AppCdc_OnReceive(Buf, *Len);
+  return (int8_t)Telemetry_OnReceive(Buf, *Len);
   /* USER CODE END 6 */
 }
 
@@ -310,7 +310,7 @@ static int8_t CDC_TransmitCplt_FS(uint8_t *Buf, uint32_t *Len, uint8_t epnum)
   UNUSED(Buf);
   UNUSED(Len);
   UNUSED(epnum);
-  AppCdc_OnTransmitComplete();
+  Telemetry_OnTransmitComplete();
   /* USER CODE END 13 */
   return result;
 }

@@ -23,7 +23,7 @@
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 
-#include "cdc_usb_bridge.h"
+#include "telemetry.h"
 
 /* USER CODE END Includes */
 
@@ -97,7 +97,7 @@ int main(void)
   MX_ADC2_Init();
   MX_ADC1_Init();
   /* USER CODE BEGIN 2 */
-  AppCdc_Init();
+  Telemetry_Init();
 
   /* USER CODE END 2 */
 
@@ -108,7 +108,7 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-		AppCdc_Task(HAL_GetTick());
+    Telemetry_Task(HAL_GetTick());
   }
   /* USER CODE END 3 */
 }
