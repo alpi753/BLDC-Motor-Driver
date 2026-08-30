@@ -22,6 +22,13 @@ typedef struct _bldc_Telemetry {
     int32_t mosfet_temperature_cdec;
     /* Raw 12-bit ADC code sampled from NTC_PCB (PA6 / ADC2_IN3). */
     uint32_t ntc_pcb_adc_raw;
+    uint32_t curr_a_adc_raw;
+    uint32_t curr_b_adc_raw;
+    uint32_t curr_c_adc_raw;
+    uint32_t volt_a_adc_raw;
+    uint32_t volt_b_adc_raw;
+    uint32_t volt_c_adc_raw;
+    uint32_t vbus_adc_raw;
 } bldc_Telemetry;
 
 
@@ -30,8 +37,8 @@ extern "C" {
 #endif
 
 /* Initializer values for message structs */
-#define bldc_Telemetry_init_default              {0, 0, 0, 0, 0, 0, 0, 0}
-#define bldc_Telemetry_init_zero                 {0, 0, 0, 0, 0, 0, 0, 0}
+#define bldc_Telemetry_init_default              {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}
+#define bldc_Telemetry_init_zero                 {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}
 
 /* Field tags (for use in manual encoding/decoding) */
 #define bldc_Telemetry_protocol_version_tag      1
@@ -42,6 +49,13 @@ extern "C" {
 #define bldc_Telemetry_motor_rpm_tag             6
 #define bldc_Telemetry_mosfet_temperature_cdec_tag 7
 #define bldc_Telemetry_ntc_pcb_adc_raw_tag       8
+#define bldc_Telemetry_curr_a_adc_raw_tag        9
+#define bldc_Telemetry_curr_b_adc_raw_tag        10
+#define bldc_Telemetry_curr_c_adc_raw_tag        11
+#define bldc_Telemetry_volt_a_adc_raw_tag        12
+#define bldc_Telemetry_volt_b_adc_raw_tag        13
+#define bldc_Telemetry_volt_c_adc_raw_tag        14
+#define bldc_Telemetry_vbus_adc_raw_tag          15
 
 /* Struct field encoding specification for nanopb */
 #define bldc_Telemetry_FIELDLIST(X, a) \
@@ -52,7 +66,14 @@ X(a, STATIC,   SINGULAR, UINT32,   bus_voltage_mv,    4) \
 X(a, STATIC,   SINGULAR, SINT32,   phase_current_ma,   5) \
 X(a, STATIC,   SINGULAR, UINT32,   motor_rpm,         6) \
 X(a, STATIC,   SINGULAR, SINT32,   mosfet_temperature_cdec,   7) \
-X(a, STATIC,   SINGULAR, UINT32,   ntc_pcb_adc_raw,   8)
+X(a, STATIC,   SINGULAR, UINT32,   ntc_pcb_adc_raw,   8) \
+X(a, STATIC,   SINGULAR, UINT32,   curr_a_adc_raw,    9) \
+X(a, STATIC,   SINGULAR, UINT32,   curr_b_adc_raw,   10) \
+X(a, STATIC,   SINGULAR, UINT32,   curr_c_adc_raw,   11) \
+X(a, STATIC,   SINGULAR, UINT32,   volt_a_adc_raw,   12) \
+X(a, STATIC,   SINGULAR, UINT32,   volt_b_adc_raw,   13) \
+X(a, STATIC,   SINGULAR, UINT32,   volt_c_adc_raw,   14) \
+X(a, STATIC,   SINGULAR, UINT32,   vbus_adc_raw,     15)
 #define bldc_Telemetry_CALLBACK NULL
 #define bldc_Telemetry_DEFAULT NULL
 
@@ -63,7 +84,7 @@ extern const pb_msgdesc_t bldc_Telemetry_msg;
 
 /* Maximum encoded size of messages (where known) */
 #define BLDC_PROTOCOL_BLDC_PB_H_MAX_SIZE         bldc_Telemetry_size
-#define bldc_Telemetry_size                      48
+#define bldc_Telemetry_size                      90
 
 #ifdef __cplusplus
 } /* extern "C" */

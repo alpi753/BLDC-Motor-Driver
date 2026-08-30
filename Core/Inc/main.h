@@ -57,8 +57,22 @@ void Error_Handler(void);
 /* USER CODE END EFP */
 
 /* Private defines -----------------------------------------------------------*/
+#define CURR_A_Pin GPIO_PIN_0
+#define CURR_A_GPIO_Port GPIOA
+#define CURR_B_Pin GPIO_PIN_1
+#define CURR_B_GPIO_Port GPIOA
+#define CURR_C_Pin GPIO_PIN_2
+#define CURR_C_GPIO_Port GPIOA
+#define VOLT_B_Pin GPIO_PIN_3
+#define VOLT_B_GPIO_Port GPIOA
+#define VOLT_A_Pin GPIO_PIN_5
+#define VOLT_A_GPIO_Port GPIOA
 #define NTC_PCB_Pin GPIO_PIN_6
 #define NTC_PCB_GPIO_Port GPIOA
+#define VBUS_Pin GPIO_PIN_2
+#define VBUS_GPIO_Port GPIOB
+#define VOLT_C_Pin GPIO_PIN_11
+#define VOLT_C_GPIO_Port GPIOB
 #define LEDC_Pin GPIO_PIN_12
 #define LEDC_GPIO_Port GPIOB
 #define LEDB_Pin GPIO_PIN_13

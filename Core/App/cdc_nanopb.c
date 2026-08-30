@@ -12,7 +12,7 @@ static uint8_t cdc_nanopb_rx_buffer[CDC_NANOPB_RX_BUFFER_SIZE];
 static uint8_t cdc_nanopb_payload[CDC_NANOPB_PAYLOAD_SIZE];
 static uint8_t cdc_nanopb_frame[CDC_NANOPB_FRAME_SIZE];
 static CdcNanopbTransmitFn cdc_nanopb_transmit;
-static CdcNanopbNtcPcbReadFn cdc_nanopb_read_ntc_pcb;
+static CdcNanopbReadAdcSamplesFn cdc_nanopb_read_adc_samples;
 static uint32_t cdc_nanopb_next_telemetry_ms;
 static uint32_t cdc_nanopb_sequence;
 static uint32_t cdc_nanopb_prng = 0x6d2b79f5U;
@@ -84,6 +84,7 @@ static size_t CdcNanopb_CobsEncode(const uint8_t *input, size_t input_length,
 static uint8_t CdcNanopb_EncodeTelemetry(uint32_t now_ms, size_t *payload_length)
 {
   bldc_Telemetry telemetry = bldc_Telemetry_init_zero;
+  CdcNanopbAdcSamples adc_samples = {0};
   pb_ostream_t stream;
 
   telemetry.protocol_version = 1U;
@@ -93,9 +94,17 @@ static uint8_t CdcNanopb_EncodeTelemetry(uint32_t now_ms, size_t *payload_length
   telemetry.phase_current_ma = (int32_t)(CdcNanopb_Random() % 20001U) - 10000;
   telemetry.motor_rpm = CdcNanopb_Random() % 6001U;
   telemetry.mosfet_temperature_cdec = 250 + (int32_t)(CdcNanopb_Random() % 551U);
-  if (cdc_nanopb_read_ntc_pcb != NULL)
+  if (cdc_nanopb_read_adc_samples != NULL)
   {
-    telemetry.ntc_pcb_adc_raw = cdc_nanopb_read_ntc_pcb();
+    cdc_nanopb_read_adc_samples(&adc_samples);
+    telemetry.ntc_pcb_adc_raw = adc_samples.ntc_pcb;
+    telemetry.curr_a_adc_raw = adc_samples.curr_a;
+    telemetry.curr_b_adc_raw = adc_samples.curr_b;
+    telemetry.curr_c_adc_raw = adc_samples.curr_c;
+    telemetry.volt_a_adc_raw = adc_samples.volt_a;
+    telemetry.volt_b_adc_raw = adc_samples.volt_b;
+    telemetry.volt_c_adc_raw = adc_samples.volt_c;
+    telemetry.vbus_adc_raw = adc_samples.vbus;
   }
 
   stream = pb_ostream_from_buffer(cdc_nanopb_payload, sizeof(cdc_nanopb_payload));
@@ -108,10 +117,10 @@ static uint8_t CdcNanopb_EncodeTelemetry(uint32_t now_ms, size_t *payload_length
   return 1U;
 }
 
-void CdcNanopb_Init(CdcNanopbTransmitFn transmit, CdcNanopbNtcPcbReadFn read_ntc_pcb)
+void CdcNanopb_Init(CdcNanopbTransmitFn transmit, CdcNanopbReadAdcSamplesFn read_adc_samples)
 {
   cdc_nanopb_transmit = transmit;
-  cdc_nanopb_read_ntc_pcb = read_ntc_pcb;
+  cdc_nanopb_read_adc_samples = read_adc_samples;
   cdc_nanopb_next_telemetry_ms = 0U;
   cdc_nanopb_tx_pending = 0U;
 }

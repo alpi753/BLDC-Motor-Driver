@@ -3,7 +3,7 @@
 `cdc_nanopb.c` emits one protobuf `bldc.Telemetry` message every 250 ms after
 USB CDC is configured. Each message is framed as `COBS(protobuf) + 0x00`, so
 host software must split the byte stream on `0x00`, COBS-decode the segment,
-then protobuf-decode the resulting payload using `protocol/bldc.proto`.
+then protobuf-decode the resulting payload using [`protocol/bldc.proto`](../../protocol/bldc.proto).
 
 The protobuf fields are:
 
@@ -17,6 +17,9 @@ The protobuf fields are:
 | `motor_rpm` | Motor speed in RPM |
 | `mosfet_temperature_cdec` | MOSFET temperature in 0.1 °C |
 | `ntc_pcb_adc_raw` | Raw 12-bit reading from NTC_PCB (PA6 / ADC2_IN3) |
+| `curr_a_adc_raw`, `curr_b_adc_raw`, `curr_c_adc_raw` | Raw 12-bit current-sense ADC readings |
+| `volt_a_adc_raw`, `volt_b_adc_raw`, `volt_c_adc_raw` | Raw 12-bit phase-voltage ADC readings |
+| `vbus_adc_raw` | Raw 12-bit DC bus-voltage ADC reading |
 
 Values are currently deterministic pseudo-random test data. Field numbers in
 `bldc.proto` are wire-contract identifiers: do not renumber or reuse removed

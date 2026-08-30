@@ -7,6 +7,8 @@
 #include "usbd_cdc_if.h"
 
 extern USBD_HandleTypeDef hUsbDeviceFS;
+extern ADC_HandleTypeDef hadc1;
+extern ADC_HandleTypeDef hadc2;
 
 static uint8_t AppCdc_Transmit(uint8_t *buffer, uint16_t length)
 {
@@ -19,9 +21,49 @@ static void AppCdc_RearmReception(void)
   (void)USBD_CDC_ReceivePacket(&hUsbDeviceFS);
 }
 
+static uint16_t AppCdc_ReadAdcChannel(ADC_HandleTypeDef *hadc, uint32_t channel,
+                                      uint16_t previous_value)
+{
+  ADC_ChannelConfTypeDef config = {0};
+
+  config.Channel = channel;
+  config.Rank = ADC_REGULAR_RANK_1;
+  config.SamplingTime = ADC_SAMPLETIME_2CYCLES_5;
+  config.SingleDiff = ADC_SINGLE_ENDED;
+  config.OffsetNumber = ADC_OFFSET_NONE;
+  config.Offset = 0;
+  if (HAL_ADC_ConfigChannel(hadc, &config) != HAL_OK || HAL_ADC_Start(hadc) != HAL_OK)
+  {
+    return previous_value;
+  }
+
+  if (HAL_ADC_PollForConversion(hadc, 10U) == HAL_OK)
+  {
+    previous_value = (uint16_t)HAL_ADC_GetValue(hadc);
+  }
+
+  (void)HAL_ADC_Stop(hadc);
+  return previous_value;
+}
+
+static void AppCdc_ReadAdcSamples(CdcNanopbAdcSamples *samples)
+{
+  static CdcNanopbAdcSamples last_samples;
+
+  last_samples.curr_a = AppCdc_ReadAdcChannel(&hadc1, ADC_CHANNEL_1, last_samples.curr_a);
+  last_samples.curr_b = AppCdc_ReadAdcChannel(&hadc1, ADC_CHANNEL_2, last_samples.curr_b);
+  last_samples.curr_c = AppCdc_ReadAdcChannel(&hadc1, ADC_CHANNEL_3, last_samples.curr_c);
+  last_samples.volt_b = AppCdc_ReadAdcChannel(&hadc1, ADC_CHANNEL_4, last_samples.volt_b);
+  last_samples.volt_a = AppCdc_ReadAdcChannel(&hadc2, ADC_CHANNEL_13, last_samples.volt_a);
+  last_samples.ntc_pcb = AppCdc_ReadAdcChannel(&hadc2, ADC_CHANNEL_3, last_samples.ntc_pcb);
+  last_samples.vbus = AppCdc_ReadAdcChannel(&hadc2, ADC_CHANNEL_12, last_samples.vbus);
+  last_samples.volt_c = AppCdc_ReadAdcChannel(&hadc2, ADC_CHANNEL_14, last_samples.volt_c);
+  *samples = last_samples;
+}
+
 void AppCdc_Init(void)
 {
-  CdcNanopb_Init(AppCdc_Transmit);
+  CdcNanopb_Init(AppCdc_Transmit, AppCdc_ReadAdcSamples);
   AppCdc_RearmReception();
 }
 
@@ -31,11 +73,6 @@ void AppCdc_Task(uint32_t now_ms)
   {
     CdcNanopb_Task(now_ms);
   }
-}
-
-void AppCdc_SetNtcPcbAdcRaw(uint16_t value)
-{
-  CdcNanopb_SetNtcPcbAdcRaw(value);
 }
 
 uint8_t AppCdc_OnReceive(uint8_t *buffer, uint32_t length)

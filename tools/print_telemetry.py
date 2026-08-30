@@ -47,7 +47,14 @@ def format_telemetry(telemetry: bldc_pb2.Telemetry) -> str:
         f"phase_current_ma={telemetry.phase_current_ma} "
         f"motor_rpm={telemetry.motor_rpm} "
         f"mosfet_temperature_cdec={telemetry.mosfet_temperature_cdec} "
-        f"ntc_pcb_adc_raw={telemetry.ntc_pcb_adc_raw}"
+        f"ntc_pcb_adc_raw={telemetry.ntc_pcb_adc_raw} "
+        f"curr_a_adc_raw={telemetry.curr_a_adc_raw} "
+        f"curr_b_adc_raw={telemetry.curr_b_adc_raw} "
+        f"curr_c_adc_raw={telemetry.curr_c_adc_raw} "
+        f"volt_a_adc_raw={telemetry.volt_a_adc_raw} "
+        f"volt_b_adc_raw={telemetry.volt_b_adc_raw} "
+        f"volt_c_adc_raw={telemetry.volt_c_adc_raw} "
+        f"vbus_adc_raw={telemetry.vbus_adc_raw}"
     )
 
 

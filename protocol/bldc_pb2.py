@@ -13,7 +13,7 @@ _sym_db = _symbol_database.Default()
 
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x13protocol/bldc.proto\x12\x04\x62ldc\"\xc9\x01\n\tTelemetry\x12\x18\n\x10protocol_version\x18\x01 \x01(\r\x12\x10\n\x08sequence\x18\x02 \x01(\r\x12\x11\n\tuptime_ms\x18\x03 \x01(\r\x12\x16\n\x0e\x62us_voltage_mv\x18\x04 \x01(\r\x12\x18\n\x10phase_current_ma\x18\x05 \x01(\x11\x12\x11\n\tmotor_rpm\x18\x06 \x01(\r\x12\x1f\n\x17mosfet_temperature_cdec\x18\x07 \x01(\x11\x12\x17\n\x0fntc_pcb_adc_raw\x18\x08 \x01(\rb\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x13protocol/bldc.proto\x12\x04\x62ldc\"\xef\x02\n\tTelemetry\x12\x18\n\x10protocol_version\x18\x01 \x01(\r\x12\x10\n\x08sequence\x18\x02 \x01(\r\x12\x11\n\tuptime_ms\x18\x03 \x01(\r\x12\x16\n\x0e\x62us_voltage_mv\x18\x04 \x01(\r\x12\x18\n\x10phase_current_ma\x18\x05 \x01(\x11\x12\x11\n\tmotor_rpm\x18\x06 \x01(\r\x12\x1f\n\x17mosfet_temperature_cdec\x18\x07 \x01(\x11\x12\x17\n\x0fntc_pcb_adc_raw\x18\x08 \x01(\r\x12\x16\n\x0e\x63urr_a_adc_raw\x18\t \x01(\r\x12\x16\n\x0e\x63urr_b_adc_raw\x18\n \x01(\r\x12\x16\n\x0e\x63urr_c_adc_raw\x18\x0b \x01(\r\x12\x16\n\x0evolt_a_adc_raw\x18\x0c \x01(\r\x12\x16\n\x0evolt_b_adc_raw\x18\r \x01(\r\x12\x16\n\x0evolt_c_adc_raw\x18\x0e \x01(\r\x12\x14\n\x0cvbus_adc_raw\x18\x0f \x01(\rb\x06proto3')
 
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, globals())
 _builder.BuildTopDescriptorsAndMessages(DESCRIPTOR, 'protocol.bldc_pb2', globals())
@@ -21,5 +21,5 @@ if _descriptor._USE_C_DESCRIPTORS == False:
 
   DESCRIPTOR._options = None
   _TELEMETRY._serialized_start=30
-  _TELEMETRY._serialized_end=231
+  _TELEMETRY._serialized_end=397
 # @@protoc_insertion_point(module_scope)
