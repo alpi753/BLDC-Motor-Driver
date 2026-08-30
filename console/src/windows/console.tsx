@@ -6,6 +6,7 @@ import { ScrollArea } from "@/components/ui/scroll-area"
 import { cn } from "@/lib/utils"
 import TopBar from "@/components/top-bar"
 import { toast } from "sonner"
+import { useI18n } from "@/components/i18n-provider"
 
 interface ConsoleMessage {
   id: string
@@ -37,6 +38,7 @@ const sanitizeMessage = (msg: ConsoleMessage): ConsoleMessage => {
 }
 
 export default function Console() {
+  const { locale, t } = useI18n()
   const [messages, setMessages] = React.useState<ConsoleMessage[]>([ //demo
     // start empty; real data will arrive from IPC
   ])
@@ -99,7 +101,7 @@ export default function Console() {
 
     const newMessage: ConsoleMessage = {
       id: Date.now().toString(),
-      timestamp: new Date().toLocaleTimeString([], { hour12: false }),
+      timestamp: new Date().toLocaleTimeString(locale === "tr" ? "tr-TR" : "en-GB", { hour12: false }),
       type: "out",
       text: inputValue
     }
@@ -129,7 +131,7 @@ export default function Console() {
     const handler = (msg: string) => {
       enqueueMessage({
         id: Date.now().toString(),
-        timestamp: new Date().toLocaleTimeString([], { hour12: false }),
+        timestamp: new Date().toLocaleTimeString(locale === "tr" ? "tr-TR" : "en-GB", { hour12: false }),
         type: "in",
         text: msg,
       })
@@ -138,9 +140,17 @@ export default function Console() {
     const telemetryHandler = (telem: TelemetryData) => {
       enqueueMessage({
         id: Date.now().toString(),
-        timestamp: new Date().toLocaleTimeString([], { hour12: false }),
+        timestamp: new Date().toLocaleTimeString(locale === "tr" ? "tr-TR" : "en-GB", { hour12: false }),
         type: "info",
-        text: `TELEM seq=${telem.sequence} vbus=${telem.bus_voltage_v.toFixed(2)}V pcb=${telem.ntc_pcb_temperature_c?.toFixed(1) ?? "invalid"}C uptime=${telem.uptime_ms}ms`,
+        text: [
+          `proto=${telem.protocol_version}`,
+          `seq=${telem.sequence}`,
+          `uptime=${telem.uptime_ms}ms`,
+          `vbus=${telem.bus_voltage_v.toFixed(2)}V`,
+          `pcb=${telem.ntc_pcb_temperature_c?.toFixed(1) ?? "invalid"}C`,
+          `curr=[${telem.currents_a.phase_a.toFixed(3)},${telem.currents_a.phase_b.toFixed(3)},${telem.currents_a.phase_c.toFixed(3)}]A`,
+          `volt=[${telem.voltages_v.phase_a.toFixed(3)},${telem.voltages_v.phase_b.toFixed(3)},${telem.voltages_v.phase_c.toFixed(3)}]V`,
+        ].join(" "),
       })
     }
 
@@ -167,7 +177,7 @@ export default function Console() {
     return () => {
       unsubscribe()
     }
-  }, [isPaused, enqueueMessage])
+  }, [isPaused, enqueueMessage, locale])
 
   const onPauseToggle = () => {
     setIsPaused(i => !i)
@@ -181,9 +191,9 @@ export default function Console() {
     const filename = `logs_${safeTs}.txt`
     const arrayBuffer = await blob.arrayBuffer()
     await window.api.file.saveFile(arrayBuffer, filename).then(() => {
-			toast.success("Logs saved", { duration: 5000 });
+			toast.success(t("console.saved"), { duration: 5000 });
 		}).catch(() => {
-			toast.error("Failed to save logs")
+			toast.error(t("console.saveFailed"))
 		})
   }
   const onClear = () => {
@@ -206,14 +216,14 @@ export default function Console() {
             <div className="flex items-center gap-2 px-3 py-1.5 min-w-0">
               <TerminalIcon className="w-4 h-4 text-primary shrink-0" />
               <div className="text-left min-w-0">
-                <h2 className="text-sm font-semibold tracking-tight">Serial Console</h2>
-                <div className="flex items-center gap-2 mt-0.5 min-w-0">
-                  <span className="text-[10px] text-muted-foreground font-mono shrink-0">
-                    115200 bps
-                  </span>
-                  <span className="text-[10px] text-muted-foreground shrink-0">·</span>
-                  <span className="text-[10px] font-mono text-muted-foreground">nanopb · COBS · 0x00</span>
-                </div>
+                <h2 className="text-sm font-semibold tracking-tight">{t("console.title")}</h2>
+                {/* <div className="flex items-center gap-2 mt-0.5 min-w-0"> */}
+                  {/* <span className="text-[10px] text-muted-foreground font-mono shrink-0"> */}
+                    {/* 115200 bps */}
+                  {/* </span> */}
+                  {/* <span className="text-[10px] text-muted-foreground shrink-0">·</span> */}
+                  {/* <span className="text-[10px] font-mono text-muted-foreground">nanopb · COBS · 0x00</span> */}
+                {/* </div> */}
               </div>
             </div>
 
@@ -223,14 +233,14 @@ export default function Console() {
                 size="icon" 
                 className="h-8 w-8" 
                 onClick={onPauseToggle}
-                title={isPaused ? "Resume scrolling" : "Pause scrolling"}
+                title={isPaused ? t("console.resume") : t("console.pause")}
               >
                 {isPaused ? <Play className="h-4 w-4" /> : <Square className="h-4 w-4" />}
               </Button>
-              <Button variant="ghost" size="icon" className="h-8 w-8" onClick={onClear} title="Clear console" disabled={messages.length === 0}>
+              <Button variant="ghost" size="icon" className="h-8 w-8" onClick={onClear} title={t("console.clear")} disabled={messages.length === 0}>
                 <Trash2 className="h-4 w-4" />
               </Button>
-              <Button variant="ghost" size="icon" className="h-8 w-8" title="Download log" onClick={onDownload} disabled={messages.length === 0}>
+              <Button variant="ghost" size="icon" className="h-8 w-8" title={t("console.download")} onClick={onDownload} disabled={messages.length === 0}>
                 <Download className="h-4 w-4" />
               </Button>
             </div>
@@ -259,7 +269,7 @@ export default function Console() {
               {messages.length === 0 && (
                 <div className="h-full flex flex-col items-center justify-center text-muted-foreground py-20">
                   <TerminalIcon className="w-8 h-8 opacity-20 mb-2" />
-                  <p className="text-sm">Waiting for data...</p>
+                  <p className="text-sm">{t("console.waiting")}</p>
                 </div>
               )}
               </div>
@@ -273,7 +283,7 @@ export default function Console() {
                 <Input
                   value={inputValue}
                   onChange={(e) => setInputValue(e.target.value)}
-                  placeholder="Type command (at+config...)"
+                  placeholder={t("console.placeholder")}
                   className="font-mono text-sm bg-background border-muted-foreground/20 focus-visible:ring-primary/30"
                 />
                 <div className="absolute right-3 top-1/2 -translate-y-1/2 flex items-center gap-2 opacity-0 group-focus-within:opacity-100 transition-opacity">
@@ -283,7 +293,7 @@ export default function Console() {
                 </div>
               </div>
               <Button type="submit" size="sm" className="px-4">
-                Send
+                {t("console.send")}
               </Button>
             </form>
             {/* <div className="flex items-center justify-between mt-2 px-1"> */}

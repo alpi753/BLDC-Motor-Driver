@@ -18,9 +18,11 @@ export function createWindow(urlPath: string = '') {
   const win = new BrowserWindow({
     width: isSubWindow ? 700 : 1024,
     height: isSubWindow ? 570 : 768,
-    frame: isSubWindow? false: true, // Ensure transparent/rounded works everywhere
-    transparent: isSubWindow ? true: false, // Required for rounded corners on frameless windows
-    titleBarStyle: isSubWindow ? 'hidden' : 'default', // Hide title bar for sub-windows
+    frame: false,
+    transparent: true,
+    backgroundColor: '#00000000',
+    hasShadow: false,
+    titleBarStyle: 'hidden',
     webPreferences: {
       preload: join(__dirname, 'preload.js'),
       nodeIntegration: false,
@@ -231,6 +233,11 @@ app.whenReady().then(() => {
   ipcMain.on('window:close', (event) => {
     const win = BrowserWindow.fromWebContents(event.sender)
     win?.close()
+  })
+
+  ipcMain.on('window:minimize', (event) => {
+    const win = BrowserWindow.fromWebContents(event.sender)
+    win?.minimize()
   })
 
   ipcMain.on('window:maximize', (event) => {

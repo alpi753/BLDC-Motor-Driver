@@ -2,6 +2,7 @@ import * as React from "react"
 import {
   Bar,
   BarChart as RechartsBarChart,
+  Cell,
   CartesianGrid,
   XAxis,
   YAxis,
@@ -46,7 +47,8 @@ export type BarChartProps<TData extends Record<string, unknown>> =
     layout?: "horizontal" | "vertical"
     xTickFormatter?: (value: unknown) => string
     yTickFormatter?: (value: unknown) => string
-    tooltipLabelFormatter?: (label: unknown) => React.ReactNode
+		tooltipLabelFormatter?: (label: unknown) => React.ReactNode
+		cellColors?: string[]
   }
 
 export function BarChart<TData extends Record<string, unknown>>({
@@ -62,6 +64,7 @@ export function BarChart<TData extends Record<string, unknown>>({
   xTickFormatter,
   yTickFormatter,
   tooltipLabelFormatter,
+  cellColors,
   ...props
 }: BarChartProps<TData>) {
   const config = React.useMemo<ChartConfig>(() => {
@@ -148,7 +151,11 @@ export function BarChart<TData extends Record<string, unknown>>({
             radius={item.radius ?? [4, 4, 0, 0]}
             stackId={item.stackId}
             isAnimationActive={false}
-          />
+          >
+            {cellColors?.map((color, cellIndex) => (
+              <Cell key={`${item.dataKey}-${cellIndex}`} fill={color} />
+            ))}
+          </Bar>
         ))}
       </RechartsBarChart>
     </ChartContainer>

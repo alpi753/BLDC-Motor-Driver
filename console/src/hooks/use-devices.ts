@@ -1,7 +1,9 @@
 import { useEffect, useState, useCallback } from "react"
 import { toast } from "sonner"
+import { useI18n } from "@/components/i18n-provider"
 
 export const useUsbDevices = () => {
+  const { t } = useI18n()
   const [devices, setDevices] = useState<Device[]>([])
   const [loading, setLoading] = useState(false)
 
@@ -11,29 +13,29 @@ export const useUsbDevices = () => {
       await window.api.usb.connect(device.path)
       const freshDevices = await window.api.usb.list()
       setDevices(freshDevices)
-      toast.success(`Connected to ${device.manufacturer || device.path}`)
+      toast.success(t("device.connectedTo", { device: device.manufacturer || device.path }))
     } catch (error) {
       const res = await window.api.usb.list()
       setDevices(res)
       const message = error instanceof Error ? error.message : String(error)
-      toast.error(`Connection failed: ${message}`)
+      toast.error(t("device.connectionFailed", { message }))
     } finally {
       setLoading(false)
     }
-  }, [])
+  }, [t])
 
   const onRefresh = useCallback(async () => {
     setLoading(true)
     try {
       const res = await window.api.usb.refresh()
       setDevices(res)
-      toast.info("Device list refreshed")
+      toast.info(t("device.refreshed"))
     } catch {
-      toast.error("Failed to refresh devices")
+      toast.error(t("device.refreshFailed"))
     } finally {
       setLoading(false)
     }
-  }, [])
+  }, [t])
 
   const onDisconnect = useCallback(async (path: string) => {
     setLoading(true)
@@ -44,13 +46,13 @@ export const useUsbDevices = () => {
       const freshDevices = await window.api.usb.list()
       setDevices(freshDevices)
       
-      toast.info("Disconnected")
+      toast.info(t("device.disconnected"))
     } catch (error) {
-      toast.error("Failed to disconnect", error instanceof Error ? { description: error.message } : undefined)
+      toast.error(t("device.disconnectFailed"), error instanceof Error ? { description: error.message } : undefined)
     } finally {
       setLoading(false)
     }
-  }, [])
+  }, [t])
 
   useEffect(() => {
     let alive = true

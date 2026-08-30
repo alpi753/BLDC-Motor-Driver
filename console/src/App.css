@@ -161,6 +161,74 @@
   }
 }
 
+/* Dashboard cards share one solid outline; only touching seams are dashed. */
+.dashboard-card-slot {
+  border-right: 1px solid var(--border);
+  border-bottom: 1px dashed var(--border);
+  border-left: 1px solid var(--border);
+}
+
+.dashboard-card-slot:first-child {
+  border-top: 1px solid var(--border);
+}
+
+.dashboard-card-slot:last-child {
+  border-bottom-style: solid;
+}
+
+.dashboard-card-slot > div:last-child {
+  border: 0;
+}
+
+@media (min-width: 48rem) {
+  .dashboard-card-slot {
+    border: 0;
+  }
+
+  .dashboard-card-slot:nth-child(1) {
+    border-top: 1px solid var(--border);
+    border-right: 1px dashed var(--border);
+    border-bottom: 1px dashed var(--border);
+    border-left: 1px solid var(--border);
+  }
+
+  .dashboard-card-slot:nth-child(2) {
+    border-top: 1px solid var(--border);
+    border-right: 1px solid var(--border);
+    border-bottom: 1px dashed var(--border);
+  }
+
+  .dashboard-card-slot:nth-child(3) {
+    border-right: 1px dashed var(--border);
+    border-bottom: 1px solid var(--border);
+    border-left: 1px solid var(--border);
+  }
+
+  .dashboard-card-slot:nth-child(4) {
+    border-right: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+}
+
+@media (min-width: 80rem) {
+  .dashboard-card-slot:nth-child(2) {
+    border-right-style: dashed;
+    border-bottom-style: solid;
+  }
+
+  .dashboard-card-slot:nth-child(3) {
+    border-top: 1px solid var(--border);
+    border-right: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    border-left: 0;
+  }
+
+  .dashboard-card-slot:nth-child(4) {
+    border-top: 1px dashed var(--border);
+    border-left: 1px solid var(--border);
+  }
+}
+
 .ticks {
   position: relative;
   width: 100%;

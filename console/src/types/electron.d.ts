@@ -11,6 +11,7 @@ declare global {
 			},
       window: {
         close: () => void
+        minimize: () => void
         maximize: () => void
         unmaximize: () => void
         isMaximized: () => Promise<boolean>

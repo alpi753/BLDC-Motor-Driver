@@ -5,8 +5,10 @@ import BusVoltageCard from "@/cards/bus-voltage"
 import TemperaturesCard from "@/cards/temperatures"
 import { CardWrapper } from "@/components/card-wrapper"
 import { useTelemetryCharts } from "@/hooks/use-telemetry-charts"
+import { useI18n } from "@/components/i18n-provider"
 
 export default function Main() {
+  const { t } = useI18n()
   const { telemetry, chartRevision, phaseCurrentData, phaseVoltageData, busVoltageData, temperatureData } = useTelemetryCharts()
 
   return (
@@ -15,29 +17,29 @@ export default function Main() {
 
       <div className="px-6 pt-4">
         <p className="text-sm">
-          Real-time motor-controller telemetry over USB serial.
+          {t("dashboard.intro")}
         </p>
         <p className="mt-1 font-mono text-xs text-muted-foreground">
           {telemetry
-            ? `protobuf v${telemetry.protocol_version} · frame ${telemetry.sequence} · ${(telemetry.uptime_ms / 1000).toFixed(1)} s uptime`
-            : "Connect a controller to begin receiving telemetry."}
+            ? t("dashboard.status", { version: telemetry.protocol_version, frame: telemetry.sequence, uptime: (telemetry.uptime_ms / 1000).toFixed(1) })
+            : t("dashboard.empty")}
         </p>
       </div>
 
-      <main className="grid min-w-0 grid-cols-1 gap-4 px-6 py-6 md:grid-cols-2 xl:grid-cols-3">
-        <CardWrapper title="DC Bus Voltage" route="card/bus-voltage">
+      <main className="dashboard-card-grid grid min-w-0 grid-cols-1 gap-0 px-6 py-6 md:grid-cols-2 xl:grid-cols-3">
+        <CardWrapper title={t("card.bus.title")} route="card/bus-voltage">
           <BusVoltageCard data={busVoltageData} dataRevision={chartRevision} />
         </CardWrapper>
 
-        <CardWrapper title="Phase Currents" route="card/phase-currents">
+        <CardWrapper title={t("card.currents.title")} route="card/phase-currents">
           <PhaseCurrentsCard data={phaseCurrentData} dataRevision={chartRevision} />
         </CardWrapper>
 
-        <CardWrapper title="Phase Voltages" route="card/phase-voltage">
+        <CardWrapper title={t("card.voltages.title")} route="card/phase-voltage">
           <PhaseVoltageCard data={phaseVoltageData} dataRevision={chartRevision} />
         </CardWrapper>
 
-        <CardWrapper title="PCB Temperature" route="card/temperatures">
+        <CardWrapper title={t("card.temperature.title")} route="card/temperatures">
           <TemperaturesCard data={temperatureData} dataRevision={chartRevision} />
         </CardWrapper>
 

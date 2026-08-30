@@ -9,6 +9,7 @@ import { RefreshCw, Usb } from "lucide-react"
 
 import { cn } from "@/lib/utils"
 import { buttonVariants } from "@/components/ui/button"
+import { useI18n } from "@/components/i18n-provider"
 
 interface Device {
   path: string
@@ -31,6 +32,7 @@ export function DeviceListDropDown({
   onRefresh,
   loading = false,
 }: DeviceDropdownProps) {
+  const { locale, t } = useI18n()
   const connectedDevice = devices.find((d) => d.connected)
 
   return (
@@ -42,13 +44,13 @@ export function DeviceListDropDown({
         )}
       >
         <Usb className="w-3.5 h-3.5" />
-        {connectedDevice ? "Connected" : "Connect"}
+        {connectedDevice ? t("device.connected") : t("device.connect")}
       </DropdownMenuTrigger>
 
       <DropdownMenuContent align="end" className="w-56 text-xs">
 
         <div className="px-2 py-1 text-[10px] text-muted-foreground">
-          USB Devices
+          {t("device.usbDevices")}
         </div>
 
         <DropdownMenuSeparator />
@@ -56,14 +58,14 @@ export function DeviceListDropDown({
         {/* EMPTY STATE */}
         {devices.length === 0 && !loading && (
           <div className="px-2 py-3 text-xs text-muted-foreground">
-            No devices found
+            {t("device.none")}
           </div>
         )}
 
         {/* LOADING STATE */}
         {loading && (
           <div className="px-2 py-3 text-xs text-muted-foreground">
-            Scanning for devices...
+            {t("device.scanning")}
           </div>
         )}
 
@@ -88,12 +90,12 @@ export function DeviceListDropDown({
             >
               <div className="flex w-full justify-between items-center">
                 <span className="font-medium">
-                  {device.manufacturer ?? "Unknown Device"}
+                  {device.manufacturer ?? t("device.unknown")}
                 </span>
 
                 {isConnected && (
                   <span className="text-[10px] text-green-500">
-                    connected
+                    {t("device.connected").toLocaleLowerCase(locale === "tr" ? "tr-TR" : "en-US")}
                   </span>
                 )}
               </div>
@@ -110,7 +112,7 @@ export function DeviceListDropDown({
         {/* REFRESH */}
         <DropdownMenuItem onClick={onRefresh} className="text-xs gap-2">
           <RefreshCw className="w-3.5 h-3.5" />
-          Rescan devices
+          {t("device.rescan")}
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>

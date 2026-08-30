@@ -2,8 +2,8 @@ import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { 
 	X,
-	Maximize2 as MaximizeIcon,
-	Minimize2 as MinimizeIcon,
+	Square as MaximizeIcon,
+	Copy as RestoreIcon,
 } from "lucide-react"
 
 export default function SubWindowHeader({
@@ -51,7 +51,7 @@ export default function SubWindowHeader({
 							{/* You can replace this with a maximize icon */}
 							{
 								isMaximized ? (
-									<MinimizeIcon className="h-3.5 w-3.5" />
+									<RestoreIcon className="h-3.5 w-3.5" />
 								) : (
 									<MaximizeIcon className="h-3.5 w-3.5" />
 								)
@@ -62,7 +62,7 @@ export default function SubWindowHeader({
         <Button 
           variant="ghost" 
           size="icon" 
-          className="h-6 w-6 no-drag-area hover:bg-destructive hover:text-destructive-foreground transition-colors ml-2 transform hover:scale-110 shadow-none"
+          className="h-6 w-6 no-drag-area text-destructive hover:bg-destructive/15 hover:text-destructive transition-colors ml-2 shadow-none"
           onClick={closeWindow}
         >
           <X className="h-3.5 w-3.5" />

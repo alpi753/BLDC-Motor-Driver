@@ -4,6 +4,7 @@ import type { BusVoltagePoint } from "@/cards/bus-voltage"
 import type { TemperaturePoint } from "@/cards/temperatures"
 import { TELEMETRY_HISTORY_LENGTH, chartDataSignature, formatRelativeTimeLabel } from "@/lib/telemetry-series"
 import * as React from "react"
+import { useI18n } from "@/components/i18n-provider"
 
 const historyPoint = (item: TelemetryData, sample: number, baseUptime: number) => ({
   sample,
@@ -11,6 +12,7 @@ const historyPoint = (item: TelemetryData, sample: number, baseUptime: number) =
 })
 
 export function useTelemetryCharts() {
+  const { t } = useI18n()
   const [telemetryHistory, setTelemetryHistory] = React.useState<TelemetryData[]>([])
 
   React.useEffect(() => {
@@ -28,10 +30,10 @@ export function useTelemetryCharts() {
   const telemetry = telemetryHistory.at(-1) ?? null
   const chartRevision = chartDataSignature(telemetryHistory.length, telemetry?.sequence)
   const phaseCurrentData = React.useMemo<PhaseCurrentPoint[]>(() => telemetry ? [
-    { phase: "Phase A", current: telemetry.currents_a.phase_a },
-    { phase: "Phase B", current: telemetry.currents_a.phase_b },
-    { phase: "Phase C", current: telemetry.currents_a.phase_c },
-  ] : [], [telemetry])
+    { phase: t("card.phaseA"), current: telemetry.currents_a.phase_a },
+    { phase: t("card.phaseB"), current: telemetry.currents_a.phase_b },
+    { phase: t("card.phaseC"), current: telemetry.currents_a.phase_c },
+  ] : [], [telemetry, t])
   const phaseVoltageData = React.useMemo<PhaseVoltagePoint[]>(() => {
     const base = telemetryHistory[0]?.uptime_ms ?? 0
     return telemetryHistory.map((item, sample) => ({
