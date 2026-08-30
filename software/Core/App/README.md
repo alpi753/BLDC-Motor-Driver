@@ -5,18 +5,6 @@ USB CDC is configured. Each message is framed as `COBS(protobuf) + 0x00`, so
 host software must split the byte stream on `0x00`, COBS-decode the segment,
 then protobuf-decode the resulting payload using [`protocol/bldc.proto`](../../protocol/bldc.proto).
 
-The protobuf fields are:
-
-| Field | Meaning |
-| --- | --- |
-| `protocol_version` | Protocol version (`1`) |
-| `sequence` | Sequence number |
-| `uptime_ms` | Device uptime in milliseconds |
-| `bus_voltage_mv` | Measured VM voltage in mV |
-| `ntc_pcb_temperature_cdec` | NTC_PCB temperature in 0.1 °C (`INT32_MIN` = invalid) |
-| `curr_a_ma`, `curr_b_ma`, `curr_c_ma` | Measured phase currents in mA |
-| `volt_a_mv`, `volt_b_mv`, `volt_c_mv` | Measured phase voltages in mV |
-
 All published measurement fields are live ADC readings. Field numbers
 in `bldc.proto` are wire-contract identifiers: do not renumber or reuse
 removed field numbers. LEDC (PB12) toggles after completed USB telemetry

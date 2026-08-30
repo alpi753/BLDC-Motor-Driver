@@ -5,17 +5,22 @@ package bldc;
 // Telemetry values use fixed engineering units so the firmware neither needs
 // floating point nor loses precision on the wire.
 message Telemetry {
+	// The protocol version of the telemetry message.
   uint32 protocol_version = 1;
   uint32 sequence = 2;
+	// Uptime in milliseconds since the device was powered on.
   uint32 uptime_ms = 3;
+	// Measured bus voltage (VM) in millivolts.
   uint32 bus_voltage_mv = 4;
   // Removed prototype-only random fields. These wire IDs must not be reused.
   reserved 5, 6, 7;
-  // NTC_PCB temperature in 0.1 degrees C; INT32_MIN means invalid ADC input.
+  // NTC_PCB temperature in 0.1(1sf) degrees C; INT32_MIN means invalid ADC input.
   sint32 ntc_pcb_temperature_cdec = 8;
+	// Measured phase currents in milliamps.
   uint32 curr_a_ma = 9;
   uint32 curr_b_ma = 10;
   uint32 curr_c_ma = 11;
+	// Measured phase voltages in millivolts.
   uint32 volt_a_mv = 12;
   uint32 volt_b_mv = 13;
   uint32 volt_c_mv = 14;
