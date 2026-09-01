@@ -31,6 +31,7 @@
 typedef struct
 {
   uint16_t ntc_pcb;
+  uint16_t mcu_temp;
   uint16_t curr_a;
   uint16_t curr_b;
   uint16_t curr_c;
@@ -43,6 +44,8 @@ typedef struct
 extern USBD_HandleTypeDef hUsbDeviceFS;
 extern ADC_HandleTypeDef hadc1;
 extern ADC_HandleTypeDef hadc2;
+
+static int32_t Telemetry_CdecFromCelsius(float temperature_c);
 
 static uint8_t telemetry_rx_buffer[TELEMETRY_RX_BUFFER_SIZE];
 static uint8_t telemetry_payload[TELEMETRY_PAYLOAD_SIZE];
@@ -163,8 +166,31 @@ static int32_t Telemetry_NtcPcbTemperatureCdec(uint16_t adc_raw, uint32_t vdda_m
     return INT32_MIN;
   }
 
+  return Telemetry_CdecFromCelsius(temperature_c);
+}
+
+static int32_t Telemetry_CdecFromCelsius(float temperature_c)
+{
+  if (!isfinite(temperature_c))
+  {
+    return INT32_MIN;
+  }
+
   return (int32_t)(temperature_c * 10.0f +
       ((temperature_c >= 0.0f) ? 0.5f : -0.5f));
+}
+
+static int32_t Telemetry_McuTemperatureCdec(uint16_t adc_raw, uint32_t vdda_mv)
+{
+  int32_t temperature_c;
+
+  if ((adc_raw == 0U) || (vdda_mv == 0U))
+  {
+    return INT32_MIN;
+  }
+
+  temperature_c = __HAL_ADC_CALC_TEMPERATURE(vdda_mv, adc_raw, ADC_RESOLUTION_12B);
+  return temperature_c * 10;
 }
 
 static uint32_t Telemetry_DividerVoltageMv(uint16_t adc_raw, uint32_t vdda_mv,
@@ -212,6 +238,8 @@ static TelemetryAdcSamples Telemetry_ReadAdcs(void)
   samples.ntc_pcb = Telemetry_ReadAdcChannel(&hadc2, ADC_CHANNEL_3, samples.ntc_pcb);
   samples.vbus = Telemetry_ReadAdcChannel(&hadc2, ADC_CHANNEL_12, samples.vbus);
   samples.volt_c = Telemetry_ReadAdcChannel(&hadc2, ADC_CHANNEL_14, samples.volt_c);
+  samples.mcu_temp = Telemetry_ReadAdcChannelWithSampling(&hadc1,
+      ADC_CHANNEL_TEMPSENSOR_ADC1, ADC_SAMPLETIME_640CYCLES_5, samples.mcu_temp);
   return samples;
 }
 
@@ -222,12 +250,13 @@ static uint8_t Telemetry_Encode(uint32_t now_ms, size_t *payload_length)
   uint32_t vdda_mv = Telemetry_ReadVddaMv();
   pb_ostream_t stream;
 
-  message.protocol_version = 1U;
+  message.protocol_version = TELEMETRY_PROTOCOL_VERSION;
   message.sequence = telemetry_sequence++;
   message.uptime_ms = now_ms;
   message.bus_voltage_mv = Telemetry_DividerVoltageMv(adc.vbus, vdda_mv,
                                                        VM_R_HIGH_OHM, VM_R_LOW_OHM);
   message.ntc_pcb_temperature_cdec = Telemetry_NtcPcbTemperatureCdec(adc.ntc_pcb, vdda_mv);
+  message.mcu_temperature_cdec = Telemetry_McuTemperatureCdec(adc.mcu_temp, vdda_mv);
   message.curr_a_ma = Telemetry_PhaseCurrentMa(adc.curr_a, vdda_mv);
   message.curr_b_ma = Telemetry_PhaseCurrentMa(adc.curr_b, vdda_mv);
   message.curr_c_ma = Telemetry_PhaseCurrentMa(adc.curr_c, vdda_mv);

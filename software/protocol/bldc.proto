@@ -27,4 +27,7 @@ message Telemetry {
   uint32 volt_b_mv = 13;
   uint32 volt_c_mv = 14;
   reserved 15;
+  // STM32 internal temperature sensor (ADC1 TS) in 0.1 degrees C;
+  // INT32_MIN means invalid ADC input.
+  sint32 mcu_temperature_cdec = 16;
 }

@@ -53,14 +53,16 @@ function decodeTelemetry(payload: Buffer): BLDCTelemetry {
     defaults: true,
     longs: Number,
   }) as Record<string, number>
-  const pcbTemperature = decoded.ntcPcbTemperatureCdec
+  const cdecToCelsius = (cdec: number | undefined): number | null =>
+    cdec === undefined || cdec === -2147483648 ? null : cdec / 10
 
   return {
     protocol_version: decoded.protocolVersion,
     sequence: decoded.sequence,
     uptime_ms: decoded.uptimeMs,
     bus_voltage_v: decoded.busVoltageMv / 1000,
-    ntc_pcb_temperature_c: pcbTemperature === -2147483648 ? null : pcbTemperature / 10,
+    ntc_pcb_temperature_c: cdecToCelsius(decoded.ntcPcbTemperatureCdec),
+    mcu_temperature_c: cdecToCelsius(decoded.mcuTemperatureCdec),
     currents_a: {
       phase_a: decoded.currAMa / 1000,
       phase_b: decoded.currBMa / 1000,

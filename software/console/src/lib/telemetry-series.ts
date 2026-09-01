@@ -66,3 +66,19 @@ export function formatSignedAmpTick(value: unknown): string {
   const digits = Number.isInteger(magnitude) ? 0 : 1
   return `${sign}${magnitude.toFixed(digits)}A`
 }
+
+/** Pin a readable °C window that still expands for a hot MCU die. */
+export function temperatureDomainC(
+  values: Array<number | null | undefined>,
+  minFloor = 10,
+  minCeiling = 40,
+): [number, number] {
+  let min = minFloor
+  let max = minCeiling
+  for (const value of values) {
+    if (value == null || !Number.isFinite(value)) continue
+    if (value < min) min = value
+    if (value > max) max = value
+  }
+  return [Math.floor(min / 5) * 5, Math.ceil(max / 5) * 5]
+}

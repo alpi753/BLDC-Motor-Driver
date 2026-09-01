@@ -46,7 +46,11 @@ export function useTelemetryCharts() {
 
   const baseUptime = telemetryHistory[0]?.uptime_ms ?? 0
   const busVoltageData = React.useMemo<BusVoltagePoint[]>(() => telemetryHistory.map((item, sample) => ({ ...historyPoint(item, sample, baseUptime), voltage: item.bus_voltage_v })), [telemetryHistory, baseUptime])
-  const temperatureData = React.useMemo<TemperaturePoint[]>(() => telemetryHistory.map((item, sample) => ({ ...historyPoint(item, sample, baseUptime), pcb: item.ntc_pcb_temperature_c })), [telemetryHistory, baseUptime])
+  const temperatureData = React.useMemo<TemperaturePoint[]>(() => telemetryHistory.map((item, sample) => ({
+    ...historyPoint(item, sample, baseUptime),
+    pcb: item.ntc_pcb_temperature_c,
+    mcu: item.mcu_temperature_c,
+  })), [telemetryHistory, baseUptime])
 
   return { telemetry, telemetryHistory, chartRevision, phaseCurrentData, phaseVoltageData, busVoltageData, temperatureData }
 }

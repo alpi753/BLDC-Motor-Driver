@@ -40,16 +40,15 @@ def cobs_decode(frame: bytes) -> bytes:
 
 
 def format_telemetry(telemetry: bldc_pb2.Telemetry) -> str:
-    ntc_temperature = (
-        "invalid"
-        if telemetry.ntc_pcb_temperature_cdec == -(2**31)
-        else f"{telemetry.ntc_pcb_temperature_cdec / 10.0:.1f}C"
-    )
+    def format_cdec(cdec: int) -> str:
+        return "invalid" if cdec == -(2**31) else f"{cdec / 10.0:.1f}C"
+
     return (
         f"protocol_version={telemetry.protocol_version} seq={telemetry.sequence} "
         f"uptime_ms={telemetry.uptime_ms} "
         f"bus_voltage_mv={telemetry.bus_voltage_mv} "
-        f"ntc_pcb_temperature={ntc_temperature} "
+        f"ntc_pcb_temperature={format_cdec(telemetry.ntc_pcb_temperature_cdec)} "
+        f"mcu_temperature={format_cdec(telemetry.mcu_temperature_cdec)} "
         f"curr_a_ma={telemetry.curr_a_ma} "
         f"curr_b_ma={telemetry.curr_b_ma} "
         f"curr_c_ma={telemetry.curr_c_ma} "

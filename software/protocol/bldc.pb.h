@@ -32,6 +32,9 @@ typedef struct _bldc_Telemetry {
     uint32_t volt_a_mv;
     uint32_t volt_b_mv;
     uint32_t volt_c_mv;
+    /* STM32 internal temperature sensor (ADC1 TS) in 0.1 degrees C;
+ INT32_MIN means invalid ADC input. */
+    int32_t mcu_temperature_cdec;
 } bldc_Telemetry;
 
 
@@ -40,8 +43,8 @@ extern "C" {
 #endif
 
 /* Initializer values for message structs */
-#define bldc_Telemetry_init_default              {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}
-#define bldc_Telemetry_init_zero                 {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}
+#define bldc_Telemetry_init_default              {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}
+#define bldc_Telemetry_init_zero                 {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}
 
 /* Field tags (for use in manual encoding/decoding) */
 #define bldc_Telemetry_protocol_version_tag      1
@@ -55,6 +58,7 @@ extern "C" {
 #define bldc_Telemetry_volt_a_mv_tag             12
 #define bldc_Telemetry_volt_b_mv_tag             13
 #define bldc_Telemetry_volt_c_mv_tag             14
+#define bldc_Telemetry_mcu_temperature_cdec_tag  16
 
 /* Struct field encoding specification for nanopb */
 #define bldc_Telemetry_FIELDLIST(X, a) \
@@ -68,7 +72,8 @@ X(a, STATIC,   SINGULAR, SINT32,   curr_b_ma,        10) \
 X(a, STATIC,   SINGULAR, SINT32,   curr_c_ma,        11) \
 X(a, STATIC,   SINGULAR, UINT32,   volt_a_mv,        12) \
 X(a, STATIC,   SINGULAR, UINT32,   volt_b_mv,        13) \
-X(a, STATIC,   SINGULAR, UINT32,   volt_c_mv,        14)
+X(a, STATIC,   SINGULAR, UINT32,   volt_c_mv,        14) \
+X(a, STATIC,   SINGULAR, SINT32,   mcu_temperature_cdec,  16)
 #define bldc_Telemetry_CALLBACK NULL
 #define bldc_Telemetry_DEFAULT NULL
 
@@ -79,7 +84,7 @@ extern const pb_msgdesc_t bldc_Telemetry_msg;
 
 /* Maximum encoded size of messages (where known) */
 #define BLDC_PROTOCOL_BLDC_PB_H_MAX_SIZE         bldc_Telemetry_size
-#define bldc_Telemetry_size                      66
+#define bldc_Telemetry_size                      73
 
 #ifdef __cplusplus
 } /* extern "C" */
