@@ -4,6 +4,7 @@ import {
   BarChart as RechartsBarChart,
   Cell,
   CartesianGrid,
+  ReferenceLine,
   XAxis,
   YAxis,
 } from "recharts"
@@ -49,6 +50,8 @@ export type BarChartProps<TData extends Record<string, unknown>> =
     yTickFormatter?: (value: unknown) => string
 		tooltipLabelFormatter?: (label: unknown) => React.ReactNode
 		cellColors?: string[]
+    yDomain?: [number | string, number | string]
+    showZeroLine?: boolean
   }
 
 export function BarChart<TData extends Record<string, unknown>>({
@@ -65,6 +68,8 @@ export function BarChart<TData extends Record<string, unknown>>({
   yTickFormatter,
   tooltipLabelFormatter,
   cellColors,
+  yDomain,
+  showZeroLine = false,
   ...props
 }: BarChartProps<TData>) {
   const config = React.useMemo<ChartConfig>(() => {
@@ -129,8 +134,14 @@ export function BarChart<TData extends Record<string, unknown>>({
           axisLine={false}
           tickMargin={8}
           tickFormatter={yTickFormatter}
+          domain={layout === "horizontal" ? yDomain : undefined}
+          allowDataOverflow={false}
+          tickCount={5}
           className="text-[10px] fill-muted-foreground"
         />
+        {showZeroLine && layout === "horizontal" ? (
+          <ReferenceLine y={0} stroke="var(--muted-foreground)" strokeOpacity={0.6} />
+        ) : null}
         {showTooltip && (
           <ChartTooltip
             content={

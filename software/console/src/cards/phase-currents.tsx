@@ -1,5 +1,6 @@
 import { BarChart } from "@/components/charts/bar"
 import { useI18n } from "@/components/i18n-provider"
+import { formatSignedAmpTick, symmetricCurrentDomainA } from "@/lib/telemetry-series"
 
 export type PhaseCurrentPoint = {
   phase: string
@@ -11,9 +12,10 @@ type PhaseCurrentsCardProps = {
   dataRevision?: string
 }
 
-export default function PhaseCurrentsCard({ data, dataRevision }: PhaseCurrentsCardProps) {
+export default function PhaseCurrentsCard({ data }: PhaseCurrentsCardProps) {
 	const { t } = useI18n()
 	const chartData = data ?? []
+	const yDomain = symmetricCurrentDomainA(chartData.map((point) => point.current))
 
 	return (
         <div className="size-full flex flex-col rounded-xl border bg-card p-4 shadow-sm">
@@ -35,12 +37,15 @@ export default function PhaseCurrentsCard({ data, dataRevision }: PhaseCurrentsC
           </div>
           <div className="flex-1 min-h-50 w-full">
             <BarChart
-              key={dataRevision ?? "fallback"}
               className="size-full"
               data={chartData}
               xKey="phase"
+              yDomain={yDomain}
+              showZeroLine
+              yAxisWidth={56}
+              yTickFormatter={formatSignedAmpTick}
               series={[
-                { dataKey: 'current', label: t("card.currents.series"), radius: [4, 4, 0, 0] },
+                { dataKey: 'current', label: t("card.currents.series"), radius: 0 },
               ]}
               cellColors={["var(--chart-1)", "var(--chart-2)", "var(--chart-5)"]}
             />

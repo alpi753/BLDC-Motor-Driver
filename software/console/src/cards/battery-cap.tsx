@@ -10,7 +10,6 @@ type BatteryCapCardProps = {
 export default function BatteryCapCard({
   usedWh = 0,
   remainingWh = 0,
-  dataRevision,
 }: BatteryCapCardProps) {
 	const safeUsed = Math.max(usedWh, 0)
 	const safeRemaining = Math.max(remainingWh, 0)
@@ -28,7 +27,6 @@ export default function BatteryCapCard({
           </div>
           <div className="flex-1 min-h-50 w-full relative">
             <RadialChart
-              key={dataRevision ?? "fallback"}
               className="size-full"
               data={batteryData}
               centerLabel="Wh remaining"

@@ -68,7 +68,7 @@ function LineChart<TData extends Record<string, unknown>>({
 	xAxisType = "number",
 	xDomain = [0, TELEMETRY_HISTORY_LENGTH - 1],
 	yDomain = ["auto", "auto"],
-	dataRevision,
+	dataRevision: _dataRevision,
 	tooltipLabelKey,
 	xTickFormatter,
 	yTickFormatter,
@@ -112,12 +112,9 @@ function LineChart<TData extends Record<string, unknown>>({
 		[tooltipLabelFormatter, tooltipLabelKey]
 	)
 
-	const chartKey = dataRevision ?? `${data.length}-${String(data.at(-1)?.[xKey] ?? "")}`
-
 	return (
 		<ChartContainer config={config} className={cn("aspect-auto min-h-[150px]", className)} {...props}>
 			<RechartsLineChart
-				key={chartKey}
 				data={data}
 				margin={{ top: 12, right: 12, left: 0, bottom: 4 }}
 			>

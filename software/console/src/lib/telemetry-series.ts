@@ -38,3 +38,31 @@ export function chartDataSignature(
   if (length === 0) return "empty"
   return `${length}-${timestampMs ?? 0}`
 }
+
+/** Symmetric Y range around 0 so the zero axis stays centered. */
+export function symmetricCurrentDomainA(
+  values: number[],
+  minAmp = 1,
+): [number, number] {
+  let peak = minAmp
+  for (const value of values) {
+    if (!Number.isFinite(value)) continue
+    const magnitude = Math.abs(value)
+    if (magnitude > peak) peak = magnitude
+  }
+
+  const steps = [1, 2, 5, 10, 20, 25, 50]
+  const limit = steps.find((step) => peak <= step) ?? Math.ceil(peak / 10) * 10
+  return [-limit, limit]
+}
+
+/** Keep +/− visible on a narrow Y-axis; 0 stays unsigned. */
+export function formatSignedAmpTick(value: unknown): string {
+  const amps = Number(value)
+  if (!Number.isFinite(amps) || amps === 0) return "0A"
+
+  const sign = amps > 0 ? "+" : "−"
+  const magnitude = Math.abs(amps)
+  const digits = Number.isInteger(magnitude) ? 0 : 1
+  return `${sign}${magnitude.toFixed(digits)}A`
+}

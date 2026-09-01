@@ -12,7 +12,7 @@ type MotorXticsCardProps = {
   dataRevision?: string
 }
 
-export default function MotorXticsCard({ data, dataRevision }: MotorXticsCardProps) {
+export default function MotorXticsCard({ data }: MotorXticsCardProps) {
 	const chartData = data ?? []
 
 	return (
@@ -25,7 +25,6 @@ export default function MotorXticsCard({ data, dataRevision }: MotorXticsCardPro
           </div>
           <div className="flex-1 min-h-62.5 w-full flex items-center justify-center">
             <RadarChart
-              key={dataRevision ?? "fallback"}
               className="size-full"
               data={chartData}
               indexKey="attribute"
