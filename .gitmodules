@@ -19,3 +19,6 @@
 [submodule "software/stm32f411/Middlewares/Third_Party/DSDL"]
 	path = software/stm32f411/Middlewares/Third_Party/DSDL
 	url = https://github.com/dronecan/DSDL
+[submodule "software/Third_Party/nanopb"]
+	path = software/Third_Party/nanopb
+	url = https://github.com/nanopb/nanopb.git

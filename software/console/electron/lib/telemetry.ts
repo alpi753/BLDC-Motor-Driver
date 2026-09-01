@@ -1,5 +1,6 @@
 export const TELEMETRY_HISTORY_LENGTH = 80
 
+
 /** Renderer-facing representation of protocol/bldc.proto in engineering units. */
 export type BLDCTelemetry = {
   protocol_version: number
