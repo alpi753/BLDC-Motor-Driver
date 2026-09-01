@@ -71,6 +71,8 @@ void Error_Handler(void);
 #define NTC_PCB_GPIO_Port GPIOA
 #define VBUS_Pin GPIO_PIN_2
 #define VBUS_GPIO_Port GPIOB
+#define SPI1_NSCS_Pin GPIO_PIN_10
+#define SPI1_NSCS_GPIO_Port GPIOB
 #define VOLT_C_Pin GPIO_PIN_11
 #define VOLT_C_GPIO_Port GPIOB
 #define LEDC_Pin GPIO_PIN_12
@@ -79,6 +81,8 @@ void Error_Handler(void);
 #define LEDB_GPIO_Port GPIOB
 #define LEDA_Pin GPIO_PIN_14
 #define LEDA_GPIO_Port GPIOB
+#define SPI1_ENABLE_Pin GPIO_PIN_15
+#define SPI1_ENABLE_GPIO_Port GPIOB
 
 /* USER CODE BEGIN Private defines */
 
