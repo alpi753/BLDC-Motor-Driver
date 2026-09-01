@@ -16,10 +16,12 @@ message Telemetry {
   reserved 5, 6, 7;
   // NTC_PCB temperature in 0.1(1sf) degrees C; INT32_MIN means invalid ADC input.
   sint32 ntc_pcb_temperature_cdec = 8;
-	// Measured phase currents in milliamps.
-  uint32 curr_a_ma = 9;
-  uint32 curr_b_ma = 10;
-  uint32 curr_c_ma = 11;
+	// Measured phase currents in milliamps. Signed: the DRV8323 CSAs run
+	// bidirectionally with SOx biased at VREF/2, so zero current is mid-rail
+	// and reverse current is negative.
+  sint32 curr_a_ma = 9;
+  sint32 curr_b_ma = 10;
+  sint32 curr_c_ma = 11;
 	// Measured phase voltages in millivolts.
   uint32 volt_a_mv = 12;
   uint32 volt_b_mv = 13;

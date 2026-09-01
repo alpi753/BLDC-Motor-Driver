@@ -18,8 +18,9 @@ a 91 kΩ / 4.7 kΩ divider (approximately 20.36:1). `NTC_PCB` uses a 10 kΩ,
 before converting the NTC reading, so it remains correct when VDDA differs
 from the 3.3 V divider supply.
 
-The DRV8323 current-sense outputs use 20 V/V gain with a 2 mΩ phase shunt,
-which gives 25 mA per millivolt at the amplifier output.
+The DRV8323 current-sense amplifiers run in bidirectional mode:
+each `SOx` output is biased at `VREF/2` (3.3V/2 analog rail) at zero
+current. At 20 V/V and a 2 mΩ phase shunt that is 25 mA (-12.5 to 12.5) per millivolt.
 
 ## Host monitor
 

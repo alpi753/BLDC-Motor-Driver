@@ -45,6 +45,7 @@ extern SPI_HandleTypeDef hspi1;
 #define DRV8323R_GATE_DRIVE_LS_STARTUP       0x07AFU
 #define DRV8323R_CSA_GAIN_MASK               (3U << 6)
 #define DRV8323R_CSA_GAIN_20_V_PER_V         (2U << 6)
+#define DRV8323R_CSA_VREF_DIV                (1U << 9)
 
 static char Drv8323r_fault_buf[160];
 static bool Drv8323r_transfer_failed;
@@ -145,6 +146,9 @@ bool Drv8323r_Init(void)
 	Drv8323r_WriteRegister(3, DRV8323R_GATE_DRIVE_HS_STARTUP);
 	Drv8323r_WriteRegister(4, DRV8323R_GATE_DRIVE_LS_STARTUP);
 	Drv8323r_SetCurrentSenseGain(Drv8323rCurrentSenseGain20VPerV);
+	/* Keep the CSAs bidirectional: SOx biased at VREF/2. */
+	Drv8323r_modify_reg(6U, (uint16_t)~DRV8323R_CSA_VREF_DIV,
+	                    DRV8323R_CSA_VREF_DIV);
 
 	/* Clear any startup fault latches. */
 	Drv8323r_ClearFaults();
@@ -166,6 +170,7 @@ bool Drv8323r_Init(void)
 		(ocp_control == DRV8323R_OCP_SAFE_STARTUP) &&
 		((csa_control & DRV8323R_CSA_GAIN_MASK) ==
 		 DRV8323R_CSA_GAIN_20_V_PER_V) &&
+		((csa_control & DRV8323R_CSA_VREF_DIV) != 0U) &&
 		(fault_status1 == 0U) &&
 		(fault_status2 == 0U);
 

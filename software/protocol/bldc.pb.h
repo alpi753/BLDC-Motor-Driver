@@ -22,10 +22,12 @@ typedef struct _bldc_Telemetry {
     uint32_t bus_voltage_mv;
     /* NTC_PCB temperature in 0.1(1sf) degrees C; INT32_MIN means invalid ADC input. */
     int32_t ntc_pcb_temperature_cdec;
-    /* Measured phase currents in milliamps. */
-    uint32_t curr_a_ma;
-    uint32_t curr_b_ma;
-    uint32_t curr_c_ma;
+    /* Measured phase currents in milliamps. Signed: the DRV8323 CSAs run
+ bidirectionally with SOx biased at VREF/2, so zero current is mid-rail
+ and reverse current is negative. */
+    int32_t curr_a_ma;
+    int32_t curr_b_ma;
+    int32_t curr_c_ma;
     /* Measured phase voltages in millivolts. */
     uint32_t volt_a_mv;
     uint32_t volt_b_mv;
@@ -61,9 +63,9 @@ X(a, STATIC,   SINGULAR, UINT32,   sequence,          2) \
 X(a, STATIC,   SINGULAR, UINT32,   uptime_ms,         3) \
 X(a, STATIC,   SINGULAR, UINT32,   bus_voltage_mv,    4) \
 X(a, STATIC,   SINGULAR, SINT32,   ntc_pcb_temperature_cdec,   8) \
-X(a, STATIC,   SINGULAR, UINT32,   curr_a_ma,         9) \
-X(a, STATIC,   SINGULAR, UINT32,   curr_b_ma,        10) \
-X(a, STATIC,   SINGULAR, UINT32,   curr_c_ma,        11) \
+X(a, STATIC,   SINGULAR, SINT32,   curr_a_ma,         9) \
+X(a, STATIC,   SINGULAR, SINT32,   curr_b_ma,        10) \
+X(a, STATIC,   SINGULAR, SINT32,   curr_c_ma,        11) \
 X(a, STATIC,   SINGULAR, UINT32,   volt_a_mv,        12) \
 X(a, STATIC,   SINGULAR, UINT32,   volt_b_mv,        13) \
 X(a, STATIC,   SINGULAR, UINT32,   volt_c_mv,        14)

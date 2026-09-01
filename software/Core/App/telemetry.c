@@ -26,6 +26,7 @@
 #define CSA_GAIN_V_PER_V 20.0f
 #define PHASE_SHUNT_OHM 0.002f
 #define ADC_MAX_COUNTS 4095.0f
+#define TELEMETRY_PROTOCOL_VERSION 2U
 
 typedef struct
 {
@@ -181,17 +182,22 @@ static uint32_t Telemetry_DividerVoltageMv(uint16_t adc_raw, uint32_t vdda_mv,
       0.5f);
 }
 
-static uint32_t Telemetry_PhaseCurrentMa(uint16_t adc_raw, uint32_t vdda_mv)
+static int32_t Telemetry_PhaseCurrentMa(uint16_t adc_raw, uint32_t vdda_mv)
 {
   float csa_output_mv;
+  float current_ma;
 
   if (vdda_mv == 0U)
   {
-    return 0U;
+    return 0;
   }
 
+  /* Bidirectional CSA: SOx = VREF/2 + G * I * Rshunt. VREF is the same 3.3 V
+   * analog rail as VDDA, so mid-rail is half of the measured VDDA. */
   csa_output_mv = (float)adc_raw * (float)vdda_mv / ADC_MAX_COUNTS;
-  return (uint32_t)(csa_output_mv / (CSA_GAIN_V_PER_V * PHASE_SHUNT_OHM) + 0.5f);
+  current_ma = (csa_output_mv - 0.5f * (float)vdda_mv) /
+      (CSA_GAIN_V_PER_V * PHASE_SHUNT_OHM);
+  return (int32_t)(current_ma + ((current_ma >= 0.0f) ? 0.5f : -0.5f));
 }
 
 static TelemetryAdcSamples Telemetry_ReadAdcs(void)
