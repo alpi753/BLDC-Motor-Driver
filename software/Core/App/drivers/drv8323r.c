@@ -39,6 +39,12 @@ extern SPI_HandleTypeDef hspi1;
 
 #define DRV8323R_CSA_CAL_ALL_MASK  ((1U << 4) | (1U << 3) | (1U << 2))
 #define DRV8323R_REGISTER_DATA_MASK  0x07FFU
+#define DRV8323R_DRIVER_CONTROL_CONFIG_MASK  0x07FEU
+#define DRV8323R_DRIVER_CONTROL_6X_PWM       0x0000U
+#define DRV8323R_GATE_DRIVE_HS_STARTUP       0x03AFU
+#define DRV8323R_GATE_DRIVE_LS_STARTUP       0x07AFU
+#define DRV8323R_CSA_GAIN_MASK               (3U << 6)
+#define DRV8323R_CSA_GAIN_20_V_PER_V         (2U << 6)
 
 static char Drv8323r_fault_buf[160];
 static bool Drv8323r_transfer_failed;
@@ -120,7 +126,14 @@ static void Drv8323r_fault_append(const char *text, size_t *offset)
 
 bool Drv8323r_Init(void)
 {
+	uint16_t driver_control;
+	uint16_t gate_drive_hs;
+	uint16_t gate_drive_ls;
+	uint16_t ocp_control;
 	uint16_t csa_control;
+	uint16_t fault_status1;
+	uint16_t fault_status2;
+	bool registers_valid;
 
 	Drv8323r_transfer_failed = false;
 	HAL_GPIO_WritePin(SPI1_NSCS_GPIO_Port, SPI1_NSCS_Pin, GPIO_PIN_SET);
@@ -129,16 +142,34 @@ bool Drv8323r_Init(void)
 
 	/* Start with overcurrent protection enabled in latched-shutdown mode. */
 	Drv8323r_WriteRegister(5, DRV8323R_OCP_SAFE_STARTUP);
-	Drv8323r_WriteRegister(3, 0x03AFU);
-	Drv8323r_WriteRegister(4, 0x07AFU);
+	Drv8323r_WriteRegister(3, DRV8323R_GATE_DRIVE_HS_STARTUP);
+	Drv8323r_WriteRegister(4, DRV8323R_GATE_DRIVE_LS_STARTUP);
 	Drv8323r_SetCurrentSenseGain(Drv8323rCurrentSenseGain20VPerV);
 
 	/* Clear any startup fault latches. */
 	Drv8323r_ClearFaults();
-	csa_control = Drv8323r_ReadRegister(6U);
 
-	return (!Drv8323r_transfer_failed) &&
-	       ((csa_control & 0x00C0U) == 0x0080U);
+	/* Read every configured register and both fault registers before deciding. */
+	driver_control = Drv8323r_ReadRegister(2U);
+	gate_drive_hs = Drv8323r_ReadRegister(3U);
+	gate_drive_ls = Drv8323r_ReadRegister(4U);
+	ocp_control = Drv8323r_ReadRegister(5U);
+	csa_control = Drv8323r_ReadRegister(6U);
+	fault_status1 = Drv8323r_ReadRegister(0U);
+	fault_status2 = Drv8323r_ReadRegister(1U);
+
+	registers_valid =
+		((driver_control & DRV8323R_DRIVER_CONTROL_CONFIG_MASK) ==
+		 DRV8323R_DRIVER_CONTROL_6X_PWM) &&
+		(gate_drive_hs == DRV8323R_GATE_DRIVE_HS_STARTUP) &&
+		(gate_drive_ls == DRV8323R_GATE_DRIVE_LS_STARTUP) &&
+		(ocp_control == DRV8323R_OCP_SAFE_STARTUP) &&
+		((csa_control & DRV8323R_CSA_GAIN_MASK) ==
+		 DRV8323R_CSA_GAIN_20_V_PER_V) &&
+		(fault_status1 == 0U) &&
+		(fault_status2 == 0U);
+
+	return (!Drv8323r_transfer_failed) && registers_valid;
 }
 
 uint16_t Drv8323r_ReadRegister(uint8_t reg)
@@ -180,10 +211,15 @@ void Drv8323r_SetOvercurrentAdjustment(uint8_t value)
 
 void Drv8323r_SetOvercurrentMode(Drv8323rOvercurrentMode mode)
 {
-	if ((mode < Drv8323rOvercurrentLatchShutdown) ||
-	    (mode > Drv8323rOvercurrentDisabled))
-	{
+	switch (mode) {
+	case Drv8323rOvercurrentLatchShutdown:
+	case Drv8323rOvercurrentAutomaticRetry:
+	case Drv8323rOvercurrentReportOnly:
+	case Drv8323rOvercurrentDisabled:
+		break;
+	default:
 		mode = Drv8323rOvercurrentLatchShutdown;
+		break;
 	}
 
 	uint16_t reg = Drv8323r_ReadRegister(5);
