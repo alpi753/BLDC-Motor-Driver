@@ -174,14 +174,11 @@ bool Drv8323r_Init(void)
 
 uint16_t Drv8323r_ReadRegister(uint8_t reg)
 {
-	uint16_t command = Drv8323r_build_frame(true, reg, 0x007FU);
+	uint16_t command = Drv8323r_build_frame(true, reg, 0U);
+	uint16_t response;
 
 	Drv8323r_select();
-	(void)Drv8323r_spi_exchange(command);
-	Drv8323r_deselect();
-
-	Drv8323r_select();
-	uint16_t response = Drv8323r_spi_exchange(command);
+	response = Drv8323r_spi_exchange(command);
 	Drv8323r_deselect();
 
 	return response & DRV8323R_REGISTER_DATA_MASK;
