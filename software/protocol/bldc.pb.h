@@ -13,15 +13,20 @@
 /* Telemetry values use fixed engineering units so the firmware neither needs
  floating point nor loses precision on the wire. */
 typedef struct _bldc_Telemetry {
+    /* The protocol version of the telemetry message. */
     uint32_t protocol_version;
     uint32_t sequence;
+    /* Uptime in milliseconds since the device was powered on. */
     uint32_t uptime_ms;
+    /* Measured bus voltage (VM) in millivolts. */
     uint32_t bus_voltage_mv;
-    /* NTC_PCB temperature in 0.1 degrees C; INT32_MIN means invalid ADC input. */
+    /* NTC_PCB temperature in 0.1(1sf) degrees C; INT32_MIN means invalid ADC input. */
     int32_t ntc_pcb_temperature_cdec;
+    /* Measured phase currents in milliamps. */
     uint32_t curr_a_ma;
     uint32_t curr_b_ma;
     uint32_t curr_c_ma;
+    /* Measured phase voltages in millivolts. */
     uint32_t volt_a_mv;
     uint32_t volt_b_mv;
     uint32_t volt_c_mv;
