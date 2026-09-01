@@ -177,7 +177,8 @@ void Drv8323r_SetOvercurrentAdjustment(uint8_t value)
 
 void Drv8323r_SetOvercurrentMode(Drv8323rOvercurrentMode mode)
 {
-	if (mode > Drv8323rOvercurrentLatchShutdown)
+	if ((mode < Drv8323rOvercurrentLatchShutdown) ||
+	    (mode > Drv8323rOvercurrentDisabled))
 	{
 		mode = Drv8323rOvercurrentLatchShutdown;
 	}

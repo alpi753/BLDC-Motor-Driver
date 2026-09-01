@@ -6,9 +6,10 @@
 
 typedef enum
 {
-  Drv8323rOvercurrentDisabled = 0,
-  Drv8323rOvercurrentLimit = 1,
-  Drv8323rOvercurrentLatchShutdown = 2,
+  Drv8323rOvercurrentLatchShutdown = 0,
+  Drv8323rOvercurrentAutomaticRetry = 1,
+  Drv8323rOvercurrentReportOnly = 2,
+  Drv8323rOvercurrentDisabled = 3,
 } Drv8323rOvercurrentMode;
 
 typedef enum
