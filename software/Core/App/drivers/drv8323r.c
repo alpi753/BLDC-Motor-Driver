@@ -38,6 +38,7 @@ extern SPI_HandleTypeDef hspi1;
 	 DRV8323R_OCP_VDS_LEVEL_0_75_V)
 
 #define DRV8323R_CSA_CAL_ALL_MASK  ((1U << 4) | (1U << 3) | (1U << 2))
+#define DRV8323R_REGISTER_DATA_MASK  0x07FFU
 
 static char Drv8323r_fault_buf[160];
 static bool Drv8323r_transfer_failed;
@@ -54,7 +55,7 @@ static uint16_t Drv8323r_build_frame(bool read, uint8_t reg, uint16_t data)
 	uint16_t frame = 0;
 	frame |= ((uint16_t)read & 0x01U) << 15;
 	frame |= ((uint16_t)reg & 0x0FU) << 11;
-	frame |= (data & 0x07FFU);
+	frame |= (data & DRV8323R_REGISTER_DATA_MASK);
 	return frame;
 }
 
@@ -152,7 +153,7 @@ uint16_t Drv8323r_ReadRegister(uint8_t reg)
 	uint16_t response = Drv8323r_spi_exchange(command);
 	Drv8323r_deselect();
 
-	return response;
+	return response & DRV8323R_REGISTER_DATA_MASK;
 }
 
 void Drv8323r_WriteRegister(uint8_t reg, uint16_t data)
