@@ -12,12 +12,13 @@ transfers, at most once every 500 ms.
 
 `VM` uses a 330 kΩ / 10 kΩ divider (34:1); its 3.3 V zener protection clamp is
 well above the expected 10–12 V operating range. Each phase-voltage input uses
-a 91 kΩ / 4.7 kΩ divider (approximately 20.36:1). `NTC_PCB` uses a 10 kΩ,
-β3435 NTC and a 1 kΩ fixed resistor, driven from
+a 91 kΩ / 4.7 kΩ divider (approximately 20.36:1). `NTC_FET` measures the
+MOSFET area using a 10 kΩ, β3435 NTC and a 1 kΩ fixed resistor, driven from
 3.3 V. The firmware measures VDDA through the STM32 VREFINT calibration value
 before converting the NTC reading, so it remains correct when VDDA differs
-from the 3.3 V divider supply. MCU die temperature is sampled from
-`ADC_CHANNEL_TEMPSENSOR_ADC1` with a long sampling time using the factory TS_CAL values. The result is published as tenths of a degree C.
+from the 3.3 V divider supply. PCB temperature is estimated from the STM32
+internal die sensor using `ADC_CHANNEL_TEMPSENSOR_ADC1`, a long sampling time,
+and the factory TS_CAL values. Both results are published in tenths of a degree C.
 
 The DRV8323 current-sense amplifiers run in bidirectional mode:
 each `SOx` output is biased at `VREF/2` (3.3V/2 analog rail) at zero

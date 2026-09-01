@@ -24,7 +24,7 @@ The first dashboard intentionally exposes only ADC-backed values:
 - DC bus voltage
 - phase A/B/C currents
 - phase A/B/C voltages
-- PCB NTC temperature
+- Mosfet temperature (from NTC)
 - MCU die temperature (ADC1 temperature sensor)
 - protocol version, frame sequence, and controller uptime
 

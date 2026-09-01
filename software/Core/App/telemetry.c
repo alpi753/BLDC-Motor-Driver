@@ -14,11 +14,11 @@
 #define TELEMETRY_RX_BUFFER_SIZE 1024U
 #define TELEMETRY_PAYLOAD_SIZE bldc_Telemetry_size
 #define TELEMETRY_FRAME_SIZE (TELEMETRY_PAYLOAD_SIZE + 2U)
-#define PCB_NTC_R25_OHM 10000.0f
-#define PCB_NTC_BETA_K 3435.0f
-#define PCB_NTC_T25_K 298.15f
-#define PCB_NTC_R_FIXED_OHM 1000.0f
-#define PCB_NTC_DIVIDER_SUPPLY_MV 3300.0f
+#define MOSFET_NTC_R25_OHM 10000.0f
+#define MOSFET_NTC_BETA_K 3435.0f
+#define MOSFET_NTC_T25_K 298.15f
+#define MOSFET_NTC_R_FIXED_OHM 1000.0f
+#define MOSFET_NTC_DIVIDER_SUPPLY_MV 3300.0f
 #define VM_R_HIGH_OHM 330000.0f
 #define VM_R_LOW_OHM 10000.0f
 #define PHASE_VOLTAGE_R_HIGH_OHM 91000.0f
@@ -30,8 +30,8 @@
 
 typedef struct
 {
-  uint16_t ntc_pcb;
-  uint16_t mcu_temp;
+  uint16_t mosfet_temp;
+  uint16_t pcb_temp;
   uint16_t curr_a;
   uint16_t curr_b;
   uint16_t curr_c;
@@ -140,7 +140,7 @@ static uint32_t Telemetry_ReadVddaMv(void)
   return __HAL_ADC_CALC_VREFANALOG_VOLTAGE(vrefint_adc, ADC_RESOLUTION_12B);
 }
 
-static int32_t Telemetry_NtcPcbTemperatureCdec(uint16_t adc_raw, uint32_t vdda_mv)
+static int32_t Telemetry_MosfetTemperatureCdec(uint16_t adc_raw, uint32_t vdda_mv)
 {
   float resistance_ohm;
   float temperature_c;
@@ -152,15 +152,15 @@ static int32_t Telemetry_NtcPcbTemperatureCdec(uint16_t adc_raw, uint32_t vdda_m
   }
 
   ntc_voltage_mv = (float)adc_raw * (float)vdda_mv / ADC_MAX_COUNTS;
-  if ((ntc_voltage_mv <= 0.0f) || (ntc_voltage_mv >= PCB_NTC_DIVIDER_SUPPLY_MV))
+  if ((ntc_voltage_mv <= 0.0f) || (ntc_voltage_mv >= MOSFET_NTC_DIVIDER_SUPPLY_MV))
   {
     return INT32_MIN;
   }
 
-  resistance_ohm = PCB_NTC_R_FIXED_OHM *
-      (PCB_NTC_DIVIDER_SUPPLY_MV / ntc_voltage_mv - 1.0f);
-  temperature_c = (1.0f / ((1.0f / PCB_NTC_T25_K) +
-      logf(resistance_ohm / PCB_NTC_R25_OHM) / PCB_NTC_BETA_K)) - 273.15f;
+  resistance_ohm = MOSFET_NTC_R_FIXED_OHM *
+      (MOSFET_NTC_DIVIDER_SUPPLY_MV / ntc_voltage_mv - 1.0f);
+  temperature_c = (1.0f / ((1.0f / MOSFET_NTC_T25_K) +
+      logf(resistance_ohm / MOSFET_NTC_R25_OHM) / MOSFET_NTC_BETA_K)) - 273.15f;
   if (!isfinite(temperature_c))
   {
     return INT32_MIN;
@@ -180,7 +180,7 @@ static int32_t Telemetry_CdecFromCelsius(float temperature_c)
       ((temperature_c >= 0.0f) ? 0.5f : -0.5f));
 }
 
-static int32_t Telemetry_McuTemperatureCdec(uint16_t adc_raw, uint32_t vdda_mv)
+static int32_t Telemetry_PcbTemperatureCdec(uint16_t adc_raw, uint32_t vdda_mv)
 {
   int32_t temperature_c;
 
@@ -235,11 +235,11 @@ static TelemetryAdcSamples Telemetry_ReadAdcs(void)
   samples.curr_c = Telemetry_ReadAdcChannel(&hadc1, ADC_CHANNEL_3, samples.curr_c);
   samples.volt_b = Telemetry_ReadAdcChannel(&hadc1, ADC_CHANNEL_4, samples.volt_b);
   samples.volt_a = Telemetry_ReadAdcChannel(&hadc2, ADC_CHANNEL_13, samples.volt_a);
-  samples.ntc_pcb = Telemetry_ReadAdcChannel(&hadc2, ADC_CHANNEL_3, samples.ntc_pcb);
+  samples.mosfet_temp = Telemetry_ReadAdcChannel(&hadc2, ADC_CHANNEL_3, samples.mosfet_temp);
   samples.vbus = Telemetry_ReadAdcChannel(&hadc2, ADC_CHANNEL_12, samples.vbus);
   samples.volt_c = Telemetry_ReadAdcChannel(&hadc2, ADC_CHANNEL_14, samples.volt_c);
-  samples.mcu_temp = Telemetry_ReadAdcChannelWithSampling(&hadc1,
-      ADC_CHANNEL_TEMPSENSOR_ADC1, ADC_SAMPLETIME_640CYCLES_5, samples.mcu_temp);
+  samples.pcb_temp = Telemetry_ReadAdcChannelWithSampling(&hadc1,
+      ADC_CHANNEL_TEMPSENSOR_ADC1, ADC_SAMPLETIME_640CYCLES_5, samples.pcb_temp);
   return samples;
 }
 
@@ -255,8 +255,8 @@ static uint8_t Telemetry_Encode(uint32_t now_ms, size_t *payload_length)
   message.uptime_ms = now_ms;
   message.bus_voltage_mv = Telemetry_DividerVoltageMv(adc.vbus, vdda_mv,
                                                        VM_R_HIGH_OHM, VM_R_LOW_OHM);
-  message.ntc_pcb_temperature_cdec = Telemetry_NtcPcbTemperatureCdec(adc.ntc_pcb, vdda_mv);
-  message.mcu_temperature_cdec = Telemetry_McuTemperatureCdec(adc.mcu_temp, vdda_mv);
+  message.mosfet_temperature_cdec = Telemetry_MosfetTemperatureCdec(adc.mosfet_temp, vdda_mv);
+  message.pcb_temperature_cdec = Telemetry_PcbTemperatureCdec(adc.pcb_temp, vdda_mv);
   message.curr_a_ma = Telemetry_PhaseCurrentMa(adc.curr_a, vdda_mv);
   message.curr_b_ma = Telemetry_PhaseCurrentMa(adc.curr_b, vdda_mv);
   message.curr_c_ma = Telemetry_PhaseCurrentMa(adc.curr_c, vdda_mv);

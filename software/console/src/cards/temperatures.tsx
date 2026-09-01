@@ -5,8 +5,8 @@ import { temperatureDomainC } from "@/lib/telemetry-series"
 export type TemperaturePoint = {
   sample: number
   timeLabel: string
+  mosfet: number | null
   pcb: number | null
-  mcu: number | null
 }
 
 const formatCelsius = (value: number | null | undefined) =>
@@ -15,7 +15,7 @@ const formatCelsius = (value: number | null | undefined) =>
 export default function TemperaturesCard({ data = [], dataRevision }: { data?: TemperaturePoint[]; dataRevision?: string }) {
   const { t } = useI18n()
   const latest = data.at(-1)
-  const yDomain = temperatureDomainC(data.flatMap((point) => [point.pcb, point.mcu]))
+  const yDomain = temperatureDomainC(data.flatMap((point) => [point.mosfet, point.pcb]))
 
   return (
     <div className="flex size-full flex-col rounded-xl border bg-card p-4 shadow-sm">
@@ -26,12 +26,12 @@ export default function TemperaturesCard({ data = [], dataRevision }: { data?: T
         </div>
         <div className="grid shrink-0 grid-cols-2 gap-3 text-right" aria-live="polite">
           <div>
-            <div className="font-mono text-sm font-medium tabular-nums">{formatCelsius(latest?.pcb)}</div>
-            <div className="text-[9px] uppercase tracking-wider text-muted-foreground">{t("card.temperature.pcb")} · °C</div>
+            <div className="font-mono text-sm font-medium tabular-nums">{formatCelsius(latest?.mosfet)}</div>
+            <div className="text-[9px] uppercase tracking-wider text-muted-foreground">{t("card.temperature.mosfet")} · °C</div>
           </div>
           <div>
-            <div className="font-mono text-sm font-medium tabular-nums">{formatCelsius(latest?.mcu)}</div>
-            <div className="text-[9px] uppercase tracking-wider text-muted-foreground">{t("card.temperature.mcu")} · °C</div>
+            <div className="font-mono text-sm font-medium tabular-nums">{formatCelsius(latest?.pcb)}</div>
+            <div className="text-[9px] uppercase tracking-wider text-muted-foreground">{t("card.temperature.pcb")} · °C</div>
           </div>
         </div>
       </div>
@@ -45,8 +45,8 @@ export default function TemperaturesCard({ data = [], dataRevision }: { data?: T
           yDomain={yDomain}
           yTickFormatter={(value) => `${Number(value).toFixed(0)}°C`}
           series={[
-            { dataKey: "pcb", label: t("card.temperature.pcb"), color: "var(--chart-4)" },
-            { dataKey: "mcu", label: t("card.temperature.mcu"), color: "var(--chart-1)" },
+            { dataKey: "mosfet", label: t("card.temperature.mosfet"), color: "var(--chart-4)" },
+            { dataKey: "pcb", label: t("card.temperature.pcb"), color: "var(--chart-1)" },
           ]}
         />
       </div>

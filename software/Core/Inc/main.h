@@ -67,8 +67,8 @@ void Error_Handler(void);
 #define VOLT_B_GPIO_Port GPIOA
 #define VOLT_A_Pin GPIO_PIN_5
 #define VOLT_A_GPIO_Port GPIOA
-#define NTC_PCB_Pin GPIO_PIN_6
-#define NTC_PCB_GPIO_Port GPIOA
+#define NTC_FET_Pin GPIO_PIN_6
+#define NTC_FET_GPIO_Port GPIOA
 #define VBUS_Pin GPIO_PIN_2
 #define VBUS_GPIO_Port GPIOB
 #define SPI1_NSCS_Pin GPIO_PIN_10

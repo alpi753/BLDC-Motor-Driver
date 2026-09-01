@@ -7,8 +7,8 @@ export type BLDCTelemetry = {
   sequence: number
   uptime_ms: number
   bus_voltage_v: number
-  ntc_pcb_temperature_c: number | null
-  mcu_temperature_c: number | null
+  mosfet_temperature_c: number | null
+  pcb_temperature_c: number | null
   currents_a: { phase_a: number; phase_b: number; phase_c: number }
   voltages_v: { phase_a: number; phase_b: number; phase_c: number }
 }

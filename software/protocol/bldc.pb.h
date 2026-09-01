@@ -20,8 +20,9 @@ typedef struct _bldc_Telemetry {
     uint32_t uptime_ms;
     /* Measured bus voltage (VM) in millivolts. */
     uint32_t bus_voltage_mv;
-    /* NTC_PCB temperature in 0.1(1sf) degrees C; INT32_MIN means invalid ADC input. */
-    int32_t ntc_pcb_temperature_cdec;
+    /* MOSFET temperature from the onboard NTC_FET sensor in 0.1 degrees C;
+ INT32_MIN means invalid ADC input. */
+    int32_t mosfet_temperature_cdec;
     /* Measured phase currents in milliamps. Signed: the DRV8323 CSAs run
  bidirectionally with SOx biased at VREF/2, so zero current is mid-rail
  and reverse current is negative. */
@@ -32,9 +33,9 @@ typedef struct _bldc_Telemetry {
     uint32_t volt_a_mv;
     uint32_t volt_b_mv;
     uint32_t volt_c_mv;
-    /* STM32 internal temperature sensor (ADC1 TS) in 0.1 degrees C;
- INT32_MIN means invalid ADC input. */
-    int32_t mcu_temperature_cdec;
+    /* PCB temperature estimate from the STM32 internal die sensor (ADC1 TS)
+ in 0.1 degrees C; INT32_MIN means invalid ADC input. */
+    int32_t pcb_temperature_cdec;
 } bldc_Telemetry;
 
 
@@ -51,14 +52,14 @@ extern "C" {
 #define bldc_Telemetry_sequence_tag              2
 #define bldc_Telemetry_uptime_ms_tag             3
 #define bldc_Telemetry_bus_voltage_mv_tag        4
-#define bldc_Telemetry_ntc_pcb_temperature_cdec_tag 8
+#define bldc_Telemetry_mosfet_temperature_cdec_tag 8
 #define bldc_Telemetry_curr_a_ma_tag             9
 #define bldc_Telemetry_curr_b_ma_tag             10
 #define bldc_Telemetry_curr_c_ma_tag             11
 #define bldc_Telemetry_volt_a_mv_tag             12
 #define bldc_Telemetry_volt_b_mv_tag             13
 #define bldc_Telemetry_volt_c_mv_tag             14
-#define bldc_Telemetry_mcu_temperature_cdec_tag  16
+#define bldc_Telemetry_pcb_temperature_cdec_tag  16
 
 /* Struct field encoding specification for nanopb */
 #define bldc_Telemetry_FIELDLIST(X, a) \
@@ -66,14 +67,14 @@ X(a, STATIC,   SINGULAR, UINT32,   protocol_version,   1) \
 X(a, STATIC,   SINGULAR, UINT32,   sequence,          2) \
 X(a, STATIC,   SINGULAR, UINT32,   uptime_ms,         3) \
 X(a, STATIC,   SINGULAR, UINT32,   bus_voltage_mv,    4) \
-X(a, STATIC,   SINGULAR, SINT32,   ntc_pcb_temperature_cdec,   8) \
+X(a, STATIC,   SINGULAR, SINT32,   mosfet_temperature_cdec,   8) \
 X(a, STATIC,   SINGULAR, SINT32,   curr_a_ma,         9) \
 X(a, STATIC,   SINGULAR, SINT32,   curr_b_ma,        10) \
 X(a, STATIC,   SINGULAR, SINT32,   curr_c_ma,        11) \
 X(a, STATIC,   SINGULAR, UINT32,   volt_a_mv,        12) \
 X(a, STATIC,   SINGULAR, UINT32,   volt_b_mv,        13) \
 X(a, STATIC,   SINGULAR, UINT32,   volt_c_mv,        14) \
-X(a, STATIC,   SINGULAR, SINT32,   mcu_temperature_cdec,  16)
+X(a, STATIC,   SINGULAR, SINT32,   pcb_temperature_cdec,  16)
 #define bldc_Telemetry_CALLBACK NULL
 #define bldc_Telemetry_DEFAULT NULL
 

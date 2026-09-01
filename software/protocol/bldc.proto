@@ -14,8 +14,9 @@ message Telemetry {
   uint32 bus_voltage_mv = 4;
   // Removed prototype-only random fields. These wire IDs must not be reused.
   reserved 5, 6, 7;
-  // NTC_PCB temperature in 0.1(1sf) degrees C; INT32_MIN means invalid ADC input.
-  sint32 ntc_pcb_temperature_cdec = 8;
+  // MOSFET temperature from the onboard NTC_FET sensor in 0.1 degrees C;
+  // INT32_MIN means invalid ADC input.
+  sint32 mosfet_temperature_cdec = 8;
 	// Measured phase currents in milliamps. Signed: the DRV8323 CSAs run
 	// bidirectionally with SOx biased at VREF/2, so zero current is mid-rail
 	// and reverse current is negative.
@@ -27,7 +28,7 @@ message Telemetry {
   uint32 volt_b_mv = 13;
   uint32 volt_c_mv = 14;
   reserved 15;
-  // STM32 internal temperature sensor (ADC1 TS) in 0.1 degrees C;
-  // INT32_MIN means invalid ADC input.
-  sint32 mcu_temperature_cdec = 16;
+  // PCB temperature estimate from the STM32 internal die sensor (ADC1 TS)
+  // in 0.1 degrees C; INT32_MIN means invalid ADC input.
+  sint32 pcb_temperature_cdec = 16;
 }

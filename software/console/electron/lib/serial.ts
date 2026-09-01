@@ -61,8 +61,8 @@ function decodeTelemetry(payload: Buffer): BLDCTelemetry {
     sequence: decoded.sequence,
     uptime_ms: decoded.uptimeMs,
     bus_voltage_v: decoded.busVoltageMv / 1000,
-    ntc_pcb_temperature_c: cdecToCelsius(decoded.ntcPcbTemperatureCdec),
-    mcu_temperature_c: cdecToCelsius(decoded.mcuTemperatureCdec),
+    mosfet_temperature_c: cdecToCelsius(decoded.mosfetTemperatureCdec),
+    pcb_temperature_c: cdecToCelsius(decoded.pcbTemperatureCdec),
     currents_a: {
       phase_a: decoded.currAMa / 1000,
       phase_b: decoded.currBMa / 1000,
