@@ -37,6 +37,8 @@ extern SPI_HandleTypeDef hspi1;
 	 DRV8323R_OCP_DEGLITCH_4_US |         \
 	 DRV8323R_OCP_VDS_LEVEL_0_75_V)
 
+#define DRV8323R_CSA_CAL_ALL_MASK  ((1U << 4) | (1U << 3) | (1U << 2))
+
 static char Drv8323r_fault_buf[160];
 static bool Drv8323r_transfer_failed;
 
@@ -216,7 +218,8 @@ void Drv8323r_SetCurrentSenseGain(Drv8323rCurrentSenseGain gain)
 
 void Drv8323r_SetDcCalibration(bool enabled)
 {
-	Drv8323r_modify_reg(6, 0xFFFBU, enabled ? (1U << 2) : 0U);
+	Drv8323r_modify_reg(6, (uint16_t)~DRV8323R_CSA_CAL_ALL_MASK,
+	                    enabled ? DRV8323R_CSA_CAL_ALL_MASK : 0U);
 }
 
 uint32_t Drv8323r_ReadFaults(void)
