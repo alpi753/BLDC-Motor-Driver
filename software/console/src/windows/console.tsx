@@ -211,7 +211,7 @@ export default function Console() {
       <TopBar />
       
       <div className="flex-1 flex flex-col min-h-0">
-        <div className="flex flex-col min-h-0 h-full border bg-card shadow-sm">
+        <div className="flex flex-col min-h-0 h-full border-b border-x bg-card shadow-sm">
           {/* Console Header */}
           <div className="flex items-center justify-between border-b bg-muted/30">
             <div className="flex items-center gap-2 px-3 py-1.5 min-w-0">

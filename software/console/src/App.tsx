@@ -9,6 +9,7 @@ import {
   PhaseVoltageWindow,
   TemperaturesWindow,
 } from './windows/card-windows'
+import Settings from './windows/settings'
 
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Main />} />
 				<Route path="/console" element={<Console/>} />
+				<Route path="/settings" element={<Settings/>} />
 
         <Route path="/card/bus-voltage" element={<BusVoltageWindow />} />
         <Route path="/card/phase-currents" element={<PhaseCurrentsWindow />} />

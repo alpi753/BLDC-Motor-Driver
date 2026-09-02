@@ -2,8 +2,6 @@ import {
   Menubar,
   MenubarMenu,
   MenubarTrigger,
-  MenubarContent,
-  MenubarItem,
 } from "@/components/ui/menubar"
 
 import {
@@ -29,14 +27,6 @@ export default function TopBar() {
   const { locale, setLocale, t } = useI18n()
   const { devices, loading, onConnect, onRefresh, onDisconnect } = useUsbDevices()
 
-  const navigateToConsole = () => {
-    navigate('/console')
-  }
-
-  const navigateToDashboard = () => {
-    navigate('/')
-  }
-
   const toggleMaximize = async () => {
     if (await window.api.window.isMaximized()) {
       window.api.window.unmaximize()
@@ -46,12 +36,12 @@ export default function TopBar() {
   }
 
   return (
-    <header className="drag-area flex h-9 w-full items-center border-b bg-background pl-3 text-xs">
+    <header className="drag-area flex h-9 w-full items-center border-b-3 pl-3 text-xs">
       
       {/* LEFT: Brand */}
       <div 
         className="no-drag-area flex cursor-pointer items-center gap-2 text-sm font-semibold hover:opacity-80"
-        onClick={navigateToDashboard}
+        onClick={() => navigate('/')}
       >
         <span>BLDC Console</span>
       </div>
@@ -60,15 +50,19 @@ export default function TopBar() {
       <div className="no-drag-area ml-6 hidden md:flex">
         <Menubar className="border-none shadow-none">
           <MenubarMenu>
-            <MenubarTrigger onClick={navigateToDashboard}>{t("nav.dashboard")}</MenubarTrigger>
-            <MenubarContent>
+            <MenubarTrigger onClick={() => navigate('/')}>{t("nav.dashboard")}</MenubarTrigger>
+            {/* <MenubarContent>
               <MenubarItem onClick={navigateToDashboard}>{t("nav.overview")}</MenubarItem>
               <MenubarItem>{t("nav.analytics")}</MenubarItem>
-            </MenubarContent>
+            </MenubarContent> */}
           </MenubarMenu>
 
 					<MenubarMenu>
-            <MenubarTrigger onClick={navigateToConsole}>{t("nav.console")}</MenubarTrigger>
+            <MenubarTrigger onClick={() => navigate('/console')}>{t("nav.console")}</MenubarTrigger>
+					</MenubarMenu>
+
+					<MenubarMenu>
+            <MenubarTrigger onClick={() => navigate('/settings')}>{t("nav.settings")}</MenubarTrigger>
 					</MenubarMenu>
         </Menubar>
       </div>
@@ -170,25 +164,6 @@ export default function TopBar() {
             <X className="size-3.5" strokeWidth={1.5} />
           </button>
         </div>
-
-        {/* User */}
-        {/* <DropdownMenu>
-          <DropdownMenuTrigger asChild={true}>
-            <Avatar className="h-7 w-7 cursor-pointer">
-              <AvatarImage src="" />
-              <AvatarFallback>MN</AvatarFallback>
-            </Avatar>
-          </DropdownMenuTrigger>
-
-          <DropdownMenuContent align="end">
-            <DropdownMenuItem>Profile</DropdownMenuItem>
-            <DropdownMenuItem>Billing</DropdownMenuItem>
-            <DropdownMenuSeparator />
-            <DropdownMenuItem className="text-red-500">
-              Logout
-            </DropdownMenuItem>
-          </DropdownMenuContent>
-        </DropdownMenu> */}
 
       </div>
     </header>
