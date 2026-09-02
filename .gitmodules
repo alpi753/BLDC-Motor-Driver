@@ -1,24 +1,3 @@
-[submodule "software/console"]
-	path = software/console
-	url = https://github.com/amar-jay/bldc_console
-[submodule "software/stm32g431/Middlewares/Third_Party/DSDL"]
-	path = software/stm32g431/Middlewares/Third_Party/DSDL
-	url = https://github.com/dronecan/DSDL
-[submodule "software/stm32g431/Middlewares/Third_Party/dronecan_dsdlc"]
-	path = software/stm32g431/Middlewares/Third_Party/dronecan_dsdlc
-	url = https://github.com/dronecan/dronecan_dsdlc
-[submodule "software/stm32g431/Middlewares/Third_Party/libcanard"]
-	path = software/stm32g431/Middlewares/Third_Party/libcanard
-	url = https://github.com/dronecan/libcanard
-[submodule "software/stm32f411/Middlewares/Third_Party/dronecan_dsdlc"]
-	path = software/stm32f411/Middlewares/Third_Party/dronecan_dsdlc
-	url = https://github.com/dronecan/dronecan_dsdlc
-[submodule "software/stm32f411/Middlewares/Third_Party/libcanard"]
-	path = software/stm32f411/Middlewares/Third_Party/libcanard
-	url = https://github.com/dronecan/libcanard
-[submodule "software/stm32f411/Middlewares/Third_Party/DSDL"]
-	path = software/stm32f411/Middlewares/Third_Party/DSDL
-	url = https://github.com/dronecan/DSDL
 [submodule "software/Third_Party/nanopb"]
 	path = software/Third_Party/nanopb
 	url = https://github.com/nanopb/nanopb.git
