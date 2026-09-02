@@ -7,9 +7,8 @@ const translations = {
   en: {
     "nav.dashboard": "Dashboard",
     "nav.overview": "Overview",
-    "nav.analytics": "Analytics",
-    "nav.console": "Console",
     "nav.settings": "Settings",
+    "nav.console": "Console",
     "menu.about": "About",
     "language.label": "Language",
     "language.english": "English",
@@ -70,8 +69,7 @@ const translations = {
   tr: {
     "nav.dashboard": "Gösterge paneli",
     "nav.overview": "Genel bakış",
-    "nav.analytics": "Analizler",
-    "nav.settings": "Ayarlar",
+    "nav.settings": "Settings",
     "nav.console": "Konsol",
     "menu.about": "Hakkında",
     "language.label": "Dil",

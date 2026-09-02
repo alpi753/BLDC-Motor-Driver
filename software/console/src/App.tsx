@@ -3,13 +3,13 @@ import './App.css'
 import Main from './windows/main'
 import { Toaster } from "@/components/ui/sonner"
 import Console from './windows/console'
+import Settings from './windows/settings'
 import {
   BusVoltageWindow,
   PhaseCurrentsWindow,
   PhaseVoltageWindow,
   TemperaturesWindow,
 } from './windows/card-windows'
-import Settings from './windows/settings'
 
 
 function App() {

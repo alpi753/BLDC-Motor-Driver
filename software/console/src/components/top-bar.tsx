@@ -51,10 +51,6 @@ export default function TopBar() {
         <Menubar className="border-none shadow-none">
           <MenubarMenu>
             <MenubarTrigger onClick={() => navigate('/')}>{t("nav.dashboard")}</MenubarTrigger>
-            {/* <MenubarContent>
-              <MenubarItem onClick={navigateToDashboard}>{t("nav.overview")}</MenubarItem>
-              <MenubarItem>{t("nav.analytics")}</MenubarItem>
-            </MenubarContent> */}
           </MenubarMenu>
 
 					<MenubarMenu>

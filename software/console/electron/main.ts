@@ -2,7 +2,6 @@ import { app, BrowserWindow, ipcMain } from 'electron'
 import { join } from 'path'
 import isDev from 'electron-is-dev'
 import { connectDevice, listDevices, sendDataToPort, setupPortReader } from './lib/serial'
-import type { MotorSettings } from './lib/settings'
 import { Menu } from 'electron'
 import { SerialPort } from 'serialport'
 import type { BLDCTelemetry } from './lib/telemetry'
@@ -118,11 +117,6 @@ ipcMain.handle("usb:send-data", async (_, data: string) => {
 	if (!connectedPort.writable) throw new Error("Port is not writable")
 
 	return sendDataToPort(connectedPort, data)
-})
-
-ipcMain.handle("usb:send-settings", async (_, settings: MotorSettings) => {
-  void settings
-  throw new Error("Settings are not part of the current nanopb protocol")
 })
 
 ipcMain.handle("usb:setup-port-reader", async () => {

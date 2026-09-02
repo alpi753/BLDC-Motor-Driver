@@ -1,5 +1,3 @@
-import type { MotorSettings } from "./settings"
-
 export {}
 
 declare global {
@@ -23,7 +21,6 @@ declare global {
         refresh: () => Promise<Device[]>
         onUpdate: (cb: (devices: Device[]) => void) => () => void 
         sendData?: (data: string) => Promise<unknown>
-        sendSettings?: (settings: MotorSettings) => Promise<void>
         setupPortReader?: () => Promise<unknown>
         onData?: (cb: (msg: string) => void) => () => void
         offData?: () => void

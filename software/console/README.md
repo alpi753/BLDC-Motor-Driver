@@ -28,7 +28,7 @@ The first dashboard intentionally exposes only ADC-backed values:
 - MCU die temperature (ADC1 temperature sensor)
 - protocol version, frame sequence, and controller uptime
 
-Prototype-only random telemetry fields were removed from the schema and their field numbers are reserved. Settings transmission remains disabled until command messages are added to the protobuf schema and handled by firmware.
+Prototype-only random telemetry fields were removed from the schema and their field numbers are reserved.
 
 ## Verification
 

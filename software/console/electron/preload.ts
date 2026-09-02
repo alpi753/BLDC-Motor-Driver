@@ -1,6 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { contextBridge, ipcRenderer } from 'electron'
-import type { MotorSettings } from './lib/settings'
 
 // Expose protected methods that allow the renderer process to use
 // the ipcRenderer without exposing the entire object
@@ -22,8 +21,6 @@ contextBridge.exposeInMainWorld("api", {
 		disconnect: (id: string) => ipcRenderer.invoke("usb:disconnect", id),
     refresh: () => ipcRenderer.invoke("usb:refresh"),
     sendData: (data: string) => ipcRenderer.invoke("usb:send-data", data),
-    sendSettings: (settings: MotorSettings) =>
-      ipcRenderer.invoke("usb:send-settings", settings),
     onUpdate: (cb: (devices: any[]) => void) => {
       const handler = (_: any, devices: any[]) => cb(devices)
 
